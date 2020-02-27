@@ -1,0 +1,54 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.btn {
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid rgba(212, 83, 96, 0.5);
+    background: rgb(212, 83, 96);
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    outline: none;
+}
+
+.btn:hover {
+    background: #fff;
+    color: rgb(212, 83, 96);
+    transition: linear .2s;
+}
+
+.logo {
+    width: 200px;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.app-info .btn {
+    margin-top: 16px;
+}
+.app-info span {
+    line-height: 2em;
+    color: rgba(0, 0, 0, .6);
+}

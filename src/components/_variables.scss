@@ -1,0 +1,23 @@
+$font-family: Roboto, sans-serif;
+
+$color-white: #fff;
+$color-white--75: rgba(255, 255, 255, 0.75);
+$color-white--50: rgba(255, 255, 255, 0.50);
+$color-white--25: rgba(255, 255, 255, 0.25);
+
+$color-black: #000;
+$color-black--75: rgba(0, 0, 0, 0.75);
+$color-black--50: rgba(0, 0, 0, 0.50);
+$color-black--25: rgba(0, 0, 0, 0.25);
+
+$color-grey: #f5f5fb;
+
+$text-color--basic: $color-black;
+$text-color--secondary: $color-black--50;
+
+$border-color--basic: $color-black--50;
+
+$box-shadow--basic: 0 1px 2px rgba(0,0,0,0.1);
+
+$bg-color--basic: $color-grey;
+$bg-color--primary: $color-white;

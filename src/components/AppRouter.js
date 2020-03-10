@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import Upload from './layouts/pages/upload/Upload';
 
 const PAGES = {
@@ -23,6 +23,7 @@ function AppRouter() {
     return (
         <Switch>
             <Route exact path={PAGES.UPLOAD} render={getPage(PAGES.UPLOAD)} />
+            <Redirect to={PAGES.UPLOAD} />
         </Switch>
     );
 }

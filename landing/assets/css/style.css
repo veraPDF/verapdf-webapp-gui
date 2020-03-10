@@ -27,6 +27,7 @@ main {
     cursor: pointer;
     font-size: 1em;
     outline: none;
+	text-decoration: none;
 }
 
 .btn:hover {

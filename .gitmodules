@@ -1,0 +1,4 @@
+[submodule "server"]
+    path = server
+    url = https://github.com/veraPDF/verapdf-webapp-server.git
+    branch = master

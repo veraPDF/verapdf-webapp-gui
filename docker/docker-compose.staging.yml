@@ -1,0 +1,14 @@
+version: '3'
+services:
+  gui:
+    build:
+      # this path is relative to ./server/docker directory where the main docker-compose.yml is located
+      context: ../..
+      dockerfile: Dockerfile
+      args:
+        profile: staging
+    depends_on:
+      - local-storage-service
+    ports:
+      - 80:80
+    restart: always

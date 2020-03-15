@@ -24,7 +24,10 @@ Install dependencies:
 
 `npm install`
 
-**Running in dev environment**
+Build backend services and run them in docker as described in server's [README](./server/README.md), 
+section **Running in docker**.
+
+**Running dev server**
 
 Runs the app in the development mode:
 
@@ -48,20 +51,24 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Install Docker on your machine
 
-**Build source and docker image**
+**Build sources**
+
+Build backend services:
+```
+cd ./server
+mvn clean install
+```
 
 Build production ready static content:
 
-`npm run build`
-
-Build docker image:
-
-`docker image build -t verapdf-webapp-gui .`
-
-**Run docker container**
-
-Run image through container named `verapdf-webapp-gui--container` on port `:80` :
-
 ```
-docker run -d -p 80:80 --name verapdf-webapp-gui--container --rm -d verapdf-webapp-gui
+npm install
+npm run build
+```
+
+**Run service stack**
+
+Run stack on staging machine:
+```
+docker-compose -f ./server/docker/docker-compose.yml -f ./docker/docker-compose.staging.yml up -d --build
 ```

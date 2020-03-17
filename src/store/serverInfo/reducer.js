@@ -2,6 +2,10 @@ import { handleAction } from 'redux-actions';
 const { REACT_APP_VERSION } = process.env;
 const DEFAULT_STATE = {
     version: REACT_APP_VERSION,
+    fileService: {
+        available: undefined,
+        build: undefined,
+    },
 };
 
-export default handleAction('UPDATE_SERVER_INFO', (state, action) => action.payload, DEFAULT_STATE);
+export default handleAction('SERVER_INFO_SET', (state, action) => ({ ...state, ...action.payload }), DEFAULT_STATE);

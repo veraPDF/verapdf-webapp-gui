@@ -1,0 +1,11 @@
+@import "../../../variables";
+
+.service-info {
+  &__status {
+    margin-left: 10px;
+
+    &._error {
+      color: $color-error;
+    }
+  }
+}

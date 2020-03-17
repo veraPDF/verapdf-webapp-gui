@@ -1,0 +1,7 @@
+@import "variables";
+
+@mixin common-link {
+  outline: none;
+  text-decoration: none;
+  color: $link-color--basic;
+}

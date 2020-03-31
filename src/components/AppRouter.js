@@ -1,9 +1,11 @@
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Upload from './layouts/pages/upload/Upload';
+import About from './layouts/pages/about/About';
 
 const PAGES = {
     UPLOAD: '/new-job/files',
+    ABOUT: '/about',
 };
 
 function AppRouter() {
@@ -12,6 +14,10 @@ function AppRouter() {
             case PAGES.UPLOAD:
                 return () => {
                     return <Upload {...routeProps} />;
+                };
+            case PAGES.ABOUT:
+                return () => {
+                    return <About {...routeProps} />;
                 };
             default:
                 return () => {
@@ -23,6 +29,7 @@ function AppRouter() {
     return (
         <Switch>
             <Route exact path={PAGES.UPLOAD} render={getPage(PAGES.UPLOAD)} />
+            <Route exact path={PAGES.ABOUT} render={getPage(PAGES.ABOUT)} />
             <Redirect to={PAGES.UPLOAD} />
         </Switch>
     );

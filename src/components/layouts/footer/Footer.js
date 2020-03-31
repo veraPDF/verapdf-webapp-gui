@@ -22,4 +22,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {})(React.memo(Footer));
+export default connect(mapStateToProps)(Footer);

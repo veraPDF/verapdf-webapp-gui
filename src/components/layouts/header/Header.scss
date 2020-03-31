@@ -16,15 +16,15 @@
   justify-content: space-between;
   align-items: center;
 
-  &--left,
-  &--right {
+  &__left,
+  &__right {
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
-  &--left {
+  &__left {
     height: 100%;
     justify-content: flex-start;
     .app-header-logo {
@@ -33,7 +33,16 @@
     }
   }
 
-  &--right {
+  &__right {
     justify-content: flex-end;
+  }
+
+  .app-link {
+    transition: $linear;
+    color: $text-color--basic;
+
+    &:hover {
+      color: $link-color--basic;
+    }
   }
 }

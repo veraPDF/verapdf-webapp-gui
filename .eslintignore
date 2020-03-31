@@ -1,3 +1,8 @@
-{
-    "ignorePatterns": ["node_modules/, "build/", "config/", "scripts/"]
-}
+.github/*
+.idea/*
+docker/*
+node_modules
+build/*
+landing/*
+server/*
+src/serviceWorker.js

@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.dropzone {
+  width: 100%;
+  transition: $linear;
+  padding: 30px 0;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  &__container {
+    width: 70%;
+    max-width: 700px;
+    height: 100px;
+    margin: auto;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    transition: $linear;
+
+    border: 2px dashed $color-black--50;
+    border-radius: 5px;
+    color: $color-black--50;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover,
+    &._focused {
+      color: $color-primary;
+      border-color: $color-primary;
+    }
+
+    &._filled {
+      color: $color-black--50;
+      border-color: $color-accent;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.dropzone-text {
+  color: $color-black--75;
+
+  &__file-size {
+    color: $color-black--50;
+    font-size: 14px;
+  }
+}

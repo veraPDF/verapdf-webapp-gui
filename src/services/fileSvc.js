@@ -1,6 +1,6 @@
-const FILE_API = '/api/file';
+//const FILE_API = '/api/files';
 
 export const getInfo = () => {
-    const url = `${FILE_API}/status/info`;
+    const url = '/api/status/file-storage/info';
     return fetch(url);
 };

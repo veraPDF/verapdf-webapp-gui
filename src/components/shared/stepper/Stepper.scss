@@ -1,0 +1,36 @@
+@import "../../variables";
+
+// added div to overwrite Material styles
+div.stepper {
+    padding-left: 0;
+    padding-right: 0;
+    background: $bg-color--basic;
+    color: $text-color--secondary;
+
+    .MuiSvgIcon-root {
+        font-size: 2rem;
+        opacity: 0.8;
+    }
+
+    .MuiStepLabel-label {
+        font-size: 1rem;
+        margin-top: 0;
+    }
+
+    .MuiStepLabel-iconContainer .active,
+    .MuiStepLabel-iconContainer .completed,
+    .MuiStepLabel-label.MuiStepLabel-active,
+    .MuiStepLabel-label.MuiStepLabel-completed {
+        color: $color-primary;
+    }
+
+    .MuiStepConnector-alternativeLabel {
+        top: 1rem;
+    }
+
+    .MuiStepConnector-active .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
+        opacity: 0.8;
+        border-color: $color-primary;
+        border-top-width: 2px;
+    }
+}

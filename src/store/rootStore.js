@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import { updateServerStatus } from './serverInfo/actions';
 import { storeFile } from './pdfFiles/actions';
+import { updateProfiles } from './validationProfiles/actions';
 import { getAllFiles } from '../services/pdfStorage';
 import { getUnsavedFile } from './pdfFiles/selectors';
 
@@ -17,6 +18,8 @@ export default function configureStore() {
     });
     // Check file storage availability
     store.dispatch(updateServerStatus());
+    // Get validationProfiles list
+    store.dispatch(updateProfiles());
 
     function unsavedFilesConfirmation() {
         if (getUnsavedFile(store.getState())) {

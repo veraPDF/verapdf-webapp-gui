@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 services:
   gui:
     build:
@@ -8,7 +8,8 @@ services:
       args:
         profile: staging
     depends_on:
-      - local-storage-service
+      - file-storage
+      - job-service
     ports:
       - 80:80
     restart: always

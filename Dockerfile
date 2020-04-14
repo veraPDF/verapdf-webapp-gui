@@ -6,7 +6,7 @@ ARG profile
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy our config file
-COPY ./docker/nginx/conf.d/${profile}.conf /etc/nginx/conf.d/default.conf
+COPY ./.docker/nginx/conf.d/${profile}.conf /etc/nginx/conf.d/default.conf
 
 # Copy project files
 COPY ./landing /usr/share/nginx/html

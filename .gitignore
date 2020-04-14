@@ -47,3 +47,6 @@ yarn-error.log*
 
 ## Directory-based project format:
 .idea/
+
+# Server environment
+/.bin/set-env.sh

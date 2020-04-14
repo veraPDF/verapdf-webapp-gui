@@ -1,9 +1,10 @@
 import React from 'react';
+import Dropzone from '../../dropzone/Dropzone';
 
 function Upload() {
     return (
         <section className="upload">
-            <h3>Upload page</h3>
+            <Dropzone />
         </section>
     );
 }

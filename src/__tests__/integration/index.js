@@ -2,12 +2,18 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
+import fs from 'mz/fs';
 
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
 import { getInfo as getFileServiceInfo } from '../../services/fileSvc';
+import { getAllFiles, setFile } from '../../services/pdfStorage';
 
 jest.mock('../../services/fileSvc');
+
+jest.mock('../../services/pdfStorage');
+getAllFiles.mockImplementation(() => Promise.resolve([]));
+setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
 
 const fetchSpy = jest.spyOn(global, 'fetch');
 
@@ -77,6 +83,20 @@ export const waitFor = (store, predicate) =>
             }
         });
     });
+
+export const createFile = fileData =>
+    new Promise(async resolve => {
+        const { path, name, type } = fileData;
+        let file = await fs.readFile(path);
+        file = new File([file], name, { type });
+        resolve(file);
+    });
+
+export const uploadFile = async (component, fileData) => {
+    const DropzoneInput = component.find('.dropzone__container > input');
+    const file = await createFile(fileData);
+    DropzoneInput.simulate('change', { target: { files: [file] } });
+};
 
 export const navigateWithHeaderLink = (component, linkSelector) => {
     component.find(`.app-header a.app-link${linkSelector}`).simulate('click', { button: 0 });

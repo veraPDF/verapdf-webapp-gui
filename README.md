@@ -68,7 +68,9 @@ npm run build
 
 **Run service stack**
 
-Run stack on staging machine:
+Run stack on a local machine:
 ```
-docker-compose -f ./server/docker/docker-compose.yml -f ./docker/docker-compose.staging.yml up -d --build
+cd server/.docker/
+docker-compose -f docker-compose.yml -f ../../.docker/docker-compose.staging.yml up -d --build
 ```
+In this case default values for environment variables will be used which are defined in `server/.docker/.env` file.

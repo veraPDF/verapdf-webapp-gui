@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
 import fs from 'mz/fs';
@@ -7,9 +8,11 @@ import fs from 'mz/fs';
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
 import { getInfo as getFileServiceInfo } from '../../services/fileSvc';
+import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile } from '../../services/pdfStorage';
 
 jest.mock('../../services/fileSvc');
+jest.mock('../../services/profiles');
 
 jest.mock('../../services/pdfStorage');
 getAllFiles.mockImplementation(() => Promise.resolve([]));
@@ -17,7 +20,7 @@ setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
 
 const fetchSpy = jest.spyOn(global, 'fetch');
 
-const DEFAULT_STARTUP_RESPONSES = {
+export const DEFAULT_STARTUP_RESPONSES = {
     fileServiceStatus: {
         ok: true,
         responseJson: {
@@ -30,9 +33,27 @@ const DEFAULT_STARTUP_RESPONSES = {
             },
         },
     },
+    profilesList: {
+        ok: true,
+        responseJson: [
+            { profileName: 'TEST_PROFILE_1', humanReadableName: 'Test profile 1', available: true },
+            { profileName: 'TEST_PROFILE_2', humanReadableName: 'Test profile 2', available: true },
+            { profileName: 'TEST_PROFILE_3', humanReadableName: 'Test profile 3', available: false },
+        ],
+    },
 };
 
-export const mockServiceJsonResponse = (serviceFnMock, { ok, responseJson }) => {
+export const TEST_FILE = {
+    path: './src/__tests__/integration/assets/test.pdf',
+    name: 'test.pdf',
+    type: 'application/pdf',
+    size: '30.56 KB',
+};
+
+export const mockServiceJsonResponse = (serviceFnMock, { ok, responseJson, responsePromise }) => {
+    if (responsePromise) {
+        return serviceFnMock.mockReturnValue(responsePromise);
+    }
     serviceFnMock.mockReturnValue(
         Promise.resolve({
             ok,
@@ -44,6 +65,7 @@ export const mockServiceJsonResponse = (serviceFnMock, { ok, responseJson }) => 
 export const configureTestStore = startupResponses => {
     // Mock responses for startup requests
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
+    mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
 
     return configureStore();
 };
@@ -52,6 +74,7 @@ export const integrationTest = (
     testFn,
     { startupResponses = DEFAULT_STARTUP_RESPONSES, initialEntries = ['/'] } = {}
 ) => async () => {
+    startupResponses = { ...DEFAULT_STARTUP_RESPONSES, ...startupResponses };
     // Render app
     const store = configureTestStore(startupResponses);
 
@@ -71,6 +94,10 @@ export const integrationTest = (
         expect(fetchSpy).not.toBeCalled();
         fetchSpy.mockReset();
         getFileServiceInfo.mockReset();
+        getProfilesList.mockReset();
+
+        // Cleanup session storage
+        sessionStorage.clear();
     }
 };
 
@@ -92,13 +119,35 @@ export const createFile = fileData =>
         resolve(file);
     });
 
-export const uploadFile = async (component, fileData) => {
+export const selectFile = async (component, fileData) => {
     const DropzoneInput = component.find('.dropzone__container > input');
     const file = await createFile(fileData);
     DropzoneInput.simulate('change', { target: { files: [file] } });
+};
+
+export const uploadFile = async (component, store, file = TEST_FILE) => {
+    await act(async () => {
+        await selectFile(component, file);
+        await waitFor(store, isFileUploaded);
+    });
+    component.update();
 };
 
 export const navigateWithHeaderLink = (component, linkSelector) => {
     component.find(`.app-header a.app-link${linkSelector}`).simulate('click', { button: 0 });
     component.update();
 };
+
+export const getNextStepButton = component => component.find('.nav-button_forward button');
+export const getPrevStepButton = component => component.find('.nav-button_back button');
+
+export const moveBack = component => {
+    getPrevStepButton(component).simulate('click', { button: 0 });
+    component.update();
+};
+export const moveNext = component => {
+    getNextStepButton(component).simulate('click', { button: 0 });
+    component.update();
+};
+
+export const isFileUploaded = state => state.pdfFiles.length;

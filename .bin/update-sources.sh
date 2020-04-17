@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-git pull --recurse-submodules
+git pull
+git submodule update --recursive --remote

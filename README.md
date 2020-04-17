@@ -74,3 +74,9 @@ cd server/.docker/
 docker-compose -f docker-compose.yml -f ../../.docker/docker-compose.staging.yml up -d --build
 ```
 In this case default values for environment variables will be used which are defined in `server/.docker/.env` file.
+
+## Wiki
+
+If you want to setup a server serving the application you can use utility scripts. For the reference on available scripts please consult with [Scripts reference](https://github.com/veraPDF/verapdf-webapp-gui/wiki/Scripts-reference).
+
+We have certain code convensions for GUI development which are described at [Code conventions](https://github.com/veraPDF/verapdf-webapp-gui/wiki/Code-conventions) wiki page.

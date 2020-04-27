@@ -9,30 +9,17 @@ const PAGES = {
 };
 
 function AppRouter() {
-    function getPage(path, routeProps = {}) {
-        switch (path) {
-            case PAGES.UPLOAD:
-                return () => {
-                    return <Upload {...routeProps} />;
-                };
-            case PAGES.ABOUT:
-                return () => {
-                    return <About {...routeProps} />;
-                };
-            default:
-                return () => {
-                    return <Upload {...routeProps} />;
-                };
-        }
-    }
-
     return (
         <Switch>
-            <Route exact path={PAGES.UPLOAD} render={getPage(PAGES.UPLOAD)} />
-            <Route exact path={PAGES.ABOUT} render={getPage(PAGES.ABOUT)} />
+            <Route exact path={PAGES.UPLOAD}>
+                <Upload />
+            </Route>
+            <Route exact path={PAGES.ABOUT}>
+                <About />
+            </Route>
             <Redirect to={PAGES.UPLOAD} />
         </Switch>
     );
 }
 
-export default React.memo(AppRouter);
+export default AppRouter;

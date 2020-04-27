@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropzone from '../../dropzone/Dropzone';
+import Dropzone from './dropzone/Dropzone';
 
 function Upload() {
     return (

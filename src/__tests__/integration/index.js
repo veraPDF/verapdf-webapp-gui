@@ -7,11 +7,13 @@ import fs from 'mz/fs';
 
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
-import { getInfo as getFileServiceInfo } from '../../services/fileSvc';
+import { getInfo as getFileServiceInfo } from '../../services/fileService';
+import { getInfo as getJobServiceInfo } from '../../services/jobService';
 import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile } from '../../services/pdfStorage';
 
-jest.mock('../../services/fileSvc');
+jest.mock('../../services/fileService');
+jest.mock('../../services/jobService');
 jest.mock('../../services/profiles');
 
 jest.mock('../../services/pdfStorage');
@@ -20,16 +22,27 @@ setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
 
 const fetchSpy = jest.spyOn(global, 'fetch');
 
+const DEFAULT_SERVICE_INFO = {
+    group: 'org.verapdf',
+    artifact: 'local-storage-service-server',
+    name: 'local-storage-service-server',
+    version: '0.1.0-SNAPSHOT',
+    time: '2020-03-17T07:30:59.207Z',
+};
 export const DEFAULT_STARTUP_RESPONSES = {
     fileServiceStatus: {
         ok: true,
         responseJson: {
+            build: { ...DEFAULT_SERVICE_INFO },
+        },
+    },
+    jobServiceStatus: {
+        ok: true,
+        responseJson: {
             build: {
-                group: 'org.verapdf',
-                artifact: 'local-storage-service-server',
-                name: 'local-storage-service-server',
-                version: '0.1.0-SNAPSHOT',
-                time: '2020-03-17T07:30:59.207Z',
+                ...DEFAULT_SERVICE_INFO,
+                artifact: 'job-service-server',
+                name: 'job-service-server',
             },
         },
     },
@@ -54,17 +67,17 @@ export const mockServiceJsonResponse = (serviceFnMock, { ok, responseJson, respo
     if (responsePromise) {
         return serviceFnMock.mockReturnValue(responsePromise);
     }
-    serviceFnMock.mockReturnValue(
-        Promise.resolve({
-            ok,
-            json: () => Promise.resolve(responseJson),
-        })
-    );
+    if (ok) {
+        serviceFnMock.mockReturnValue(Promise.resolve(responseJson));
+    } else {
+        serviceFnMock.mockReturnValue(Promise.reject(responseJson));
+    }
 };
 
 export const configureTestStore = startupResponses => {
     // Mock responses for startup requests
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
+    mockServiceJsonResponse(getJobServiceInfo, startupResponses.jobServiceStatus);
     mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
 
     return configureStore();
@@ -94,6 +107,7 @@ export const integrationTest = (
         expect(fetchSpy).not.toBeCalled();
         fetchSpy.mockReset();
         getFileServiceInfo.mockReset();
+        getJobServiceInfo.mockReset();
         getProfilesList.mockReset();
 
         // Cleanup session storage

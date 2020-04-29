@@ -1,24 +1,16 @@
 import { createAction } from 'redux-actions';
-import { getInfo } from '../../services/fileSvc';
+import { getInfo as getFileServiceInfo } from '../../services/fileService';
+import { getInfo as getJobServiceInfo } from '../../services/jobService';
+
+const buildServiceInfo = promise =>
+    promise.then(({ build }) => ({ available: true, build })).catch(() => ({ available: false }));
 
 const setServerInfo = createAction('SERVER_INFO_SET');
 
 export const updateServerStatus = () => async dispatch => {
-    let serverStatus = {
-        fileService: {
-            available: undefined,
-            build: undefined,
-        },
-    };
-
-    let response = await getInfo();
-    if (response.ok) {
-        let { build } = await response.json();
-        serverStatus.fileService.available = true;
-        serverStatus.fileService.build = build;
-    } else {
-        serverStatus.fileService.available = false;
-    }
-
-    dispatch(setServerInfo(serverStatus));
+    const [fileService, jobService] = await Promise.all([
+        buildServiceInfo(getFileServiceInfo()),
+        buildServiceInfo(getJobServiceInfo()),
+    ]);
+    dispatch(setServerInfo({ fileService, jobService }));
 };

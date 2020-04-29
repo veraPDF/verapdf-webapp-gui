@@ -17,7 +17,7 @@ export default function configureStore() {
     const fileName = sessionStorage.getItem(JOB_FILE);
     if (fileName) {
         getFile(fileName).then(file => {
-            if (file && file.size) {
+            if (file?.size) {
                 store.dispatch(storeFile(file, true));
             } else {
                 sessionStorage.removeItem(JOB_FILE);

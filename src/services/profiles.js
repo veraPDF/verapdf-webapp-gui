@@ -1,3 +1,5 @@
+import { handleResponse } from './api';
+
 const PROFILES = [
     { profileName: 'TAGGED_PDF', humanReadableName: 'Tagged PDF', available: true },
     { profileName: 'PDFUA_1_MACHINE', humanReadableName: 'PDF/UA-1 (Machine)', available: true },
@@ -7,9 +9,12 @@ const PROFILES = [
 
 const RESPONSE = {
     ok: true,
+    headers: {
+        get: () => 'application/json',
+    },
     json: () => PROFILES,
 };
 //  Simulate fetch behavior
 export const getList = () => {
-    return new Promise(resolve => resolve(RESPONSE));
+    return new Promise(resolve => resolve(RESPONSE)).then(handleResponse);
 };

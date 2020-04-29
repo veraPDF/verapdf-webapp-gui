@@ -6,6 +6,10 @@ const DEFAULT_STATE = {
         available: undefined,
         build: undefined,
     },
+    jobService: {
+        available: undefined,
+        build: undefined,
+    },
 };
 
 export default handleAction('SERVER_INFO_SET', (state, action) => ({ ...state, ...action.payload }), DEFAULT_STATE);

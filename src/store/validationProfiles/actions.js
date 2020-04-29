@@ -8,10 +8,9 @@ export const setProfiles = createAction('PROFILES_SET');
 export const updateProfiles = () => async dispatch => {
     let profiles;
 
-    let response = await getProfilesList();
-    if (response.ok) {
-        profiles = await response.json();
-    } else {
+    try {
+        profiles = await getProfilesList();
+    } catch (error) {
         profiles = { error: ERROR_TEXT };
     }
 

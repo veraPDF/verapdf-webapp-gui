@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -14,18 +14,27 @@ const BUILD_TIME_FORMAT = {
 };
 
 function About(props) {
-    const { fileService } = props;
-    const fileServiceInfo = buildServiceInfo(fileService);
+    const { fileService, jobService } = props;
+    const fileServiceInfo = useMemo(() => buildServiceInfo(fileService), [fileService]);
+    const jobServiceInfo = useMemo(() => buildServiceInfo(jobService), [jobService]);
 
     return (
         <section className="about">
             <h3>Services</h3>
-            <div className="service-info file">
-                File storage:
-                <span className={classNames('service-info__status', { _error: fileService.available === false })}>
-                    {fileServiceInfo}
-                </span>
-            </div>
+            <ul className="service-list">
+                <li className="service-info file">
+                    File storage:
+                    <span className={classNames('service-info__status', { _error: fileService.available === false })}>
+                        {fileServiceInfo}
+                    </span>
+                </li>
+                <li className="service-info job">
+                    Job service:
+                    <span className={classNames('service-info__status', { _error: jobService.available === false })}>
+                        {jobServiceInfo}
+                    </span>
+                </li>
+            </ul>
         </section>
     );
 }
@@ -40,6 +49,7 @@ const ServiceStatusShape = PropTypes.shape({
 
 About.propTypes = {
     fileService: ServiceStatusShape.isRequired,
+    jobService: ServiceStatusShape.isRequired,
 };
 
 function buildServiceInfo(service) {
@@ -62,6 +72,7 @@ function buildServiceInfo(service) {
 function mapStateToProps(state) {
     return {
         fileService: state.serverInfo.fileService,
+        jobService: state.serverInfo.jobService,
     };
 }
 

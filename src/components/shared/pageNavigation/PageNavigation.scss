@@ -1,0 +1,16 @@
+.page-navigation {
+  display: flex;
+  padding-top: 20px;
+
+  section {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    justify-content: center;
+
+    .app-link {
+      color: inherit;
+      display: flex;
+    }
+  }
+}

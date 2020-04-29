@@ -1,12 +1,40 @@
-import React from 'react';
-import Dropzone from '../../dropzone/Dropzone';
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { hasFilesAttached } from '../../../../store/pdfFiles/selectors';
+import { connect } from 'react-redux';
+import AppPages from '../../../AppPages';
+import Stepper from '../../../shared/stepper/Stepper';
+import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
+import Dropzone from './dropzone/Dropzone';
 
-function Upload() {
+function Upload(props) {
+    const { filesAttached } = props;
+    const forwardButton = useMemo(
+        () => ({
+            label: 'Configure job',
+            link: AppPages.SETTINGS,
+            disabled: !filesAttached,
+        }),
+        [filesAttached]
+    );
+
     return (
         <section className="upload">
+            <Stepper activeStep={AppPages.UPLOAD} />
             <Dropzone />
+            <PageNavigation forward={forwardButton} />
         </section>
     );
 }
 
-export default Upload;
+Upload.propTypes = {
+    filesAttached: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = state => {
+    return {
+        filesAttached: hasFilesAttached(state),
+    };
+};
+
+export default connect(mapStateToProps)(Upload);

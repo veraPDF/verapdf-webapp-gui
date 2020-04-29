@@ -1,9 +1,9 @@
-@import "../../variables";
+@import "../../../../variables";
 
 .dropzone {
   width: 100%;
   transition: $linear;
-  padding: 30px 0;
+  min-height: $page-content-min-height;
 
   display: flex;
   align-items: flex-start;

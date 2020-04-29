@@ -2,16 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import configureStore from './store/rootStore';
 import * as serviceWorker from './serviceWorker';
 import App from './components/App';
 import './index.scss';
 
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#cf3f4f',
+            dark: '#ca192d', // hover color
+        },
+    },
+});
+
 ReactDOM.render(
     <Provider store={configureStore()}>
-        <Router basename="/demo">
-            <App />
-        </Router>
+        <ThemeProvider theme={theme}>
+            <Router basename="/demo">
+                <App />
+            </Router>
+        </ThemeProvider>
     </Provider>,
     document.getElementById('root')
 );

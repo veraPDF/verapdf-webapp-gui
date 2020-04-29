@@ -1,19 +1,11 @@
-import { integrationTest, waitFor, uploadFile } from './index';
-import { act } from 'react-dom/test-utils';
+import { TEST_FILE, integrationTest, getNextStepButton, uploadFile, moveBack, moveNext } from './index';
 
 const EMPTY_DROPZONE_TEXT = 'Drop some PDF files here, or click to select files';
-const TEST_FILE = {
-    path: './src/__tests__/integration/assets/test.pdf',
-    name: 'test.pdf',
-    type: 'application/pdf',
-    size: '30.56 KB',
-};
 const FAILED_FILE = {
     ...TEST_FILE,
     name: '',
 };
 
-const isFileUploaded = state => state.pdfFiles.length;
 const isStoredInDB = store => store.getState().pdfFiles[0].hasBackup;
 const simulateUnload = () => {
     let e = new Event('beforeunload');
@@ -28,33 +20,26 @@ describe('Upload', () => {
         'dropzone is loaded',
         integrationTest((store, component) => {
             expect(getDropzoneText(component)).toEqual(EMPTY_DROPZONE_TEXT);
+            expect(getNextStepButton(component).props().disabled).toBe(true);
         })
     );
 
     it(
         'file is dropped',
         integrationTest(async (store, component) => {
-            // Wrapped in act() cause of warning: 'When testing, code that causes React state updates should be wrapped into act(...'
-            await act(async () => {
-                await uploadFile(component, TEST_FILE);
-                await waitFor(store, isFileUploaded);
-            });
+            await uploadFile(component, store);
 
             expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getNextStepButton(component).props().disabled).toBeFalsy();
         })
     );
 
     it(
         'IndexedDB storing success',
         integrationTest(async (store, component) => {
-            // Wrapped in act() cause of warning: 'When testing, code that causes React state updates should be wrapped into act(...'
-            await act(async () => {
-                await uploadFile(component, TEST_FILE);
-                await waitFor(store, isFileUploaded);
-            });
+            await uploadFile(component, store);
 
             expect(isStoredInDB(store)).toBe(true);
-
             expect(simulateUnload()).toEqual(false);
         })
     );
@@ -62,15 +47,22 @@ describe('Upload', () => {
     it(
         'IndexedDB storing failed',
         integrationTest(async (store, component) => {
-            // Wrapped in act() cause of warning: 'When testing, code that causes React state updates should be wrapped into act(...'
-            await act(async () => {
-                await uploadFile(component, FAILED_FILE);
-                await waitFor(store, isFileUploaded);
-            });
+            await uploadFile(component, store, FAILED_FILE);
 
             expect(isStoredInDB(store)).toBe(false);
-
             expect(simulateUnload()).toEqual(true);
+        })
+    );
+
+    it(
+        'File still attached after going back from next step',
+        integrationTest(async (store, component) => {
+            await uploadFile(component, store);
+
+            moveNext(component);
+            moveBack(component);
+
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
         })
     );
 });

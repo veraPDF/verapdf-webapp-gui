@@ -1,0 +1,24 @@
+@import "../../../variables";
+
+.job-settings {
+    min-height: $page-content-min-height;
+    display: flex;
+    align-items: center;
+
+    form {
+        min-width: 400px;
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: auto [label] 1fr [controller] auto [note];
+        align-items: center;
+        justify-items: start;
+        grid-auto-rows: minmax(40px, min-content);
+        grid-column-gap: 10px;
+        grid-row-gap: 5px;
+
+        .fatal-error {
+            grid-column-end: span 3;
+        }
+    }
+}

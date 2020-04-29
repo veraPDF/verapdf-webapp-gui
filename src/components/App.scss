@@ -14,10 +14,16 @@
   position: relative;
   width: 100%;
   height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 90px 15px 60px 15px;
   box-sizing: border-box;
 }
 
 .app-link {
   @include common-link;
+
+  &_disabled {
+    pointer-events: none;
+  }
 }

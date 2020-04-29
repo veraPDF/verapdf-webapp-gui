@@ -2,37 +2,24 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Upload from './layouts/pages/upload/Upload';
 import About from './layouts/pages/about/About';
-
-const PAGES = {
-    UPLOAD: '/new-job/files',
-    ABOUT: '/about',
-};
+import Settings from './layouts/pages/settings/Settings';
+import AppPages from './AppPages';
 
 function AppRouter() {
-    function getPage(path, routeProps = {}) {
-        switch (path) {
-            case PAGES.UPLOAD:
-                return () => {
-                    return <Upload {...routeProps} />;
-                };
-            case PAGES.ABOUT:
-                return () => {
-                    return <About {...routeProps} />;
-                };
-            default:
-                return () => {
-                    return <Upload {...routeProps} />;
-                };
-        }
-    }
-
     return (
         <Switch>
-            <Route exact path={PAGES.UPLOAD} render={getPage(PAGES.UPLOAD)} />
-            <Route exact path={PAGES.ABOUT} render={getPage(PAGES.ABOUT)} />
-            <Redirect to={PAGES.UPLOAD} />
+            <Route exact path={AppPages.UPLOAD}>
+                <Upload />
+            </Route>
+            <Route exact path={AppPages.SETTINGS}>
+                <Settings />
+            </Route>
+            <Route exact path={AppPages.ABOUT}>
+                <About />
+            </Route>
+            <Redirect to={AppPages.UPLOAD} />
         </Switch>
     );
 }
 
-export default React.memo(AppRouter);
+export default AppRouter;

@@ -1,0 +1,20 @@
+@import "../../variables";
+
+// added div to overwrite Material styles
+div.select-form-controller {
+  width: 100%;
+
+  .select-form-controller__select {
+    &_hidden {
+      display: none;
+    }
+    .MuiSelect-select:focus {
+      background-color: transparent;
+    }
+  }
+
+  .select-form-controller__helper {
+    margin: 0;
+    font-size: $font-size--secondary;
+  }
+}

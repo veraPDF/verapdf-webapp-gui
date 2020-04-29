@@ -3,12 +3,12 @@ import { useDropzone } from 'react-dropzone';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { storeFile } from '../../../store/pdfFiles/actions';
-import { getPdfFiles } from '../../../store/pdfFiles/selectors';
+import { storeFile } from '../../../../../store/pdfFiles/actions';
+import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import DropzoneText from './DropzoneText';
 import './Dropzone.scss';
 
-const DROPZONE_OPIONS = {
+const DROPZONE_OPTIONS = {
     accept: 'application/pdf',
     multiple: false,
     preventDropOnDocument: true,
@@ -29,7 +29,7 @@ function Dropzone(props) {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        ...DROPZONE_OPIONS,
+        ...DROPZONE_OPTIONS,
     });
 
     return (

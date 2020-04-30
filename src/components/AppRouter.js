@@ -8,15 +8,9 @@ import AppPages from './AppPages';
 function AppRouter() {
     return (
         <Switch>
-            <Route exact path={AppPages.UPLOAD}>
-                <Upload />
-            </Route>
-            <Route exact path={AppPages.SETTINGS}>
-                <Settings />
-            </Route>
-            <Route exact path={AppPages.ABOUT}>
-                <About />
-            </Route>
+            <Route exact path={AppPages.UPLOAD} component={Upload} />
+            <Route exact path={AppPages.SETTINGS} component={Settings} />
+            <Route exact path={AppPages.ABOUT} component={About} />
             <Redirect to={AppPages.UPLOAD} />
         </Switch>
     );

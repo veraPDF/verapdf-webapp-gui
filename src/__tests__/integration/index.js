@@ -10,7 +10,7 @@ import configureStore from '../../store/rootStore';
 import { getInfo as getFileServiceInfo } from '../../services/fileService';
 import { getInfo as getJobServiceInfo } from '../../services/jobService';
 import { getList as getProfilesList } from '../../services/profiles';
-import { getAllFiles, setFile } from '../../services/pdfStorage';
+import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
 
 jest.mock('../../services/fileService');
 jest.mock('../../services/jobService');
@@ -18,6 +18,7 @@ jest.mock('../../services/profiles');
 
 jest.mock('../../services/pdfStorage');
 getAllFiles.mockImplementation(() => Promise.resolve([]));
+getFile.mockImplementation(() => Promise.resolve(-1));
 setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
 
 const fetchSpy = jest.spyOn(global, 'fetch');
@@ -85,7 +86,7 @@ export const configureTestStore = startupResponses => {
 
 export const integrationTest = (
     testFn,
-    { startupResponses = DEFAULT_STARTUP_RESPONSES, initialEntries = ['/'] } = {}
+    { startupResponses = DEFAULT_STARTUP_RESPONSES, initialEntries = ['/'], skipLoading = true } = {}
 ) => async () => {
     startupResponses = { ...DEFAULT_STARTUP_RESPONSES, ...startupResponses };
     // Render app
@@ -98,6 +99,10 @@ export const integrationTest = (
             </Router>
         </Provider>
     );
+
+    if (skipLoading) {
+        await skipLoadingPage(store, component);
+    }
 
     // Execute the test
     try {
@@ -165,3 +170,9 @@ export const moveNext = component => {
 };
 
 export const isFileUploaded = state => state.pdfFiles.length;
+
+export const isAppInitialized = state => state.appState.initialized;
+export const skipLoadingPage = async (store, component) => {
+    await waitFor(store, isAppInitialized);
+    component.update();
+};

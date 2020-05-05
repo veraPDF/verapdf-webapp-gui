@@ -4,24 +4,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '../button/Button';
 
-const TYPE = {
-    BACK: 'back',
-    FORWARD: 'forward',
-};
-const VARIANTS = {
-    [TYPE.BACK]: 'outlined',
-    [TYPE.FORWARD]: 'contained',
-};
-
 function NavButton(props) {
-    const { to, disabled, type } = props;
+    const { to, disabled, type, variant } = props;
 
     return (
         <Link
             to={to}
             className={classNames('app-link nav-button', `nav-button_${type}`, { 'app-link_disabled': disabled })}
         >
-            <Button variant={VARIANTS[type]} color="primary" disabled={disabled}>
+            <Button variant={variant} color="primary" disabled={disabled}>
                 {props.children}
             </Button>
         </Link>
@@ -29,8 +20,9 @@ function NavButton(props) {
 }
 
 NavButton.propTypes = {
-    to: PropTypes.string.isRequired,
+    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]).isRequired,
     type: PropTypes.string.isRequired,
+    variant: PropTypes.string,
     disabled: PropTypes.bool,
 };
 

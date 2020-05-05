@@ -6,6 +6,7 @@ import AppRouter from './AppRouter';
 import Header from './layouts/header/Header';
 import Footer from './layouts/footer/Footer';
 import Loading from './layouts/pages/loading/Loading';
+import LockOverlay from './shared/lockOverlay/LockOverlay';
 import { isInitialized } from '../store/application/selectors';
 import './App.scss';
 
@@ -20,6 +21,7 @@ function App({ initialized }) {
             <main className="app-content">
                 <AppRouter />
             </main>
+            <LockOverlay />
             <Footer />
         </div>
     );

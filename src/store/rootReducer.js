@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import serverInfo from './serverInfo/reducer';
 import pdfFiles from './pdfFiles/reducer';
-import jobs from './job/reducer';
+import job from './job/reducer';
 import validationProfiles from './validationProfiles/reducer';
 import jobSettings from './job/settings/reducer';
+import jobProgress from './job/progress/reducer';
 import appState from './application/reducer';
 
 export default combineReducers({
@@ -11,6 +12,7 @@ export default combineReducers({
     serverInfo,
     pdfFiles,
     validationProfiles,
-    jobs,
+    job,
     jobSettings,
+    jobProgress,
 });

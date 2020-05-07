@@ -18,7 +18,11 @@ const STEPS = [
         label: 'Select settings',
     },
     {
-        key: undefined,
+        key: AppPages.STATUS.route,
+        label: 'Validation',
+    },
+    {
+        key: AppPages.RESULTS.route,
         label: 'Verification results',
     },
 ];

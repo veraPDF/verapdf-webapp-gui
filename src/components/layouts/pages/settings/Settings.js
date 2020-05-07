@@ -7,9 +7,9 @@ import AppPages from '../../../AppPages';
 import Stepper from '../../../shared/stepper/Stepper';
 import ProfileSelect from './profile/ProfileSelect';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
-import { validate } from '../../../../store/job/actions';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
 import { getJobId } from '../../../../store/job/selectors';
+import { validate } from '../../../../store/job/actions';
 
 import './Settings.scss';
 
@@ -20,6 +20,7 @@ const backButton = {
 
 function Settings(props) {
     const { allServicesAvailable, jobId, onValidateClick } = props;
+
     const forwardButton = useMemo(
         () => ({
             label: 'Validate',
@@ -31,7 +32,7 @@ function Settings(props) {
 
     if (jobId) {
         // Once job is initialized and we know its ID redirect to status page to track its progress
-        return <Redirect push to={AppPages.UPLOAD} />;
+        return <Redirect push to={AppPages.STATUS.url(jobId)} />;
     }
 
     return (

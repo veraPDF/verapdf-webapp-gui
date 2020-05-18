@@ -1,4 +1,4 @@
-import { DEFAULT_STARTUP_RESPONSES, TEST_FILE, integrationTest, uploadFile, moveNext } from './index';
+import { DEFAULT_STARTUP_RESPONSES, TEST_FILE, integrationTest, storeFile, moveNext } from './index';
 import MaterialSelect from '@material-ui/core/Select';
 import Settings from '../../components/layouts/pages/settings/Settings';
 
@@ -19,7 +19,7 @@ describe('Settings', () => {
             'Profiles list not yet loaded',
             integrationTest(
                 async (store, component) => {
-                    await uploadFile(component, store);
+                    await storeFile(component, store);
                     moveNext(component);
 
                     expect(component.find(Settings)).toHaveLength(1);
@@ -38,7 +38,7 @@ describe('Settings', () => {
         it(
             'Profiles list loaded',
             integrationTest(async (store, component) => {
-                await uploadFile(component, store);
+                await storeFile(component, store);
                 moveNext(component);
 
                 expect(component.find(Settings)).toHaveLength(1);
@@ -56,7 +56,7 @@ describe('Settings', () => {
             'Profiles list failed to load',
             integrationTest(
                 async (store, component) => {
-                    await uploadFile(component, store);
+                    await storeFile(component, store);
                     moveNext(component);
                     expect(component.find(Settings)).toHaveLength(1);
                     expect(getProfileSelectError(component).text()).toBe(
@@ -75,7 +75,7 @@ describe('Settings', () => {
     it(
         'Profile changed',
         integrationTest(async (store, component) => {
-            await uploadFile(component, store, TEST_FILE);
+            await storeFile(component, store, TEST_FILE);
             moveNext(component);
 
             expect(getProfileValue(store)).toEqual(PROFILE_VALUES[0]);

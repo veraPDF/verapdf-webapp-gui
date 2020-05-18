@@ -7,10 +7,12 @@ import fs from 'mz/fs';
 
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
-import { getInfo as getFileServiceInfo } from '../../services/fileService';
-import { getInfo as getJobServiceInfo } from '../../services/jobService';
+import { getInfo as getFileServiceInfo, uploadFile } from '../../services/fileService';
+import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
 import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
+import { getFileId } from '../../store/pdfFiles/selectors';
+import { getTask } from '../../store/job/selectors';
 
 jest.mock('../../services/fileService');
 jest.mock('../../services/jobService');
@@ -30,6 +32,21 @@ const DEFAULT_SERVICE_INFO = {
     version: '0.1.0-SNAPSHOT',
     time: '2020-03-17T07:30:59.207Z',
 };
+
+export const TEST_FILE = {
+    path: './src/__tests__/integration/assets/test.pdf',
+    name: 'test.pdf',
+    type: 'application/pdf',
+    size: '30.56 KB',
+};
+
+const JOB = {
+    id: 'job-id',
+    profile: 'TEST_PROFILE_1',
+    status: 'CREATED',
+    tasks: [],
+};
+
 export const DEFAULT_STARTUP_RESPONSES = {
     fileServiceStatus: {
         ok: true,
@@ -55,13 +72,41 @@ export const DEFAULT_STARTUP_RESPONSES = {
             { profileName: 'TEST_PROFILE_3', humanReadableName: 'Test profile 3', available: false },
         ],
     },
-};
-
-export const TEST_FILE = {
-    path: './src/__tests__/integration/assets/test.pdf',
-    name: 'test.pdf',
-    type: 'application/pdf',
-    size: '30.56 KB',
+    uploadFile: {
+        ok: true,
+        responseJson: {
+            contentMD5: 'file-md5',
+            contentSize: 100,
+            contentType: TEST_FILE.type,
+            fileName: TEST_FILE.name,
+            id: 'file-id',
+        },
+    },
+    job: {
+        ok: true,
+        responseJson: { ...JOB },
+    },
+    updatedJob: {
+        ok: true,
+        responseJson: {
+            ...JOB,
+            tasks: [{ id: 'file-id' }],
+        },
+    },
+    startedJob: {
+        ok: true,
+        responseJson: {
+            ...JOB,
+            status: 'PROCESSING',
+        },
+    },
+    finishedJob: {
+        ok: true,
+        responseJson: {
+            ...JOB,
+            status: 'FINISHED',
+        },
+    },
 };
 
 export const mockServiceJsonResponse = (serviceFnMock, { ok, responseJson, responsePromise }) => {
@@ -80,6 +125,11 @@ export const configureTestStore = startupResponses => {
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
     mockServiceJsonResponse(getJobServiceInfo, startupResponses.jobServiceStatus);
     mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
+    mockServiceJsonResponse(createJob, startupResponses.job);
+    mockServiceJsonResponse(uploadFile, startupResponses.uploadFile);
+    mockServiceJsonResponse(updateJob, startupResponses.updatedJob);
+    mockServiceJsonResponse(executeJob, startupResponses.startedJob);
+    mockServiceJsonResponse(getJob, startupResponses.finishedJob);
 
     return configureStore();
 };
@@ -114,6 +164,11 @@ export const integrationTest = (
         getFileServiceInfo.mockReset();
         getJobServiceInfo.mockReset();
         getProfilesList.mockReset();
+        createJob.mockReset();
+        uploadFile.mockReset();
+        updateJob.mockReset();
+        executeJob.mockReset();
+        getJob.mockReset();
 
         // Cleanup session storage
         sessionStorage.clear();
@@ -144,10 +199,10 @@ export const selectFile = async (component, fileData) => {
     DropzoneInput.simulate('change', { target: { files: [file] } });
 };
 
-export const uploadFile = async (component, store, file = TEST_FILE) => {
+export const storeFile = async (component, store, file = TEST_FILE) => {
     await act(async () => {
         await selectFile(component, file);
-        await waitFor(store, isFileUploaded);
+        await waitFor(store, isFileStored);
     });
     component.update();
 };
@@ -157,8 +212,8 @@ export const navigateWithHeaderLink = (component, linkSelector) => {
     component.update();
 };
 
-export const getNextStepButton = component => component.find('.nav-button_forward button');
-export const getPrevStepButton = component => component.find('.nav-button_back button');
+export const getNextStepButton = component => component.find('.page-navigation__end button');
+export const getPrevStepButton = component => component.find('.page-navigation__start button');
 
 export const moveBack = component => {
     getPrevStepButton(component).simulate('click', { button: 0 });
@@ -169,10 +224,13 @@ export const moveNext = component => {
     component.update();
 };
 
-export const isFileUploaded = state => state.pdfFiles.length;
-
 export const isAppInitialized = state => state.appState.initialized;
 export const skipLoadingPage = async (store, component) => {
     await waitFor(store, isAppInitialized);
     component.update();
 };
+
+export const isFileStored = state => state.pdfFiles.length;
+export const isFileUploaded = state => getFileId(state);
+export const isJobUpdated = state => getTask(state);
+export const checkJobStatus = status => state => state.job.status === status;

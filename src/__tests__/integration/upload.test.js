@@ -1,4 +1,4 @@
-import { TEST_FILE, integrationTest, getNextStepButton, uploadFile, moveBack, moveNext } from './index';
+import { TEST_FILE, integrationTest, getNextStepButton, storeFile, moveBack, moveNext } from './index';
 
 const EMPTY_DROPZONE_TEXT = 'Drop some PDF files here, or click to select files';
 const FAILED_FILE = {
@@ -27,7 +27,7 @@ describe('Upload', () => {
     it(
         'file is dropped',
         integrationTest(async (store, component) => {
-            await uploadFile(component, store);
+            await storeFile(component, store);
 
             expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
             expect(getNextStepButton(component).props().disabled).toBeFalsy();
@@ -37,7 +37,7 @@ describe('Upload', () => {
     it(
         'IndexedDB storing success',
         integrationTest(async (store, component) => {
-            await uploadFile(component, store);
+            await storeFile(component, store);
 
             expect(isStoredInDB(store)).toBe(true);
             expect(simulateUnload()).toEqual(false);
@@ -47,7 +47,7 @@ describe('Upload', () => {
     it(
         'IndexedDB storing failed',
         integrationTest(async (store, component) => {
-            await uploadFile(component, store, FAILED_FILE);
+            await storeFile(component, store, FAILED_FILE);
 
             expect(isStoredInDB(store)).toBe(false);
             expect(simulateUnload()).toEqual(true);
@@ -57,7 +57,7 @@ describe('Upload', () => {
     it(
         'File still attached after going back from next step',
         integrationTest(async (store, component) => {
-            await uploadFile(component, store);
+            await storeFile(component, store);
 
             moveNext(component);
             moveBack(component);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import Stepper from '../../../shared/stepper/Stepper';
@@ -16,6 +16,11 @@ const backButton = {
 };
 
 function Results({ jobStatus }) {
+    const { id: jobId } = useParams();
+    const forwardButton = {
+        label: 'Inspect',
+        to: AppPages.INSPECT.url(jobId),
+    };
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;
     }
@@ -23,7 +28,7 @@ function Results({ jobStatus }) {
     return (
         <section className="results">
             <Stepper activeStep={AppPages.RESULTS.route} />
-            <PageNavigation back={backButton} />
+            <PageNavigation back={backButton} forward={forwardButton} />
         </section>
     );
 }

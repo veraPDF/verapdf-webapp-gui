@@ -28,9 +28,12 @@ div.stepper {
         top: 1rem;
     }
 
-    .MuiStepConnector-active .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
-        opacity: 0.8;
-        border-color: $color-primary;
-        border-top-width: 2px;
+    .MuiStepConnector-active,
+    .MuiStepConnector-completed {
+        .MuiStepConnector-line.MuiStepConnector-lineHorizontal {
+            opacity: 0.8;
+            border-color: $color-primary;
+            border-top-width: 2px;
+        }
     }
 }

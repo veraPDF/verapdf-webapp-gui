@@ -14,6 +14,9 @@ const theme = createMuiTheme({
             main: '#cf3f4f',
             dark: '#ca192d', // hover color
         },
+        secondary: {
+            main: '#4caf50',
+        },
     },
 });
 

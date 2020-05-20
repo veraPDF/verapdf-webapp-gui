@@ -6,6 +6,7 @@ import logo from './veraPDF-logo-400.png';
 import './Header.scss';
 
 function Header() {
+    // TODO: trigger reset app when click on logo, it should reset file/job in indexedDB, sessionStorage and redux state
     return (
         <header className="app-header">
             <section className="app-header__left">

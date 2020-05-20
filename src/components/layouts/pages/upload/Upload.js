@@ -12,7 +12,7 @@ function Upload(props) {
     const forwardButton = useMemo(
         () => ({
             label: 'Configure job',
-            link: AppPages.SETTINGS,
+            to: AppPages.SETTINGS,
             disabled: !filesAttached,
         }),
         [filesAttached]

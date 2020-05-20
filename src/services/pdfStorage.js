@@ -10,6 +10,7 @@ let pdfStorage;
 
 const getStorage = async () => {
     if (!pdfStorage) {
+        // TODO: generate uuid as key
         pdfStorage = await db.connect(DB_NAME, STORE_NAME, KEY);
     }
     return pdfStorage;

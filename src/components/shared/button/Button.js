@@ -14,6 +14,7 @@ Button.propTypes = {
     variant: PropTypes.string,
     color: PropTypes.string,
     disabled: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 export default Button;

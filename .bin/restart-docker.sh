@@ -7,5 +7,12 @@ project_root=$(dirname "$script_dir")
 # shellcheck disable=SC1090
 . "$script_dir"/set-env.sh
 
-docker-compose -f "$project_root"/server/.docker/docker-compose.yml -f "$project_root"/.docker/docker-compose.staging.yml down
+# passing --clean should remove all docker volumes meaning purging all the data and cleaning orphan containers
+down_opts="";
+if [ "$1" == "--clean" ]
+  then
+    down_opts="$down_opts --volumes --remove-orphans"
+fi
+
+docker-compose -f "$project_root"/server/.docker/docker-compose.yml -f "$project_root"/.docker/docker-compose.staging.yml down $down_opts
 docker-compose -f "$project_root"/server/.docker/docker-compose.yml -f "$project_root"/.docker/docker-compose.staging.yml up -d --build

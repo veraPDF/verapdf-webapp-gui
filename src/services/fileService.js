@@ -15,6 +15,25 @@ export const uploadFile = async file => {
     return upload(url, data);
 };
 
+export const getFileContent = async id => {
+    const FILE_CONTENT = {
+        compliant: true,
+        details: {
+            passedRules: 1282,
+            failedRules: 127,
+            passedChecks: 3760,
+            failedChecks: 1052,
+            ruleSummaries: [],
+        },
+        profileName: 'Tagged pdf profile for PDF 1.7 specification',
+        statement: 'PDF file is compliant with Validation Profile requirements.',
+    };
+    console.log('get file content:', id);
+    return new Promise(resolve => setTimeout(() => resolve({ ...FILE_CONTENT }), 2000));
+    // const url = `${REACT_APP_API_ROOT}/files/${id}`;
+    // return get(url);
+};
+
 const buildFileData = async file => {
     const fileData = new FormData();
     fileData.append('file', file);

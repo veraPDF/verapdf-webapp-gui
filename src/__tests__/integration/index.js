@@ -7,12 +7,11 @@ import fs from 'mz/fs';
 
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
-import { getInfo as getFileServiceInfo, uploadFile } from '../../services/fileService';
+import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../services/fileService';
 import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
 import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
-import { getFileId } from '../../store/pdfFiles/selectors';
-import { getTask } from '../../store/job/selectors';
+import { getProgress } from '../../store/job/progress/selectors';
 
 jest.mock('../../services/fileService');
 jest.mock('../../services/jobService');
@@ -98,6 +97,13 @@ export const DEFAULT_STARTUP_RESPONSES = {
         responseJson: {
             ...JOB,
             status: 'PROCESSING',
+            tasks: [
+                {
+                    id: 'file-id',
+                    status: 'QUEUED',
+                    validationResultId: 'result-file-id',
+                },
+            ],
         },
     },
     finishedJob: {
@@ -105,6 +111,26 @@ export const DEFAULT_STARTUP_RESPONSES = {
         responseJson: {
             ...JOB,
             status: 'FINISHED',
+            tasks: [
+                {
+                    id: 'file-id',
+                    status: 'FINISHED',
+                    validationResultId: 'result-file-id',
+                },
+            ],
+        },
+    },
+    resultFile: {
+        ok: true,
+        responseJson: {
+            compliant: true,
+            details: {
+                passedRules: 1,
+                failedRules: 1,
+                passedChecks: 1,
+                failedChecks: 1,
+                ruleSummaries: [],
+            },
         },
     },
 };
@@ -125,11 +151,14 @@ export const configureTestStore = startupResponses => {
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
     mockServiceJsonResponse(getJobServiceInfo, startupResponses.jobServiceStatus);
     mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
+
+    // TODO: all calls below ARE NOT startup, hence should be mocked in corresponding test file instead
     mockServiceJsonResponse(createJob, startupResponses.job);
     mockServiceJsonResponse(uploadFile, startupResponses.uploadFile);
     mockServiceJsonResponse(updateJob, startupResponses.updatedJob);
     mockServiceJsonResponse(executeJob, startupResponses.startedJob);
     mockServiceJsonResponse(getJob, startupResponses.finishedJob);
+    mockServiceJsonResponse(getFileContent, startupResponses.resultFile);
 
     return configureStore();
 };
@@ -169,6 +198,7 @@ export const integrationTest = (
         updateJob.mockReset();
         executeJob.mockReset();
         getJob.mockReset();
+        getFileContent.mockReset();
 
         // Cleanup session storage
         sessionStorage.clear();
@@ -231,6 +261,4 @@ export const skipLoadingPage = async (store, component) => {
 };
 
 export const isFileStored = state => state.pdfFiles.length;
-export const isFileUploaded = state => getFileId(state);
-export const isJobUpdated = state => getTask(state);
-export const checkJobStatus = status => state => state.job.status === status;
+export const stepFinished = key => state => getProgress(state).steps.find(({ stepKey }) => stepKey === key)?.completed;

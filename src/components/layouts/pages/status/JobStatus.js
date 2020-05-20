@@ -10,55 +10,70 @@ import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
 import { getJobError, getJobStatus } from '../../../../store/job/selectors';
 import { getProgress } from '../../../../store/job/progress/selectors';
+import { hasResult } from '../../../../store/job/result/selectors';
 import './JobStatus.scss';
+
+const DEFAULT_ERROR = 'Failed to start validation.';
 
 export const STEPS = {
     JOB_CREATE: {
         active: 'Initializing new validation job...',
         complete: 'Validation job initiated.',
-        error: 'Job creation failed',
+        errorDetails: errorMessage => `Failed to create job: ${errorMessage}`,
     },
     FILE_UPLOAD: {
         active: 'Uploading PDF...',
         complete: 'PDF uploaded.',
-        error: 'Failed to upload PDF file',
+        errorDetails: errorMessage => `Failed to upload PDF file: ${errorMessage}`,
     },
     JOB_UPDATE: {
         active: 'Validation job updating...',
         complete: 'Validation job updated.',
-        error: 'Job update failed',
+        errorDetails: errorMessage => `Failed to update job: ${errorMessage}`,
     },
     JOB_EXECUTE: {
         active: 'Starting job execution...',
         complete: 'Job execution started.',
-        error: 'Job execution failed',
+        errorDetails: errorMessage => `Failed to start job execution: ${errorMessage}`,
     },
     JOB_COMPLETE: {
         active: 'Validating...',
         complete: 'Validation complete.',
+        error: 'Validation process finished with error',
+        errorDetails: _.identity,
+    },
+    VALIDATION_RESULT_DOWNLOAD: {
+        active: 'Downloading result...',
+        complete: 'Redirecting to result summary',
+        error: 'Failed to download validation result',
+        errorDetails: _.identity,
     },
 };
 
-function JobStatus({ jobStatus, percentage, steps, errorMessage }) {
+function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
     const { id: jobId } = useParams();
 
     switch (jobStatus) {
-        case JOB_STATUS.FINISHED:
-            return <Redirect to={AppPages.RESULTS.url(jobId)} />;
-
         case JOB_STATUS.NOT_FOUND:
             return <Redirect to={AppPages.NOT_FOUND} />;
 
         case JOB_STATUS.ERROR:
+            const { message, title } = getErrorInfo(steps, errorMessage);
             return (
                 <StatusPage>
-                    <h3 className="error" title={getErrorTitle(steps, errorMessage)}>
-                        Failed to start validation.
+                    <h3 className="error" title={title}>
+                        {message}
                     </h3>
                     {/* TODO: add button to retry validation */}
                 </StatusPage>
             );
 
+        case JOB_STATUS.FINISHED:
+            if (complete) {
+                return <Redirect to={AppPages.RESULTS.url(jobId)} />;
+            }
+
+        // eslint-disable-next-line no-fallthrough
         default:
             return (
                 <StatusPage>
@@ -89,12 +104,15 @@ function getProgressTitle(steps) {
         .join('\n');
 }
 
-function getErrorTitle(steps, errorMessage) {
-    let failedStep = _.find(steps, ['completed', false]);
+function getErrorInfo(steps, errorMessage) {
+    const failedStep = _.find(steps, ['completed', false]);
     if (!failedStep) {
-        return errorMessage;
+        return { message: errorMessage };
     }
-    return `${STEPS[failedStep.stepKey].error}: ${errorMessage}`;
+    return {
+        message: STEPS[failedStep.stepKey].error || DEFAULT_ERROR,
+        title: STEPS[failedStep.stepKey].errorDetails(errorMessage),
+    };
 }
 
 const StepShape = PropTypes.shape({
@@ -107,13 +125,15 @@ JobStatus.propTypes = {
     percentage: PropTypes.number.isRequired,
     steps: PropTypes.arrayOf(StepShape).isRequired,
     errorMessage: PropTypes.string,
+    complete: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
-    let { percentage, steps } = getProgress(state);
-    let jobStatus = getJobStatus(state);
-    let errorMessage = getJobError(state);
-    return { jobStatus, percentage, steps, errorMessage };
+    const { percentage, steps } = getProgress(state);
+    const jobStatus = getJobStatus(state);
+    const errorMessage = getJobError(state);
+    const complete = hasResult(state);
+    return { jobStatus, percentage, steps, errorMessage, complete };
 }
 
 export default connect(mapStateToProps)(JobStatus);

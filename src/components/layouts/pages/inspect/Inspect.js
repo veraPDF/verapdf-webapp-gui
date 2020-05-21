@@ -7,7 +7,8 @@ import { getPdfFiles } from '../../../../store/pdfFiles/selectors';
 
 import './Inspect.scss';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+const { PUBLIC_URL } = process.env;
+pdfjs.GlobalWorkerOptions.workerSrc = `${PUBLIC_URL}/pdf.worker.js`;
 
 function Inspect(props) {
     const { file } = props;

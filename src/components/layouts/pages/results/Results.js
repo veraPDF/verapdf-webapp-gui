@@ -5,6 +5,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import Stepper from '../../../shared/stepper/Stepper';
+import Summary from './summary/Summary';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import AppPages from '../../../AppPages';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
@@ -18,7 +19,7 @@ const backButton = {
 function Results({ jobStatus, taskStatus }) {
     const { id: jobId } = useParams();
     const forwardButton = {
-        label: 'Inspect',
+        label: 'Inspect errors',
         to: AppPages.INSPECT.url(jobId),
     };
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
@@ -31,6 +32,7 @@ function Results({ jobStatus, taskStatus }) {
     return (
         <section className="results">
             <Stepper activeStep={AppPages.RESULTS.route} />
+            <Summary />
             <PageNavigation back={backButton} forward={forwardButton} />
         </section>
     );

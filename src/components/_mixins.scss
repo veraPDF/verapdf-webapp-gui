@@ -5,3 +5,10 @@
   text-decoration: none;
   color: $link-color--basic;
 }
+
+@mixin centered-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

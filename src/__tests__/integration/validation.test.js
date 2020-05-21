@@ -1,6 +1,7 @@
 import { integrationTest, moveNext, storeFile, waitFor, stepFinished } from './index';
 import { createJob, executeJob, getJob, updateJob } from '../../services/jobService';
 import { getFileContent, uploadFile } from '../../services/fileService';
+import { Chart } from 'react-google-charts';
 import Progress from '../../components/shared/progress/Progress';
 import Results from '../../components/layouts/pages/results/Results';
 
@@ -70,6 +71,11 @@ describe('Validation', () => {
 
             // Once job is complete app should be redirected to Results summary page
             expect(component.find(Results)).toHaveLength(1);
+            // Chart component loaded
+            expect(component.find(Chart)).toHaveLength(1);
+            expect(component.find('.summary__compliance').text()).toBe('50%compliant');
+            expect(component.find('li.legend__item_passed').text()).toBe('1 checks passed');
+            expect(component.find('li.legend__item_failed').text()).toBe('1 errors');
         })
     );
 });

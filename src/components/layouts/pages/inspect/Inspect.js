@@ -15,10 +15,19 @@ function Inspect(props) {
 
     const [pageNumber] = useState(1);
 
+    const onDocumentLoadSuccess = document => {
+        console.log('Structure tree: ', document._pdfInfo.structureTree);
+    };
+    const onPageLoadSuccess = page => {
+        page.getOperatorList().then(data => {
+            console.log('Bboxes: ', data.argsArray[data.argsArray.length - 1]);
+        });
+    };
+
     return (
         <section className="inspect">
-            <Document file={file}>
-                <Page pageNumber={pageNumber} />
+            <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+                <Page pageNumber={pageNumber} onLoadSuccess={onPageLoadSuccess} />
             </Document>
         </section>
     );

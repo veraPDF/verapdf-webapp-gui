@@ -25,5 +25,8 @@ module.exports = function override(config) {
         })
     );
 
+    //workaround to avoid pdf.js critical dependency warnings
+    config.module.rules[0].parser.requireEnsure = true;
+
     return config;
 };

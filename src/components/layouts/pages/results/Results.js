@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import Stepper from '../../../shared/stepper/Stepper';
@@ -10,18 +10,28 @@ import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import AppPages from '../../../AppPages';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
+import { reset } from '../../../../store/application/actions';
 
-const backButton = {
-    label: 'Validate another file',
-    to: AppPages.UPLOAD, // TODO: implement onClick which reset the whole app and then redirect (just like Home link, see TODO in Header component)
-};
-
-function Results({ jobStatus, taskStatus }) {
+function Results({ jobStatus, taskStatus, onBackClick }) {
     const { id: jobId } = useParams();
-    const forwardButton = {
-        label: 'Inspect errors',
-        to: AppPages.INSPECT.url(jobId),
-    };
+    const history = useHistory();
+
+    const backButton = useMemo(
+        () => ({
+            label: 'Validate another file',
+            onClick: () => onBackClick(history),
+        }),
+        [history, onBackClick]
+    );
+
+    const forwardButton = useMemo(
+        () => ({
+            label: 'Inspect errors',
+            to: AppPages.INSPECT.url(jobId),
+        }),
+        [jobId]
+    );
+
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;
     }
@@ -41,6 +51,7 @@ function Results({ jobStatus, taskStatus }) {
 Results.propTypes = {
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)).isRequired,
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
+    onBackClick: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -50,4 +61,10 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Results);
+function mapDispatchToProps(dispatch) {
+    return {
+        onBackClick: history => dispatch(reset(history)),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

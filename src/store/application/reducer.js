@@ -7,6 +7,7 @@ const DEFAULT_STATE = {
 
 export default handleActions(
     {
+        APP_RESET: () => DEFAULT_STATE,
         APP_STARTUP_FINISH: state => ({ ...state, initialized: true }),
         APP_LOCK_SET: (state, { payload: locked }) => ({ ...state, locked }),
     },

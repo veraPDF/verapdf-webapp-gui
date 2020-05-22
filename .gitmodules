@@ -2,3 +2,7 @@
     path = server
     url = https://github.com/veraPDF/verapdf-webapp-server.git
     branch = master
+[submodule "pdfjs"]
+	path = pdfjs
+	url = https://github.com/veraPDF/pdf.js
+	branch = customizations-for-tagged-pdf

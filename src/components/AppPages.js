@@ -13,6 +13,12 @@ export default {
             return `/jobs/${id}/result-summary`;
         },
     },
+    INSPECT: {
+        route: '/jobs/:id/result-details',
+        url(id) {
+            return `/jobs/${id}/result-details`;
+        },
+    },
     ABOUT: '/about',
     LOADING: '/loading',
     NOT_FOUND: '/404',

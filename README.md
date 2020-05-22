@@ -2,9 +2,9 @@
 
 ## Cloning sources
 
-GUI repository uses submodule with server code.
+GUI repository uses submodules with server code and pdf.js code.
 
-To initiate and update submodule use:
+To initiate and update submodules use:
 
 `git submodule update --init`
 
@@ -44,6 +44,13 @@ To execute unit tests run:
 
 This will launch the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+**Using pdf.js submodule**
+
+To run the app using pdfjs submodule instead of npm dependency add an environment 
+variable `USE_PDFJS_FROM_SOURCES=true` to your start configuration.
+
+To switch back to the pdfjs npm dependency remove the environment variable or set `USE_PDFJS_FROM_SOURCES=false`.
 
 ## Running in Docker
 

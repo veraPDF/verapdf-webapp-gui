@@ -7,6 +7,7 @@ import Settings from './layouts/pages/settings/Settings';
 import JobStatus from './layouts/pages/status/JobStatus';
 import Results from './layouts/pages/results/Results';
 import NotFound from './layouts/pages/notFound/NotFound';
+import Inspect from './layouts/pages/inspect/Inspect';
 import AppPages from './AppPages';
 
 function AppRouter() {
@@ -18,6 +19,7 @@ function AppRouter() {
             <Route path={AppPages.RESULTS.route} component={Results} />
             <Route exact path={AppPages.ABOUT} component={About} />
             <Route exact path={AppPages.NOT_FOUND} component={NotFound} />
+            <Route exact path={AppPages.INSPECT.route} component={Inspect} />
             <Redirect to={AppPages.UPLOAD} />
         </Switch>
     );

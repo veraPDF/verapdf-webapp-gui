@@ -4,16 +4,16 @@ $font-size--basic: 16px;
 $font-size--secondary: 14px;
 
 $color-white: #fff;
-$color-white--75: rgba(255, 255, 255, 0.75);
-$color-white--50: rgba(255, 255, 255, 0.50);
-$color-white--25: rgba(255, 255, 255, 0.25);
+$color-white--75: darken($color-white, 25%);
+$color-white--50: darken($color-white, 50%);
+$color-white--25: darken($color-white, 75%);
 
 $color-grey: #f5f5fb;
 
 $color-black: #000;
-$color-black--75: rgba(0, 0, 0, 0.75);
-$color-black--50: rgba(0, 0, 0, 0.50);
-$color-black--25: rgba(0, 0, 0, 0.25);
+$color-black--75: lighten($color-black, 25%);
+$color-black--50: lighten($color-black, 50%);
+$color-black--25: lighten($color-black, 75%);
 
 $color-primary: #cf3f4f;
 

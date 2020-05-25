@@ -4,18 +4,20 @@ import { connect } from 'react-redux';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 import { getPdfFiles } from '../../../../store/pdfFiles/selectors';
+import Toolbar from './toolbar/Toolbar';
 
 import './Inspect.scss';
 
 const { PUBLIC_URL } = process.env;
 pdfjs.GlobalWorkerOptions.workerSrc = `${PUBLIC_URL}/pdf.worker.js`;
 
-function Inspect(props) {
-    const { file } = props;
-
+function Inspect({ file }) {
+    const [pdfName, setPdfName] = useState('');
     const [pageNumber] = useState(1);
 
-    const onDocumentLoadSuccess = document => {
+    const onDocumentLoadSuccess = async document => {
+        const { info } = await document.getMetadata();
+        setPdfName(info.Title || file.name);
         console.log('Structure tree: ', document._pdfInfo.structureTree);
     };
     const onPageLoadSuccess = page => {
@@ -26,7 +28,9 @@ function Inspect(props) {
 
     return (
         <section className="inspect">
-            <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+            <Toolbar name={pdfName} />
+            <section className="inspect__tree" />
+            <Document className="inspect__document" file={file} onLoadSuccess={onDocumentLoadSuccess}>
                 <Page pageNumber={pageNumber} onLoadSuccess={onPageLoadSuccess} />
             </Document>
         </section>

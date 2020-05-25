@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import AppPages from '../../../../AppPages';
 import { getJobId } from '../../../../../store/job/selectors';
-import { ArrowBack } from '@material-ui/icons';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import Button from '../../../../shared/button/Button';
 
 import './Toolbar.scss';

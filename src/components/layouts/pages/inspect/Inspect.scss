@@ -11,14 +11,14 @@
 
   display: grid;
   grid: "toolbar toolbar" 40px
-        "document document" 1fr;
+        "tree document" 1fr;
   grid-template-columns: 30% 1fr;
 
   .toolbar {
     grid-area: toolbar;
   }
 
-  &__tree {
+  .summary-tree {
     grid-area: tree;
   }
 

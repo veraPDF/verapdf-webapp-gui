@@ -12,3 +12,5 @@ export const getResultSummary = createSelector(getResultDetails, ({ passedChecks
 }));
 
 export const isCompliant = createSelector(getResult, result => result?.compliant || false);
+
+export const getRuleSummaries = createSelector(getResultDetails, ({ ruleSummaries }) => [...ruleSummaries]);

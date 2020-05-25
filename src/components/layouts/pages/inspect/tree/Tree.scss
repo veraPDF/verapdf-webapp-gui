@@ -1,0 +1,54 @@
+@import "../../../../variables";
+
+.summary-tree {
+  background: $bg-color--primary;
+  box-shadow: $box-shadow--basic;
+  height: 100%;
+  overflow: auto;
+
+  &__list {
+    .rule-item {
+      padding: 2px 2px 2px 8px;
+      display: flex;
+
+      &__content {
+        padding-right: 50px;
+
+        & > span {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .content-text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 5px;
+        }
+      }
+
+      &_error {
+        color: $color-primary;
+
+        .rule-item__chip {
+          background: $color-primary;
+        }
+      }
+
+      &__chip {
+        height: 18px;
+        color: $color-white;
+      }
+    }
+
+    .check-item {
+      padding: 2px 2px 2px 30px;
+    }
+  }
+}
+
+.more-details-link {
+  display: block;
+  position: relative;
+}

@@ -1,4 +1,33 @@
+@import "../../../mixins";
+
 .inspect {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  background: $bg-color--basic;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  top: 75px;
+
+  display: grid;
+  grid: "toolbar toolbar" 40px
+        "document document" 1fr;
+  grid-template-columns: 30% 1fr;
+
+  .toolbar {
+    grid-area: toolbar;
+  }
+
+  &__tree {
+    grid-area: tree;
+  }
+
+  &__document {
+    @include centered-column;
+    justify-content: flex-start;
+
+    overflow: auto;
+    padding: 20px 0;
+    grid-area: document;
+  }
 }

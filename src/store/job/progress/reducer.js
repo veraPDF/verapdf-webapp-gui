@@ -7,7 +7,7 @@ const DEFAULT_STATE = {
 
 export default handleActions(
     {
-        JOB_PROGRESS_RESET: () => DEFAULT_STATE,
+        APP_RESET: () => DEFAULT_STATE,
         JOB_PROGRESS_STEP_START: (state, { payload: stepKey }) => ({
             ...state,
             steps: [...state.steps, { stepKey, completed: false }],

@@ -1,6 +1,8 @@
 @import "../../../variables";
+@import "../../../mixins";
 
 .not-found {
+  @include centered-column;
   &__message {
     height: 256px;
     display: flex;

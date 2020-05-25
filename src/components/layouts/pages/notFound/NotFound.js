@@ -1,19 +1,17 @@
 import React from 'react';
-import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
-import AppPages from '../../../AppPages';
+import ResetButton from '../../../shared/resetButton/ResetButton';
+
 import './NotFound.scss';
 
-const backButton = {
-    label: 'Go to upload page',
-    to: AppPages.UPLOAD,
-};
 function NotFound() {
     return (
         <section className="not-found">
             <div className="not-found__message">
-                <h1>Validation job not found</h1>
+                <h2>Validation job not found</h2>
             </div>
-            <PageNavigation center={backButton} />
+            <ResetButton color="primary" variant="contained">
+                Go to upload page
+            </ResetButton>
         </section>
     );
 }

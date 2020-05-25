@@ -1,10 +1,10 @@
 import { handleActions } from 'redux-actions';
-const DEFAULT_STATE = {};
+const DEFAULT_STATE = null;
 
 export default handleActions(
     {
         APP_RESET: () => DEFAULT_STATE,
-        JOB_SET: (state, { payload: job }) => job,
+        RESULT_SET: (state, { payload: result }) => result,
     },
     DEFAULT_STATE
 );

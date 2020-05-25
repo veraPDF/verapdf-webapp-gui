@@ -14,8 +14,20 @@ const theme = createMuiTheme({
             main: '#cf3f4f',
             dark: '#ca192d', // hover color
         },
+        // For secondary components like Progress
         secondary: {
-            main: '#4caf50',
+            main: '#4cad93',
+        },
+        // For results chart
+        success: {
+            main: '#4cad93',
+        },
+        error: {
+            main: '#cf3f4f',
+        },
+        // Apply general app font-color to material components
+        text: {
+            primary: 'rgba(0, 0, 0, 0.75)',
         },
     },
 });

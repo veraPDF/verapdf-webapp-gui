@@ -1,16 +1,19 @@
 import { createAction } from 'redux-actions';
 import { getFile, getFileId } from '../pdfFiles/selectors';
-import { getJob, getJobId } from './selectors';
+import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
 import { updatePdfFile } from '../pdfFiles/actions';
+import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
 import { finishStep, startStep } from './progress/actions';
-import { JOB_STATUS } from '../constants';
+import { JOB_STATUS, TASK_STATUS } from '../constants';
 
 export const setJob = createAction('JOB_SET');
 
+// TODO: cancel validation on app reset
+// https://github.com/veraPDF/verapdf-webapp-gui/issues/36
 export const validate = (completedSteps = []) => async (dispatch, getState) => {
     try {
         await createJob(dispatch, getState, completedSteps);
@@ -18,6 +21,7 @@ export const validate = (completedSteps = []) => async (dispatch, getState) => {
         await addTask(dispatch, getState, completedSteps);
         await startJob(dispatch, getState, completedSteps);
         await waitForComplete(dispatch, getState, completedSteps);
+        await downloadValidationResult(dispatch, getState, completedSteps);
     } catch (error) {
         console.error(error);
         dispatch(
@@ -28,6 +32,16 @@ export const validate = (completedSteps = []) => async (dispatch, getState) => {
             })
         );
     }
+};
+
+export const loadValidationResult = async (dispatch, getState) => {
+    const taskStatus = getTaskStatus(getState());
+    if (taskStatus === TASK_STATUS.ERROR) {
+        throw new Error(getTaskErrorMessage(getState()));
+    }
+    const resultFileId = getTaskResultId(getState());
+    const validationResult = await FileService.getFileContent(resultFileId);
+    dispatch(setResult(validationResult));
 };
 
 const createStep = (key, percentage = 0, stepFn) => async (dispatch, getState, completedSteps) => {
@@ -77,9 +91,9 @@ const startJob = createStep('JOB_EXECUTE', 10, async (dispatch, getState) => {
 
 const waitForComplete = createStep(
     'JOB_COMPLETE',
-    40,
+    35,
     (dispatch, getState) =>
-        new Promise(resolve => {
+        new Promise((resolve, reject) => {
             const REFRESH_INTERVAL = 1000;
 
             let count = 0; // TODO: remove test variable after start execution endpoint is available
@@ -95,6 +109,8 @@ const waitForComplete = createStep(
                         count++;
                     } else {
                         job.status = JOB_STATUS.FINISHED;
+                        job.tasks[0].status = TASK_STATUS.FINISHED;
+                        // job.tasks[0].status = TASK_STATUS.ERROR;
                         count = 0;
                     }
                     // end of temp code
@@ -103,10 +119,16 @@ const waitForComplete = createStep(
                         checkStatus();
                     } else {
                         dispatch(setJob(job));
-                        resolve();
+                        if (getTaskStatus(getState()) === TASK_STATUS.FINISHED) {
+                            resolve();
+                        } else {
+                            reject(new Error(getTaskErrorMessage(getState())));
+                        }
                     }
                 }, REFRESH_INTERVAL);
 
             checkStatus();
         })
 );
+
+const downloadValidationResult = createStep('VALIDATION_RESULT_DOWNLOAD', 5, loadValidationResult);

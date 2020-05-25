@@ -1,0 +1,57 @@
+@import "../../../../variables";
+@import "../../../../mixins";
+
+.summary {
+  @include centered-column;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  &__chart {
+    @include centered-column;
+    height: 300px;
+  }
+
+  &__compliance {
+    @include centered-column;
+    position: absolute;
+
+    &_hidden {
+      display: none;
+    }
+
+    span {
+      font-size: 45px;
+    }
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+
+    display: flex;
+
+    &__item {
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '●';
+        margin-right: 5px;
+      }
+
+      &_passed::before {
+        color: $color-success;
+      }
+      &_failed::before {
+        color: $color-primary;
+      }
+    }
+  }
+}

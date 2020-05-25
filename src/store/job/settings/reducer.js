@@ -2,11 +2,11 @@ import { handleActions } from 'redux-actions';
 import _ from 'lodash';
 import { JOB_SETTINGS } from '../../constants';
 
-export const getDefaultState = () => {
-    const defaultState = {
-        profile: undefined,
-    };
+const defaultState = {
+    profile: undefined,
+};
 
+export const getDefaultState = () => {
     let storedSettings = sessionStorage.getItem(JOB_SETTINGS);
 
     if (!storedSettings) {
@@ -22,6 +22,7 @@ export const getDefaultState = () => {
 
 export default handleActions(
     {
+        APP_RESET: (state, { payload: { profile } }) => ({ ...defaultState, profile }),
         SETTINGS_UPDATE: (state, { payload }) => ({ ...state, ...payload }),
         PROFILES_SET: (state, action) => {
             if (action.payload.error || !action.payload.length) {

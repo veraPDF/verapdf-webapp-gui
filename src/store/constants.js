@@ -8,3 +8,11 @@ export const JOB_STATUS = {
     ERROR: 'ERROR',
     NOT_FOUND: 'NOT_FOUND',
 };
+
+export const TASK_STATUS = {
+    CREATED: 'CREATED',
+    QUEUED: 'QUEUED',
+    PROCESSING: 'PROCESSING',
+    FINISHED: 'FINISHED',
+    ERROR: 'ERROR',
+};

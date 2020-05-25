@@ -35,4 +35,9 @@ const setFile = async file => {
     return storage.setOne(file);
 };
 
-export { getAllFiles, setFile, getFile };
+const deleteFile = async file => {
+    let storage = await getStorage();
+    return await storage.deleteOne(file.name);
+};
+
+export { getAllFiles, setFile, getFile, deleteFile };

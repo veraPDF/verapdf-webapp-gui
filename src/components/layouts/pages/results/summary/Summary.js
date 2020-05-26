@@ -68,7 +68,7 @@ function getChartOptions(theme) {
 
 function calculateCompliance({ passedChecks, failedChecks }) {
     const total = passedChecks + failedChecks;
-    return Math.round((passedChecks * 100) / total);
+    return Math.floor((passedChecks * 100) / total);
 }
 
 function LegendItem({ className, label, value }) {

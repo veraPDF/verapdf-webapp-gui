@@ -95,25 +95,10 @@ const waitForComplete = createStep(
     (dispatch, getState) =>
         new Promise((resolve, reject) => {
             const REFRESH_INTERVAL = 1000;
-
-            let count = 0; // TODO: remove test variable after start execution endpoint is available
-
             const checkStatus = () =>
                 setTimeout(async () => {
                     const jobId = getJobId(getState());
                     const job = await JobService.getJob(jobId);
-
-                    // TODO: clear temp code after start execution endpoint is available
-                    if (count < 3) {
-                        job.status = JOB_STATUS.PROCESSING;
-                        count++;
-                    } else {
-                        job.status = JOB_STATUS.FINISHED;
-                        job.tasks[0].status = TASK_STATUS.FINISHED;
-                        // job.tasks[0].status = TASK_STATUS.ERROR;
-                        count = 0;
-                    }
-                    // end of temp code
 
                     if (job.status === JOB_STATUS.PROCESSING) {
                         checkStatus();

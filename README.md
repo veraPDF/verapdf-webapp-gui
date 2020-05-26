@@ -10,7 +10,7 @@ To initiate and update submodules use:
 
 If you pass `--recurse-submodules` to the `git clone` command, it will automatically initialize and update each submodule in the repository.
 
-If you run `git submodule update --remote`, Git will go into your submodules and fetch and update for you.
+If you run `git submodule update --remote --recursive`, Git will go into your submodules and fetch and update for you.
 
 ## Dev environment
 

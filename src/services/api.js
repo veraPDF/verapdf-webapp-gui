@@ -42,6 +42,7 @@ export const handleResponse = async response => {
     switch (contentType) {
         case 'application/json':
         case 'application/vnd.spring-boot.actuator.v3+json':
+        case 'application/octet-stream':
             body = await response.json();
             break;
         case 'text/html':

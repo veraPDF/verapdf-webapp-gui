@@ -7,11 +7,12 @@ export const getProfileOptions = createSelector(getProfiles, profiles => {
     if (!Array.isArray(profiles)) {
         return [];
     }
-    return profiles.map(profile => ({
-        label: profile.humanReadableName,
-        value: profile.profileName,
-        disabled: !profile.available,
-    }));
+    return profiles
+        .filter(({ enabled }) => enabled)
+        .map(profile => ({
+            label: profile.humanReadableName,
+            value: profile.profileName,
+        }));
 });
 
 export const getDefaultProfileName = createSelector(getProfiles, profiles => _.first(profiles)?.profileName);

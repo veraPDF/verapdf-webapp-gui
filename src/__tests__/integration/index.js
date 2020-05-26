@@ -66,9 +66,9 @@ export const DEFAULT_STARTUP_RESPONSES = {
     profilesList: {
         ok: true,
         responseJson: [
-            { profileName: 'TEST_PROFILE_1', humanReadableName: 'Test profile 1', available: true },
-            { profileName: 'TEST_PROFILE_2', humanReadableName: 'Test profile 2', available: true },
-            { profileName: 'TEST_PROFILE_3', humanReadableName: 'Test profile 3', available: false },
+            { profileName: 'TEST_PROFILE_1', humanReadableName: 'Test profile 1', enabled: true },
+            { profileName: 'TEST_PROFILE_2', humanReadableName: 'Test profile 2', enabled: true },
+            { profileName: 'TEST_PROFILE_3', humanReadableName: 'Test profile 3', enabled: false },
         ],
     },
     uploadFile: {

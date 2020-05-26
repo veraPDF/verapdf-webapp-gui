@@ -3,7 +3,7 @@
 .inspect {
   width: 100%;
   background: $bg-color--basic;
-  overflow: auto;
+  overflow: hidden;
   position: absolute;
   left: 0;
   bottom: 50px;
@@ -22,11 +22,10 @@
     grid-area: tree;
   }
 
-  &__document {
+  .inspect-document {
     @include centered-column;
     justify-content: flex-start;
-
-    overflow: auto;
+    overflow-x: hidden;
     padding: 20px 0;
     grid-area: document;
   }

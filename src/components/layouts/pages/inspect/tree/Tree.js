@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment } from 'react';
+import React, { useState, useCallback, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -24,9 +24,8 @@ const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
 const UNSELECTED = -1;
 
-function Tree({ ruleSummaries }) {
+function Tree({ ruleSummaries, selectedCheck, setSelectedCheck }) {
     const [expandedRule, setExpandedRule] = useState(UNSELECTED);
-    const [selectedCheck, setSelectedCheck] = useState(UNSELECTED);
     const onRuleClick = useCallback(
         index => {
             if (expandedRule === index) {
@@ -37,7 +36,7 @@ function Tree({ ruleSummaries }) {
         },
         [expandedRule]
     );
-    const onCheckClick = useCallback(context => setSelectedCheck(context), []);
+    const onCheckClick = useCallback(context => setSelectedCheck(context), [setSelectedCheck]);
 
     // info dialog props
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
@@ -49,6 +48,18 @@ function Tree({ ruleSummaries }) {
     const onInfoDialogClose = useCallback(() => {
         setInfoDialogOpened(false);
     }, []);
+
+    useEffect(
+        useCallback(() => {
+            if (selectedCheck) {
+                let rule = ruleSummaries.findIndex(rule => rule.checks.find(check => check.context === selectedCheck));
+                if (rule !== -1 && rule !== expandedRule) {
+                    setExpandedRule(rule);
+                }
+            }
+        }, [expandedRule, ruleSummaries, selectedCheck]),
+        [selectedCheck]
+    );
 
     return (
         <section className="summary-tree">
@@ -196,6 +207,8 @@ const SummaryInterface = PropTypes.shape({
 
 Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    selectedCheck: PropTypes.string,
+    setSelectedCheck: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

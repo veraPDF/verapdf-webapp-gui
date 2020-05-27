@@ -6,17 +6,16 @@
 
   position: absolute;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background: $color-grey;
 }
 
 .app-content {
-  position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 90px 15px 60px 15px;
+  padding: 75px 10px 50px 10px;
   box-sizing: border-box;
 }
 

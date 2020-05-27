@@ -60,6 +60,7 @@ function getChartOptions(theme) {
         legend: 'none',
         pieSliceText: 'none',
         height: '300px',
+        width: '300px',
         chartArea: {
             height: '80%',
         },

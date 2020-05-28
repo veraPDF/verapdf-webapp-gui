@@ -28,6 +28,7 @@ const theme = createMuiTheme({
         // Apply general app font-color to material components
         text: {
             primary: 'rgba(0, 0, 0, 0.75)',
+            secondary: 'rgba(0, 0, 0, 0.75)', // Dialog content font color
         },
     },
 });

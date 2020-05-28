@@ -14,6 +14,8 @@ export const unlockApp = createAction('APP_LOCK_SET', () => false);
 
 export const resetApp = createAction('APP_RESET');
 
+export const toggleUseSettings = createAction('USE_SETTINGS_TOGGLE');
+
 export const reset = () => async (dispatch, getState) => {
     const file = getFile(getState());
     const profile = getDefaultProfileName(getState());

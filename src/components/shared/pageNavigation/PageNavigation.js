@@ -19,31 +19,35 @@ function PageNavigation(props) {
     const { back, forward, center } = props;
     return (
         <nav className="page-navigation">
-            <section className="page-navigation__start">{getButton(back, TYPE.BACK)}</section>
-            <section className="page-navigation__center">{getButton(center, TYPE.CENTER)}</section>
-            <section className="page-navigation__end">{getButton(forward, TYPE.FORWARD)}</section>
+            <section className="page-navigation__start">{getComponent(back, TYPE.BACK)}</section>
+            <section className="page-navigation__center">{getComponent(center, TYPE.CENTER)}</section>
+            <section className="page-navigation__end">{getComponent(forward, TYPE.FORWARD)}</section>
         </nav>
     );
 }
 
-function getButton(buttonObject, type) {
-    if (buttonObject?.to) {
+function getComponent(componentObject, type) {
+    if (React.isValidElement(componentObject)) {
+        return componentObject;
+    }
+
+    if (componentObject?.to) {
         return (
-            <NavButton to={buttonObject.to} type={type} disabled={buttonObject.disabled} variant={VARIANTS[type]}>
-                {buttonObject.label}
+            <NavButton to={componentObject.to} type={type} disabled={componentObject.disabled} variant={VARIANTS[type]}>
+                {componentObject.label}
             </NavButton>
         );
     }
 
-    if (buttonObject?.onClick) {
+    if (componentObject?.onClick) {
         return (
             <Button
                 variant={VARIANTS[type]}
                 color="primary"
-                disabled={buttonObject.disabled}
-                onClick={buttonObject.onClick}
+                disabled={componentObject.disabled}
+                onClick={componentObject.onClick}
             >
-                {buttonObject.label}
+                {componentObject.label}
             </Button>
         );
     }
@@ -59,8 +63,8 @@ const ButtonInterface = PropTypes.shape({
 });
 
 PageNavigation.propTypes = {
-    back: ButtonInterface,
-    forward: ButtonInterface,
+    back: PropTypes.oneOfType([ButtonInterface, PropTypes.element]),
+    forward: PropTypes.oneOfType([ButtonInterface, PropTypes.element]),
 };
 
 export default PageNavigation;

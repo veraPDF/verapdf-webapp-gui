@@ -4,7 +4,7 @@
 .not-found {
   @include centered-column;
   &__message {
-    height: 256px;
+    min-height: $min-content-height;
     display: flex;
     flex-direction: column;
     align-items: center;

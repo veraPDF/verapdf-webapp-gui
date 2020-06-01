@@ -4,13 +4,14 @@ import { Redirect, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import Progress from '../../../shared/progress/Progress';
-import Stepper from '../../../shared/stepper/Stepper';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
 import { getJobError, getJobStatus } from '../../../../store/job/selectors';
 import { getProgress } from '../../../../store/job/progress/selectors';
 import { hasResult } from '../../../../store/job/result/selectors';
+import Progress from '../../../shared/progress/Progress';
+import WizardStep from '../../wizardStep/WizardStep';
+
 import './JobStatus.scss';
 
 const DEFAULT_ERROR = 'Failed to start validation.';
@@ -86,10 +87,9 @@ function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
 
 function StatusPage({ children }) {
     return (
-        <section className="job-status">
-            <Stepper activeStep={AppPages.STATUS.route} />
-            <section className="job-status__progress">{children}</section>
-        </section>
+        <WizardStep stepIndex={AppPages.STATUS.route} className="job-status">
+            {children}
+        </WizardStep>
     );
 }
 

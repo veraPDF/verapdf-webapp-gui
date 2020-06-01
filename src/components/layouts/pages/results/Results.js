@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
-import Stepper from '../../../shared/stepper/Stepper';
+import AppPages from '../../../AppPages';
+import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
+import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
+import { reset } from '../../../../store/application/actions';
+import WizardStep from '../../wizardStep/WizardStep';
 import Summary from './summary/Summary';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
-import AppPages from '../../../AppPages';
-import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
-import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
-import { reset } from '../../../../store/application/actions';
 import { isCompliant } from '../../../../store/job/result/selectors';
 
 function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
@@ -42,11 +42,10 @@ function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
     }
 
     return (
-        <section className="results">
-            <Stepper activeStep={AppPages.RESULTS.route} />
+        <WizardStep stepIndex={AppPages.RESULTS.route} className="results">
             <Summary />
             <PageNavigation back={backButton} forward={forwardButton} />
-        </section>
+        </WizardStep>
     );
 }
 

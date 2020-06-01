@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { hasFilesAttached } from '../../../../store/pdfFiles/selectors';
 import { connect } from 'react-redux';
 import AppPages from '../../../AppPages';
-import Stepper from '../../../shared/stepper/Stepper';
-import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import Dropzone from './dropzone/Dropzone';
+import WizardStep from '../../wizardStep/WizardStep';
+import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 
 function Upload(props) {
     const { filesAttached } = props;
@@ -19,11 +19,10 @@ function Upload(props) {
     );
 
     return (
-        <section className="upload">
-            <Stepper activeStep={AppPages.UPLOAD} />
+        <WizardStep stepIndex={AppPages.UPLOAD}>
             <Dropzone />
             <PageNavigation forward={forwardButton} />
-        </section>
+        </WizardStep>
     );
 }
 

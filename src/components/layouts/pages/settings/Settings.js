@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import AppPages from '../../../AppPages';
-import Stepper from '../../../shared/stepper/Stepper';
+import WizardStep from '../../wizardStep/WizardStep';
 import ProfileSelect from './profile/ProfileSelect';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
@@ -36,15 +36,14 @@ function Settings(props) {
     }
 
     return (
-        <section className="settings">
-            <Stepper activeStep={AppPages.SETTINGS} />
+        <WizardStep stepIndex={AppPages.SETTINGS}>
             <section className="job-settings">
                 <form>
                     <ProfileSelect />
                 </form>
             </section>
             <PageNavigation back={backButton} forward={forwardButton} />
-        </section>
+        </WizardStep>
     );
 }
 

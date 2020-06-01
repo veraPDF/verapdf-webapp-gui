@@ -1,21 +1,22 @@
 @import "../../../variables";
 
 .job-status {
-  &__progress {
-    min-height: 256px;
-    padding: 50px 0;
-    box-sizing: border-box;
+  min-height: $min-content-height;
 
-    .error {
-      text-align: center;
-      &__message {
-        color: $color-error;
-        margin: 0;
-      }
+  .progress,
+  .error {
+    margin: 50px 0;
+  }
 
-      &__details {
-        margin: 5px 0;
-      }
+  .error {
+    text-align: center;
+    &__message {
+      color: $color-error;
+      margin: 0;
+    }
+
+    &__details {
+      margin: 5px 0;
     }
   }
 }

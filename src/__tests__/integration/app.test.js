@@ -1,4 +1,4 @@
-import { integrationTest } from './index';
+import { integrationTest, toggleSettingsCheckbox } from './index';
 import Loading from '../../components/layouts/pages/loading/Loading';
 
 const { REACT_APP_VERSION } = process.env;
@@ -23,5 +23,18 @@ describe('App', () => {
                 skipLoading: false,
             }
         )
+    );
+
+    it(
+        'Turn settings on and off',
+        integrationTest((store, component) => {
+            expect(component.find('.MuiStepLabel-root')).toHaveLength(3);
+
+            toggleSettingsCheckbox(component, true);
+            expect(component.find('.MuiStepLabel-root')).toHaveLength(4);
+
+            toggleSettingsCheckbox(component, false);
+            expect(component.find('.MuiStepLabel-root')).toHaveLength(3);
+        })
     );
 });

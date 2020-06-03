@@ -11,8 +11,9 @@ import AppPages from '../../../AppPages';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { reset } from '../../../../store/application/actions';
+import { isCompliant } from '../../../../store/job/result/selectors';
 
-function Results({ jobStatus, taskStatus, onBackClick }) {
+function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
     const { id: jobId } = useParams();
     const history = useHistory();
 
@@ -28,8 +29,9 @@ function Results({ jobStatus, taskStatus, onBackClick }) {
         () => ({
             label: 'Inspect errors',
             to: AppPages.INSPECT.url(jobId),
+            disabled: compliant,
         }),
-        [jobId]
+        [compliant, jobId]
     );
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
@@ -51,6 +53,7 @@ function Results({ jobStatus, taskStatus, onBackClick }) {
 Results.propTypes = {
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)).isRequired,
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
+    compliant: PropTypes.bool.isRequired,
     onBackClick: PropTypes.func.isRequired,
 };
 
@@ -58,6 +61,7 @@ function mapStateToProps(state) {
     return {
         jobStatus: getJobStatus(state),
         taskStatus: getTaskStatus(state),
+        compliant: isCompliant(state),
     };
 }
 

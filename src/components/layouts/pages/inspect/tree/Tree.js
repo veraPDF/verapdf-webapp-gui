@@ -22,9 +22,10 @@ import errorMap from '../validationErrorMessages_en.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
+const METADATA = 'metadata';
 const UNSELECTED = -1;
 
-function Tree({ ruleSummaries, selectedCheck, setSelectedCheck }) {
+function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
     const [expandedRule, setExpandedRule] = useState(UNSELECTED);
     const onRuleClick = useCallback(
         index => {
@@ -79,6 +80,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck }) {
                     onRuleClick={onRuleClick}
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
+                    errorsMap={errorsMap}
                 />
             </List>
             {openedRule !== UNSELECTED && (
@@ -92,22 +94,23 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck }) {
 }
 
 // TODO: add Warnings
-function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onCheckClick, onInfoClick }) {
+function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onCheckClick, onInfoClick, errorsMap }) {
     return ruleSummaries.map((rule, index) => {
+        const checks = rule.checks.filter(({ context }) => !isMetadata(context));
         const ruleTitle = getRuleTitle(rule);
         return (
             <Fragment key={index}>
                 <ListItem button onClick={() => onRuleClick(index)} className="rule-item rule-item_error">
-                    {rule.checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                    {checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}
                         className="rule-item__content"
                         primary={
                             <>
                                 <span className="content-text">{ruleTitle}</span>
-                                {rule.checks.length && (
-                                    <Chip size="small" className="rule-item__chip" label={rule.checks.length} />
-                                )}
+                                {checks.length ? (
+                                    <Chip size="small" className="rule-item__chip" label={checks.length} />
+                                ) : null}
                             </>
                         }
                     />
@@ -117,20 +120,27 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>
-                {rule.checks.length && (
+                {checks.length ? (
                     <Collapse in={expandedRule === index} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <CheckList checks={rule.checks} selectedCheck={selectedCheck} onCheckClick={onCheckClick} />
+                            <CheckList
+                                checks={checks}
+                                selectedCheck={selectedCheck}
+                                onCheckClick={onCheckClick}
+                                errorsMap={errorsMap}
+                            />
                         </List>
                     </Collapse>
-                )}
+                ) : null}
             </Fragment>
         );
     });
 }
 
-function CheckList({ checks, selectedCheck, onCheckClick }) {
-    return checks.map(({ context }, index) => {
+function CheckList({ checks, selectedCheck, onCheckClick, errorsMap }) {
+    let checksSorted = sortChecksByPage(checks, errorsMap);
+    return checksSorted.map(({ context }, index) => {
+        const checkTitle = getCheckTitle(context, index, checksSorted, errorsMap);
         return (
             <ListItem
                 key={index}
@@ -138,8 +148,9 @@ function CheckList({ checks, selectedCheck, onCheckClick }) {
                 selected={selectedCheck === context}
                 button
                 className="check-item"
+                title={context}
             >
-                <ListItemText primary={getCheckTitle(context, index, checks)} />
+                <ListItemText primary={checkTitle} />
             </ListItem>
         );
     });
@@ -173,12 +184,14 @@ function getRuleUrl({ specification, clause, testNumber }) {
     return errorMap?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
-function getCheckTitle(context, index, allChecks) {
-    const page = getPageNumber(context);
+function getCheckTitle(context, index, allChecks, errorsMap) {
+    const page = getPageNumber(context, errorsMap);
+    const pageString = page === UNSELECTED ? '' : `Page ${page}: `;
+
     let length = 0;
     let number = 1;
     allChecks.forEach((check, checkIndex) => {
-        if (getPageNumber(check.context) !== page) {
+        if (getPageNumber(check.context, errorsMap) !== page) {
             return;
         }
 
@@ -187,15 +200,45 @@ function getCheckTitle(context, index, allChecks) {
             number++;
         }
     });
-    return `Page ${page}: ${number} of ${length}`;
+    return `${pageString}${number} of ${length}`;
 }
 
-function getPageNumber(context) {
-    const match = context.match(/page\[.+]/);
-    if (!match) {
-        return 1;
+function getPageNumber(context, errorsMap) {
+    // Unrecognized context
+    if (
+        !errorsMap[context] ||
+        errorsMap[context].pageIndex === UNSELECTED ||
+        (!errorsMap[context].listOfMcid.length &&
+            errorsMap[context].listOfMcid instanceof Array &&
+            errorsMap[context].pageIndex !== METADATA)
+    ) {
+        return UNSELECTED;
     }
-    return parseInt(match.replace(/\D+/g, '')) + 1;
+
+    // context to skip
+    if (errorsMap[context].pageIndex === METADATA) {
+        return false;
+    }
+
+    return errorsMap[context].pageIndex + 1;
+}
+
+function isMetadata(context) {
+    return context.toLowerCase().match(METADATA);
+}
+
+function sortChecksByPage(checks, errorsMap) {
+    let newChecks = [...checks];
+    newChecks.sort(({ context: a }, { context: b }) => {
+        const pageA = getPageNumber(a, errorsMap);
+        const pageB = getPageNumber(b, errorsMap);
+
+        if (pageB === UNSELECTED) return 1;
+        if (pageA === UNSELECTED) return -1;
+
+        return pageA - pageB;
+    });
+    return newChecks;
 }
 
 const SummaryInterface = PropTypes.shape({
@@ -209,6 +252,7 @@ Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
     setSelectedCheck: PropTypes.func.isRequired,
+    errorsMap: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

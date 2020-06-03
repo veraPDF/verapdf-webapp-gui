@@ -60,9 +60,8 @@ class PdfDocument extends React.PureComponent {
     }
 
     getTagsFromErrorPlace = context => {
-        let selectedTag = convertContextToPath(context);
-
         const defaultValue = [[], -1];
+        let selectedTag = convertContextToPath(context);
 
         if (_.isEmpty(selectedTag)) {
             return defaultValue;
@@ -112,14 +111,16 @@ class PdfDocument extends React.PureComponent {
                 });
             });
             this.setState({ mapOfErrors });
+            this.props.onDocumentReady({ ...mapOfErrors });
         }
 
         // clear old selection and fill new one
         if (this.props.selectedCheck !== prevProps.selectedCheck) {
-            if (prevProps.selectedCheck) {
-                const prevPage = this.state.errorsRects[prevProps.selectedCheck]
-                    ? this.state.errorsRects[prevProps.selectedCheck].pageIndex
-                    : this.state.mapOfErrors[this.props.selectedCheck].pageIndex;
+            const prevPage = this.state.errorsRects[prevProps.selectedCheck]
+                ? this.state.errorsRects[prevProps.selectedCheck]?.pageIndex
+                : this.state.mapOfErrors[this.props.selectedCheck]?.pageIndex;
+
+            if (prevPage) {
                 this.redrawCanvasByPage(prevPage);
             }
             this.autoSelectRect();
@@ -524,9 +525,12 @@ class PdfDocument extends React.PureComponent {
                     if (!$canvasPage) return;
 
                     const { y, height } = this.state.errorsRects[this.props.selectedCheck];
-                    const scrollDifference = $canvasPage.offsetHeight - (y + height) - $documentArea.offsetHeight / 3;
-                    $canvasPage.scrollIntoView();
-                    document.querySelector('.inspect-document').scrollTop += scrollDifference;
+                    if (y && height) {
+                        const scrollDifference =
+                            $canvasPage.offsetHeight - (y + height) - $documentArea.offsetHeight / 3;
+                        $canvasPage.scrollIntoView();
+                        document.querySelector('.inspect-document').scrollTop += scrollDifference;
+                    }
                 } else {
                     preventScroll = false;
                 }

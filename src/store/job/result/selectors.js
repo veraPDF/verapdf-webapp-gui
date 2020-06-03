@@ -10,3 +10,5 @@ export const getResultSummary = createSelector(getResultDetails, ({ passedChecks
     passedChecks,
     failedChecks,
 }));
+
+export const isCompliant = createSelector(getResult, result => result.compliant);

@@ -14,6 +14,11 @@
   &__chart {
     @include centered-column;
     height: 300px;
+
+    // Remove chart tooltip flickering
+    svg > g > g:last-child {
+      pointer-events: none
+    }
   }
 
   &__compliance {

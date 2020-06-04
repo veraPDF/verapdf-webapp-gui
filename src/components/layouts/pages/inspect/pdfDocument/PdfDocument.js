@@ -101,10 +101,10 @@ class PdfDocument extends React.PureComponent {
             !_.isEmpty(this.state.structureTree)
         ) {
             const mapOfErrors = {};
-            this.props.ruleSummaries.forEach(summary => {
+            this.props.ruleSummaries.forEach((summary, index) => {
                 summary.checks.forEach(check => {
                     const [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
-                    mapOfErrors[check.context] = {
+                    mapOfErrors[`${index}:${check.context}`] = {
                         listOfMcid,
                         pageIndex,
                     };
@@ -120,7 +120,7 @@ class PdfDocument extends React.PureComponent {
                 ? this.state.errorsRects[prevProps.selectedCheck]?.pageIndex
                 : this.state.mapOfErrors[this.props.selectedCheck]?.pageIndex;
 
-            if (prevPage) {
+            if (_.isNumber(prevPage)) {
                 this.redrawCanvasByPage(prevPage);
             }
             this.autoSelectRect();

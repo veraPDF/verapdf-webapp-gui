@@ -37,7 +37,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
         },
         [expandedRule]
     );
-    const onCheckClick = useCallback(context => setSelectedCheck(context), [setSelectedCheck]);
+    const onCheckClick = useCallback(checkKey => setSelectedCheck(checkKey), [setSelectedCheck]);
 
     // info dialog props
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
@@ -53,12 +53,13 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
     useEffect(
         useCallback(() => {
             if (selectedCheck) {
-                let rule = ruleSummaries.findIndex(rule => rule.checks.find(check => check.context === selectedCheck));
-                if (rule !== -1 && rule !== expandedRule) {
-                    setExpandedRule(rule);
+                let [ruleIndex] = selectedCheck.split(':');
+                ruleIndex = parseInt(ruleIndex);
+                if (ruleIndex !== expandedRule) {
+                    setExpandedRule(ruleIndex);
                 }
             }
-        }, [expandedRule, ruleSummaries, selectedCheck]),
+        }, [expandedRule, selectedCheck]),
         [selectedCheck]
     );
 
@@ -124,6 +125,7 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
                     <Collapse in={expandedRule === index} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <CheckList
+                                ruleIndex={index}
                                 checks={checks}
                                 selectedCheck={selectedCheck}
                                 onCheckClick={onCheckClick}
@@ -137,15 +139,16 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
     });
 }
 
-function CheckList({ checks, selectedCheck, onCheckClick, errorsMap }) {
+function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
     let checksSorted = sortChecksByPage(checks, errorsMap);
     return checksSorted.map(({ context }, index) => {
-        const checkTitle = getCheckTitle(context, index, checksSorted, errorsMap);
+        const checkKey = `${ruleIndex}:${context}`;
+        const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex });
         return (
             <ListItem
                 key={index}
-                onClick={() => onCheckClick(context)}
-                selected={selectedCheck === context}
+                onClick={() => onCheckClick(checkKey)}
+                selected={selectedCheck === checkKey}
                 button
                 className="check-item"
                 title={context}
@@ -184,14 +187,14 @@ function getRuleUrl({ specification, clause, testNumber }) {
     return errorMap?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
-function getCheckTitle(context, index, allChecks, errorsMap) {
-    const page = getPageNumber(context, errorsMap);
+function getCheckTitle({ context, index, allChecks, errorsMap, ruleIndex }) {
+    const page = getPageNumber(`${ruleIndex}:${context}`, errorsMap);
     const pageString = page === UNSELECTED ? '' : `Page ${page}: `;
 
     let length = 0;
     let number = 1;
     allChecks.forEach((check, checkIndex) => {
-        if (getPageNumber(check.context, errorsMap) !== page) {
+        if (getPageNumber(`${ruleIndex}:${check.context}`, errorsMap) !== page) {
             return;
         }
 
@@ -203,24 +206,24 @@ function getCheckTitle(context, index, allChecks, errorsMap) {
     return `${pageString}${number} of ${length}`;
 }
 
-function getPageNumber(context, errorsMap) {
+function getPageNumber(checkKey, errorsMap) {
     // Unrecognized context
     if (
-        !errorsMap[context] ||
-        errorsMap[context].pageIndex === UNSELECTED ||
-        (!errorsMap[context].listOfMcid.length &&
-            errorsMap[context].listOfMcid instanceof Array &&
-            errorsMap[context].pageIndex !== METADATA)
+        !errorsMap[checkKey] ||
+        errorsMap[checkKey].pageIndex === UNSELECTED ||
+        (!errorsMap[checkKey].listOfMcid.length &&
+            errorsMap[checkKey].listOfMcid instanceof Array &&
+            errorsMap[checkKey].pageIndex !== METADATA)
     ) {
         return UNSELECTED;
     }
 
     // context to skip
-    if (errorsMap[context].pageIndex === METADATA) {
+    if (errorsMap[checkKey].pageIndex === METADATA) {
         return false;
     }
 
-    return errorsMap[context].pageIndex + 1;
+    return errorsMap[checkKey].pageIndex + 1;
 }
 
 function isMetadata(context) {

@@ -74,8 +74,8 @@ describe('Validation', () => {
             // Chart component loaded
             expect(component.find(Chart)).toHaveLength(1);
             expect(component.find('.summary__compliance').text()).toBe('50%compliant');
-            expect(component.find('li.legend__item_passed').text()).toBe('1 checks passed');
-            expect(component.find('li.legend__item_failed').text()).toBe('1 errors');
+            expect(component.find('li.legend-item_passed').text()).toBe('1 checks passed');
+            expect(component.find('li.legend-item_failed').text()).toBe('1 errors');
         })
     );
 });

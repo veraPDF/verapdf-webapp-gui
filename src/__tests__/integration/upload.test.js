@@ -1,6 +1,6 @@
 import { TEST_FILE, integrationTest, getNextStepButton, storeFile, moveBack, moveNext } from './index';
 
-const EMPTY_DROPZONE_TEXT = 'Drop some PDF files here, or click to select files';
+const EMPTY_DROPZONE_TEXT = 'Drop a PDF file, or click to select a file';
 const FAILED_FILE = {
     ...TEST_FILE,
     name: '',

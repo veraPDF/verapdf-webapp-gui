@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './DropzoneText.scss';
 
-const DROPZONE_TEXT = 'Drop some PDF files here, or click to select files';
+const DROPZONE_TEXT = 'Drop a PDF file, or click to select a file';
 
 function DropzoneText(props) {
     const { files } = props;

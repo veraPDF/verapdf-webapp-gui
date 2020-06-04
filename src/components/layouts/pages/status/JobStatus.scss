@@ -8,8 +8,14 @@
 
     .error {
       text-align: center;
-      color: $color-error;
-      margin: 0;
+      &__message {
+        color: $color-error;
+        margin: 0;
+      }
+
+      &__details {
+        margin: 5px 0;
+      }
     }
   }
 }

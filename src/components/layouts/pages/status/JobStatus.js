@@ -61,9 +61,10 @@ function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
             const { message, title } = getErrorInfo(steps, errorMessage);
             return (
                 <StatusPage>
-                    <h3 className="error" title={title}>
-                        {message}
-                    </h3>
+                    <section className="error">
+                        <h3 className="error__message">{message}</h3>
+                        <p className="error__details">{title}</p>
+                    </section>
                     {/* TODO: add button to retry validation */}
                 </StatusPage>
             );

@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useTheme } from '@material-ui/core/styles';
 import { Chart } from 'react-google-charts';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
 import { getResultSummary } from '../../../../../store/job/result/selectors';
@@ -37,8 +38,8 @@ function Summary({ fileInfo, resultSummary }) {
                 </div>
             </section>
             <ul className="legend">
-                <LegendItem className="legend__item_passed" value={resultSummary.passedChecks} label="checks passed" />
-                <LegendItem className="legend__item_failed" value={resultSummary.failedChecks} label="errors" />
+                <LegendItem value={resultSummary.passedChecks} label="checks passed" type="passed" />
+                <LegendItem value={resultSummary.failedChecks} label="errors" type="failed" />
             </ul>
         </Paper>
     );
@@ -72,12 +73,14 @@ function calculateCompliance({ passedChecks, failedChecks }) {
     return Math.floor((passedChecks * 100) / total);
 }
 
-function LegendItem({ className, label, value }) {
+function LegendItem({ label, value, type }) {
     if (value === 0) {
         return null;
     }
+
     return (
-        <li className={classNames('legend__item', className)}>
+        <li className={classNames('legend-item', `legend-item_${type}`)}>
+            <FiberManualRecordIcon className="legend-item__icon" />
             {value} {label}
         </li>
     );

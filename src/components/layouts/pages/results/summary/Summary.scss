@@ -41,21 +41,25 @@
 
     display: flex;
 
-    &__item {
+    &-item {
       margin: 0 10px;
       display: flex;
       align-items: center;
 
-      &::before {
-        content: '●';
+      .legend-item__icon {
+        font-size: 16px;
         margin-right: 5px;
       }
 
-      &_passed::before {
-        color: $color-success;
+      &_passed {
+        .legend-item__icon {
+          color: $color-success;
+        }
       }
-      &_failed::before {
-        color: $color-primary;
+      &_failed {
+        .legend-item__icon {
+          color: $color-primary;
+        }
       }
     }
   }

@@ -21,6 +21,10 @@ module.exports = function override(config) {
                     from: pdfjsPath + 'pdf.worker.js.map',
                     to: 'pdf.worker.js.map',
                 },
+                {
+                    from: 'ABOUT.md',
+                    to: 'ABOUT.md',
+                },
             ],
         })
     );

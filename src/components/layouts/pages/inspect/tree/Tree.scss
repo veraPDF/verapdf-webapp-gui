@@ -26,6 +26,10 @@
           white-space: nowrap;
           margin-right: 5px;
         }
+
+        &_empty {
+          padding-left: 24px;
+        }
       }
 
       &_error {

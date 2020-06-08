@@ -65,10 +65,6 @@ function convertContextToPath(errorContext = '') {
         contextString = contextString.split('PDStructTreeRoot)/')[1].split('/'); // cut path before start of Document
 
         contextString.forEach(nodeString => {
-            if (nodeString.includes(' Document)')) {
-                return;
-            }
-
             const nextIndex = parseInt(nodeString.split('](')[0].split('K[')[1], 10);
             let nextTag = nodeString
                 .split('(')[1]

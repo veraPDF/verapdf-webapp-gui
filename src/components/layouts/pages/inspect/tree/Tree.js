@@ -1,6 +1,7 @@
 import React, { useState, useCallback, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import List from '@material-ui/core/List';
@@ -105,7 +106,7 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
                     {checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}
-                        className="rule-item__content"
+                        className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
                         primary={
                             <>
                                 <span className="content-text">{ruleTitle}</span>

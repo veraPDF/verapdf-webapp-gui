@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -12,57 +13,57 @@ import StepIcon from './StepIcon';
 
 import './Stepper.scss';
 
-function Stepper({ activeStep, useSettings }) {
-    const STEPS = useMemo(
-        () => [
-            {
-                key: AppPages.UPLOAD,
-                label: 'Upload PDF',
-            },
-            {
-                key: AppPages.SETTINGS,
-                label: 'Select settings',
-                skip: !useSettings,
-            },
-            {
-                key: AppPages.STATUS.route,
-                label: 'Validation',
-            },
-            {
-                key: AppPages.RESULTS.route,
-                label: 'Verification results',
-            },
-        ],
-        [useSettings]
-    );
-    const activeIndex = useMemo(
-        () =>
-            _.findIndex(
-                STEPS.filter(step => !step.skip),
-                { key: activeStep }
-            ),
-        [STEPS, activeStep]
-    );
+const STEPS = [
+    {
+        key: AppPages.UPLOAD,
+        label: 'Upload PDF',
+    },
+    {
+        key: AppPages.SETTINGS,
+        label: 'Configuration',
+    },
+    {
+        key: AppPages.STATUS.route,
+        label: 'Validation',
+    },
+    {
+        key: AppPages.RESULTS.route,
+        label: 'Results',
+    },
+];
+
+function Stepper({ activeStep, customizeConfig }) {
+    const steps = useMemo(() => (customizeConfig ? STEPS : _.reject(STEPS, { key: AppPages.SETTINGS })), [
+        customizeConfig,
+    ]);
+    const activeIndex = useMemo(() => _.findIndex(steps, { key: activeStep }), [steps, activeStep]);
 
     return (
-        <MaterialStepper className="stepper" activeStep={activeIndex} alternativeLabel>
-            {STEPS.filter(step => !step.skip).map(({ label }) => (
-                <Step key={label}>
-                    <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
-                </Step>
-            ))}
-        </MaterialStepper>
+        <>
+            <MaterialStepper
+                className={classNames('stepper', { 'with-config': customizeConfig })}
+                activeStep={activeIndex}
+                alternativeLabel
+            >
+                {steps.map(({ label }) => (
+                    <Step key={label}>
+                        <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
+                    </Step>
+                ))}
+            </MaterialStepper>
+            <h1 className="active-step">{steps[activeIndex].label}</h1>
+        </>
     );
 }
 
 Stepper.propTypes = {
     activeStep: PropTypes.string.isRequired,
-    useSettings: PropTypes.bool.isRequired,
+    customizeConfig: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
     return {
-        useSettings: getUseSettings(state),
+        customizeConfig: getUseSettings(state), // TODO: rename selector/reducer
     };
 };
 

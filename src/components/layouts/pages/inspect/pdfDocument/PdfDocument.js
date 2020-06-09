@@ -390,7 +390,9 @@ class PdfDocument extends React.PureComponent {
         if (hoveredKey !== this.state.hoveredKey) {
             this.redrawCanvasByPage(pageIndex);
             if (this.props.selectedCheck) {
-                this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
+                if (pageIndex === this.state.errorsRects[this.props.selectedCheck]?.pageIndex) {
+                    this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
+                }
             }
 
             if (hoveredKey) {

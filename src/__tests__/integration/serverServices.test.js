@@ -25,7 +25,6 @@ const getServices = component => {
     });
     return { ...servicesMap };
 };
-const getServiceInfo = (component, serviceName) => component.find('.app-footer > div').props().title;
 
 describe('Check services status', () => {
     it(

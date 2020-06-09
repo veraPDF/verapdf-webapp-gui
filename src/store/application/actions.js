@@ -31,5 +31,4 @@ export const reset = () => async (dispatch, getState) => {
 
     // Redirect to start screen and hide Loading view
     window.location.replace(PUBLIC_URL);
-    dispatch(finishAppStartup());
 };

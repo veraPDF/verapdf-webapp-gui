@@ -50,7 +50,7 @@ function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
 }
 
 Results.propTypes = {
-    jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)).isRequired,
+    jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)),
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
     compliant: PropTypes.bool.isRequired,
     onBackClick: PropTypes.func.isRequired,

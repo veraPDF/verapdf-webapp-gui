@@ -13,7 +13,7 @@
         "crypto-js": "^4.0.0",
         "lodash": "^4.17.15",
         "node-sass": "^4.13.1",
-        "pdfjs-dist": "github:veraPDF/pdfjs-dist#v.2.1.266-taggedPdf-0.1.0",
+        "pdfjs-dist": "github:veraPDF/pdfjs-dist#v2.1.266-taggedPdf-0.1.1",
         "prop-types": "^15.7.2",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",

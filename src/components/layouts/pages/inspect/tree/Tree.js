@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment, useEffect } from 'react';
+import React, { useState, useCallback, Fragment, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -123,7 +123,7 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
                     </ListItemSecondaryAction>
                 </ListItem>
                 {checks.length ? (
-                    <Collapse in={expandedRule === index} timeout="auto" unmountOnExit>
+                    <Collapse in={expandedRule === index} timeout={0} unmountOnExit>
                         <List component="div" disablePadding>
                             <CheckList
                                 ruleIndex={index}
@@ -146,18 +146,44 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
         const checkKey = `${ruleIndex}:${context}`;
         const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex });
         return (
-            <ListItem
+            <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
                 selected={selectedCheck === checkKey}
                 button
                 className="check-item"
                 title={context}
-            >
-                <ListItemText primary={checkTitle} />
-            </ListItem>
+                checkTitle={checkTitle}
+            />
         );
     });
+}
+
+function LI({ selected, title, checkTitle, onClick, className }) {
+    // prevent auto scroll when was clicked itself
+    const [disableAutoScroll, setDisableAutoScroll] = useState(false);
+    const onItemClick = useCallback(() => {
+        setDisableAutoScroll(true);
+        return onClick();
+    }, [onClick]);
+    const listItem = useRef();
+    useEffect(
+        useCallback(() => {
+            if (selected && !disableAutoScroll) {
+                // To be sure that list expanded before auto scroll call it in next tick
+                setTimeout(() => listItem.current.scrollIntoView({ block: 'center' }), 0);
+            } else {
+                setDisableAutoScroll(false);
+            }
+        }, [disableAutoScroll, selected]),
+        [selected]
+    );
+
+    return (
+        <ListItem onClick={onItemClick} selected={selected} button className={className} title={title} ref={listItem}>
+            <ListItemText primary={checkTitle} />
+        </ListItem>
+    );
 }
 
 function RuleDetailsButton(rule) {

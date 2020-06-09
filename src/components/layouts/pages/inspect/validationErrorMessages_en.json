@@ -44,7 +44,7 @@
                 "DESCRIPTION": "Standard tags defined in ISO 32000-1:2008, 14.8.4, shall not be remapped."
             },
             "8": {
-                "SUMMARY": "The document document contain XMP Metadata stream",
+                "SUMMARY": "The document doesn't contain XMP Metadata stream",
                 "DESCRIPTION": "The Catalog dictionary of a conforming file shall contain the Metadata key whose value is a metadata stream as defined in ISO 32000-1:2008, 14.3.2."
             },
             "9": {
@@ -162,7 +162,7 @@
                 "DESCRIPTION": "TOC element may contain a Caption element as its first kid and TOC element may contain only TOC, TOCI and Caption elements"
             },
             "29": {
-                "SUMMARY": "Ivalid Language identifier",
+                "SUMMARY": "Invalid Language identifier",
                 "DESCRIPTION": "If the Lang entry is present in the document's Catalog dictionary or in a structure element dictionary or property list, its value shall be a language identifier as described in ISO 32000-1:2008, 14.9.2. A language identifier shall be a Language-Tag as defined in RFC 3066, Tags for the Identification of Languages."
             },
             "30": {
@@ -302,7 +302,7 @@
                 "DESCRIPTION": "In the media clip data dictionary, the optional CT key (ISO 32000-1:2008, 13.2.4.2, Table 274) are required. Value of CT should conform to the content type specification described in Internet RFC 2045"
             },
             "2": {
-                "SUMMARY": "Media clip has no alternative desrption",
+                "SUMMARY": "Media clip has no alternative description",
                 "DESCRIPTION": "In the media clip data dictionary, the optional Alt key (ISO 32000-1:2008, 13.2.4.2, Table 274) are required."
             }
         },
@@ -314,7 +314,7 @@
         },
         "7.20": {
             "1": {
-                "SUMMARY": "The document includes an external doucment as its part",
+                "SUMMARY": "The document includes an external document as its part",
                 "DESCRIPTION": "A conforming file shall not contain any reference XObjects"
             }
         },
@@ -332,7 +332,7 @@
         },
         "7.21.3.3": {
             "1": {
-                "SUMMARY": "A non-standard multibyte encoding is used, but is not embeeded into the document",
+                "SUMMARY": "A non-standard multibyte encoding is used, but is not embedded into the document",
                 "DESCRIPTION": "All CMaps used within a PDF/UA file, except those listed in ISO 32000-1:2008, 9.7.5.2, Table 118, shall be embedded in that file as described in ISO 32000-1:2008, 9.7.5."
             },
             "2": {
@@ -385,7 +385,7 @@
             },
             "4": {
                 "SUMMARY": "Conflicting glyph lookup for a symbolic TrueType font program",
-                "DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary, and the 'cmap' table in the embedded font program shall either contain exactly one encoding or it shall contain, at least, the Microsoft Symbol (3,0 тАУ Platform ID=3, Encoding ID=0) encoding."
+                "DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary, and the 'cmap' table in the embedded font program shall either contain exactly one encoding or it shall contain, at least, the Microsoft Symbol (3,0 - Platform ID=3, Encoding ID=0) encoding."
             }
         },
         "7.21.7": {

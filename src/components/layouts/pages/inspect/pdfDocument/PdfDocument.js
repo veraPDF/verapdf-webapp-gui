@@ -198,6 +198,7 @@ class PdfDocument extends React.PureComponent {
             bboxByPage: newBboxByPage,
             canvasPages: pagesArray,
             pagesMap: this.getPages(),
+            annotationsByPage,
         });
 
         setTimeout(() => {

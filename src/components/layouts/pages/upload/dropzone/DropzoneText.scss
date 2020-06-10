@@ -2,8 +2,15 @@
 
 .dropzone-text {
   color: $color-black--75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  display: flex;
+  flex-direction: column;
 
   &__file-size {
+    text-align: center;
     color: $color-black--50;
     font-size: $font-size--basic;
   }

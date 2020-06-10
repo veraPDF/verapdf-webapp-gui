@@ -37,7 +37,7 @@ describe('Upload', () => {
         integrationTest(async (store, component) => {
             await storeFile(component, store);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}${TEST_FILE.size}`);
             expect(getNextStepButton(component).props().disabled).toBeFalsy();
         })
     );
@@ -71,7 +71,7 @@ describe('Upload', () => {
             moveNext(component);
             moveBack(component);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}${TEST_FILE.size}`);
         })
     );
 });

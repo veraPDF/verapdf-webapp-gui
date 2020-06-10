@@ -98,7 +98,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
 // TODO: add Warnings
 function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onCheckClick, onInfoClick, errorsMap }) {
     return ruleSummaries.map((rule, index) => {
-        const checks = rule.checks.filter(({ context }) => !isMetadata(context));
+        const checks = rule.checks;
         const ruleTitle = getRuleTitle(rule);
         return (
             <Fragment key={index}>
@@ -245,16 +245,7 @@ function getPageNumber(checkKey, errorsMap) {
         return UNSELECTED;
     }
 
-    // context to skip
-    if (errorsMap[checkKey].pageIndex === METADATA) {
-        return false;
-    }
-
     return errorsMap[checkKey].pageIndex + 1;
-}
-
-function isMetadata(context) {
-    return context.toLowerCase().match(METADATA);
 }
 
 function sortChecksByPage(checks, errorsMap) {

@@ -134,7 +134,7 @@ class PdfDocument extends React.PureComponent {
     //  Init data of uploaded PDF
     onDocumentLoadSuccess = document => {
         loadedPages = 0;
-        const structureTree = document._pdfInfo.structureTree || {};
+        const structureTree = document._pdfInfo.structureTree;
         document.getMetadata().then(({ info }) => {
             const { Title } = info;
 

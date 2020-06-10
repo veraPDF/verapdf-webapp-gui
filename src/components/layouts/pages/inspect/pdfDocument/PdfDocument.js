@@ -99,7 +99,11 @@ class PdfDocument extends React.PureComponent {
     };
 
     componentDidUpdate(prevProps) {
-        if (_.isNull(this.state.mapOfErrors) && !_.isNil(this.props.ruleSummaries)) {
+        if (
+            _.isNull(this.state.mapOfErrors) &&
+            !_.isNil(this.props.ruleSummaries) &&
+            !(_.isObject(this.state.structureTree) && _.isEmpty(this.state.structureTree))
+        ) {
             const mapOfErrors = {};
             this.props.ruleSummaries.forEach((summary, index) => {
                 summary.checks.forEach(check => {

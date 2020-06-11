@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 import AppPages from '../../../AppPages';
 import { validate } from '../../../../store/job/actions';
@@ -12,23 +12,18 @@ import Dropzone from './dropzone/Dropzone';
 import WizardStep from '../../wizardStep/WizardStep';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import SettingsCheckbox from './settingsCheckbox/SettingsCheckbox';
+import Button from '../../../shared/button/Button';
 
 function Upload({ filesAttached, isUseSettings, jobId, onValidateClick }) {
-    const forwardButton = useMemo(() => {
-        const button = { disabled: !filesAttached };
+    const history = useHistory();
+    const forwardLabel = useMemo(() => (isUseSettings ? 'Configure' : 'Validate'), [isUseSettings]);
+    const onForwardClick = useMemo(() => {
         if (isUseSettings) {
-            return {
-                ...button,
-                label: 'Configure job',
-                to: AppPages.SETTINGS,
-            };
+            return () => history.push(AppPages.SETTINGS);
         }
-        return {
-            ...button,
-            label: 'Validate',
-            onClick: onValidateClick,
-        };
-    }, [filesAttached, onValidateClick, isUseSettings]);
+
+        return onValidateClick;
+    }, [history, isUseSettings, onValidateClick]);
 
     if (!isUseSettings && jobId) {
         // Once job is initialized and we know its ID redirect to status page to track its progress
@@ -38,7 +33,18 @@ function Upload({ filesAttached, isUseSettings, jobId, onValidateClick }) {
     return (
         <WizardStep stepIndex={AppPages.UPLOAD}>
             <Dropzone />
-            <PageNavigation back={<SettingsCheckbox />} forward={forwardButton} />
+            <PageNavigation>
+                <SettingsCheckbox />
+                <Button
+                    className="nav-button_forward"
+                    variant="contained"
+                    color="primary"
+                    disabled={!filesAttached}
+                    onClick={onForwardClick}
+                >
+                    {forwardLabel}
+                </Button>
+            </PageNavigation>
         </WizardStep>
     );
 }

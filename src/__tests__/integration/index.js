@@ -243,8 +243,8 @@ export const navigateWithHeaderLink = (component, linkSelector) => {
     component.update();
 };
 
-export const getNextStepButton = component => component.find('.page-navigation__end button');
-export const getPrevStepButton = component => component.find('.page-navigation__start button');
+export const getNextStepButton = component => component.find('.page-navigation > .nav-button_forward');
+export const getPrevStepButton = component => component.find('.page-navigation > .nav-button_back');
 
 export const moveBack = component => {
     getPrevStepButton(component).simulate('click', { button: 0 });

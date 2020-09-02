@@ -27,6 +27,10 @@
                 "SUMMARY": "Real content is present inside Artifact",
                 "DESCRIPTION": "Tagged content should not present inside content marked as Artifact"
             },
+            "3": {
+                "SUMMARY": "Content is neither marked as Artifact nor tagged as real content",
+                "DESCRIPTION": "Content shall be marked in the structure tree with semantically appropriate tags in a logical reading order. Content that does not render and does not have a rendered equivalent shall be marked as an artifact."
+            },
             "4": {
                 "SUMMARY": "Creator of the document was not able to identify the correct logical order",
                 "DESCRIPTION": "Suspects entry in the mark information dictionary has value true (ISO 32000-1:2008, Table 321)"
@@ -61,10 +65,6 @@
             }
         },
         "7.2": {
-            "1": {
-                "SUMMARY": "The font does not define Unicode character map",
-                "DESCRIPTION": "The font dictionary shall include a ToUnicode entry whose value is a CMap stream object that maps character codes to Unicode values, as described in PDF Reference 5.9, unless the font meets any of the following three conditions: (*) fonts that use the predefined encodings MacRomanEncoding, MacExpertEncoding or WinAnsiEncoding, or that use the predefined Identity-H or Identity-V CMaps; (*) Type 1 fonts whose character names are taken from the Adobe standard Latin character set or the set of named characters in the Symbol font, as defined in PDF Reference Appendix D; (*) Type 0 fonts whose descendant CIDFont uses the Adobe-GB1, Adobe-CNS1, Adobe-Japan1 orAdobe-Korea1 character collections."
-            },
             "2": {
                 "SUMMARY": "Natural language in the Outline entries cannot be determined",
                 "DESCRIPTION": "Natural language in the Outline entries shall be determined"
@@ -117,6 +117,10 @@
                 "SUMMARY": "Table contains header, but no body",
                 "DESCRIPTION": "If Table element contains THead kid, Table element should contain one or more TBody kids"
             },
+            "15": {
+                "SUMMARY": "Irregular table found",
+                "DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
+            },
             "17": {
                 "SUMMARY": "List item is found outside List context",
                 "DESCRIPTION": "LI element should contained in L element"
@@ -166,20 +170,24 @@
                 "DESCRIPTION": "If the Lang entry is present in the document's Catalog dictionary or in a structure element dictionary or property list, its value shall be a language identifier as described in ISO 32000-1:2008, 14.9.2. A language identifier shall be a Language-Tag as defined in RFC 3066, Tags for the Identification of Languages."
             },
             "30": {
-                "SUMMARY": "Natural language for the alternative text cannot be determined",
-                "DESCRIPTION": "Natural language for text in Alt attribute shall be determined"
+                "SUMMARY": "Natural language for text in ActualText attribute in Span Marked Content cannot be determined",
+                "DESCRIPTION": "Natural language for text in ActualText attribute in Span Marked Content shall be determined"
             },
             "31": {
-                "SUMMARY": "Natural language for the expansion text cannot be determined",
-                "DESCRIPTION": "Natural language for text in E attribute shall be determined"
+                "SUMMARY": "Natural language for text in Alt attribute in Span Marked Content cannot be determined",
+                "DESCRIPTION": "Natural language for text in Alt attribute in Span Marked Content shall be determined"
             },
             "32": {
-                "SUMMARY": "Natural language for the annotation contents cannot be determined",
-                "DESCRIPTION": "Natural language in the Contents entry for annotations shall be determined"
+                "SUMMARY": "Natural language for text in E attribute in Span Marked Content cannot be determined",
+                "DESCRIPTION": "Natural language for text in E attribute in Span Marked Content shall be determined"
             },
             "33": {
                 "SUMMARY": "Natural language for document metadata cannot be determined",
-                "DESCRIPTION": "Natural language for the document XMP package is not defined"
+                "DESCRIPTION": "Natural language for document metadata shall be determined"
+            },
+            "34": {
+                "SUMMARY": "Natural language for text in page content cannot be determined",
+                "DESCRIPTION": "Natural language for text in page content shall be determined"
             },
             "36": {
                 "SUMMARY": "Table header contains elements other than Table rows",
@@ -220,6 +228,12 @@
                 "DESCRIPTION": "All documents shall be either strongly or weakly structured, but not both."
             }
         },
+        "7.5": {
+            "1": {
+                "SUMMARY": "In a table not organized with Headers attributes and IDs, a TH cell does not contain a Scope attribute",
+                "DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
+            }
+        },
         "7.7": {
             "1": {
                 "SUMMARY": "Missing alternative (or replacement) text in the Formula",
@@ -252,6 +266,12 @@
                 "DESCRIPTION": "The file specification dictionary for an embedded file shall contain the non-empty F and UF keys"
             }
         },
+        "7.15": {
+            "1": {
+                "SUMMARY": "Dynamic XFA forms is present",
+                "DESCRIPTION": "Dynamic XFA forms shall not be used"
+            }
+        },
         "7.16": {
             "1": {
                 "SUMMARY": "The file does not permit interaction with assistive technologies",
@@ -265,11 +285,15 @@
             },
             "2": {
                 "SUMMARY": "An annotation has no alternative description",
-                "DESCRIPTION": "An annotation other than annotations of type Link, Widget or Popup whose hidden flag is not set and whose rectangle is not outside the crop-box and does not have a Contents key shall have an alternative description (in the form of an Alt entry in the enclosing structure element)"
+                "DESCRIPTION": "An annotation (except annotations of type Link, Widget or Popup, or hidden annotations, or those having rectangle outside the crop-box) shall have either Contents key or an Alt entry in the enclosing structure element"
+            },
+            "3": {
+                "SUMMARY": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box and does not have a TU key and its Widget annotations do not have alternative descriptions (in the form of an Alt entry in the enclosing structure element)",
+                "DESCRIPTION": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box shall have a TU key present or all its Widget annotations shall have alternative descriptions (in the form of an Alt entry in the enclosing structure elements)"
             }
         },
         "7.18.2": {
-            "2": {
+            "1": {
                 "SUMMARY": "Document contains trapping annotations",
                 "DESCRIPTION": "Annotations of subtype TrapNet shall not be permitted."
             }
@@ -316,6 +340,10 @@
             "1": {
                 "SUMMARY": "The document includes an external document as its part",
                 "DESCRIPTION": "A conforming file shall not contain any reference XObjects"
+            },
+            "2": {
+                "SUMMARY": "Form XObject contains MCIDs and is referenced more than once",
+                "DESCRIPTION": "The content of Form XObjects shall be incorporated into structure elements according to ISO 32000-1:2008, 14.7.2."
             }
         },
         "7.21.3.1": {
@@ -349,7 +377,7 @@
                 "SUMMARY": "The font program is not embedded",
                 "DESCRIPTION": "The font programs for all fonts used for rendering within a conforming file shall be embedded within that file, as defined in ISO 32000-1:2008, 9.9."
             },
-            "3": {
+            "2": {
                 "SUMMARY": "Not all glyphs are present in the embedded font program",
                 "DESCRIPTION": "Embedded fonts shall define all glyphs referenced for rendering within the conforming file. A font referenced for use solely in rendering mode 3 is therefore not rendered and is thus exempt from the embedding requirement."
             }
@@ -377,7 +405,7 @@
             },
             "2": {
                 "SUMMARY": "Invalid encoding for a non-symbolic TrueType font",
-                "DESCRIPTION": "No non-symbolic TrueType font shall define a Differences array unless all of the glyph names in the Differences array are listed in the Adobe Glyph List and the embedded font program contains at least the Microsoft Unicode (3,1 - Platform ID=3, Encoding ID=1) encoding in the 'cmap' table."
+                "DESCRIPTION": "All non-symbolic TrueType fonts shall have either MacRomanEncoding or WinAnsiEncoding as the value for the Encoding key in the Font dictionary or as the value for the BaseEncoding key in the dictionary which is the value of the Encoding key in the Font dictionary. In addition, no non-symbolic TrueType font shall define a Differences array unless all of the glyph names in the Differences array are listed in the Adobe Glyph List and the embedded font program contains at least the Microsoft Unicode (3,1 – Platform ID=3, Encoding ID=1) encoding in the 'cmap' table."
             },
             "3": {
                 "SUMMARY": "Invalid encoding for a symbolic TrueType font",
@@ -391,7 +419,7 @@
         "7.21.7": {
             "1": {
                 "SUMMARY": "The glyph has no Unicode value",
-                "DESCRIPTION": "The Font dictionary of all fonts shall define the map of all used character codes to Unicode values, either via a ToUnicode entry, or other mechanisms as defined in ISO 19005-2, 6.2.11.7.2."
+                "DESCRIPTION": "The Font dictionary of all fonts shall define the map of all used character codes to Unicode values, either via a ToUnicode entry, or other mechanisms as defined in ISO 14289-1, 7.21.7."
             },
             "2": {
                 "SUMMARY": "The glyph has an invalid Unicode value",

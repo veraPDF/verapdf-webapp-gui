@@ -10,7 +10,12 @@ import PdfPageCanvas from '../pdfPageCanvas/PdfPageCanvas';
 import PdfPage from '../pdfPage/PdfPage';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
-import { concatBoundingBoxes, convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
+import {
+    concatBoundingBoxes,
+    convertContextToPath,
+    findAllMcid,
+    calculateBboxFromLocation,
+} from '../../../../../services/pdfService';
 
 import './PdfDocument.scss';
 
@@ -106,11 +111,24 @@ class PdfDocument extends React.PureComponent {
         ) {
             const mapOfErrors = {};
             this.props.ruleSummaries.forEach((summary, index) => {
-                summary.checks.forEach(check => {
-                    const [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
-                    mapOfErrors[`${index}:${check.context}`] = {
+                summary.checks.forEach((check, checkIndex) => {
+                    let listOfMcid = [];
+                    let pageIndex = -1;
+                    if (!check.location) {
+                        [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
+                    } else {
+                        listOfMcid = [];
+                        pageIndex = parseInt(
+                            check.location
+                                .split('pages[')[1]
+                                .split(']')[0]
+                                .split('-')[0]
+                        );
+                    }
+                    mapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {
                         listOfMcid,
                         pageIndex,
+                        location: check.location,
                     };
                 });
             });
@@ -120,13 +138,23 @@ class PdfDocument extends React.PureComponent {
 
         // clear old selection and fill new one
         if (this.props.selectedCheck !== prevProps.selectedCheck) {
-            const prevPage = this.state.errorsRects[prevProps.selectedCheck]
-                ? this.state.errorsRects[prevProps.selectedCheck]?.pageIndex
-                : this.state.mapOfErrors[this.props.selectedCheck]?.pageIndex;
-
-            if (_.isNumber(prevPage)) {
-                this.redrawCanvasByPage(prevPage);
+            let prevPages = [];
+            if (this.state.errorsRects[prevProps.selectedCheck]) {
+                prevPages =
+                    this.state.errorsRects[prevProps.selectedCheck] instanceof Array
+                        ? this.state.errorsRects[prevProps.selectedCheck]
+                        : [this.state.errorsRects[prevProps.selectedCheck]];
+            } else {
+                prevPages =
+                    this.state.mapOfErrors[this.props.selectedCheck] instanceof Array
+                        ? this.state.mapOfErrors[this.props.selectedCheck]
+                        : [this.state.mapOfErrors[this.props.selectedCheck]];
             }
+            prevPages.forEach(prevCheck => {
+                if (prevCheck && _.isNumber(prevCheck.pageIndex)) {
+                    this.redrawCanvasByPage(prevCheck.pageIndex);
+                }
+            });
             this.autoSelectRect();
         }
     }
@@ -363,47 +391,70 @@ class PdfDocument extends React.PureComponent {
             if (pageIndex === this.state.errorsRects[key].pageIndex) {
                 errorsOnPage.push(key);
             }
+            if (this.state.errorsRects[key] instanceof Array) {
+                this.state.errorsRects[key].forEach(rect => {
+                    if (pageIndex === rect.pageIndex) {
+                        errorsOnPage.push(key);
+                    }
+                });
+            }
         });
 
         errorsOnPage.forEach(key => {
-            if (
-                x >= this.state.errorsRects[key].x &&
-                x <= this.state.errorsRects[key].x + this.state.errorsRects[key].width &&
-                y >= this.state.errorsRects[key].y &&
-                y <= this.state.errorsRects[key].y + this.state.errorsRects[key].height
-            ) {
-                if (!hoveredKey) {
-                    hoveredKey = key;
-                } else if (
-                    this.state.errorsRects[key].x >= this.state.errorsRects[hoveredKey].x &&
-                    this.state.errorsRects[key].x + this.state.errorsRects[key].width <=
-                        this.state.errorsRects[hoveredKey].x + this.state.errorsRects[hoveredKey].width &&
-                    this.state.errorsRects[key].y >= this.state.errorsRects[hoveredKey].y &&
-                    this.state.errorsRects[key].y + this.state.errorsRects[key].height <=
-                        this.state.errorsRects[hoveredKey].y + this.state.errorsRects[hoveredKey].height
-                ) {
-                    hoveredKey = key;
+            const rectsArray =
+                this.state.errorsRects[key] instanceof Array
+                    ? this.state.errorsRects[key]
+                    : [this.state.errorsRects[key]];
+            rectsArray.forEach(rect => {
+                if (x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height) {
+                    if (!hoveredKey) {
+                        hoveredKey = key;
+                    } else {
+                        const hoveredRects =
+                            this.state.errorsRects[hoveredKey] instanceof Array
+                                ? this.state.errorsRects[hoveredKey]
+                                : [this.state.errorsRects[hoveredKey]];
+                        hoveredRects.forEach(hRect => {
+                            if (
+                                rect.pageIndex === hRect.pageIndex &&
+                                rect.x >= hRect.x &&
+                                rect.x + rect.width <= hRect.x + hRect.width &&
+                                rect.y >= hRect.y &&
+                                rect.y + rect.height <= hRect.y + hRect.height
+                            ) {
+                                hoveredKey = key;
+                            }
+                        });
+                    }
                 }
-            }
+            });
         });
 
         if (hoveredKey !== this.state.hoveredKey) {
             this.redrawCanvasByPage(pageIndex);
             if (this.props.selectedCheck) {
-                if (pageIndex === this.state.errorsRects[this.props.selectedCheck]?.pageIndex) {
+                const hoveredPageIndexes =
+                    this.state.errorsRects[this.props.selectedCheck] instanceof Array
+                        ? this.state.errorsRects[this.props.selectedCheck].map(rect => rect.pageIndex)
+                        : [this.state.errorsRects[this.props.selectedCheck]?.pageIndex];
+                if (hoveredPageIndexes.includes(pageIndex)) {
+                    hoveredPageIndexes.forEach(rect => {
+                        this.redrawCanvasByPage(rect.pageIndex);
+                    });
                     this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
                 }
             }
 
             if (hoveredKey) {
+                const hoveredRect =
+                    _.find(this.state.errorsRects[hoveredKey], { pageIndex: pageIndex }) ||
+                    this.state.errorsRects[hoveredKey];
+                const canvas = document.querySelector(`canvas[data-page="${hoveredRect.pageIndex}"]`);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
                 ctx.strokeStyle = COLOR.HOVER;
                 ctx.strokeWidth = 10;
-                ctx.strokeRect(
-                    this.state.errorsRects[hoveredKey].x,
-                    this.state.errorsRects[hoveredKey].y,
-                    this.state.errorsRects[hoveredKey].width,
-                    this.state.errorsRects[hoveredKey].height
-                );
+                ctx.strokeRect(hoveredRect.x, hoveredRect.y, hoveredRect.width, hoveredRect.height);
             }
 
             this.setState({
@@ -436,26 +487,40 @@ class PdfDocument extends React.PureComponent {
             if (index !== this.state.mapOfErrors[key].pageIndex) return;
             mapOfBboxes[key] = this.findBboxCoords(this.state.mapOfErrors[key]);
         });
-
         Object.keys(mapOfBboxes).forEach(key => {
+            if (mapOfBboxes[key] instanceof Array) {
+                return mapOfBboxes[key].forEach(rect => {
+                    if (rect.pageIndex !== index) return;
+                    const canvas = document.querySelector(`canvas[data-page="${rect.pageIndex}"]`);
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                });
+            }
             if (index !== mapOfBboxes[key].pageIndex) return;
             const canvas = document.querySelector(`canvas[data-page="${mapOfBboxes[key].pageIndex}"]`);
-
             if (!canvas) return;
-
             const ctx = canvas.getContext('2d');
             ctx.strokeStyle = COLOR.DEFAULT;
             ctx.strokeRect(mapOfBboxes[key].x, mapOfBboxes[key].y, mapOfBboxes[key].width, mapOfBboxes[key].height);
         });
 
         const autoSelect =
-            this.props.selectedCheck && this.state.mapOfErrors[this.props.selectedCheck].pageIndex === index++;
+            this.props.selectedCheck &&
+            (this.state.mapOfErrors[this.props.selectedCheck].location
+                ? _.find(mapOfBboxes[this.props.selectedCheck], { pageIndex: index })
+                : this.state.mapOfErrors[this.props.selectedCheck].pageIndex === index++);
 
         this.setState(
             {
                 errorsRects: mapOfBboxes,
             },
-            () => (autoSelect ? this.autoSelectRect() : false)
+            () => {
+                if (autoSelect) {
+                    preventScroll = true;
+                    this.autoSelectRect();
+                }
+            }
         );
     }
 
@@ -466,6 +531,12 @@ class PdfDocument extends React.PureComponent {
         const ctx = canvas.getContext('2d');
 
         Object.keys(this.state.errorsRects).forEach(key => {
+            if (this.state.errorsRects[key] instanceof Array) {
+                return this.state.errorsRects[key].forEach(rect => {
+                    if (rect.pageIndex !== page) return;
+                    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                });
+            }
             if (this.state.errorsRects[key].pageIndex !== page) {
                 return;
             }
@@ -496,16 +567,16 @@ class PdfDocument extends React.PureComponent {
 
     selectRect(errorObject) {
         if (!errorObject) return;
-
-        const canvas = document.querySelector(`canvas[data-page="${errorObject.pageIndex}"]`);
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        // works with shapes but not with images
-        ctx.fillStyle = COLOR.ACTIVE;
-        ctx.strokeStyle = COLOR.HOVER;
-        ctx.strokeRect(errorObject.x, errorObject.y, errorObject.width, errorObject.height);
-        ctx.fillRect(errorObject.x, errorObject.y, errorObject.width, errorObject.height);
+        const rectsArr = errorObject instanceof Array ? errorObject : [errorObject];
+        return rectsArr.forEach(rect => {
+            const canvas = document.querySelector(`canvas[data-page="${rect.pageIndex}"]`);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = COLOR.ACTIVE;
+            ctx.strokeStyle = COLOR.HOVER;
+            ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+        });
     }
 
     waitRendering(pageNumber) {
@@ -525,13 +596,14 @@ class PdfDocument extends React.PureComponent {
                 if (!preventScroll) {
                     //  auto scroll to page with selected error
                     const $documentArea = document.querySelector('.inspect-document');
-                    const $canvasPage = document.querySelector(
-                        `canvas[data-page="${this.state.errorsRects[this.props.selectedCheck].pageIndex}"]`
-                    );
+                    const rect =
+                        this.state.errorsRects[this.props.selectedCheck][0] ||
+                        this.state.errorsRects[this.props.selectedCheck];
+                    const $canvasPage = document.querySelector(`canvas[data-page="${rect.pageIndex}"]`);
 
                     if (!$canvasPage) return;
 
-                    const { y, height } = this.state.errorsRects[this.props.selectedCheck];
+                    const { y, height } = rect;
                     if (y && height) {
                         const scrollDifference =
                             $canvasPage.offsetHeight - (y + height) - $documentArea.offsetHeight / 3;
@@ -542,7 +614,13 @@ class PdfDocument extends React.PureComponent {
                     preventScroll = false;
                 }
 
-                this.redrawCanvasByPage(this.state.errorsRects[this.props.selectedCheck].pageIndex);
+                if (this.state.errorsRects[this.props.selectedCheck] instanceof Array) {
+                    this.state.errorsRects[this.props.selectedCheck].forEach(rect => {
+                        this.redrawCanvasByPage(rect.pageIndex);
+                    });
+                } else {
+                    this.redrawCanvasByPage(this.state.errorsRects[this.props.selectedCheck].pageIndex);
+                }
                 this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
             };
 
@@ -561,8 +639,20 @@ class PdfDocument extends React.PureComponent {
         }
     }
 
-    findBboxCoords({ listOfMcid, pageIndex }) {
+    findBboxCoords({ listOfMcid, pageIndex, location }) {
         let coords = null;
+        if (location) {
+            const bboxes = calculateBboxFromLocation(location);
+            return bboxes.map(bbox => {
+                return {
+                    pageIndex: bbox.page,
+                    x: bbox.location[0],
+                    y: bbox.location[1],
+                    width: bbox.location[2],
+                    height: bbox.location[3],
+                };
+            });
+        }
 
         if (listOfMcid instanceof Array) {
             listOfMcid.forEach(mcid => {

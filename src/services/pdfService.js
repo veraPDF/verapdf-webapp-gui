@@ -130,4 +130,51 @@ function findAllMcid(tagObject) {
     return [listOfMcid, pageIndex];
 }
 
-export { convertContextToPath, concatBoundingBoxes, convertContextToString, findAllMcid };
+function calculateBboxFromLocation(location) {
+    const bboxes = [];
+    const [pages, boundingBox] = location.split('/');
+    const [start, end] = pages
+        .replace('pages[', '')
+        .replace(']', '')
+        .split('-');
+    const [x, y, x1, y1] = boundingBox
+        .replace('boundingBox[', '')
+        .replace(']', '')
+        .split(',');
+    const width = parseFloat(x1) - parseFloat(x);
+
+    if (end) {
+        for (let i = parseInt(start) + 1; i <= parseInt(end) + 1; i++) {
+            switch (i) {
+                case parseInt(start) + 1:
+                    bboxes.push({
+                        page: i,
+                        location: [parseFloat(x), parseFloat(y1), width, 'bottom'],
+                    });
+                    break;
+                case parseInt(end) + 1:
+                    bboxes.push({
+                        page: i,
+                        location: [parseFloat(x), parseFloat(y), width, 'top'],
+                    });
+                    break;
+                default:
+                    bboxes.push({
+                        page: i,
+                        location: [parseFloat(x), 0, width, 'top'],
+                    });
+                    break;
+            }
+        }
+    } else {
+        const height = parseFloat(y1) - parseFloat(y);
+        bboxes.push({
+            page: parseFloat(start),
+            location: [parseFloat(x), parseFloat(y), width, height],
+        });
+    }
+
+    return bboxes;
+}
+
+export { convertContextToPath, concatBoundingBoxes, convertContextToString, findAllMcid, calculateBboxFromLocation };

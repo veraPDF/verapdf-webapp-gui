@@ -142,9 +142,9 @@ function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onC
 
 function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
     let checksSorted = sortChecksByPage(checks, errorsMap);
-    return checksSorted.map(({ context }, index) => {
-        const checkKey = `${ruleIndex}:${context}`;
-        const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex });
+    return checksSorted.map(({ context, errorMessage, location }, index) => {
+        const checkKey = `${ruleIndex}:${index}:${location || context}`;
+        const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex, location });
         return (
             <LI
                 key={index}
@@ -152,7 +152,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
                 selected={selectedCheck === checkKey}
                 button
                 className="check-item"
-                title={context}
+                title={errorMessage || context}
                 checkTitle={checkTitle}
             />
         );
@@ -214,14 +214,14 @@ function getRuleUrl({ specification, clause, testNumber }) {
     return errorMap?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
-function getCheckTitle({ context, index, allChecks, errorsMap, ruleIndex }) {
-    const page = getPageNumber(`${ruleIndex}:${context}`, errorsMap);
+function getCheckTitle({ context, index, allChecks, errorsMap, ruleIndex, location }) {
+    const page = getPageNumber(`${ruleIndex}:${index}:${location || context}`, errorsMap);
     const pageString = page === UNSELECTED ? '' : `Page ${page}: `;
 
     let length = 0;
     let number = 1;
     allChecks.forEach((check, checkIndex) => {
-        if (getPageNumber(`${ruleIndex}:${check.context}`, errorsMap) !== page) {
+        if (getPageNumber(`${ruleIndex}:${checkIndex}:${check.location || check.context}`, errorsMap) !== page) {
             return;
         }
 
@@ -240,7 +240,8 @@ function getPageNumber(checkKey, errorsMap) {
         errorsMap[checkKey].pageIndex === UNSELECTED ||
         (!errorsMap[checkKey].listOfMcid.length &&
             errorsMap[checkKey].listOfMcid instanceof Array &&
-            errorsMap[checkKey].pageIndex !== METADATA)
+            errorsMap[checkKey].pageIndex !== METADATA &&
+            !errorsMap[checkKey].location)
     ) {
         return UNSELECTED;
     }

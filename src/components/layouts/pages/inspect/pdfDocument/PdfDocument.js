@@ -10,7 +10,7 @@ import PdfPageCanvas from '../pdfPageCanvas/PdfPageCanvas';
 import PdfPage from '../pdfPage/PdfPage';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
-import { concatBoundingBoxes, convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
+import { concatBoundingBoxes, convertContextToPath, findAllMcid, calculateBboxFromLocation } from '../../../../../services/pdfService';
 
 import './PdfDocument.scss';
 
@@ -106,11 +106,24 @@ class PdfDocument extends React.PureComponent {
         ) {
             const mapOfErrors = {};
             this.props.ruleSummaries.forEach((summary, index) => {
-                summary.checks.forEach(check => {
-                    const [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
-                    mapOfErrors[`${index}:${check.context}`] = {
+                summary.checks.forEach((check, checkIndex) => {
+                    let listOfMcid = [];
+                    let pageIndex = -1;
+                    if (!check.location) {
+                        [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
+                    } else {
+                        listOfMcid = [];
+                        pageIndex = parseInt(
+                            check.location
+                                .split('pages[')[1]
+                                .split(']')[0]
+                                .split('-')[0]
+                        );
+                    }
+                    mapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {
                         listOfMcid,
                         pageIndex,
+                        location: check.location,
                     };
                 });
             });
@@ -436,7 +449,6 @@ class PdfDocument extends React.PureComponent {
             if (index !== this.state.mapOfErrors[key].pageIndex) return;
             mapOfBboxes[key] = this.findBboxCoords(this.state.mapOfErrors[key]);
         });
-
         Object.keys(mapOfBboxes).forEach(key => {
             if (index !== mapOfBboxes[key].pageIndex) return;
             const canvas = document.querySelector(`canvas[data-page="${mapOfBboxes[key].pageIndex}"]`);
@@ -561,8 +573,19 @@ class PdfDocument extends React.PureComponent {
         }
     }
 
-    findBboxCoords({ listOfMcid, pageIndex }) {
+    findBboxCoords({ listOfMcid, pageIndex, location }) {
         let coords = null;
+        if (location) {
+            const bboxes = calculateBboxFromLocation(location);
+            const bbox = bboxes[0].location;
+            coords = {
+                x: bbox[0],
+                y: bbox[1],
+                width: bbox[2],
+                height: bbox[3],
+            };
+            return { ...coords, pageIndex };
+        }
 
         if (listOfMcid instanceof Array) {
             listOfMcid.forEach(mcid => {

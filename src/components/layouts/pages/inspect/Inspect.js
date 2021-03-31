@@ -23,6 +23,16 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp }) {
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
     const [errorsMap, setErrorsMap] = useState({});
+    const [scale, setScale] = useState('1');
+    const scaleOptions = [
+        { label: '50%', value: '0.5' },
+        { label: '75%', value: '0.75' },
+        { label: '100%', value: '1' },
+        { label: '150%', value: '1.5' },
+        { label: '200%', value: '2' },
+        { label: '250%', value: '2.5' },
+        { label: '300%', value: '3' },
+    ];
     const onDocumentReady = useCallback(
         eMap => {
             setErrorsMap(eMap);
@@ -44,13 +54,14 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp }) {
 
     return (
         <section className="inspect">
-            <Toolbar name={pdfName} />
+            <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
             <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
             <PdfDocument
                 selectedCheck={selectedCheck}
                 setSelectedCheck={setSelectedCheck}
                 setPdfName={setPdfName}
                 onDocumentReady={onDocumentReady}
+                scale={scale}
             />
         </section>
     );

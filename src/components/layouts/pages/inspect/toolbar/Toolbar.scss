@@ -24,5 +24,13 @@
 
   &__end {
     justify-content: flex-end;
+
+    div.select-form-controller {
+      width: 100px;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: 4px;
+    }
   }
 }

@@ -157,6 +157,14 @@ class PdfDocument extends React.PureComponent {
             });
             this.autoSelectRect();
         }
+
+        if (this.props.scale !== prevProps.scale) {
+            this.setState({
+                canvasPages: {},
+                shownPages: [],
+                pagesMap: this.getPages(undefined, this.props.scale),
+            });
+        }
     }
 
     //  Init data of uploaded PDF
@@ -196,10 +204,11 @@ class PdfDocument extends React.PureComponent {
         const pagesArray = { ...canvasPages };
         const canvasStylesObject = {
             top: `${canvas.parentElement.parentElement.offsetTop}px`,
-            left: `${canvas.parentElement.parentElement.offsetLeft}px`,
+            left: '50%',
             height: `${rect.height}px`,
             width: `${rect.width}px`,
             position: 'absolute',
+            transform: 'translateX(-50%)',
         };
 
         pagesArray[pageIndex] = (
@@ -252,10 +261,11 @@ class PdfDocument extends React.PureComponent {
             const pagesArray = { ...this.state.canvasPages };
             const canvasStylesObject = {
                 top: `${canvas.parentElement.parentElement.offsetTop}px`,
-                left: `${canvas.parentElement.parentElement.offsetLeft}px`,
+                left: '50%',
                 height: `${rect.height}px`,
                 width: `${rect.width}px`,
                 position: 'absolute',
+                transform: 'translateX(-50%)',
             };
 
             pagesArray[page.pageNumber] = (
@@ -311,24 +321,26 @@ class PdfDocument extends React.PureComponent {
     };
 
     //  Build pages
-    getPages(limit = 0) {
-        const { numPages, defaultHeight, defaultWidth, pagesMap } = this.state;
+    getPages(limit = 0, scale = '') {
+        const { numPages, defaultHeight, pagesMap } = this.state;
         limit = limit || numPages;
 
         for (let pageIndex = 1; pageIndex <= limit; pageIndex++) {
-            if (!pagesMap[pageIndex]) {
+            if (!pagesMap[pageIndex] || scale) {
+                scale = scale || 1;
                 pagesMap[pageIndex] = (
                     <PdfPage
                         loading={pageIndex > 1}
                         pageIndex={pageIndex}
+                        renderTextLayer={false}
                         onPageRenderSuccess={pageIndex === 1 ? this.onFirstPageSuccess : this.onPageRenderSuccess}
                         key={`page-${pageIndex}`}
-                        scale={1}
+                        scale={parseFloat(scale)}
                         style={{
                             position: 'relative',
                         }}
                         height={defaultHeight || 'auto'}
-                        width={defaultWidth || 'auto'}
+                        width={'auto'}
                     />
                 );
             }
@@ -406,7 +418,12 @@ class PdfDocument extends React.PureComponent {
                     ? this.state.errorsRects[key]
                     : [this.state.errorsRects[key]];
             rectsArray.forEach(rect => {
-                if (x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height) {
+                if (
+                    x >= rect.x * this.props.scale &&
+                    x <= rect.x * this.props.scale + rect.width * this.props.scale &&
+                    y >= rect.y * this.props.scale &&
+                    y <= rect.y * this.props.scale + rect.height * this.props.scale
+                ) {
                     if (!hoveredKey) {
                         hoveredKey = key;
                     } else {
@@ -454,7 +471,12 @@ class PdfDocument extends React.PureComponent {
                 const ctx = canvas.getContext('2d');
                 ctx.strokeStyle = COLOR.HOVER;
                 ctx.strokeWidth = 10;
-                ctx.strokeRect(hoveredRect.x, hoveredRect.y, hoveredRect.width, hoveredRect.height);
+                ctx.strokeRect(
+                    hoveredRect.x * this.props.scale,
+                    hoveredRect.y * this.props.scale,
+                    hoveredRect.width * this.props.scale,
+                    hoveredRect.height * this.props.scale
+                );
             }
 
             this.setState({
@@ -494,7 +516,12 @@ class PdfDocument extends React.PureComponent {
                     const canvas = document.querySelector(`canvas[data-page="${rect.pageIndex}"]`);
                     if (!canvas) return;
                     const ctx = canvas.getContext('2d');
-                    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                    ctx.strokeRect(
+                        rect.x * this.props.scale,
+                        rect.y * this.props.scale,
+                        rect.width * this.props.scale,
+                        rect.height * this.props.scale
+                    );
                 });
             }
             if (index !== mapOfBboxes[key].pageIndex) return;
@@ -502,7 +529,12 @@ class PdfDocument extends React.PureComponent {
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             ctx.strokeStyle = COLOR.DEFAULT;
-            ctx.strokeRect(mapOfBboxes[key].x, mapOfBboxes[key].y, mapOfBboxes[key].width, mapOfBboxes[key].height);
+            ctx.strokeRect(
+                mapOfBboxes[key].x * this.props.scale,
+                mapOfBboxes[key].y * this.props.scale,
+                mapOfBboxes[key].width * this.props.scale,
+                mapOfBboxes[key].height * this.props.scale
+            );
         });
 
         const autoSelect =
@@ -534,7 +566,12 @@ class PdfDocument extends React.PureComponent {
             if (this.state.errorsRects[key] instanceof Array) {
                 return this.state.errorsRects[key].forEach(rect => {
                     if (rect.pageIndex !== page) return;
-                    ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                    ctx.strokeRect(
+                        rect.x * this.props.scale,
+                        rect.y * this.props.scale,
+                        rect.width * this.props.scale,
+                        rect.height * this.props.scale
+                    );
                 });
             }
             if (this.state.errorsRects[key].pageIndex !== page) {
@@ -543,10 +580,10 @@ class PdfDocument extends React.PureComponent {
 
             ctx.strokeStyle = COLOR.DEFAULT;
             ctx.strokeRect(
-                this.state.errorsRects[key].x,
-                this.state.errorsRects[key].y,
-                this.state.errorsRects[key].width,
-                this.state.errorsRects[key].height
+                this.state.errorsRects[key].x * this.props.scale,
+                this.state.errorsRects[key].y * this.props.scale,
+                this.state.errorsRects[key].width * this.props.scale,
+                this.state.errorsRects[key].height * this.props.scale
             );
         });
     }
@@ -574,8 +611,18 @@ class PdfDocument extends React.PureComponent {
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = COLOR.ACTIVE;
             ctx.strokeStyle = COLOR.HOVER;
-            ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
-            ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+            ctx.strokeRect(
+                rect.x * this.props.scale,
+                rect.y * this.props.scale,
+                rect.width * this.props.scale,
+                rect.height * this.props.scale
+            );
+            ctx.fillRect(
+                rect.x * this.props.scale,
+                rect.y * this.props.scale,
+                rect.width * this.props.scale,
+                rect.height * this.props.scale
+            );
         });
     }
 
@@ -606,7 +653,7 @@ class PdfDocument extends React.PureComponent {
                     const { y, height } = rect;
                     if (y && height) {
                         const scrollDifference =
-                            $canvasPage.offsetHeight - (y + height) - $documentArea.offsetHeight / 3;
+                            $canvasPage.offsetHeight - (y + height) * this.props.scale - $documentArea.offsetHeight / 3;
                         $canvasPage.scrollIntoView();
                         document.querySelector('.inspect-document').scrollTop += scrollDifference;
                     }
@@ -717,6 +764,7 @@ PdfDocument.propTypes = {
     file: PropTypes.object.isRequired,
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
+    scale: PropTypes.string.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
 };

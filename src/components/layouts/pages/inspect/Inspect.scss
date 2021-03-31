@@ -23,10 +23,13 @@
   }
 
   .inspect-document {
-    @include centered-column;
-    justify-content: flex-start;
-    overflow-x: hidden;
+    overflow-x: auto;
     padding: 20px 0;
+    display: grid;
     grid-area: document;
+  }
+
+  .react-pdf__Page__textContent {
+    display: none;
   }
 }

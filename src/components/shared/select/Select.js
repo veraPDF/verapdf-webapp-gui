@@ -16,6 +16,9 @@ function Select({ id, options, value, labelId, disabled, onChange }) {
                 value={value}
                 labelId={labelId}
                 onChange={handleChange}
+                MenuProps={{
+                    variant: 'menu',
+                }}
             >
                 {options.map(option => (
                     <MenuItem key={option.value} value={option.value} disabled={option.disabled}>

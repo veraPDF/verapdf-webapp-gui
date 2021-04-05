@@ -14,5 +14,5 @@ if [ "$1" == "--clean" ]
     down_opts="$down_opts --volumes --remove-orphans"
 fi
 
-docker-compose -f "$project_root"/server/.docker/docker-compose.yml -f "$project_root"/.docker/docker-compose.staging.yml down $down_opts
-docker-compose -f "$project_root"/server/.docker/docker-compose.yml -f "$project_root"/.docker/docker-compose.staging.yml up -d --build
+docker-compose -f "$project_root"/server/.docker/docker-compose-dev.yml -f "$project_root"/.docker/docker-compose.staging.yml down $down_opts
+docker-compose -f "$project_root"/server/.docker/docker-compose-dev.yml -f "$project_root"/.docker/docker-compose.staging.yml up -d --build

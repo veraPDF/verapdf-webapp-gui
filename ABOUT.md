@@ -8,4 +8,4 @@ This  [WCAG 2.1](https://www.w3.org/TR/WCAG21/) and [PDF/UA-1](https://en.wikipe
 - **WCAG 2.1 (All)**: combined profile including PDF/UA-1 (both Matterhorn and Human) and additional WCAG 2.1 requirements. This profile is used by default.
 - **Tagged PDF**: the tagged PDF structure checks based on ISO 32000-1 and ISO 32000-2 requirements.
 
-The source files of these validation profiles can be found at [veraPDF GitHub](https://github.com/veraPDF/veraPDF-validation-profiles/tree/pdfua/PDF_UA).
+The source files of these validation profiles can be found at [veraPDF GitHub](https://github.com/veraPDF/veraPDF-validation-profiles/tree/integration/PDF_UA).

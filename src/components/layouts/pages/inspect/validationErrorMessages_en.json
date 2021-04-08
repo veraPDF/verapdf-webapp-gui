@@ -1,448 +1,448 @@
 {
     "WCAG2.1": {
         "1.3.4": {
-            "1": {
-                "SUMMARY": "Pages have different orientation",
-                "DESCRIPTION": "Pages shall have the same orientation within the document unless specific display orientation is essential"
-            },
-            "1.4.3": {
-                "1": {
-                    "SUMMARY": "Insufficient text contrast",
-                    "DESCRIPTION": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1."
-                },
-                "4.1.3": {
-                    "1": {
-                        "SUMMARY": "The structure type and attributes of a structure element are not semantically appropriate for the structure element",
-                        "DESCRIPTION": "The structure type and attributes of a structure element shall be semantically appropriate."
-                    }
-                }
-            },
-            "ISO 14289-1:2014": {
-                "5": {
-                    "1": {
-                        "SUMMARY": "The document metadata stream doesn't contains PDF/UA Identification",
-                        "DESCRIPTION": "The PDF/UA version and conformance level of a file shall be specified using the PDF/UA Identification extension schema."
-                    },
-                    "2": {
-                        "SUMMARY": "The \"part\" property of the PDF/UA Identification Schema is %1 instead of 1 for PDF/UA conforming file.",
-                        "DESCRIPTION": "The value of pdfuaid:part shall be the part number of the International Standard to which the file conforms."
-                    }
-                },
-                "7.1": {
-                    "1": {
-                        "SUMMARY": "Artifact is included into real content",
-                        "DESCRIPTION": "Content marked as Artifact should not be present inside tagged content"
-                    },
-                    "2": {
-                        "SUMMARY": "Real content is present inside Artifact",
-                        "DESCRIPTION": "Tagged content should not present inside content marked as Artifact"
-                    },
-                    "3": {
-                        "SUMMARY": "Content is neither marked as Artifact nor tagged as real content",
-                        "DESCRIPTION": "Content shall be marked in the structure tree with semantically appropriate tags in a logical reading order. Content that does not render and does not have a rendered equivalent shall be marked as an artifact."
-                    },
-                    "4": {
-                        "SUMMARY": "Creator of the document was not able to identify the correct logical order",
-                        "DESCRIPTION": "Suspects entry in the mark information dictionary has value true (ISO 32000-1:2008, Table 321)"
-                    },
-                    "5": {
-                        "SUMMARY": "Non-standard structure type is not mapped to a standard type",
-                        "DESCRIPTION": "All non-standard structure types shall be mapped to the nearest functionally equivalent standard type, as defined in ISO 32000-1:2008, 14.8.4, in the role map dictionary of the structure tree root. This mapping may be indirect; within the role map a non-standard type can map directly to another non-standard type, but eventually the mapping shall terminate at a standard type."
-                    },
-                    "6": {
-                        "SUMMARY": "Found circular mapping between structure types",
-                        "DESCRIPTION": "A circular mapping between structure types is not permitted"
-                    },
-                    "7": {
-                        "SUMMARY": "Standard type is remapped to another type",
-                        "DESCRIPTION": "Standard tags defined in ISO 32000-1:2008, 14.8.4, shall not be remapped."
-                    },
-                    "8": {
-                        "SUMMARY": "The document doesn't contain XMP Metadata stream",
-                        "DESCRIPTION": "The Catalog dictionary of a conforming file shall contain the Metadata key whose value is a metadata stream as defined in ISO 32000-1:2008, 14.3.2."
-                    },
-                    "9": {
-                        "SUMMARY": "Metadata stream does not contain dc:title",
-                        "DESCRIPTION": "The Metadata stream in the document's catalog dictionary shall contain a dc:title entry, where dc is the recommended prefix for the Dublin Core metadata schema as defined in the XMP specification, which clearly identifies the document."
-                    },
-                    "10": {
-                        "SUMMARY": "Viewer preferences miss the requirement to use the document title in the title bar",
-                        "DESCRIPTION": "The document catalog dictionary shall include a ViewerPreferences dictionary containing a DisplayDocTitle key, whose value shall be true."
-                    },
-                    "13": {
-                        "SUMMARY": "The structure type and attributes of a structure element are not semantically appropriate for the structure element.",
-                        "DESCRIPTION": "The structure type and attributes of a structure element shall be semantically appropriate."
-                    }
-                },
-                "7.2": {
-                    "2": {
-                        "SUMMARY": "Natural language in the Outline entries cannot be determined",
-                        "DESCRIPTION": "Natural language in the Outline entries shall be determined"
-                    },
-                    "3": {
-                        "SUMMARY": "Table contains more than one Caption, or Table contains a Caption not as its first or last kid",
-                        "DESCRIPTION": "Table element may contain a Caption element as its first or last kid"
-                    },
-                    "4": {
-                        "SUMMARY": "TR (table row) found outside of the Table context",
-                        "DESCRIPTION": "TR element should contained in Table, THead, TBody or TFoot element"
-                    },
-                    "5": {
-                        "SUMMARY": "THead (table header) found outside of the Table context",
-                        "DESCRIPTION": "THead element should contained in Table element"
-                    },
-                    "6": {
-                        "SUMMARY": "TBody (table body) found outside of the Table context",
-                        "DESCRIPTION": "TBody element should contained in Table element"
-                    },
-                    "7": {
-                        "SUMMARY": "TFoot (table footer) found outside of the Table context",
-                        "DESCRIPTION": "TFoot element should contained in Table element"
-                    },
-                    "8": {
-                        "SUMMARY": "TH (table header cell) found outside of the Table row context",
-                        "DESCRIPTION": "TH element should contained in TR element"
-                    },
-                    "9": {
-                        "SUMMARY": "TD (table cell) found outside of the Table row context",
-                        "DESCRIPTION": "TD element should contained in TR element"
-                    },
-                    "10": {
-                        "SUMMARY": "TR (table row) may contain only table cells (TH or TD elements)",
-                        "DESCRIPTION": "TR element may contain only TH and TD elements"
-                    },
-                    "11": {
-                        "SUMMARY": "Table contains more than one header (THead element)",
-                        "DESCRIPTION": "Table element should contain zero or one THead kid"
-                    },
-                    "12": {
-                        "SUMMARY": "Table contains more than one footer (TFoot element)",
-                        "DESCRIPTION": "Table element should contain zero or one TFoot kid"
-                    },
-                    "13": {
-                        "SUMMARY": "Table contains footer, but no body",
-                        "DESCRIPTION": "If Table element contains TFoot kid, Table element should contain one or more TBody kids"
-                    },
-                    "14": {
-                        "SUMMARY": "Table contains header, but no body",
-                        "DESCRIPTION": "If Table element contains THead kid, Table element should contain one or more TBody kids"
-                    },
-                    "15": {
-                        "SUMMARY": "Irregular table found",
-                        "DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
-                    },
-                    "17": {
-                        "SUMMARY": "List item is found outside List context",
-                        "DESCRIPTION": "LI element should contained in L element"
-                    },
-                    "18": {
-                        "SUMMARY": "List item text found outside List item",
-                        "DESCRIPTION": "LBody element should contained in LI element"
-                    },
-                    "19": {
-                        "SUMMARY": "List contains forbidden elements",
-                        "DESCRIPTION": "L element may contain a Caption element as its first kid and L element may contain only L, LI and Caption elements"
-                    },
-                    "20": {
-                        "SUMMARY": "List item may contain only list label followed by the item text",
-                        "DESCRIPTION": "LI element may contain only Lbl and LBody elements"
-                    },
-                    "21": {
-                        "SUMMARY": "Natural language for the replacement text cannot be determined",
-                        "DESCRIPTION": "Natural language for text in ActualText attribute shall be determined"
-                    },
-                    "22": {
-                        "SUMMARY": "Natural language for the alternative text cannot be determined",
-                        "DESCRIPTION": "Natural language for text in Alt attribute shall be determined"
-                    },
-                    "23": {
-                        "SUMMARY": "Natural language for the expansion text cannot be determined",
-                        "DESCRIPTION": "Natural language for text in E attribute shall be determined"
-                    },
-                    "24": {
-                        "SUMMARY": "Natural language for the annotation contents cannot be determined",
-                        "DESCRIPTION": "Natural language in the Contents entry for annotations shall be determined"
-                    },
-                    "25": {
-                        "SUMMARY": "Natural language for the interactive form cannot be determined",
-                        "DESCRIPTION": "Natural language in the TU key for form fields shall be determined"
-                    },
-                    "26": {
-                        "SUMMARY": "TOC item is found outside the TOC context",
-                        "DESCRIPTION": "TOCI element should contained in TOC element"
-                    },
-                    "27": {
-                        "SUMMARY": "TOC has more than one Caption, or Caption is not a first or last kid of the TOC",
-                        "DESCRIPTION": "TOC element may contain a Caption element as its first kid and TOC element may contain only TOC, TOCI and Caption elements"
-                    },
-                    "29": {
-                        "SUMMARY": "Invalid Language identifier",
-                        "DESCRIPTION": "If the Lang entry is present in the document's Catalog dictionary or in a structure element dictionary or property list, its value shall be a language identifier as described in ISO 32000-1:2008, 14.9.2. A language identifier shall be a Language-Tag as defined in RFC 3066, Tags for the Identification of Languages."
-                    },
-                    "30": {
-                        "SUMMARY": "Natural language for text in ActualText attribute of the Span marked content sequence cannot be determined",
-                        "DESCRIPTION": "Natural language for text in ActualText attribute of the Span marked content sequence shall be determined"
-                    },
-                    "31": {
-                        "SUMMARY": "Natural language for text in Alt attribute of the Span marked content sequence cannot be determined",
-                        "DESCRIPTION": "Natural language for text in Alt attribute in the Span marked content sequence shall be determined"
-                    },
-                    "32": {
-                        "SUMMARY": "Natural language for text in E attribute of the Span marked Content sequence cannot be determined",
-                        "DESCRIPTION": "Natural language for text in E attribute in the Span marked content sequence shall be determined"
-                    },
-                    "33": {
-                        "SUMMARY": "Natural language for document metadata cannot be determined",
-                        "DESCRIPTION": "Natural language for document metadata shall be determined"
-                    },
-                    "34": {
-                        "SUMMARY": "Natural language for text in page content cannot be determined",
-                        "DESCRIPTION": "Natural language for text in page content shall be determined"
-                    },
-                    "36": {
-                        "SUMMARY": "Table header contains elements other than Table rows",
-                        "DESCRIPTION": "THead element may contain only TR elements"
-                    },
-                    "37": {
-                        "SUMMARY": "Table body contains elements other than Table rows",
-                        "DESCRIPTION": "TBody element may contain only TR elements"
-                    },
-                    "38": {
-                        "SUMMARY": "Table footer contains elements other than Table rows",
-                        "DESCRIPTION": "TFoot element may contain only TR elements"
-                    }
-                },
-                "7.3": {
-                    "1": {
-                        "SUMMARY": "Missing alternative (or replacement) text in the Figure",
-                        "DESCRIPTION": "Figure tags shall include an alternative representation or replacement text that represents the contents marked with the Figure tag as noted in ISO 32000-1:2008, 14.7.2, Table 323"
-                    }
-                },
-                "7.4.2": {
-                    "1": {
-                        "SUMMARY": "Incorrect use of heading levels",
-                        "DESCRIPTION": "For documents that are not strongly structured, as described in ISO 32000-1:2008, 14.8.4.3.5, heading tags shall be used as follows: (*) If any heading tags are used, H1 shall be the first. (*) A document may use more than one instance of any specific tag level. For example, a tag level may be repeated if document content requires it. (*) If document semantics require a descending sequence of headers, such a sequence shall proceed in strict numerical order and shall not skip an intervening heading level. (*) A document may increment its heading sequence without restarting at H1 if document semantics require it."
-                    }
-                },
-                "7.4.4": {
-                    "1": {
-                        "SUMMARY": "A document section contains more than one heading tag",
-                        "DESCRIPTION": "Each node in the tag tree shall contain at most one child H tag."
-                    },
-                    "2": {
-                        "SUMMARY": "Incorrect use of heading tags",
-                        "DESCRIPTION": "All documents shall be either strongly or weakly structured, but not both."
-                    },
-                    "3": {
-                        "SUMMARY": "Incorrect use of heading tags",
-                        "DESCRIPTION": "All documents shall be either strongly or weakly structured, but not both."
-                    }
-                },
-                "7.5": {
-                    "1": {
-                        "SUMMARY": "In a table not organized with Headers attributes and IDs, a TH cell does not contain a Scope attribute",
-                        "DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
-                    }
-                },
-                "7.7": {
-                    "1": {
-                        "SUMMARY": "Missing alternative (or replacement) text in the Formula",
-                        "DESCRIPTION": "All mathematical expressions shall be enclosed within a Formula tag as detailed in ISO 32000-1:2008, 14.8.4.5 and shall have Alt or ActualText attributes"
-                    }
-                },
-                "7.9": {
-                    "1": {
-                        "SUMMARY": "Note does not have an ID",
-                        "DESCRIPTION": "Note tag shall have ID entry"
-                    },
-                    "2": {
-                        "SUMMARY": "Conflicting Note IDs found",
-                        "DESCRIPTION": "Each Note tag shall have a unique ID key"
-                    }
-                },
-                "7.10": {
-                    "1": {
-                        "SUMMARY": "Document layer has no name",
-                        "DESCRIPTION": "Each optional content configuration dictionary that forms the value of the D key, or that is an element in the array that forms the value of the Configs key in the OCProperties dictionary, shall contain the Name key."
-                    },
-                    "2": {
-                        "SUMMARY": "Document layer may change visibility",
-                        "DESCRIPTION": "The AS key shall not appear in any optional content configuration dictionary."
-                    }
-                },
-                "7.11": {
-                    "1": {
-                        "SUMMARY": "File attachment has no valid file name",
-                        "DESCRIPTION": "The file specification dictionary for an embedded file shall contain the non-empty F and UF keys"
-                    }
-                },
-                "7.15": {
-                    "1": {
-                        "SUMMARY": "Dynamic XFA forms is present",
-                        "DESCRIPTION": "Dynamic XFA forms shall not be used"
-                    }
-                },
-                "7.16": {
-                    "1": {
-                        "SUMMARY": "The file does not permit interaction with assistive technologies",
-                        "DESCRIPTION": "An encrypted conforming file shall contain a P key in its encryption dictionary (ISO 32000-1:2008, 7.6.3.2, Table 21). The 10th bit position of the P key shall be true."
-                    }
-                },
-                "7.18.1": {
-                    "1": {
-                        "SUMMARY": "An annotation is incorrectly included into the semantic tree",
-                        "DESCRIPTION": "An annotation, excluding annotations of subtype Widget, Popup or Link, shall be nested within an Annot tag"
-                    },
-                    "2": {
-                        "SUMMARY": "An annotation has no alternative description",
-                        "DESCRIPTION": "An annotation (except annotations of type Link, Widget or Popup, or hidden annotations, or those having rectangle outside the crop-box) shall have either Contents key or an Alt entry in the enclosing structure element"
-                    },
-                    "3": {
-                        "SUMMARY": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box and does not have a TU key and its Widget annotations do not have alternative descriptions (in the form of an Alt entry in the enclosing structure element)",
-                        "DESCRIPTION": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box shall have a TU key present or all its Widget annotations shall have alternative descriptions (in the form of an Alt entry in the enclosing structure elements)"
-                    }
-                },
-                "7.18.2": {
-                    "1": {
-                        "SUMMARY": "Document contains trapping annotations",
-                        "DESCRIPTION": "Annotations of subtype TrapNet shall not be permitted."
-                    }
-                },
-                "7.18.3": {
-                    "1": {
-                        "SUMMARY": "Navigation order of annotations on the page does not follow semantics",
-                        "DESCRIPTION": "Every page on which there is an annotation shall contain in its page dictionary the key Tabs, and its value shall be S."
-                    }
-                },
-                "7.18.4": {
-                    "1": {
-                        "SUMMARY": "Dynamic form is incorrectly included into the semantic tree",
-                        "DESCRIPTION": "A Widget annotation shall be nested within a Form tag per ISO 32000-1:2008, 14.8.4.5, Table 340."
-                    }
-                },
-                "7.18.5": {
-                    "1": {
-                        "SUMMARY": "Document link is incorrectly included into the semantic tree",
-                        "DESCRIPTION": "Links shall be tagged according to ISO 32000-1:2008, 14.8.4.4.2, Link Element."
-                    },
-                    "2": {
-                        "SUMMARY": "A link does not have an alternate description",
-                        "DESCRIPTION": "Links shall contain an alternate description via their Contents key as described in ISO 32000-1:2008, 14.9.3."
-                    }
-                },
-                "7.18.6.2": {
-                    "1": {
-                        "SUMMARY": "Media clip does not specify MIME type",
-                        "DESCRIPTION": "In the media clip data dictionary, the optional CT key (ISO 32000-1:2008, 13.2.4.2, Table 274) is required."
-                    },
-                    "2": {
-                        "SUMMARY": "Media clip has no alternative description",
-                        "DESCRIPTION": "In the media clip data dictionary, the optional Alt key (ISO 32000-1:2008, 13.2.4.2, Table 274) is required."
-                    }
-                },
-                "7.18.8": {
-                    "1": {
-                        "SUMMARY": "Printer marks are included into the real content",
-                        "DESCRIPTION": "PrinterMark annotations, if present, shall be considered Incidental Artifacts, as if they are hidden page elements as defined in ISO 32000-1:2008, 14.8.2.2.3."
-                    }
-                },
-                "7.20": {
-                    "1": {
-                        "SUMMARY": "The document includes an external document as its part",
-                        "DESCRIPTION": "A conforming file shall not contain any reference XObjects"
-                    },
-                    "2": {
-                        "SUMMARY": "Form XObject contains MCIDs and is referenced more than once",
-                        "DESCRIPTION": "The content of Form XObjects shall be incorporated into structure elements according to ISO 32000-1:2008, 14.7.2."
-                    }
-                },
-                "7.21.3.1": {
-                    "1": {
-                        "SUMMARY": "Multibyte encoding is incompatible with the embedded font",
-                        "DESCRIPTION": "For any given composite (Type 0) font within a conforming file, the CIDSystemInfo entry in its CIDFont dictionary and its Encoding dictionary shall have the following relationship: - If the Encoding key in the Type 0 font dictionary is Identity-H or Identity-V, any values of Registry, Ordering, and Supplement may be used in the CIDSystemInfo entry of the CIDFont. - Otherwise, the corresponding Registry and Ordering strings in both CIDSystemInfo dictionaries shall be identical, and the value of the Supplement key in the CIDSystemInfo dictionary of the CIDFont shall be greater than or equal to the Supplement key in the CIDSystemInfo dictionary of the CMap."
-                    }
-                },
-                "7.21.3.2": {
-                    "1": {
-                        "SUMMARY": "TrueType (OpenType) font has incorrect glyph mapping",
-                        "DESCRIPTION": "ISO 32000-1:2008, 9.7.4, Table 117 requires that all embedded Type 2 CIDFonts in the CIDFont dictionary shall contain a CIDToGIDMap entry that shall be a stream mapping from CIDs to glyph indices or the name Identity, as described in ISO 32000-1:2008, 9.7.4, Table 117."
-                    }
-                },
-                "7.21.3.3": {
-                    "1": {
-                        "SUMMARY": "A non-standard multibyte encoding is used, but is not embedded into the document",
-                        "DESCRIPTION": "All CMaps used within a PDF/UA file, except those listed in ISO 32000-1:2008, 9.7.5.2, Table 118, shall be embedded in that file as described in ISO 32000-1:2008, 9.7.5."
-                    },
-                    "2": {
-                        "SUMMARY": "Conflicting writing directions in the multibyte encoding",
-                        "DESCRIPTION": "For those CMaps that are embedded, the integer value of the WMode entry in the CMap dictionary shall be identical to the WMode value in the embedded CMap stream."
-                    },
-                    "3": {
-                        "SUMMARY": "A reference to a non-standard multibyte encoding is used",
-                        "DESCRIPTION": "A CMap shall not reference any other CMap except those listed in ISO 32000-1:2008, 9.7.5.2, Table 118."
-                    }
-                },
-                "7.21.4.1": {
-                    "1": {
-                        "SUMMARY": "The font program is not embedded",
-                        "DESCRIPTION": "The font programs for all fonts used for rendering within a conforming file shall be embedded within that file, as defined in ISO 32000-1:2008, 9.9."
-                    },
-                    "2": {
-                        "SUMMARY": "Not all glyphs are present in the embedded font program",
-                        "DESCRIPTION": "Embedded fonts shall define all glyphs referenced for rendering within the conforming file. A font referenced for use solely in rendering mode 3 is therefore not rendered and is thus exempt from the embedding requirement."
-                    }
-                },
-                "7.21.4.2": {
-                    "1": {
-                        "SUMMARY": "Type1 font subset incorrectly identifies its glyphs",
-                        "DESCRIPTION": "If the FontDescriptor dictionary of an embedded Type 1 font contains a CharSet string, then it shall list the character names of all glyphs present in the font program, regardless of whether a glyph in the font is referenced or used by the PDF or not."
-                    },
-                    "2": {
-                        "SUMMARY": "TrueType (OpenType) font subset incorrectly identifies its glyphs",
-                        "DESCRIPTION": "If the FontDescriptor dictionary of an embedded CID font contains a CIDSet stream, then it shall identify all CIDs which are present in the font program, regardless of whether a CID in the font is referenced or used by the PDF or not."
-                    }
-                },
-                "7.21.5": {
-                    "1": {
-                        "SUMMARY": "Inconsistent glyph widths",
-                        "DESCRIPTION": "For every font embedded in a conforming file and used for rendering, the glyph width information in the font dictionary and in the embedded font program shall be consistent."
-                    }
-                },
-                "7.21.6": {
-                    "1": {
-                        "SUMMARY": "Conflicting glyph lookup for a non-symbolic TrueType font program",
-                        "DESCRIPTION": "For all non-symbolic TrueType fonts used for rendering, the embedded TrueType font program shall contain one or several non-symbolic cmap entries such that all necessary glyph lookups can be carried out."
-                    },
-                    "2": {
-                        "SUMMARY": "Invalid encoding for a non-symbolic TrueType font",
-                        "DESCRIPTION": "All non-symbolic TrueType fonts shall have either MacRomanEncoding or WinAnsiEncoding as the value for the Encoding key in the Font dictionary or as the value for the BaseEncoding key in the dictionary which is the value of the Encoding key in the Font dictionary. In addition, no non-symbolic TrueType font shall define a Differences array unless all of the glyph names in the Differences array are listed in the Adobe Glyph List and the embedded font program contains at least the Microsoft Unicode (3,1 – Platform ID=3, Encoding ID=1) encoding in the 'cmap' table."
-                    },
-                    "3": {
-                        "SUMMARY": "Invalid encoding for a symbolic TrueType font",
-                        "DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary"
-                    },
-                    "4": {
-                        "SUMMARY": "Conflicting glyph lookup for a symbolic TrueType font program",
-                        "DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary, and the 'cmap' table in the embedded font program shall either contain exactly one encoding or it shall contain, at least, the Microsoft Symbol (3,0 - Platform ID=3, Encoding ID=0) encoding."
-                    }
-                },
-                "7.21.7": {
-                    "1": {
-                        "SUMMARY": "The glyph has no Unicode value",
-                        "DESCRIPTION": "The Font dictionary of all fonts shall define the map of all used character codes to Unicode values, either via a ToUnicode entry, or other mechanisms as defined in ISO 14289-1, 7.21.7."
-                    },
-                    "2": {
-                        "SUMMARY": "The glyph has an invalid Unicode value",
-                        "DESCRIPTION": "The Unicode values specified in the ToUnicode CMap shall all be greater than zero (0), but not equal to either U+FEFF or U+FFFE."
-                    }
-                },
-                "7.21.8": {
-                    "1": {
-                        "SUMMARY": "The document contains undefined glyphs",
-                        "DESCRIPTION": "A PDF/UA compliant document shall not contain a reference to the .notdef glyph from any of the text showing operators, regardless of text rendering mode, in any content stream."
-                    }
-                }
-            }
-        }
-    }
+			"1": {
+				"SUMMARY": "Pages have different orientation",
+				"DESCRIPTION": "Pages shall have the same orientation within the document unless specific display orientation is essential"
+			}
+		},
+		"1.4.3": {
+			"1": {
+				"SUMMARY": "Insufficient text contrast",
+				"DESCRIPTION": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1."
+			}
+		},
+		"4.1.3": {
+			"1": {
+				"SUMMARY": "The structure type and attributes of a structure element are not semantically appropriate for the structure element",
+				"DESCRIPTION": "The structure type and attributes of a structure element shall be semantically appropriate."
+			}
+		}
+	},
+	"ISO 14289-1:2014": {
+		"5": {
+			"1": {
+				"SUMMARY": "The document metadata stream doesn't contains PDF/UA Identification",
+				"DESCRIPTION": "The PDF/UA version and conformance level of a file shall be specified using the PDF/UA Identification extension schema."
+			},
+			"2": {
+				"SUMMARY": "The \"part\" property of the PDF/UA Identification Schema is %1 instead of 1 for PDF/UA conforming file.",
+				"DESCRIPTION": "The value of pdfuaid:part shall be the part number of the International Standard to which the file conforms."
+			}
+		},
+		"7.1": {
+			"1": {
+				"SUMMARY": "Artifact is included into real content",
+				"DESCRIPTION": "Content marked as Artifact should not be present inside tagged content"
+			},
+			"2": {
+				"SUMMARY": "Real content is present inside Artifact",
+				"DESCRIPTION": "Tagged content should not present inside content marked as Artifact"
+			},
+			"3": {
+				"SUMMARY": "Content is neither marked as Artifact nor tagged as real content",
+				"DESCRIPTION": "Content shall be marked in the structure tree with semantically appropriate tags in a logical reading order. Content that does not render and does not have a rendered equivalent shall be marked as an artifact."
+			},
+			"4": {
+				"SUMMARY": "Creator of the document was not able to identify the correct logical order",
+				"DESCRIPTION": "Suspects entry in the mark information dictionary has value true (ISO 32000-1:2008, Table 321)"
+			},
+			"5": {
+				"SUMMARY": "Non-standard structure type is not mapped to a standard type",
+				"DESCRIPTION": "All non-standard structure types shall be mapped to the nearest functionally equivalent standard type, as defined in ISO 32000-1:2008, 14.8.4, in the role map dictionary of the structure tree root. This mapping may be indirect; within the role map a non-standard type can map directly to another non-standard type, but eventually the mapping shall terminate at a standard type."
+			},
+			"6": {
+				"SUMMARY": "Found circular mapping between structure types",
+				"DESCRIPTION": "A circular mapping between structure types is not permitted"
+			},
+			"7": {
+				"SUMMARY": "Standard type is remapped to another type",
+				"DESCRIPTION": "Standard tags defined in ISO 32000-1:2008, 14.8.4, shall not be remapped."
+			},
+			"8": {
+				"SUMMARY": "The document doesn't contain XMP Metadata stream",
+				"DESCRIPTION": "The Catalog dictionary of a conforming file shall contain the Metadata key whose value is a metadata stream as defined in ISO 32000-1:2008, 14.3.2."
+			},
+			"9": {
+				"SUMMARY": "Metadata stream does not contain dc:title",
+				"DESCRIPTION": "The Metadata stream in the document's catalog dictionary shall contain a dc:title entry, where dc is the recommended prefix for the Dublin Core metadata schema as defined in the XMP specification, which clearly identifies the document."
+			},
+			"10": {
+				"SUMMARY": "Viewer preferences miss the requirement to use the document title in the title bar",
+				"DESCRIPTION": "The document catalog dictionary shall include a ViewerPreferences dictionary containing a DisplayDocTitle key, whose value shall be true."
+			},
+			"13": {
+				"SUMMARY": "The structure type and attributes of a structure element are not semantically appropriate for the structure element.",
+				"DESCRIPTION": "The structure type and attributes of a structure element shall be semantically appropriate."
+			}
+		},
+		"7.2": {
+			"2": {
+				"SUMMARY": "Natural language in the Outline entries cannot be determined",
+				"DESCRIPTION": "Natural language in the Outline entries shall be determined"
+			},
+			"3": {
+				"SUMMARY": "Table contains more than one Caption, or Table contains a Caption not as its first or last kid",
+				"DESCRIPTION": "Table element may contain a Caption element as its first or last kid"
+			},
+			"4": {
+				"SUMMARY": "TR (table row) found outside of the Table context",
+				"DESCRIPTION": "TR element should contained in Table, THead, TBody or TFoot element"
+			},
+			"5": {
+				"SUMMARY": "THead (table header) found outside of the Table context",
+				"DESCRIPTION": "THead element should contained in Table element"
+			},
+			"6": {
+				"SUMMARY": "TBody (table body) found outside of the Table context",
+				"DESCRIPTION": "TBody element should contained in Table element"
+			},
+			"7": {
+				"SUMMARY": "TFoot (table footer) found outside of the Table context",
+				"DESCRIPTION": "TFoot element should contained in Table element"
+			},
+			"8": {
+				"SUMMARY": "TH (table header cell) found outside of the Table row context",
+				"DESCRIPTION": "TH element should contained in TR element"
+			},
+			"9": {
+				"SUMMARY": "TD (table cell) found outside of the Table row context",
+				"DESCRIPTION": "TD element should contained in TR element"
+			},
+			"10": {
+				"SUMMARY": "TR (table row) may contain only table cells (TH or TD elements)",
+				"DESCRIPTION": "TR element may contain only TH and TD elements"
+			},
+			"11": {
+				"SUMMARY": "Table contains more than one header (THead element)",
+				"DESCRIPTION": "Table element should contain zero or one THead kid"
+			},
+			"12": {
+				"SUMMARY": "Table contains more than one footer (TFoot element)",
+				"DESCRIPTION": "Table element should contain zero or one TFoot kid"
+			},
+			"13": {
+				"SUMMARY": "Table contains footer, but no body",
+				"DESCRIPTION": "If Table element contains TFoot kid, Table element should contain one or more TBody kids"
+			},
+			"14": {
+				"SUMMARY": "Table contains header, but no body",
+				"DESCRIPTION": "If Table element contains THead kid, Table element should contain one or more TBody kids"
+			},
+			"15": {
+				"SUMMARY": "Irregular table found",
+				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
+			},
+			"17": {
+				"SUMMARY": "List item is found outside List context",
+				"DESCRIPTION": "LI element should contained in L element"
+			},
+			"18": {
+				"SUMMARY": "List item text found outside List item",
+				"DESCRIPTION": "LBody element should contained in LI element"
+			},
+			"19": {
+				"SUMMARY": "List contains forbidden elements",
+				"DESCRIPTION": "L element may contain a Caption element as its first kid and L element may contain only L, LI and Caption elements"
+			},
+			"20": {
+				"SUMMARY": "List item may contain only list label followed by the item text",
+				"DESCRIPTION": "LI element may contain only Lbl and LBody elements"
+			},
+			"21": {
+				"SUMMARY": "Natural language for the replacement text cannot be determined",
+				"DESCRIPTION": "Natural language for text in ActualText attribute shall be determined"
+			},
+			"22": {
+				"SUMMARY": "Natural language for the alternative text cannot be determined",
+				"DESCRIPTION": "Natural language for text in Alt attribute shall be determined"
+			},
+			"23": {
+				"SUMMARY": "Natural language for the expansion text cannot be determined",
+				"DESCRIPTION": "Natural language for text in E attribute shall be determined"
+			},
+			"24": {
+				"SUMMARY": "Natural language for the annotation contents cannot be determined",
+				"DESCRIPTION": "Natural language in the Contents entry for annotations shall be determined"
+			},
+			"25": {
+				"SUMMARY": "Natural language for the interactive form cannot be determined",
+				"DESCRIPTION": "Natural language in the TU key for form fields shall be determined"
+			},
+			"26": {
+				"SUMMARY": "TOC item is found outside the TOC context",
+				"DESCRIPTION": "TOCI element should contained in TOC element"
+			},
+			"27": {
+				"SUMMARY": "TOC has more than one Caption, or Caption is not a first or last kid of the TOC",
+				"DESCRIPTION": "TOC element may contain a Caption element as its first kid and TOC element may contain only TOC, TOCI and Caption elements"
+			},
+			"29": {
+				"SUMMARY": "Invalid Language identifier",
+				"DESCRIPTION": "If the Lang entry is present in the document's Catalog dictionary or in a structure element dictionary or property list, its value shall be a language identifier as described in ISO 32000-1:2008, 14.9.2. A language identifier shall be a Language-Tag as defined in RFC 3066, Tags for the Identification of Languages."
+			},
+			"30": {
+				"SUMMARY": "Natural language for text in ActualText attribute of the Span marked content sequence cannot be determined",
+				"DESCRIPTION": "Natural language for text in ActualText attribute of the Span marked content sequence shall be determined"
+			},
+			"31": {
+				"SUMMARY": "Natural language for text in Alt attribute of the Span marked content sequence cannot be determined",
+				"DESCRIPTION": "Natural language for text in Alt attribute in the Span marked content sequence shall be determined"
+			},
+			"32": {
+				"SUMMARY": "Natural language for text in E attribute of the Span marked Content sequence cannot be determined",
+				"DESCRIPTION": "Natural language for text in E attribute in the Span marked content sequence shall be determined"
+			},
+			"33": {
+				"SUMMARY": "Natural language for document metadata cannot be determined",
+				"DESCRIPTION": "Natural language for document metadata shall be determined"
+			},
+			"34": {
+				"SUMMARY": "Natural language for text in page content cannot be determined",
+				"DESCRIPTION": "Natural language for text in page content shall be determined"
+			},
+			"36": {
+				"SUMMARY": "Table header contains elements other than Table rows",
+				"DESCRIPTION": "THead element may contain only TR elements"
+			},
+			"37": {
+				"SUMMARY": "Table body contains elements other than Table rows",
+				"DESCRIPTION": "TBody element may contain only TR elements"
+			},
+			"38": {
+				"SUMMARY": "Table footer contains elements other than Table rows",
+				"DESCRIPTION": "TFoot element may contain only TR elements"
+			}
+		},
+		"7.3": {
+			"1": {
+				"SUMMARY": "Missing alternative (or replacement) text in the Figure",
+				"DESCRIPTION": "Figure tags shall include an alternative representation or replacement text that represents the contents marked with the Figure tag as noted in ISO 32000-1:2008, 14.7.2, Table 323"
+			}
+		},
+		"7.4.2": {
+			"1": {
+				"SUMMARY": "Incorrect use of heading levels",
+				"DESCRIPTION": "For documents that are not strongly structured, as described in ISO 32000-1:2008, 14.8.4.3.5, heading tags shall be used as follows: (*) If any heading tags are used, H1 shall be the first. (*) A document may use more than one instance of any specific tag level. For example, a tag level may be repeated if document content requires it. (*) If document semantics require a descending sequence of headers, such a sequence shall proceed in strict numerical order and shall not skip an intervening heading level. (*) A document may increment its heading sequence without restarting at H1 if document semantics require it."
+			}
+		},
+		"7.4.4": {
+			"1": {
+				"SUMMARY": "A document section contains more than one heading tag",
+				"DESCRIPTION": "Each node in the tag tree shall contain at most one child H tag."
+			},
+			"2": {
+				"SUMMARY": "Incorrect use of heading tags",
+				"DESCRIPTION": "All documents shall be either strongly or weakly structured, but not both."
+			},
+			"3": {
+				"SUMMARY": "Incorrect use of heading tags",
+				"DESCRIPTION": "All documents shall be either strongly or weakly structured, but not both."
+			}
+		},
+		"7.5": {
+			"1": {
+				"SUMMARY": "In a table not organized with Headers attributes and IDs, a TH cell does not contain a Scope attribute",
+				"DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
+			}
+		},
+		"7.7": {
+			"1": {
+				"SUMMARY": "Missing alternative (or replacement) text in the Formula",
+				"DESCRIPTION": "All mathematical expressions shall be enclosed within a Formula tag as detailed in ISO 32000-1:2008, 14.8.4.5 and shall have Alt or ActualText attributes"
+			}
+		},
+		"7.9": {
+			"1": {
+				"SUMMARY": "Note does not have an ID",
+				"DESCRIPTION": "Note tag shall have ID entry"
+			},
+			"2": {
+				"SUMMARY": "Conflicting Note IDs found",
+				"DESCRIPTION": "Each Note tag shall have a unique ID key"
+			}
+		},
+		"7.10": {
+			"1": {
+				"SUMMARY": "Document layer has no name",
+				"DESCRIPTION": "Each optional content configuration dictionary that forms the value of the D key, or that is an element in the array that forms the value of the Configs key in the OCProperties dictionary, shall contain the Name key."
+			},
+			"2": {
+				"SUMMARY": "Document layer may change visibility",
+				"DESCRIPTION": "The AS key shall not appear in any optional content configuration dictionary."
+			}
+		},
+		"7.11": {
+			"1": {
+				"SUMMARY": "File attachment has no valid file name",
+				"DESCRIPTION": "The file specification dictionary for an embedded file shall contain the non-empty F and UF keys"
+			}
+		},
+		"7.15": {
+			"1": {
+				"SUMMARY": "Dynamic XFA forms is present",
+				"DESCRIPTION": "Dynamic XFA forms shall not be used"
+			}
+		},
+		"7.16": {
+			"1": {
+				"SUMMARY": "The file does not permit interaction with assistive technologies",
+				"DESCRIPTION": "An encrypted conforming file shall contain a P key in its encryption dictionary (ISO 32000-1:2008, 7.6.3.2, Table 21). The 10th bit position of the P key shall be true."
+			}
+		},
+		"7.18.1": {
+			"1": {
+				"SUMMARY": "An annotation is incorrectly included into the semantic tree",
+				"DESCRIPTION": "An annotation, excluding annotations of subtype Widget, Popup or Link, shall be nested within an Annot tag"
+			},
+			"2": {
+				"SUMMARY": "An annotation has no alternative description",
+				"DESCRIPTION": "An annotation (except annotations of type Link, Widget or Popup, or hidden annotations, or those having rectangle outside the crop-box) shall have either Contents key or an Alt entry in the enclosing structure element"
+			},
+			"3": {
+				"SUMMARY": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box and does not have a TU key and its Widget annotations do not have alternative descriptions (in the form of an Alt entry in the enclosing structure element)",
+				"DESCRIPTION": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box shall have a TU key present or all its Widget annotations shall have alternative descriptions (in the form of an Alt entry in the enclosing structure elements)"
+			}
+		},
+		"7.18.2": {
+			"1": {
+				"SUMMARY": "Document contains trapping annotations",
+				"DESCRIPTION": "Annotations of subtype TrapNet shall not be permitted."
+			}
+		},
+		"7.18.3": {
+			"1": {
+				"SUMMARY": "Navigation order of annotations on the page does not follow semantics",
+				"DESCRIPTION": "Every page on which there is an annotation shall contain in its page dictionary the key Tabs, and its value shall be S."
+			}
+		},
+		"7.18.4": {
+			"1": {
+				"SUMMARY": "Dynamic form is incorrectly included into the semantic tree",
+				"DESCRIPTION": "A Widget annotation shall be nested within a Form tag per ISO 32000-1:2008, 14.8.4.5, Table 340."
+			}
+		},
+		"7.18.5": {
+			"1": {
+				"SUMMARY": "Document link is incorrectly included into the semantic tree",
+				"DESCRIPTION": "Links shall be tagged according to ISO 32000-1:2008, 14.8.4.4.2, Link Element."
+			},
+			"2": {
+				"SUMMARY": "A link does not have an alternate description",
+				"DESCRIPTION": "Links shall contain an alternate description via their Contents key as described in ISO 32000-1:2008, 14.9.3."
+			}
+		},
+		"7.18.6.2": {
+			"1": {
+				"SUMMARY": "Media clip does not specify MIME type",
+				"DESCRIPTION": "In the media clip data dictionary, the optional CT key (ISO 32000-1:2008, 13.2.4.2, Table 274) is required."
+			},
+			"2": {
+				"SUMMARY": "Media clip has no alternative description",
+				"DESCRIPTION": "In the media clip data dictionary, the optional Alt key (ISO 32000-1:2008, 13.2.4.2, Table 274) is required."
+			}
+		},
+		"7.18.8": {
+			"1": {
+				"SUMMARY": "Printer marks are included into the real content",
+				"DESCRIPTION": "PrinterMark annotations, if present, shall be considered Incidental Artifacts, as if they are hidden page elements as defined in ISO 32000-1:2008, 14.8.2.2.3."
+			}
+		},
+		"7.20": {
+			"1": {
+				"SUMMARY": "The document includes an external document as its part",
+				"DESCRIPTION": "A conforming file shall not contain any reference XObjects"
+			},
+			"2": {
+				"SUMMARY": "Form XObject contains MCIDs and is referenced more than once",
+				"DESCRIPTION": "The content of Form XObjects shall be incorporated into structure elements according to ISO 32000-1:2008, 14.7.2."
+			}
+		},
+		"7.21.3.1": {
+			"1": {
+				"SUMMARY": "Multibyte encoding is incompatible with the embedded font",
+				"DESCRIPTION": "For any given composite (Type 0) font within a conforming file, the CIDSystemInfo entry in its CIDFont dictionary and its Encoding dictionary shall have the following relationship: - If the Encoding key in the Type 0 font dictionary is Identity-H or Identity-V, any values of Registry, Ordering, and Supplement may be used in the CIDSystemInfo entry of the CIDFont. - Otherwise, the corresponding Registry and Ordering strings in both CIDSystemInfo dictionaries shall be identical, and the value of the Supplement key in the CIDSystemInfo dictionary of the CIDFont shall be greater than or equal to the Supplement key in the CIDSystemInfo dictionary of the CMap."
+			}
+		},
+		"7.21.3.2": {
+			"1": {
+				"SUMMARY": "TrueType (OpenType) font has incorrect glyph mapping",
+				"DESCRIPTION": "ISO 32000-1:2008, 9.7.4, Table 117 requires that all embedded Type 2 CIDFonts in the CIDFont dictionary shall contain a CIDToGIDMap entry that shall be a stream mapping from CIDs to glyph indices or the name Identity, as described in ISO 32000-1:2008, 9.7.4, Table 117."
+			}
+		},
+		"7.21.3.3": {
+			"1": {
+				"SUMMARY": "A non-standard multibyte encoding is used, but is not embedded into the document",
+				"DESCRIPTION": "All CMaps used within a PDF/UA file, except those listed in ISO 32000-1:2008, 9.7.5.2, Table 118, shall be embedded in that file as described in ISO 32000-1:2008, 9.7.5."
+			},
+			"2": {
+				"SUMMARY": "Conflicting writing directions in the multibyte encoding",
+				"DESCRIPTION": "For those CMaps that are embedded, the integer value of the WMode entry in the CMap dictionary shall be identical to the WMode value in the embedded CMap stream."
+			},
+			"3": {
+				"SUMMARY": "A reference to a non-standard multibyte encoding is used",
+				"DESCRIPTION": "A CMap shall not reference any other CMap except those listed in ISO 32000-1:2008, 9.7.5.2, Table 118."
+			}
+		},
+		"7.21.4.1": {
+			"1": {
+				"SUMMARY": "The font program is not embedded",
+				"DESCRIPTION": "The font programs for all fonts used for rendering within a conforming file shall be embedded within that file, as defined in ISO 32000-1:2008, 9.9."
+			},
+			"2": {
+				"SUMMARY": "Not all glyphs are present in the embedded font program",
+				"DESCRIPTION": "Embedded fonts shall define all glyphs referenced for rendering within the conforming file. A font referenced for use solely in rendering mode 3 is therefore not rendered and is thus exempt from the embedding requirement."
+			}
+		},
+		"7.21.4.2": {
+			"1": {
+				"SUMMARY": "Type1 font subset incorrectly identifies its glyphs",
+				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded Type 1 font contains a CharSet string, then it shall list the character names of all glyphs present in the font program, regardless of whether a glyph in the font is referenced or used by the PDF or not."
+			},
+			"2": {
+				"SUMMARY": "TrueType (OpenType) font subset incorrectly identifies its glyphs",
+				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded CID font contains a CIDSet stream, then it shall identify all CIDs which are present in the font program, regardless of whether a CID in the font is referenced or used by the PDF or not."
+			}
+		},
+		"7.21.5": {
+			"1": {
+				"SUMMARY": "Inconsistent glyph widths",
+				"DESCRIPTION": "For every font embedded in a conforming file and used for rendering, the glyph width information in the font dictionary and in the embedded font program shall be consistent."
+			}
+		},
+		"7.21.6": {
+			"1": {
+				"SUMMARY": "Conflicting glyph lookup for a non-symbolic TrueType font program",
+				"DESCRIPTION": "For all non-symbolic TrueType fonts used for rendering, the embedded TrueType font program shall contain one or several non-symbolic cmap entries such that all necessary glyph lookups can be carried out."
+			},
+			"2": {
+				"SUMMARY": "Invalid encoding for a non-symbolic TrueType font",
+				"DESCRIPTION": "All non-symbolic TrueType fonts shall have either MacRomanEncoding or WinAnsiEncoding as the value for the Encoding key in the Font dictionary or as the value for the BaseEncoding key in the dictionary which is the value of the Encoding key in the Font dictionary. In addition, no non-symbolic TrueType font shall define a Differences array unless all of the glyph names in the Differences array are listed in the Adobe Glyph List and the embedded font program contains at least the Microsoft Unicode (3,1 – Platform ID=3, Encoding ID=1) encoding in the 'cmap' table."
+			},
+			"3": {
+				"SUMMARY": "Invalid encoding for a symbolic TrueType font",
+				"DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary"
+			},
+			"4": {
+				"SUMMARY": "Conflicting glyph lookup for a symbolic TrueType font program",
+				"DESCRIPTION": "Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary, and the 'cmap' table in the embedded font program shall either contain exactly one encoding or it shall contain, at least, the Microsoft Symbol (3,0 - Platform ID=3, Encoding ID=0) encoding."
+			}
+		},
+		"7.21.7": {
+			"1": {
+				"SUMMARY": "The glyph has no Unicode value",
+				"DESCRIPTION": "The Font dictionary of all fonts shall define the map of all used character codes to Unicode values, either via a ToUnicode entry, or other mechanisms as defined in ISO 14289-1, 7.21.7."
+			},
+			"2": {
+				"SUMMARY": "The glyph has an invalid Unicode value",
+				"DESCRIPTION": "The Unicode values specified in the ToUnicode CMap shall all be greater than zero (0), but not equal to either U+FEFF or U+FFFE."
+			}
+		},
+		"7.21.8": {
+			"1": {
+				"SUMMARY": "The document contains undefined glyphs",
+				"DESCRIPTION": "A PDF/UA compliant document shall not contain a reference to the .notdef glyph from any of the text showing operators, regardless of text rendering mode, in any content stream."
+			}
+		}
+	}
 }

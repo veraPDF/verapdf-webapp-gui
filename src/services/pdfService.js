@@ -1,5 +1,12 @@
 import _ from 'lodash';
 
+const COLOR = {
+    DEFAULT: 'rgba(0, 0, 0, 0.75)',
+    DEFAULT_CONTRAST: 'rgba(255, 255, 255, 0.75)',
+    HOVER: 'rgba(0, 0, 0, 0.75)',
+    ACTIVE: 'rgba(207, 63, 79, 0.50)',
+};
+
 // unite bboxes in single one
 function concatBoundingBoxes(newBoundingBox, oldBoundingBox) {
     if (_.isNil(oldBoundingBox) && _.isNil(newBoundingBox)) {
@@ -144,15 +151,15 @@ function calculateBboxFromLocation(location) {
     const width = parseFloat(x1) - parseFloat(x);
 
     if (end) {
-        for (let i = parseInt(start) + 1; i <= parseInt(end) + 1; i++) {
+        for (let i = parseInt(start); i <= parseInt(end); i++) {
             switch (i) {
-                case parseInt(start) + 1:
+                case parseInt(start):
                     bboxes.push({
                         page: i,
                         location: [parseFloat(x), parseFloat(y1), width, 'bottom'],
                     });
                     break;
-                case parseInt(end) + 1:
+                case parseInt(end):
                     bboxes.push({
                         page: i,
                         location: [parseFloat(x), parseFloat(y), width, 'top'],
@@ -177,4 +184,56 @@ function calculateBboxFromLocation(location) {
     return bboxes;
 }
 
-export { convertContextToPath, concatBoundingBoxes, convertContextToString, findAllMcid, calculateBboxFromLocation };
+const convertRectToBbox = (rect, scale, canvasHeight) => {
+    let { height, y } = rect;
+    if (rect.height === 'top') {
+        height = canvasHeight - rect.y;
+    } else if (rect.height === 'bottom') {
+        y = 0;
+        height = rect.y;
+    }
+    return [rect.x * scale, y * scale, rect.width * scale, height * scale];
+};
+
+const calculateStokeColor = (pageNumber, bbox) => {
+    const pdfcanvas = document.querySelector(`div.pdf-page[data-page="${pageNumber}"] .react-pdf__Page__canvas`);
+    const pdfctx = pdfcanvas.getContext('2d');
+    const pdfSize = pdfcanvas.getBoundingClientRect([]);
+    let rArray = [];
+    let gArray = [];
+    let bArray = [];
+    for (let i = 0; i < bbox[2]; i++) {
+        const x1Color = pdfctx.getImageData(bbox[0] + i, -1 * (bbox[1] - pdfSize.height), 1, 1).data;
+        const x2Color = pdfctx.getImageData(bbox[0] + i, -1 * (bbox[1] + bbox[3] - pdfSize.height), 1, 1).data;
+        rArray = [...rArray, x1Color[0], x2Color[0]];
+        gArray = [...gArray, x1Color[1], x2Color[1]];
+        bArray = [...bArray, x1Color[2], x2Color[2]];
+    }
+    for (let i = 0; i < bbox[3]; i++) {
+        const y1Color = pdfctx.getImageData(bbox[0], -1 * (bbox[1] - pdfSize.height), 1, 1).data;
+        const y2Color = pdfctx.getImageData(bbox[0] + bbox[2], -1 * (bbox[1] + i - pdfSize.height), 1, 1).data;
+        rArray = [...rArray, y1Color[0], y2Color[0]];
+        gArray = [...gArray, y1Color[1], y2Color[1]];
+        bArray = [...bArray, y1Color[2], y2Color[2]];
+    }
+    const r = _.mean(rArray);
+    const g = _.mean(gArray);
+    const b = _.mean(bArray);
+
+    if (r * 0.299 + g * 0.587 + b * 0.114 > 50) {
+        return COLOR.DEFAULT;
+    } else {
+        return COLOR.DEFAULT_CONTRAST;
+    }
+};
+
+export {
+    COLOR,
+    convertContextToPath,
+    concatBoundingBoxes,
+    convertContextToString,
+    findAllMcid,
+    calculateBboxFromLocation,
+    calculateStokeColor,
+    convertRectToBbox,
+};

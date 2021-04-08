@@ -1,0 +1,448 @@
+{
+  "WCAG2.1": {
+    "1.3.4": {
+      "1": {
+        "SUMMARY": "Het document heeft pagina's in zowel staande als liggende opmaak",
+        "DESCRIPTION": "Zorg dat alle pagina's een staande of liggende opmaak hebben. Gebruik pagina's met staande en liggende opmaak niet door elkaar tenzij dat essentiëel is voor de informatie die je wilt communiceren."
+      }
+    },
+    "1.4.3": {
+      "1": {
+        "SUMMARY": "Onvoldoende contrast",
+        "DESCRIPTION": "Tekst moet voldoende contrast met de achtergrond hebben, anders kunnen slechtzienden en kleurenblinden problemen hebben om deze te lezen. Zwarte tekst op een (bijna) witte achtergrond is meestal het veiligst. Gebruik je toch kleuren, zorg dan dat de tekst tenminste een contrast van 4,5 : 1 met de achtergrond heeft (voor heel grote tekst mag het 3 : 1 zijn)."
+      }
+    },
+    "4.1.3": {
+      "1": {
+        "SUMMARY": "De codering komt niet overeen met de inhoud",
+        "DESCRIPTION": "Als de codering niet overeenkomt met de inhoud, zal voorleessoftware het document niet in de juiste volgorde of op de juiste manier voorlezen."
+      }
+    }
+  },
+  "ISO 14289-1:2014": {
+    "5": {
+      "1": {
+        "SUMMARY": "Het document is niet van het type PDF/UA",
+        "DESCRIPTION": "De metadata in het document vermeld niet dat dit document van het type PDF/UA is. Dit is geen probleem als je document verder maar voldoet aan de toegankelijkheidseisen."
+      },
+      "2": {
+        "SUMMARY": "Er is iets mis met de PDF/UA metadata in het document",
+        "DESCRIPTION": "De metadata in het document bevat incorrecte gegevens over PDF/UA. Dit is geen probleem als je document verder maar voldoet aan de toegankelijkheidseisen."
+      }
+    },
+    "7.1": {
+      "1": {
+        "SUMMARY": "De codering maakt geen goed onderscheid tussen inhoud en decoratieve elementen",
+        "DESCRIPTION": "Door gebrekkige codering kan voorleessoftware inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "De codering maakt geen goed onderscheid tussen inhoud en decoratieve elementen",
+        "DESCRIPTION": "Door gebrekkige codering kan voorleessoftware inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "3": {
+        "SUMMARY": "Het document bevat inhoud die in de code niet gelabeld is",
+        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "4": {
+        "SUMMARY": "De applicatie die dit document creëerde kon geen correcte leesvolgorde garanderen",
+        "DESCRIPTION": "Je krijgt deze waarschuwing als de applicatie waarmee het document aangemaakt werd, niet kon garanderen dat de leesvolgorde correct is. Op zich hoeft de leesvolgorde niet fout te zijn. Of er echt een probleem is met de leesvolgorde kan je zien aan andere codefouten die deze checker vindt. Deze waarschuwing kan wel tot gevolg hebben dat voorleessoftware het document niet accepteert. Om van deze waarschuwing af te komen, kun je proberen het document eenvoudiger te structureren of het document met een andere applicatie te bewerken (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "5": {
+        "SUMMARY": "Het document heeft geen standaard codering",
+        "DESCRIPTION": "Het document gebruikt een eigen codering die niet te herleiden is tot de standaardcodering. Daardoor kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "6": {
+        "SUMMARY": "Er zitten circulaire verwijzingen in de codering van het document",
+        "DESCRIPTION": "In de codering van het document zitten circulaire verwijzingen. Daardoor kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "7": {
+        "SUMMARY": "Het document heeft gewijzigde standaardcodering",
+        "DESCRIPTION": "De standaardcodering is gewijzigd in dit document. Als er geen standaardcodering wordt gebruikt, kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "8": {
+        "SUMMARY": "Het document mist essentiële metadata",
+        "DESCRIPTION": "Het document heeft geen metadata. Daardoor mist voorleessoftware essentiële informatie om het voor te kunnen lezen (zoals de voorleestaal). Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document te bewerken met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word) en sla het op als een 'tagged' PDF, bijvoorbeeld in PDF/A-1a of PDF/UA format."
+      },
+      "9": {
+        "SUMMARY": "De titel is niet ingevuld in de documenteigenschappen",
+        "DESCRIPTION": "In de metadata van het document mist de titel. Dit komt waarschijnlijk omdat je de titel niet ingevuld hebt in de documenteigenschappen. Let op: het kan gebeuren dat je  document wel een titelpagina of een kop in titel-stijl heeft, en je toch deze fout krijgt. Deze fout gaat namelijk niet over de inhoud maar over de metadata van het document. Om deze fout te vermijden kan documenteigenschappen van je kantoorapplicatie openen (meestal via de Bestand tab van het menu links boven) en daar de titel invullen. Of als je de beschikking hebt over een PDF editor dan kan je de titel daarmee ook invullen."
+      },
+      "10": {
+        "SUMMARY": "De titel van het document is niet zichtbaar in de titelbalk",
+        "DESCRIPTION": "De codering van het document zorgt er niet voor dat de titel zichtbaar is in de titelbalk van de reader of browser. Check eerst of de titel is invuld in de documenteigenschappen en vul deze indien nodig in. Dat doe je door de documenteigenschappen van je kantoorapplicatie te openen (meestal via de Bestand tab van het menu links boven) en daar de titel in te vullen. Als je de beschikking hebt over een PDF editor, dan kan je de titel daarmee ook invullen. Krijg je deze fout daarna nog steeds, dan is het probleem waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dan het document te bewerken met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word). Als je een PDF expert bent, dan kan je het probleem oplossen door met een PDF editor de DisplayDocTitle key op 'true' te zetten in de ViewerPreferences dictionary."
+      },
+      "13": {
+        "SUMMARY": "De codering komt niet overeen met de inhoud",
+        "DESCRIPTION": "De inhoud is niet gecodeerd op een manier die overeenkomt met de structuur en betekenis. Dit kan verschillende oorzaken hebben. Probeer het document een eenvoudiger structuur te geven. Het probleem kan ook veroorzaakt zijn door de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document te bewerken en naar PDF te schrijven met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.2": {
+      "2": {
+        "SUMMARY": "De taal van het document is niet ingesteld",
+        "DESCRIPTION": "Voorleesapplicaties moeten weten in welke taal ze dit document moeten voorlezen. Daarvoor moet je de taal van het document instellen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "3": {
+        "SUMMARY": "Er is iets mis met het bijschrijft van de tabel",
+        "DESCRIPTION": "De tabel heeft meer dan één bijschrift, of het bijschrijft is verkeerd gecodeerd. Probeer de bijschriften te verwijderen en voeg er dan weer één toe. Zorg dat je tabel maar één bijschrift heeft. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "4": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabelrij",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als onderdeel van een tabel, maar de codering geeft niet goed aan van welke tabel dit onderdeel uitmaakt. Als deze tekst bij een tabel hoort of dicht bij een tabel staat, probeer die tabel dan nogmaals op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word). "
+      },
+      "5": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabel kop",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als tabelkop, maar de codering geeft niet goed aan van welke tabel dit onderdeel uitmaakt. Als deze tekst bij een tabel hoort, probeer die tabel dan nogmaals op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word). "
+      },
+      "6": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabel",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als tabel, maar de codering geeft niet goed aan van welke tabel dit onderdeel uitmaakt. Als deze tekst bij een tabel hoort, probeer die tabel dan nogmaals op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "7": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabel voettekst",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als tabel voettekst, maar de codering geeft niet goed aan van welke tabel dit onderdeel uitmaakt. Als deze tekst bij een tabel hoort, probeer die tabel dan nogmaals op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "8": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabelkopcel",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als tabelkopcel, maar het is niet duidelijk bij welke rij in de tabel deze kopcel hoort. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "9": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabelcel",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als tabelcel, maar het is niet duidelijk bij welke rij in de tabel de tekst hoort. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "10": {
+        "SUMMARY": "Deze tabelrij bevat elementen die niet bij een tabel horen",
+        "DESCRIPTION": "Een tabelrij mag alleen tabelkopcellen of tabelinhoudcellen bevatten. Deze tabelrij bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabelrij moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "11": {
+        "SUMMARY": "De tabel heeft meer dan één kop",
+        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als kop gemarkeerd zijn. Als een tabel meer dan één kop heeft, weet voorleessoftware niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te makenen en zorg dat deze maar één koprij heeft."
+      },
+      "12": {
+        "SUMMARY": "De tabel heeft meer dan één voet",
+        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als voet gemarkeerd zijn. Als een tabel meer dan één voet heeft, weet voorleessoftware niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken en zorg dat deze maar één voetrij heeft."
+      },
+      "13": {
+        "SUMMARY": "De tabel heeft een voet maar geen body",
+        "DESCRIPTION": "Als een tabel een voet heeft, moet deze tenminste ook een body hebben. Probeer de tabel opnieuw op te maken en zorg ervoor dat de tabel behalve een kop en voet ook inhoud heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "14": {
+        "SUMMARY": "De tabel heeft een kop maar geen body",
+        "DESCRIPTION": "Als een tabel een kop heeft, moet deze tenminste ook een body hebben. Probeer de tabel opnieuw op te maken en zorg ervoor dat de tabel behalve een kop en voet ook inhoud heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "15": {
+        "SUMMARY": "De rijen in deze tabel hebben niet hetzelfde aantal cellen",
+        "DESCRIPTION": "In een tabel moeten de rijen hetzelfde aantal cellen hebben. Probeer de tabel opnieuw op te maken. Cellen samenvoegen mag, maar begin altijd met een basistabel waarin elke rij hetzelfde aantal cellen heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "17": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als lijstelement",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als lijstelement, maar de codering geeft niet goed aan bij welke lijst dit element hoort. Als deze tekst bij een lijst hoort of dicht bij een lijst staat, probeer de lijst dan nogmaals op te maken. Houd alle lijstelementen goed bij elkaar. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "18": {
+        "SUMMARY": "Er is een probleem met de structuur van de lijst",
+        "DESCRIPTION": "Deze tekst is gemarkeerd als lijstelement, maar de code geeft niet goed aan hoe deze in de lijst past. Als deze tekst bij een lijst hoort, probeer die lijst dan nogmaals op te maken en houd de lijstelementen goed bij elkaar. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "19": {
+        "SUMMARY": "Deze lijst bevat elementen die niet bij een lijst horen",
+        "DESCRIPTION": "Een lijst mag alleen een bijschrift, lijstelementen en sublijsten bevatten. Deze lijst bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "20": {
+        "SUMMARY": "Een lijst item mag alleen bestaan uit een label en de itemtekst",
+        "DESCRIPTION": "Dit lijst item bevat andere elementen dan het label (bijvoorbeeld een bullet of nummer) en de itemtekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "21": {
+        "SUMMARY": "De taal van de vervangende tekst is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "22": {
+        "SUMMARY": "De taal van de alternatieve tekst is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "23": {
+        "SUMMARY": "De taal van de uitklaptekst van de afkorting is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "24": {
+        "SUMMARY": "De taal van dit commentaarveld is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het dit commentaarveld moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "25": {
+        "SUMMARY": "De taal van dit formulier is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het dit formulier moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellend"
+      },
+      "26": {
+        "SUMMARY": "Deze tekst is verkeerd gemarkeerd als onderdeel van de inhoudsopgave",
+        "DESCRIPTION": "Als deze tekst bij de inhoudsopgave hoort of dicht bij de inhoudsopgave staat, probeer dan de inhoudsopgave opnieuw aan te maken. Je kan de inhoudsopgave het beste automatisch laten genereren. Bewerk je de inhoudsopgave handmatig, houd dan de elementen van de inhoudsopgave goed bij elkaar. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "27": {
+        "SUMMARY": "Er is iets mis met het bijschrift van de inhoudsopgave",
+        "DESCRIPTION": "De inhoudsopgave heeft meer dan één bijschrift, of het bijschrijft is verkeerd gecodeerd. Probeer de bijschriften te verwijderen en voeg er dan weer één toe. Zorg dat je inhoudsopgave maar één bijschrift heeft. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "29": {
+        "SUMMARY": "Taal van het document verkeerd gecodeerd",
+        "DESCRIPTION": "Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer de taal van het document handmatig in te stellen. Dat doe je in Word of LibreOffice door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellend. Werkt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "30": {
+        "SUMMARY": "De taal van de vervangende tekst is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "31": {
+        "SUMMARY": "De taal van de alternatieve tekst is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "32": {
+        "SUMMARY": "De taal van de uitklaptekst van de afkorting is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "33": {
+        "SUMMARY": "De taal van de metadata van het document is niet ingesteld",
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "34": {
+        "SUMMARY": "De taal van deze tekst is niet ingesteld",
+        "DESCRIPTION": "Voorleessoftware weet niet in welke taal het deze tekst moet voorlezen. Waarschijnlijk is de taal van het document niet ingesteld. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+      },
+      "36": {
+        "SUMMARY": "De tabelkop bevat elementen die niet bij een kop horen",
+        "DESCRIPTION": "Een tabelkop mag alleen uit rijen bestaan. Deze tabelkop bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabelkop moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "37": {
+        "SUMMARY": "De body van deze tabel bevat elementen die niet bij een tabel body horen",
+        "DESCRIPTION": "De body van een tabel mag alleen uit rijen bestaan. De body van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      },
+      "38": {
+        "SUMMARY": "De voettekst van deze tabel bevat elementen die niet bij voettekst horen",
+        "DESCRIPTION": "De voettekst van een tabel mag alleen uit rijen bestaan. De voettekst van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+      }
+    },
+    "7.3": {
+      "1": {
+        "SUMMARY": "Deze figuur heeft geen alternatieve tekst",
+        "DESCRIPTION": "Een figuur moet een alternatieve tekst hebben die beschrijft wat de figuur illustreert. In MS Word en LibreOffice kan je alternatieve tekst toevoegen door rechts op de figuur te klikken en dan 'Afbeelding opmaken' (Word) of 'Eigenschappen' (LibreOffice) te kiezen. Alleen als de figuur een decoratieve functie heeft en voor de inhoud van het document niet van belang is, hoeft deze geen alternatieve tekst te hebben en mag je deze foutboodschap negeren."
+      }
+    },
+    "7.4.2": {
+      "1": {
+        "SUMMARY": "Verkeerd gebruik van koppen",
+        "DESCRIPTION": "De koppen worden niet in logische volgorde gebruikt. Dit kan ertoe leiden dat een slechtziende met voorleessoftware moeite heeft om door het document te navigeren. Om aan WCAG 2.1 te voldoen moet het document altijd beginnen met een kop van niveau 1 en moeten de niveaus van koppen logisch op elkaar volgen van hoog naar laag. Begin het document dus niet met een kop van niveau 2 of 3. Sla geen niveaus van koppen over: laat bijvoorbeeld niet een kop van niveau 3 volgen op een kop van niveau 1."
+      }
+    },
+    "7.4.4": {
+      "1": {
+        "SUMMARY": "De structuur van het document is verkeerd gecodeerd",
+        "DESCRIPTION": "Dit is een probleem in de code van het PDF bestand waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Het probleem is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Je kan proberen dit op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Het document is verkeerd gestructureerd",
+        "DESCRIPTION": "Dit probleem zit hem in een verkeerd gebruik van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "3": {
+        "SUMMARY": "Het document is verkeerd gestructureerd",
+        "DESCRIPTION": "Dit probleem zit hem in een verkeerd gebruik van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.5": {
+      "1": {
+        "SUMMARY": "De code beschrijft de structuur van deze tabel onvoldoende",
+        "DESCRIPTION": "Deze tabel mist code waaruit de structuur kan worden opgemaakt. Daardoor heeft voorleessoftware voor slechtzienden moeite om de tabel correct voor te lezen. Probeer de tabel opnieuw op te maken, geef de tabel duidelijke kop-rij of kop-kolom en houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.7": {
+      "1": {
+        "SUMMARY": "Deze formule heeft geen alternatieve tekst",
+        "DESCRIPTION": "Formules moeten als zodanig gemarkeerd zijn en voorzien zijn van alternatieve tekst. In Word kan je een formule maken door in het menu Invoegen -> Symbool/Vergelijking te kiezen. In LibreOffice kan dit door Invoegen -> Object -> Formule te kiezen. Je kan daar ook de alternatieve tekst voor de formule ingeven. Lukt het niet, dan kan je als laatste redmiddel de formule als figuur invoegen en de figuur voorzien van alternatieve tekst."
+      }
+    },
+    "7.9": {
+      "1": {
+        "SUMMARY": "Deze noot is niet goed gecodeerd",
+        "DESCRIPTION": "Deze noot heeft geen eenduidige referentie in de documentcode. Daardoor kan voorleessoftware moeite hebben om door het document te navigeren. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Er is een probleem met de indexering van noten en verwijzingen",
+        "DESCRIPTION": "In het document zijn conflicterende verwijzingen gevonden. Daardoor kan voorleessoftware niet goed overweg met de noten en verwijzingen in het document. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.10": {
+      "1": {
+        "SUMMARY": "Er is iets mis met de codering van de optionele inhoud",
+        "DESCRIPTION": "Dit document heeft één of meer lagen met optionele inhoud die niet goed geïdentificeerd zijn. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen en lagen met optionele inhoud te vermijden. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
+      },
+      "2": {
+        "SUMMARY": "Een laag met optionele inhoud kan de leesbaarheid van het document beïnvloeden",
+        "DESCRIPTION": "Dit document heeft één of meer lagen met optionele inhoud die de leesbaarheid nadelig kunnen beïnvloeden. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen en lagen met optionele inhoud te vermijden. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
+      }
+    },
+    "7.11": {
+      "1": {
+        "SUMMARY": "Het bijgevoegde bestand heeft geen geldige naam",
+        "DESCRIPTION": "Als je een bestand als bijlage in een PDF document invoegt, moet dit via de code toegankelijk zijn. Het bijgevoegde bestand is in de code niet voorzien van een naam en/of beschrijving. Om dit probleem op te lossen moet je het bijgevoegde bestand van een naam en beschrijving voorzien. Lukt dit niet, dan kan je als laatste redmiddel de bijlage verwijderen en als apart bestand meesturen met het document."
+      }
+    },
+    "7.15": {
+      "1": {
+        "SUMMARY": "Het document bevat een dynamisch formulier",
+        "DESCRIPTION": "Om te voldoen aan toegankelijkheidseisen mag het document geen dynamische XFA (XML Forum Architecture) formulieren bevatten. Bewerk het formulier en maak er een statisch formulier van. Je kan ook proberen het formulier in een ander format dan XFA op te nemen, als je applicatie dat toelaat."
+      }
+    },
+    "7.16": {
+      "1": {
+        "SUMMARY": "Dit document is versleuteld en daardoor niet meer digitaal toegankelijk",
+        "DESCRIPTION": "Als je een document versleutelt, moet dat gebeuren op een manier die digitale toegankelijkheid ondersteunt. Dat is niet het geval in dit document. Haal de versleuteling van dit document, versleutel het document op een manier die de digitale toegankelijkheid niet in de weg staat. Sommige gangbare PDF applicaties ondersteunen dit."
+      }
+    },
+    "7.18.1": {
+      "1": {
+        "SUMMARY": "Deze annotatie is verkeerd gemarkeerd",
+        "DESCRIPTION": "Omdat deze annotatie niet correct gemarkeerd is in de code, kan voorleessoftware de annotatie mogelijk niet goed vinden of voorlezen. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de annotatie te verwijderen en daarna weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Deze annotatie heeft geen alternatieve tekst",
+        "DESCRIPTION": "Een annotatie moet tekstinhoud of een alternatieve tekst hebben (dit geldt niet voor links, widgets, pop-ups en verborgen annotaties). Voeg tekstinhoud of alternatieve tekst toe aan deze annotatie."
+      },
+      "3": {
+        "SUMMARY": "Alternatieve beschrijving mist voor dit formulierveld",
+        "DESCRIPTION": "Een invulveld dat niet verborgen is moet een alternatieve beschrijving hebben. Dit kan ertoe leiden dat iemand, die voorleessoftware gebruikt, moeite heeft om het formulier in te vullen. Voeg een alternatieve tekst toe OF zorg dat alle widget annotaties van dit veld alternatieve teksten hebben."
+      }
+    },
+    "7.18.2": {
+      "1": {
+        "SUMMARY": "Het document bevat annotaties voor het corrigeren van kleuren bij afdrukken",
+        "DESCRIPTION": "Een document mag geen zogenaamde 'trapping annotaties' hebben die bedoeld zijn om kleuren te corrigeren bij het afdrukken. Verwijder deze annotaties of zet de 'trapping' opties uit in de applicatie waarmee je dit document gemaakt hebt."
+      }
+    },
+    "7.18.3": {
+      "1": {
+        "SUMMARY": "De annotaties hebben geen duidelijke navigatievolgorde",
+        "DESCRIPTION": "De navigatievolgorde van annotaties moet beschreven zijn in de documentcode. Hier is dat niet in orde. Waarschijnlijk is dit te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de annotaties te verwijderen en weer toe te voegen in de logische leesvolgorde. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.18.4": {
+      "1": {
+        "SUMMARY": "Er is iets mis met de code van dit dynamische formulier",
+        "DESCRIPTION": "Dynamische formulieren geven vaak problemen, en kan je beter vermijden. Gebruik je toch een dynamisch formulier, dan moet dat op de juiste manier door je applicatie gecodeerd zijn zodat voorleessoftware weet hoe het ermee om moet gaan. Verwijder het formulier en probeer het weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.18.5": {
+      "1": {
+        "SUMMARY": "Deze link is verkeerd gemarkeerd",
+        "DESCRIPTION": "Er is iets mis met de manier waarop deze link gemarkeerd is in de code van het document. Probeer de link opnieuw toe te voegen met de 'Hyperlink' optie in je applicatie (die vind je als je rechts klikt op tekst of boven in de menubalk). Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Deze link heeft geen alternatieve beschrijving",
+        "DESCRIPTION": "Links moeten een alternatieve beschrijving hebben, zodat mensen die voorleessoftware gebruiken horen waar de link naar wijst en geen ellenlange URLs voorgelezen krijgen. In sommige applicaties kan je de alternatieve tekst invoeren via de 'Hyperlink' optie die je vindt als je rechts klikt op tekst of boven in de menubalk. Ondersteunt je applicatie dat niet probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.18.6.2": {
+      "1": {
+        "SUMMARY": "Het type van deze media clip is niet correct beschreven in de code van het document",
+        "DESCRIPTION": "Media clips moeten in de code van het document een gestandaardiseerde beschrijving van het type media hebben. Anders weet voorleessoftware niet wat het met de media clip moet doen. Deze fout is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de media clip te verwijderen en expliciet als audio of video toe te voegen. Werkt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Deze mediaclip heeft geen alternatieve beschrijving",
+        "DESCRIPTION": "Media clips moeten voorzien zijn van een altervatieve beschrijving. Anders weten mensen die de media clip niet kunnen zien of horen niet wat de inhoud ervan is. Voeg dus een alternatieve beschrijving toe aan de media clip."
+      }
+    },
+    "7.18.8": {
+      "1": {
+        "SUMMARY": "Afrukmarkeringen zijn niet als zodanig gemarkeerd",
+        "DESCRIPTION": "Afdrukmarkeringen moeten gemarkeerd zijn als grafische informatie die geen deel uitmaken van de documentinhoud. In dit geval zijn de afdrukmarkeringen verkeerd gemarkeerd waardoor het lijkt of ze bij de inhoud horen. Hierdoor kan voorleessoftware in de war raken. Verwijder de markeringen en voeg ze opnieuw toe met de functionaliteit die je applicatie daarvoor heeft (in Word via Bestand -> Opties -> Geavanceerd -> Bijsnijdmarkeringen). Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.20": {
+      "1": {
+        "SUMMARY": "Het document heeft een extern bestand als onderdeel",
+        "DESCRIPTION": "Een document mag niet naar externe bestanden refereren als onderdeel van de documentinhoud. Dit maakt het voor voorleesapplicaties bijzonder moeilijk om de logische structuur van het document te achterhalen. Haal deze referenties naar externe bestanden uit het document."
+      },
+      "2": {
+        "SUMMARY": "Herbruikbare documentelementen zijn niet correct gecodeerd",
+        "DESCRIPTION": "Dit document bevat hebruikbare documentelementen (zogenaamde XObjects) die niet correct gecodeerd zijn. Daarom kan voorleessoftware er niet goed mee overweg. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Kijk of er in je document zich herhalende figuren of teksten voorkomen. Hier kan het probleem uit voortkomen. Probeer deze herhalende elementen dan op een andere manier of met een andere applicatie in te voegen."
+      }
+    },
+    "7.21.3.1": {
+      "1": {
+        "SUMMARY": "Er is een probleem met de codering van het lettertype",
+        "DESCRIPTION": "Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.3.2": {
+      "1": {
+        "SUMMARY": "Er is een probleem met de codering van het lettertype",
+        "DESCRIPTION": "Dit is een technisch probleem met de codering van het schaalbare lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.3.3": {
+      "1": {
+        "SUMMARY": "Het document mist de codering van dit lettertype",
+        "DESCRIPTION": "Het lettertype heeft een niet-standaard codering die niet in het document is opgenomen. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Dit lettertype heeft geen eenduidige schrijfrichting",
+        "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige schrijfrichtingen voor verschillende letters en symbolen. Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "3": {
+        "SUMMARY": "Dit lettertype is niet gecodeerd op een standaard manier",
+        "DESCRIPTION": "Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.4.1": {
+      "1": {
+        "SUMMARY": "Het lettertype is niet in het document ingesloten",
+        "DESCRIPTION": "Alle lettertypen die in het document gebruikt worden, moeten in het document ingesloten zijn. Dit garandeert dat een document altijd correct kan worden weergegeven zonder afhankelijkheden van specifieke readers. Dit specifieke lettertype is niet in het document opgenomen. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Het lettertype bevat niet alle letters of symbolen die in het document gebruikt worden",
+        "DESCRIPTION": "Het ingesloten lettertype is incompleet. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.4.2": {
+      "1": {
+        "SUMMARY": "Er is iets mis met de codering van het lettertype",
+        "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Er is iets mis met de codering van het lettertype",
+        "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.5": {
+      "1": {
+        "SUMMARY": "Dit lettertype heeft geen eenduidige letterbreedte ",
+        "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige letterbreedten, waardoor een reader problemen kan hebben om tekst goed weer te geven. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.6": {
+      "1": {
+        "SUMMARY": "Er is iets mis met de codering van dit lettertype",
+        "DESCRIPTION": "De codering van dit lettertype maakt het niet mogelijk om de weergave van alle lettertypen op te zoeken. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Er is iets mis met de codering van dit lettertype",
+        "DESCRIPTION": "Lettertypen moeten op een standaard manier gecodeerd zijn, anders kan een reader problemen hebben om de letters correct weer te geven. In dit geval voldoet de codering niet aan de standaard vereist voor digitale toegankelijkheid. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "3": {
+        "SUMMARY": "Er is iets mis met de codering van deze symbolen",
+        "DESCRIPTION": "De codering van deze symbolen voldoet niet aan de standaard vereist voor digitale toegankelijkheid. Daardoor kunnen readers de symbolen mogelijk niet correct weergeven. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
+      },
+      "4": {
+        "SUMMARY": "Er is iets mis met de codering van deze symbolen",
+        "DESCRIPTION": "Deze symbolen zijn niet op een eenduidige manier gecodeerd. Daardoor kunnen readers niet bepalen welk symbool ze moeten afbeelden. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
+      }
+    },
+    "7.21.7": {
+      "1": {
+        "SUMMARY": "Deze letter heeft geen standaard codering",
+        "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. Dat is hier niet het geval. Zorg eerst dat je het document naar PDF exporteert met Unicode codering. Dat kan bijvoorbeeld door het document te exporteren als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer dan een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
+        "SUMMARY": "Deze letter heeft een ongeldige codering",
+        "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. De Unicode codering van deze letter is ongeldig. Dit probleem is waarschijnlijk te wijten aan het lettertype dat je gebruikt, of de applicatie waarmee je de PDF hebt geëxporteerd. Probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Exporteer het document als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    },
+    "7.21.8": {
+      "1": {
+        "SUMMARY": "Het document bevat ongedefinieerde letters",
+        "DESCRIPTION": "Een document mag geen ongedefinieerde letters of symbolen bevatten. Voorleessoftware weet niet wat het hiermee aan moet. Als je weet om welke letter(s) het gaat, haal deze dan uit het document. Of probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      }
+    }
+  }
+}

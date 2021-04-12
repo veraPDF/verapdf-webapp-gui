@@ -1,7 +1,10 @@
 import React, { useState, useCallback, Fragment, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import LanguageIcon from '@material-ui/icons/Language';
+import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import List from '@material-ui/core/List';
@@ -17,16 +20,33 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
+import { getItem, setItem } from '../../../../../services/localStorageService';
+import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 
 import './Tree.scss';
-import errorMap from '../validationErrorMessages_en.json';
+import errorMap_en from '../validationErrorMessages_en.json';
+import errorMap_nl from '../validationErrorMessages_nl.json';
+import errorMap_technical from '../validationErrorMessages_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
+const languageEnum = {
+    English: 'English',
+    Dutch: 'Dutch',
+    Technical: 'Technical',
+};
+
+const errorMessages = {
+    [languageEnum.English]: errorMap_en,
+    [languageEnum.Dutch]: errorMap_nl,
+    [languageEnum.Technical]: errorMap_technical,
+};
 
 function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
+    const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
+    const [anchorMenuEl, setAnchorMenuEl] = useState(null);
     const [expandedRule, setExpandedRule] = useState(UNSELECTED);
     const onRuleClick = useCallback(
         index => {
@@ -50,6 +70,16 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
     const onInfoDialogClose = useCallback(() => {
         setInfoDialogOpened(false);
     }, []);
+    const handleLanguageClick = useCallback(event => {
+        setAnchorMenuEl(event.currentTarget);
+    }, []);
+    const handleLanguageClose = useCallback((language = null) => {
+        if (language) {
+            setItem(LS_ERROR_MESSAGES_LANGUAGE, language);
+            setLanguage(language);
+        }
+        setAnchorMenuEl(null);
+    }, []);
 
     useEffect(
         useCallback(() => {
@@ -72,6 +102,24 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
                 subheader={
                     <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
                         {LIST_HEADER}
+                        <Tooltip title={language}>
+                            <IconButton size="small" onClick={handleLanguageClick}>
+                                <LanguageIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            id="language-menu"
+                            anchorEl={anchorMenuEl}
+                            keepMounted
+                            open={Boolean(anchorMenuEl)}
+                            onClose={handleLanguageClose.bind(this, undefined)}
+                        >
+                            {_.keys(languageEnum).map(lKey => (
+                                <MenuItem key={lKey} onClick={handleLanguageClose.bind(this, languageEnum[lKey])}>
+                                    {languageEnum[lKey]}
+                                </MenuItem>
+                            ))}
+                        </Menu>
                     </ListSubheader>
                 }
             >
@@ -83,12 +131,17 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
                     errorsMap={errorsMap}
+                    errorMessages={errorMessages[language]}
                 />
             </List>
             {openedRule !== UNSELECTED && (
-                <InfoDialog title={getRuleTitle(openedRule)} open={infoDialogOpened} onClose={onInfoDialogClose}>
-                    {getRuleDescription(openedRule)}
-                    <RuleDetailsButton rule={openedRule} />
+                <InfoDialog
+                    title={getRuleTitle(openedRule, errorMessages[language])}
+                    open={infoDialogOpened}
+                    onClose={onInfoDialogClose}
+                >
+                    {getRuleDescription(openedRule, errorMessages[language])}
+                    <RuleDetailsButton rule={openedRule} errorMessages={errorMessages[language]} />
                 </InfoDialog>
             )}
         </section>
@@ -96,10 +149,19 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
 }
 
 // TODO: add Warnings
-function RuleList({ ruleSummaries, expandedRule, selectedCheck, onRuleClick, onCheckClick, onInfoClick, errorsMap }) {
+function RuleList({
+    ruleSummaries,
+    expandedRule,
+    selectedCheck,
+    onRuleClick,
+    onCheckClick,
+    onInfoClick,
+    errorsMap,
+    errorMessages,
+}) {
     return ruleSummaries.map((rule, index) => {
         const checks = rule.checks;
-        const ruleTitle = getRuleTitle(rule);
+        const ruleTitle = getRuleTitle(rule, errorMessages);
         return (
             <Fragment key={index}>
                 <ListItem button onClick={() => onRuleClick(index)} className="rule-item rule-item_error">
@@ -186,8 +248,8 @@ function LI({ selected, title, checkTitle, onClick, className }) {
     );
 }
 
-function RuleDetailsButton(rule) {
-    const url = getRuleUrl(rule);
+function RuleDetailsButton(rule, errorMessages) {
+    const url = getRuleUrl(rule, errorMessages);
     if (!url) {
         return null;
     }
@@ -199,19 +261,19 @@ function RuleDetailsButton(rule) {
     );
 }
 
-function getRuleDescription({ specification, clause, testNumber, description }) {
-    return errorMap?.[specification]?.[clause]?.[testNumber]?.DESCRIPTION || description;
+function getRuleDescription({ specification, clause, testNumber, description }, errorMessages) {
+    return errorMessages?.[specification]?.[clause]?.[testNumber]?.DESCRIPTION || description;
 }
 
-function getRuleTitle({ specification, clause, testNumber }) {
+function getRuleTitle({ specification, clause, testNumber }, errorMessages) {
     return (
-        errorMap?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
+        errorMessages?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
         `${specification}, clause ${clause}, test ${testNumber}`
     );
 }
 
-function getRuleUrl({ specification, clause, testNumber }) {
-    return errorMap?.[specification]?.[clause]?.[testNumber]?.URL;
+function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
+    return errorMessages?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
 function getCheckTitle({ context, index, allChecks, errorsMap, ruleIndex, location }) {

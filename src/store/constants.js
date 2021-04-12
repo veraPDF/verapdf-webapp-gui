@@ -16,3 +16,6 @@ export const TASK_STATUS = {
     FINISHED: 'FINISHED',
     ERROR: 'ERROR',
 };
+
+// Local storage keys
+export const LS_ERROR_MESSAGES_LANGUAGE = 'error-messages-language';

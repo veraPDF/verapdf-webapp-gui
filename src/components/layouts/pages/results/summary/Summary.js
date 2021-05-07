@@ -70,6 +70,9 @@ function getChartOptions(theme) {
 
 function calculateCompliance({ passedChecks, failedChecks }) {
     const total = passedChecks + failedChecks;
+    if (total === 0) {
+        return 100;
+    }
     return Math.floor((passedChecks * 100) / total);
 }
 

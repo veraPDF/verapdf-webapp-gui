@@ -89,7 +89,8 @@ class PdfDocument extends React.PureComponent {
                     if (objectOfErrors?.name === node[1] && index === 0) {
                         nextStepObject = objectOfErrors;
                     } else {
-                        nextStepObject = { ...objectOfErrors.children[node[0]] };
+                        const clearedChildren = objectOfErrors.children.filter(({mcid}) => !mcid);
+                        nextStepObject = { ...(clearedChildren.length ? clearedChildren : objectOfErrors.children)[node[0]] };
                     }
                 }
 

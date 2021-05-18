@@ -36,7 +36,7 @@ function PdfPage(props) {
             ) : (
                 <Page
                     pageNumber={pageIndex}
-                    renderAnnotationLayer
+                    renderAnnotationLayer={false}
                     renderTextLayer
                     onRenderSuccess={page => {
                         setLoading(false);

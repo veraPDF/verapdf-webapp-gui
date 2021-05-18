@@ -1,23 +1,35 @@
 {
   "WCAG2.1": {
-    "1.3.4": {
-      "1": {
-        "SUMMARY": "The document contains pages in both landscape and portrait orientation",
-        "DESCRIPTION": "Make all pages in either landscape or portrait orientation. Don't mix pages with different orientation unless this is essential for the information you need to communicate."
-      }
-    },
-    "1.4.3": {
-      "1": {
-        "SUMMARY": "Insufficient text contrast",
-        "DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
-      }    
-    },
-    "4.1.3": {
-      "1": {
-        "SUMMARY": "This content is inappropriately tagged",
-        "DESCRIPTION": "If content is not appropriately tagged, reader applications for people with visual impairments will not read the document in the correct way or order."
-      }
-    }
+		"1.3.4": {
+		  "1": {
+			"SUMMARY": "The document contains pages in both landscape and portrait orientation",
+			"DESCRIPTION": "Make all pages in either landscape or portrait orientation. Don't mix pages with different orientation unless this is essential for the information you need to communicate."
+		  }
+		},
+		"1.4.3": {
+		  "1": {
+			"SUMMARY": "Insufficient text contrast",
+			"DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
+		  }    
+		},
+		"4.1.2": {
+		  "1": {
+			"SUMMARY": "Incorrect use of P tag",
+			"DESCRIPTION": "The content is not identified as a single paragraph"
+		  },
+		  "2": {
+			"SUMMARY": "Incorrect use of Span tag",
+			"DESCRIPTION": "The content is not identified as a single span of text"
+		  },
+		  "3": {
+			"SUMMARY": "Incorrect use of Table tag",
+			"DESCRIPTION": "The content is not identified as a Table element"
+		  },      
+		  "5": {
+			"SUMMARY": "Missing Table tag",
+			"DESCRIPTION": "Part of the document is identified as a table, but is not marekd with the Table tag"
+		  } 
+	  }
   },
   "ISO 14289-1:2014": {
     "5": {

@@ -16,6 +16,7 @@ import {
     convertContextToPath,
     findAllMcid,
     calculateBboxFromLocation,
+    calculateBboxFromJSON,
     calculateStokeColor,
     convertRectToBbox,
 } from '../../../../../services/pdfService';
@@ -119,13 +120,19 @@ class PdfDocument extends React.PureComponent {
                     if (!check.location) {
                         [listOfMcid, pageIndex] = this.getTagsFromErrorPlace(check.context);
                     } else {
-                        listOfMcid = [];
-                        pageIndex = parseInt(
-                            check.location
-                                .split('pages[')[1]
-                                .split(']')[0]
-                                .split('-')[0]
-                        );
+                        if (check.location.includes('pages[')) {
+                            listOfMcid = [];
+                            pageIndex = parseInt(
+                                check.location
+                                    .split('pages[')[1]
+                                    .split(']')[0]
+                                    .split('-')[0]
+                            );
+                        } else {
+                            listOfMcid = [];
+                            const bboxMap = JSON.parse(check.location);
+                            pageIndex = parseInt(bboxMap.bbox[0].p);
+                        }
                     }
                     mapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {
                         listOfMcid,
@@ -141,6 +148,7 @@ class PdfDocument extends React.PureComponent {
         // clear old selection and fill new one
         if (this.props.selectedCheck !== prevProps.selectedCheck) {
             let prevPages = [];
+            const clearedPages = [];
             if (this.state.errorsRects[prevProps.selectedCheck]) {
                 prevPages =
                     this.state.errorsRects[prevProps.selectedCheck] instanceof Array
@@ -153,7 +161,8 @@ class PdfDocument extends React.PureComponent {
                         : [this.state.mapOfErrors[this.props.selectedCheck]];
             }
             prevPages.forEach(prevCheck => {
-                if (prevCheck && _.isNumber(prevCheck.pageIndex)) {
+                if (prevCheck && _.isNumber(prevCheck.pageIndex) && !clearedPages.includes(prevCheck.pageIndex)) {
+                    clearedPages.push(prevCheck.pageIndex);
                     this.redrawCanvasByPage(prevCheck.pageIndex);
                 }
             });
@@ -221,8 +230,6 @@ class PdfDocument extends React.PureComponent {
                 pageIndex={pageIndex}
                 height={rect.height}
                 width={rect.width}
-                onMouseMove={this.onCanvasMouseMove}
-                onClick={this.onCanvasClick}
                 onMount={() => {
                     this.state.renderedPages += 1;
                 }}
@@ -278,8 +285,6 @@ class PdfDocument extends React.PureComponent {
                     pageIndex={page.pageIndex}
                     height={rect.height}
                     width={rect.width}
-                    onMouseMove={this.onCanvasMouseMove}
-                    onClick={this.onCanvasClick}
                     onMount={() => {
                         this.setState({ renderedPages: this.state.renderedPages + 1 });
                     }}
@@ -394,7 +399,10 @@ class PdfDocument extends React.PureComponent {
     onDocumentScroll = () => this.loadPagesIsNeeded();
 
     onCanvasMouseMove = e => {
-        const canvas = e.target;
+        const canvas = e.target.closest('canvas');
+        if (!canvas) {
+            return;
+        }
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = canvas.offsetHeight - (e.clientY - rect.top);
@@ -423,7 +431,13 @@ class PdfDocument extends React.PureComponent {
                     : [this.state.errorsRects[key]];
             rectsArray.forEach(rect => {
                 const bbox = convertRectToBbox(rect, this.props.scale, canvas.height);
-                if (x >= bbox[0] && x <= bbox[0] + bbox[2] && y >= bbox[1] && y <= bbox[1] + bbox[3] && rect.pageIndex === pageIndex) {
+                if (
+                    x >= bbox[0] &&
+                    x <= bbox[0] + bbox[2] &&
+                    y >= bbox[1] &&
+                    y <= bbox[1] + bbox[3] &&
+                    rect.pageIndex === pageIndex
+                ) {
                     if (!hoveredKey) {
                         hoveredKey = key;
                     } else {
@@ -450,10 +464,16 @@ class PdfDocument extends React.PureComponent {
 
         if (hoveredKey !== this.state.hoveredKey) {
             if (this.state.hoveredKey) {
+                const clearedPages = [];
                 const prevRects = this.state.errorsRects[this.state.hoveredKey].length
                     ? this.state.errorsRects[this.state.hoveredKey]
                     : [this.state.errorsRects[this.state.hoveredKey]];
-                prevRects.forEach(rect => this.redrawCanvasByPage(rect.pageIndex));
+                prevRects.forEach(rect => {
+                    if (!clearedPages.includes(rect.pageIndex)) {
+                        clearedPages.push(rect.pageIndex);
+                        this.redrawCanvasByPage(rect.pageIndex);
+                    }
+                });
             } else {
                 this.redrawCanvasByPage(pageIndex);
             }
@@ -463,8 +483,12 @@ class PdfDocument extends React.PureComponent {
                         ? this.state.errorsRects[this.props.selectedCheck].map(rect => rect.pageIndex)
                         : [this.state.errorsRects[this.props.selectedCheck]?.pageIndex];
                 if (hoveredPageIndexes.includes(pageIndex)) {
+                    const clearedPages = [];
                     hoveredPageIndexes.forEach(hoveredPageIndex => {
-                        this.redrawCanvasByPage(hoveredPageIndex);
+                        if (!clearedPages.includes(hoveredPageIndex)) {
+                            clearedPages.push(hoveredPageIndex);
+                            this.redrawCanvasByPage(hoveredPageIndex);
+                        }
                     });
                     this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
                 }
@@ -650,8 +674,12 @@ class PdfDocument extends React.PureComponent {
                 }
 
                 if (this.state.errorsRects[this.props.selectedCheck] instanceof Array) {
+                    const clearedPages = [];
                     this.state.errorsRects[this.props.selectedCheck].forEach(rect => {
-                        this.redrawCanvasByPage(rect.pageIndex);
+                        if (!clearedPages.includes(rect.pageIndex)) {
+                            clearedPages.push(rect.pageIndex);
+                            this.redrawCanvasByPage(rect.pageIndex);
+                        }
                     });
                 } else {
                     this.redrawCanvasByPage(this.state.errorsRects[this.props.selectedCheck].pageIndex);
@@ -677,7 +705,9 @@ class PdfDocument extends React.PureComponent {
     findBboxCoords({ listOfMcid, pageIndex, location }) {
         let coords = null;
         if (location) {
-            const bboxes = calculateBboxFromLocation(location);
+            const bboxes = location.includes('pages[')
+                ? calculateBboxFromLocation(location)
+                : calculateBboxFromJSON(location);
             return bboxes.map(bbox => {
                 return {
                     pageIndex: bbox.page,
@@ -720,7 +750,7 @@ class PdfDocument extends React.PureComponent {
         const { canvasPages, error, pagesMap } = this.state;
         return (
             <section className="inspect-document" onScroll={this.onDocumentScroll}>
-                <section className="pdf-wrapper">
+                <section className="pdf-wrapper" onMouseMove={this.onCanvasMouseMove} onClick={this.onCanvasClick}>
                     <Document
                         file={this.props.file}
                         onLoadSuccess={this.onDocumentLoadSuccess}

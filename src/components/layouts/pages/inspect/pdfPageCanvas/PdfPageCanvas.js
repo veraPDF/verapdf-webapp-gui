@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 
 function PdfPageCanvas(props) {
-    const { id, style, pageIndex, height, width, onMouseMove, onClick, onMount } = props;
+    const { id, style, pageIndex, height, width, onMount } = props;
     const canvas = useRef();
 
     useEffect(
@@ -22,8 +22,6 @@ function PdfPageCanvas(props) {
             height={height}
             width={width}
             ref={canvas}
-            onMouseMove={onMouseMove}
-            onClick={onClick}
         />
     );
 }

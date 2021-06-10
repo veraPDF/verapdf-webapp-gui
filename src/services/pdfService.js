@@ -137,6 +137,22 @@ function findAllMcid(tagObject) {
     return [listOfMcid, pageIndex];
 }
 
+function calculateBboxFromJSON(location) {
+    const bboxes = [];
+    const bboxMap = JSON.parse(location);
+
+    bboxMap.bbox.forEach(({ p, rect }) => {
+        const [x, y, x1, y1] = rect;
+        const width = parseFloat(x1) - parseFloat(x);
+        const height = parseFloat(y1) - parseFloat(y);
+        bboxes.push({
+            page: parseFloat(p),
+            location: [parseFloat(x), parseFloat(y), width, height],
+        });
+    });
+    return bboxes;
+}
+
 function calculateBboxFromLocation(location) {
     const bboxes = [];
     const [pages, boundingBox] = location.split('/');
@@ -234,6 +250,7 @@ export {
     convertContextToString,
     findAllMcid,
     calculateBboxFromLocation,
+    calculateBboxFromJSON,
     calculateStokeColor,
     convertRectToBbox,
 };

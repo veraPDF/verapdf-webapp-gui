@@ -129,9 +129,14 @@ class PdfDocument extends React.PureComponent {
                                     .split('-')[0]
                             );
                         } else {
-                            listOfMcid = [];
-                            const bboxMap = JSON.parse(check.location);
-                            pageIndex = parseInt(bboxMap.bbox[0].p);
+                            try {
+                                listOfMcid = [];
+                                const bboxMap = JSON.parse(check.location);
+                                pageIndex = parseInt(bboxMap.bbox[0].p);
+                            } catch (e) {
+                                console.error(`Not supported context: ${check.location}`);
+                                return;
+                            }
                         }
                     }
                     mapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {

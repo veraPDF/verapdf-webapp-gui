@@ -54,12 +54,12 @@
 			"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a heading"
 		  },
 		  "11": {
-			"SUMMARY": "Paragraph is incorrectly tagged as a span",
-			"DESCRIPTION": "Structure element uses <Span> tag, but is recognized as a paragraph"
-		  },
-		  "12": {
 			"SUMMARY": "Span is incorrectly tagged as a paragraph",
 			"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a span"
+		  },
+		  "12": {
+			"SUMMARY": "Paragraph is incorrectly tagged as a span",
+			"DESCRIPTION": "Structure element uses <Span> tag, but is recognized as a paragraph"
 		  },
 		  "13": {
 			"SUMMARY": "Span is incorrectly tagged as a heading",

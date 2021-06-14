@@ -50,7 +50,7 @@
 			"DESCRIPTION": "Part of the document is recognized as a table, but is not marked as a Table related structure element"
 		  },
 		  "10": {
-			"SUMMARY": "Missing heading tag",
+			"SUMMARY": "Heading is incorrectly tagged as a paragraph",
 			"DESCRIPTION": "Structure element is marked as a paragraph, but is recognized as a heading"
 		  }			
 		}, 	    

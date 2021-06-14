@@ -23,12 +23,36 @@
 		  },
 		  "3": {
 			"SUMMARY": "Incorrect use of Table tag",
-			"DESCRIPTION": "The content is not identified as a Table element"
-		  },      
+			"DESCRIPTION": "The content is marked with <Table> tag, but is not identified as a table"
+		  },
+		  "4": {
+			"SUMMARY": "Incorrect use of H tag",
+			"DESCRIPTION": "The content is marked with <H> tag, but is not identified as a heading"
+		  },
 		  "5": {
-			"SUMMARY": "Missing Table tag",
-			"DESCRIPTION": "Part of the document is identified as a table, but is not marekd with the Table tag"
-		  }
+			"SUMMARY": "Incorrect use of Hn tag",
+			"DESCRIPTION": "The content is marked with <Hn> tag, but is not identified as a heading"
+		  },
+		  "6": {
+			"SUMMARY": "Invalid Table row",
+			"DESCRIPTION": "Part of the document is identified as a table row, but is not marked as a Table related structure element"
+		  },
+		  "7": {
+			"SUMMARY": "Invalid Table header",
+			"DESCRIPTION": "Part of the document is identified as a table header cell, but is not marked as a Table related structure element"
+		  },
+		  "8": {
+			"SUMMARY": "Invalid Table cell",
+			"DESCRIPTION": "Part of the document is identified as a table cell, but is not marked as a Table related structure element"
+		  },
+		  "9": {
+			"SUMMARY": "Missing Table element",
+			"DESCRIPTION": "Part of the document is recognized as a table, but is not marked as a Table related structure element"
+		  },
+		  "10": {
+			"SUMMARY": "Missing heading tag",
+			"DESCRIPTION": "Structure element is marked as a paragraph, but is recognized as a heading"
+		  }			
 		}, 	    
 		"4.1.3": {
 			"1": {

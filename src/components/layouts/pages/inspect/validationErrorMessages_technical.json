@@ -51,8 +51,36 @@
 		  },
 		  "10": {
 			"SUMMARY": "Heading is incorrectly tagged as a paragraph",
-			"DESCRIPTION": "Structure element is marked as a paragraph, but is recognized as a heading"
-		  }			
+			"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a heading"
+		  },
+		  "11": {
+			"SUMMARY": "Paragraph is incorrectly tagged as a span",
+			"DESCRIPTION": "Structure element uses <Span> tag, but is recognized as a paragraph"
+		  },
+		  "12": {
+			"SUMMARY": "Span is incorrectly tagged as a paragraph",
+			"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a span"
+		  },
+		  "13": {
+			"SUMMARY": "Span is incorrectly tagged as a heading",
+			"DESCRIPTION": "Structure element uses <H> or <Hn> tag, but is recognized as a span"
+		  },
+		  "14": {
+			"SUMMARY": "Paragraph is incorrectly tagged as a heading",
+			"DESCRIPTION": "Structure element uses <H>, but is recognized as a paragraph"
+		  },
+		  "15": {
+			"SUMMARY": "Paragraph is incorrectly tagged as a numbered heading",
+			"DESCRIPTION": "Structure element uses one of <H1>, ..., <H7> tags, but is recognized as a paragraph"
+		  },
+		  "16": {
+			"SUMMARY": "Paragraph structure element is empty",
+			"DESCRIPTION": "Paragraph strcuture element is empty or contains only spaces"
+		  },
+		  "17": {
+			"SUMMARY": "Span structure element is empty",
+			"DESCRIPTION": "Span strcuture element is empty or contains only spaces"
+		  }
 		}, 	    
 		"4.1.3": {
 			"1": {

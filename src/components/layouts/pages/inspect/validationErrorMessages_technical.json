@@ -80,6 +80,14 @@
 		  "17": {
 			"SUMMARY": "Span structure element is empty",
 			"DESCRIPTION": "Span strcuture element has no real content"
+		  },
+		  "18": {
+			"SUMMARY": "Heading structure element is empty",
+			"DESCRIPTION": "Heading strcuture element has no real content"
+		  },
+		  "19": {
+			"SUMMARY": "Numbered heading structure element is empty",
+			"DESCRIPTION": "Numbered heading strcuture element has no real content"
 		  }
 		}, 	    
 		"4.1.3": {

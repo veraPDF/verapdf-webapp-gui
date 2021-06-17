@@ -295,6 +295,37 @@ class PdfDocument extends React.PureComponent {
                     }}
                 />
             );
+            Object.keys(pagesArray).forEach(pageNumber => {
+                pageNumber = parseInt(pageNumber);
+                if (!pageNumber) {
+                    return;
+                }
+
+                const canvas = document.querySelector(`.react-pdf__Page[data-page-number="${pageNumber}"] > canvas`);
+                const rect = canvas.getBoundingClientRect();
+                const canvasStylesObject = {
+                    top: `${canvas.parentElement.parentElement.offsetTop}px`,
+                    left: '50%',
+                    height: `${rect.height}px`,
+                    width: `${rect.width}px`,
+                    position: 'absolute',
+                    transform: 'translateX(-50%)',
+                };
+
+                pagesArray[pageNumber] = (
+                    <PdfPageCanvas
+                        key={`bboxCanvas${pageNumber - 1}`}
+                        id={`bboxCanvas${pageNumber - 1}`}
+                        style={canvasStylesObject}
+                        pageIndex={pageNumber - 1}
+                        height={rect.height}
+                        width={rect.width}
+                        onMount={() => {
+                            this.setState({ renderedPages: this.state.renderedPages + 1 });
+                        }}
+                    />
+                );
+            });
 
             loadedPages++;
 

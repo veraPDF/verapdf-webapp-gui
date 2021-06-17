@@ -1,35 +1,41 @@
 {
   "WCAG2.1": {
-		"1.3.4": {
-		  "1": {
-			"SUMMARY": "The document contains pages in both landscape and portrait orientation",
-			"DESCRIPTION": "Make all pages in either landscape or portrait orientation. Don't mix pages with different orientation unless this is essential for the information you need to communicate."
-		  }
-		},
-		"1.4.3": {
-		  "1": {
-			"SUMMARY": "Insufficient text contrast",
-			"DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
-		  }    
-		},
-		"4.1.2": {
-		  "1": {
-			"SUMMARY": "Incorrect use of P tag",
-			"DESCRIPTION": "The content is not identified as a single paragraph"
-		  },
-		  "2": {
-			"SUMMARY": "Incorrect use of Span tag",
-			"DESCRIPTION": "The content is not identified as a single span of text"
-		  },
-		  "3": {
-			"SUMMARY": "Incorrect use of Table tag",
-			"DESCRIPTION": "The content is not identified as a Table element"
-		  },      
-		  "5": {
-			"SUMMARY": "Missing Table tag",
-			"DESCRIPTION": "Part of the document is identified as a table, but is not marekd with the Table tag"
-		  } 
-	  }
+    "1.3.4": {
+      "1": {
+        "SUMMARY": "The document contains pages in both landscape and portrait orientation",
+        "DESCRIPTION": "Make all pages in either landscape or portrait orientation. Don't mix pages with different orientation unless this is essential for the information you need to communicate."
+      }
+    },
+    "1.4.3": {
+      "1": {
+        "SUMMARY": "Insufficient text contrast",
+        "DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
+      }    
+    },
+    "4.1.2": {
+      "1": {
+        "SUMMARY": "Shouldn't these be different paragraphs?",
+        "DESCRIPTION": "This text is tagged as a single paragraph, but it appears as though it should be several paragraphs. Avoid the use of line breaks as much as possible. Use paragraph breaks instead. And consider making each line with different formatting a different paragraph."
+      },
+      "2": {
+        "SUMMARY": "Incorrect use of Span tag",
+        "DESCRIPTION": "The content is not identified as a single span of text"
+      },
+      "3": {
+        "SUMMARY": "Is this really a table?",
+        "DESCRIPTION": "This text is tagged as a table, but it doesn't appear to be a real table. Avoid using tables to align or format text in a document. Reformat this text as a paragraph. Use tabs to align and borders to format text in a paragraph. Best of all, use styles to consistently align and format text throughout the document."
+      },      
+      "5": {
+        "SUMMARY": "Shouldn't this be a table?",
+        "DESCRIPTION": "This looks like a table, but it isn't tagged as such. It's important that tables are tagged are tagged as such so that reader applications for people with visual impairments know how to read it out. Replace this text by a real table using the Insert-Table function in Word or LibreOffice."
+      }
+    },
+    "4.1.3": {
+      "1": {
+        "SUMMARY": "This content is inappropriately tagged",
+        "DESCRIPTION": "If content is not appropriately tagged, reader applications for people with visual impairments will not read the document in the correct way or order."
+      }
+    }
   },
   "ISO 14289-1:2014": {
     "5": {
@@ -91,7 +97,7 @@
     "7.2": {
       "2": {
         "SUMMARY": "Language of the document has not been set",
-        "DESCRIPTION": "Reader applications for people with visual impairments need to know in which language to read this document. You must therefore set the language of the document. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Reader applications for people with visual impairments need to know in which language to read this document. You must therefore set the language of the document. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "3": {
         "SUMMARY": "There is something wrong with the table caption",
@@ -114,7 +120,7 @@
         "DESCRIPTION": "This text is marked as table footer, but de code does not properly identify what table this text belongs to. If this text belongs to a table, try reformatting the table. Keep the table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)"
       },
       "8": {
-        "SUMMARY": "This text is wronly coded as table header cell",
+        "SUMMARY": "This text is wrongly coded as table header cell",
         "DESCRIPTION": "This text is marked as table header cell but it doesn't belong to a row in the table. Try reformatting the table. Keep the table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)"
       },
       "9": {
@@ -163,23 +169,23 @@
       },
       "21": {
         "SUMMARY": "The language of the replacement text has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the replacement text for this text. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the replacement text for this text. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "22": {
         "SUMMARY": "The language of the alternative text has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the alternative text for this element. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the alternative text for this element. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "23": {
         "SUMMARY": "The language of the expansion text of this abbreviation has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the expansion text for this abbreviation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the expansion text for this abbreviation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "24": {
         "SUMMARY": "The language for this annotation has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read this annotation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read this annotation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "25": {
         "SUMMARY": "The language for this form has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read this form. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read this form. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "26": {
         "SUMMARY": "This text is wrongly marked as part of the table of contents",
@@ -191,27 +197,27 @@
       },
       "29": {
         "SUMMARY": "The language of the document has not been coded correctly",
-        "DESCRIPTION": "This problem is probably due to the application you used to make the document. Try setting the language of the document manually. In Word or LibreOffice you set the language by opening the settings of the'Standard' style and setting the desired language. If this does not solve the problem, try this with another application (e.g. LibreOffice instead of Word)."
+        "DESCRIPTION": "This problem is probably due to the application you used to make the document. Try setting the language of the document manually. In Word or LibreOffice you set the language by opening the settings of the 'Standard' style and setting the desired language. If this does not solve the problem, try this with another application (e.g. LibreOffice instead of Word)."
       },
       "30": {
         "SUMMARY": "The language of the replacement text has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the replacement text for this text. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the replacement text for this text. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "31": {
         "SUMMARY": "The language of the alternative text has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the alternative text for this element. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the alternative text for this element. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "32": {
         "SUMMARY": "The language of the expansion text of this abbreviation has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the expansion text for this abbreviation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. In this case reader software for people with visual impairments does not know how to read the expansion text for this abbreviation. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "33": {
         "SUMMARY": "The language for the document metadata has not been set",
-        "DESCRIPTION": "Probably the language for the document has not been set. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Probably the language for the document has not been set. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "34": {
         "SUMMARY": "The language for this text has not been set",
-        "DESCRIPTION": "Reader software for people with visual impairments does not know in which language to read this document. Probably the language for the document has not been set. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the'Standard' style and setting the desired language."
+        "DESCRIPTION": "Reader software for people with visual impairments does not know in which language to read this document. Probably the language for the document has not been set. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "36": {
         "SUMMARY": "The header of this table contains elements that are not part of a header",
@@ -267,17 +273,17 @@
     "7.9": {
       "1": {
         "SUMMARY": "This note is not properly tagged",
-        "DESCRIPTION": "This note does not have a unique identity tag. This makes it difficult for reader software to navigate the document. It's best to avoid notes althogether for accessibility. Should you have to work with notes anyway, use the functionality your office application offers for inserting footnotes, endnotes or cross references. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "DESCRIPTION": "This note does not have a unique identity tag. This makes it difficult for reader software to navigate the document. It's best to avoid notes altogether for accessibility. Should you have to work with notes anyway, use the functionality your office application offers for inserting footnotes, endnotes or cross references. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       },
       "2": {
         "SUMMARY": "There's a problem with the indexing of notes and cross references",
-        "DESCRIPTION": "The document contains conflicting references. This causes reader software to have trouble finding notes and references. It's best to avoid notes althogether for accessibility. Should you have to work with notes anyway, use the functionality your office application offers for inserting footnotes, endnotes or cross references. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "DESCRIPTION": "The document contains conflicting references. This causes reader software to have trouble finding notes and references. It's best to avoid notes altogether for accessibility. Should you have to work with notes anyway, use the functionality your office application offers for inserting footnotes, endnotes or cross references. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       }
     },
     "7.10": {
       "1": {
         "SUMMARY": "There is something wrong with the tagging of optional content",
-        "DESCRIPTION": "This document has one or more layers of optional content whithout proper identification. You can try solving this problem by simplifying the document and avoiding layers of optional content. Or, if you can work with PDF tools you can solve this by flattening the layers of the document."
+        "DESCRIPTION": "This document has one or more layers of optional content without proper identification. You can try solving this problem by simplifying the document and avoiding layers of optional content. Or, if you can work with PDF tools you can solve this by flattening the layers of the document."
       },
       "2": {
         "SUMMARY": "A document layer may change visibility",
@@ -372,82 +378,82 @@
     },
     "7.21.3.1": {
       "1": {
-        "SUMMARY": "There is a problem with the way this font is encoded",
+        "SUMMARY": "There is a problem with the way a font is encoded",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.3.2": {
       "1": {
-        "SUMMARY": "There is a problem with the way this font is encoded",
+        "SUMMARY": "There is a problem with the way a font is encoded",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded scalable (OpenType or TrueType) font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.3.3": {
       "1": {
-        "SUMMARY": "The document does not include the encoding for this font",
+        "SUMMARY": "The document does not include the encoding for a font",
         "DESCRIPTION": "This font has a non-standard encoding which is not included in the document. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "This font does not have a consistent writing order",
+        "SUMMARY": "A font does not have a consistent writing order",
         "DESCRIPTION": "The encoding of this font sets conflicting writing orders for different characters and symbols. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "This font is not encoded in a standard way",
+        "SUMMARY": "A font is not encoded in a standard way",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.4.1": {
       "1": {
-        "SUMMARY": "The font program is not embedded in the document",
+        "SUMMARY": "A font program is not embedded in the document",
         "DESCRIPTION": "All fonts that are used in the document must be embedded. This guarantees that the document can always be rendered correctly without any dependencies on specific readers. This particular font has not been embedded in the document. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "The font does not contain all characters or symbols used in the document",
+        "SUMMARY": "A font does not contain all characters or symbols used in the document",
         "DESCRIPTION": "The embedded font is incomplete. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.4.2": {
       "1": {
-        "SUMMARY": "Something is wrong with the encoding of the font",
+        "SUMMARY": "Something is wrong with the encoding of a font",
         "DESCRIPTION": "The document code does not describe all characters and symbols belonging to this font. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "Something is wrong with the encoding of the font",
+        "SUMMARY": "Something is wrong with the encoding of a font",
         "DESCRIPTION": "The document code does not describe all characters and symbols belonging to this font. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.5": {
       "1": {
-        "SUMMARY": "This font does not have consistent character widths",
+        "SUMMARY": "A font does not have consistent character widths",
         "DESCRIPTION": "The encoding of this font sets conflicting character and symbol widths. This can make it difficult for readers to display text correctly. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.6": {
       "1": {
-        "SUMMARY": "There is something wrong with the encoding of this font",
+        "SUMMARY": "There is something wrong with the encoding of a font",
         "DESCRIPTION": "The encoding of this font does not allow the display of all characters and symbols to be looked up. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "There is something wrong with the encoding of this font",
+        "SUMMARY": "There is something wrong with the encoding of a font",
         "DESCRIPTION": "Fonts must be encoded in a standard way. If not, then reader applications may have problems displaying the correct characters. In this case the encoding does not comply with the required standard for accessibility. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "There is something wrong with the encoding of this symbol font",
+        "SUMMARY": "There is something wrong with the encoding of a symbol font",
         "DESCRIPTION": "The encoding of this symbol font does not comply with the required standard for accessibility, causing reader applications to have problems displaying the correct symbols. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard symbolic font such as Wingdings. Should this not solve the problem, try with another application or avoid the symbols altogether."
       },
       "4": {
-        "SUMMARY": "There is something wrong with the encoding of this symbol font",
+        "SUMMARY": "There is something wrong with the encoding of a symbol font",
         "DESCRIPTION": "These symbols have an ambiguous encoding, which causes reader applications to have problems looking up which symbol to display. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard symbolic font such as Wingdings. Should this not solve the problem, try with another application or avoid the symbols altogether."
       }
     },
     "7.21.7": {
       "1": {
-        "SUMMARY": "This character has no standard code",
-        "DESCRIPTION": "To accomodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. This is not the case here. First make sure to export your document as a PDF with Unicode, for example by exporting to PDF/UA, PDF/A-1a or PDF/A-2a. If this doesn't solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "A character has no standard code",
+        "DESCRIPTION": "To accommodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. This is not the case here. First make sure to export your document as a PDF with Unicode, for example by exporting to PDF/UA, PDF/A-1a or PDF/A-2a. If this doesn't solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "This character has an invalid code",
-        "DESCRIPTION": "To accomodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. The Unicode value for this character is invalid. This problem is probably due to the font or the application used to export the document. Try using another font. Use a well known standard font such as Arial or Times New Roman. Export the document as PDF/UA, PDF/A-1a or PDF/A-2a. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "A character has an invalid code",
+        "DESCRIPTION": "To accommodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. The Unicode value for this character is invalid. This problem is probably due to the font or the application used to export the document. Try using another font. Use a well known standard font such as Arial or Times New Roman. Export the document as PDF/UA, PDF/A-1a or PDF/A-2a. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.8": {

@@ -12,6 +12,24 @@
         "DESCRIPTION": "Tekst moet voldoende contrast met de achtergrond hebben, anders kunnen slechtzienden en kleurenblinden problemen hebben om deze te lezen. Zwarte tekst op een (bijna) witte achtergrond is meestal het veiligst. Gebruik je toch kleuren, zorg dan dat de tekst tenminste een contrast van 4,5 : 1 met de achtergrond heeft (voor heel grote tekst mag het 3 : 1 zijn)."
       }
     },
+    "4.1.2": {
+      "1": {
+        "SUMMARY": "Moeten dit niet verschillende paragrafen zijn?",
+        "DESCRIPTION": "Deze text is gelabeld als één paragraaf, maar het moeten het niet verschillende paragrafen zijn? Vermijd zo veel mogelijk het breken van regels met regeleinden (line breaks). Het is beter om paragrafen te gebruiken. Maak van regels met verschillende uitlijning of opmaak verschillende paragrafen."
+      },
+      "2": {
+        "SUMMARY": "Incorrect use of Span tag",
+        "DESCRIPTION": "The content is not identified as a single span of text"
+      },
+      "3": {
+        "SUMMARY": "Is dit echt een tabel?",
+        "DESCRIPTION": "Deze tekst is als tabel gelabeld, maar het lijkt geen echte tabel. Gebruik tabellen nooit om tekst op te lijnen of te omkaderen. Maak deze tekst op als gewone paragraaf in plaats van een tabel. Gebruik daarbij tabs om op te lijnen en randen om tekst te omkaderen. Beter nog, gebruik stijlen om tekst door het document heen eenduidig op te lijnen en op te maken."
+      },      
+      "5": {
+        "SUMMARY": "Moet dit geen tabel zijn?",
+        "DESCRIPTION": "Deze tekst ziet er uit als een tabel, maar is niet als tabel gelabeld. Het is belangrijk om tabellen als zodanig te labellen zodat voorleessoftware weet dat het een tabel is. Vervang deze tekst dus door een echte tabel door met Invoegen-Tabel functie in Word of LibreOffice."
+      }
+    },
     "4.1.3": {
       "1": {
         "SUMMARY": "De codering komt niet overeen met de inhoud",
@@ -360,81 +378,81 @@
     },
     "7.21.3.1": {
       "1": {
-        "SUMMARY": "Er is een probleem met de codering van het lettertype",
+        "SUMMARY": "Er is een probleem met de codering van een lettertype",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.3.2": {
       "1": {
-        "SUMMARY": "Er is een probleem met de codering van het lettertype",
+        "SUMMARY": "Er is een probleem met de codering van een lettertype",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het schaalbare lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.3.3": {
       "1": {
-        "SUMMARY": "Het document mist de codering van dit lettertype",
+        "SUMMARY": "Het document mist de codering van een lettertype",
         "DESCRIPTION": "Het lettertype heeft een niet-standaard codering die niet in het document is opgenomen. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Dit lettertype heeft geen eenduidige schrijfrichting",
+        "SUMMARY": "Een lettertype heeft geen eenduidige schrijfrichting",
         "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige schrijfrichtingen voor verschillende letters en symbolen. Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Dit lettertype is niet gecodeerd op een standaard manier",
+        "SUMMARY": "Een lettertype is niet gecodeerd op een standaard manier",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.4.1": {
       "1": {
-        "SUMMARY": "Het lettertype is niet in het document ingesloten",
+        "SUMMARY": "Een gebruikt lettertype is niet in het document ingesloten",
         "DESCRIPTION": "Alle lettertypen die in het document gebruikt worden, moeten in het document ingesloten zijn. Dit garandeert dat een document altijd correct kan worden weergegeven zonder afhankelijkheden van specifieke readers. Dit specifieke lettertype is niet in het document opgenomen. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Het lettertype bevat niet alle letters of symbolen die in het document gebruikt worden",
+        "SUMMARY": "Een lettertype bevat niet alle letters of symbolen die in het document gebruikt worden",
         "DESCRIPTION": "Het ingesloten lettertype is incompleet. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.4.2": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van het lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van het lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.5": {
       "1": {
-        "SUMMARY": "Dit lettertype heeft geen eenduidige letterbreedte ",
+        "SUMMARY": "Een lettertype heeft geen eenduidige letterbreedte ",
         "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige letterbreedten, waardoor een reader problemen kan hebben om tekst goed weer te geven. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.6": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van dit lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype",
         "DESCRIPTION": "De codering van dit lettertype maakt het niet mogelijk om de weergave van alle lettertypen op te zoeken. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van dit lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype",
         "DESCRIPTION": "Lettertypen moeten op een standaard manier gecodeerd zijn, anders kan een reader problemen hebben om de letters correct weer te geven. In dit geval voldoet de codering niet aan de standaard vereist voor digitale toegankelijkheid. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Er is iets mis met de codering van deze symbolen",
+        "SUMMARY": "Er is iets mis met de codering van symbolen",
         "DESCRIPTION": "De codering van deze symbolen voldoet niet aan de standaard vereist voor digitale toegankelijkheid. Daardoor kunnen readers de symbolen mogelijk niet correct weergeven. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
       },
       "4": {
-        "SUMMARY": "Er is iets mis met de codering van deze symbolen",
+        "SUMMARY": "Er is iets mis met de codering van symbolen",
         "DESCRIPTION": "Deze symbolen zijn niet op een eenduidige manier gecodeerd. Daardoor kunnen readers niet bepalen welk symbool ze moeten afbeelden. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
       }
     },
     "7.21.7": {
       "1": {
-        "SUMMARY": "Deze letter heeft geen standaard codering",
+        "SUMMARY": "Een letter heeft geen standaard codering",
         "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. Dat is hier niet het geval. Zorg eerst dat je het document naar PDF exporteert met Unicode codering. Dat kan bijvoorbeeld door het document te exporteren als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer dan een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Deze letter heeft een ongeldige codering",
+        "SUMMARY": "Een letter heeft een ongeldige codering",
         "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. De Unicode codering van deze letter is ongeldig. Dit probleem is waarschijnlijk te wijten aan het lettertype dat je gebruikt, of de applicatie waarmee je de PDF hebt geëxporteerd. Probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Exporteer het document als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },

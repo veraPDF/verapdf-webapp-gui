@@ -1,0 +1,564 @@
+{
+  "WCAG2.1": {
+    "1.3.4": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "format",
+        "RATIONALE": "Pages with different orientation are allowed as long as this is essential for the content."
+      }
+    },
+    "1.4.3": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "format",
+        "RATIONALE": "Insufficient contrast makes the text difficult to read for people with visual impairments or colour blind people."
+      }    
+    },
+    "4.1.2": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "If different lines have different formats they shouldn't be marked as a single paragraph."
+      },
+      "2": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "If different lines of text have different formats they shouldn't be part of the same span."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If something that is not a table is is tagged as a table, this can confuse reader software for people with visual impairments."
+      },      
+      "5": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "If something is formatted as a table it should be tagged as such. Otherwise reader software for people with visual impairments won't know it's a table."
+      }
+    },
+    "4.1.3": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If content has been tagged inappropriately, reader software for people with visual impairments will not read the document out in the correct way or order."
+      }
+    }
+  },
+  "ISO 14289-1:2014": {
+    "5": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "metadata",
+        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but doesn't declare itself to be. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, the PDF/UA declaration must be present in the metadata."
+      },
+      "2": {
+        "STATUS": "warning",
+        "CATEGORY": "metadata",
+        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but the declaration is incorrect. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, this metadata must be correct."
+      }
+    },
+    "7.1": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If content is not tagged, then reader applications will not be able to read the document properly."
+      },
+      "4": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The creator of the document suspected that the reading order may not be well defined, but this alone does not imply that the reading order is compromised. However, this issue could cause reader applications to reject the document."
+      },
+      "5": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the document contains non-standard structure types that aren't mapped to standard structure types, then applications may have problems reading the document in the intended logical order."
+      },
+      "6": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the document contains circular mappings between structure types, then applications may have problems reading the document in the intended logical order."
+      },
+      "7": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the document remaps standard structure types, this may confuse applications trying to read out the document in the intended logical order."
+      },
+      "8": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the document has no metadata stream, then applications will have a hard time processing and reading it."
+      },
+      "9": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "To comply with WCAG 2.1, a document must have a title set in the metadata."
+      },
+      "10": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The document settings must require the title to be shown in the title bar."
+      },
+      "13": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the tag structure does not match the semantics of the content, then applications are likely to have problems reading the document in the intended logical order."
+      }
+    },
+    "7.2": {
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of a document must be set, otherwise reader applications will not know in which language to read the document out."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the caption of a table is not tagged correctly or if there is more than one caption, this can confuse reader software."
+      },
+      "4": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements occur outside the context of a table, this can confuse reader software."
+      },
+      "5": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements occur outside the context of a table, this can confuse reader software."
+      },
+      "6": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements occur outside the context of a table, this can confuse reader software."
+      },
+      "7": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements occur outside the context of a table, this can confuse reader software."
+      },
+      "8": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements are not tagged correctly, this can confuse reader software."
+      },
+      "9": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If table elements occur outside the context of a table, this can confuse reader software."
+      },
+      "10": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a table row contains other elements than table head or table content cells, this can confuse reader software."
+      },
+      "11": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains more than one header, this can confuse reader software."
+      },
+      "12": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains more than one footer, this can confuse reader software."
+      },
+      "13": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains a footer but no body, this can confuse reader software."
+      },
+      "14": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains a header but no body, this can confuse reader software."
+      },
+      "15": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains rows with different numbers of cells, this can confuse reader software."
+      },
+      "17": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a list has not been tagged correctly, this can confuse reader software."
+      },
+      "18": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a list has not been tagged correctly, this can confuse reader software."
+      },
+      "19": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a list has not been tagged correctly, this can confuse reader software."
+      },
+      "20": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a list has not been tagged correctly, this can confuse reader software."
+      },
+      "21": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of replacement text must be set, otherwise reader applications will not know in which language to read the text out."
+      },
+      "22": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of alternative text must be set, otherwise reader applications will not know in which language to read the text out."
+      },
+      "23": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of expansion text must be set, otherwise reader applications will not know in which language to read the text out."
+      },
+      "24": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of annotations must be set, otherwise reader applications will not know in which language to read the text out."
+      },
+      "25": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "The language of the form must be set, otherwise reader applications will not know in which language to read the form out."
+      },
+      "26": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a table of contents has not been tagged correctly, this can confuse reader software."
+      },
+      "27": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a table of contents has not been tagged correctly, this can confuse reader software."
+      },
+      "29": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language of the document is not identified with the right identifier, reader software may not understand it."
+      },
+      "30": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language for Actual Text has not been set, reader software doesn't know in which language to read this."
+      },
+      "31": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language for alternative text has not been set, reader software doesn't know in which language to read this."
+      },
+      "32": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language for expansion text has not been set, reader software doesn't know in which language to read this."
+      },
+      "33": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language for metadata has not been set, reader software may have problems reading the document out."
+      },
+      "34": {
+        "STATUS": "error",
+        "CATEGORY": "metadata",
+        "RATIONALE": "If the language for document content has not been set, reader software doesn't know in which language to read the content out."
+      },
+      "36": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the table has been tagged incorrectly, this can confuse reader software."
+      },
+      "37": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the table has been tagged incorrectly, this can confuse reader software."
+      },
+      "38": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If the table has been tagged incorrectly, this can confuse reader software."
+      }
+    },
+    "7.3": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "Alternative text for figures is essential for people with visual impairments. Note: decorative figures do not need alt-text. There is no way for the checker to know if a figure is decorative only, so this error may be raised inappropriately."
+      }
+    },
+    "7.4.2": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If heading levels are not nested correctly, people who use reader software will have difficulty navigating the document."
+      }
+    },
+    "7.4.4": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If headings are not coded correctly, people who use reader software will have difficulty navigating the document."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If headings are not coded correctly, people who use reader software will have difficulty navigating the document."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If headings are not coded correctly, people who use reader software will have difficulty navigating the document."
+      }
+    },
+    "7.5": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a table is not coded correctly, reader software will have problems reading it out correctly."
+      }
+    },
+    "7.7": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "If a a formula lacks alt-text, reader software may not be able to read the formula out in a comprehensible way."
+      }
+    },
+    "7.9": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a note does not have an ID, reader software will have problems navigating the notes and the document."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If notes have conflicting IDs, reader software will have problems navigating the notes and the document."
+      }
+    },
+    "7.10": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If document layers are not properly tagged, reader software may have difficulties knowing whether and how to treat them."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "Document layers with optional content can affect readability. If document layers are not properly tagged, reader software may have difficulties reading the document properly."
+      }
+    },
+    "7.11": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If an attached or embedded file is not tagged properly, it's not accessible to assistive technologies."
+      }
+    },
+    "7.15": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "accessibility",
+        "RATIONALE": "Documents must not include dynamic XFA forms. Forms that configure and display differently depending on the context can cause accessibility problems."
+      }
+    },
+    "7.16": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "accessibility",
+        "RATIONALE": "Encryption can interfere with universal accessibility. A document may be encrypted only in a way that is compatible with universal accessibility as specified in PDF/UA."
+      }
+    },
+    "7.18.1": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If annotations are tagged incorrectly, reader software for people with visual impairments may have problems finding the annotation or reading it out."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "If annotations don't have alternative text, reader software for people with visual impairments may not be able reading out what the annotation is."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "If form fields don't have alternative text, people who use reader software may have problems filling the form out."
+      }
+    },
+    "7.18.2": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "Trapping annotations are not permitted in accessible documents."
+      }
+    },
+    "7.18.3": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If annotations are not tagged properly, reader software cannot determine the logical reading order."
+      }
+    },
+    "7.18.4": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If dynamic forms are not tagged properly, reader software may not know how to handle them."
+      }
+    },
+    "7.18.5": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a link has not been tagged appropriately, reader software may not recognise the link as such."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "If a link doesn't have an alternative text, people who use reader software have to work out the purpose of the link from the bare URL which can be very long and undescriptive."
+      }
+    },
+    "7.18.6.2": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If media clips don't have a well defined MIME type, reader software may not know how to open the media or what to do with it."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "alt-text",
+        "RATIONALE": "If a media clip has no alternative text, people who use reader software may be unable to access the content of the clip."
+      }
+    },
+    "7.18.8": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If printer marks are tagged as content, this can confuse reader applications."
+      }
+    },
+    "7.20": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "accessibility",
+        "RATIONALE": "If a document contains reference XObjects pointing to external content, this makes it difficult for reader applications to follow the reading order."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If XObjects are incorrectly tagged, this makes it difficult for reader applications to follow the reading order."
+      }
+    },
+    "7.21.3.1": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If there is a problem with font encoding, a reader may have problems rendering or scaling the text."
+      }
+    },
+    "7.21.3.2": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If there is a problem with font encoding, a reader may have problems rendering or scaling the text."
+      }
+    },
+    "7.21.3.3": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If there is a problem with font encoding, a reader may have problems rendering or scaling the text."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the writing direction is unclear, a reader may have problems rendering or scaling the text."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If there is a problem with font encoding, a reader may have problems rendering or scaling the text."
+      }
+    },
+    "7.21.4.1": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the font program is not embedded, the rendering of the document may depend on specific readers."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If glyphs are missing from the font program, they may not be displayed properly."
+      }
+    },
+    "7.21.4.2": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the embedded font does not describe all glyphs, this can lead to rendering problems."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the embedded font does not describe all glyphs, this can lead to rendering problems."
+      }
+    },
+    "7.21.5": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the embedded font has inconsistent glyph widths, readers may have trouble displaying text correctly."
+      }
+    },
+    "7.21.6": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the glyph lookup is ambiguous, readers may have trouble displaying text correctly."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If a non-symbolic font has an encoding that is not standard, readers may have trouble displaying text correctly."
+      },
+      "3": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If a symbolic font has an invalid encoding, readers may have trouble displaying symbols correctly."
+      },
+      "4": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the glyph lookup is ambiguous, readers may have trouble displaying text correctly."
+      }
+    },
+    "7.21.7": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If glyphs have no Unicode values, reader software may have problems reading the text out correctly."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If glyphs have invalid Unicode values, reader software may have problems reading the text out correctly."
+      }
+    },
+    "7.21.8": {
+      "1": {
+        "STATUS": "error",
+        "CATEGORY": "font",
+        "RATIONALE": "If the document contains undefined glyphs, readers will not know how to handle them."
+      }
+    }
+  }
+}

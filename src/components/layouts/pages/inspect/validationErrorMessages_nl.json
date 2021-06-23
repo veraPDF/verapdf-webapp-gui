@@ -14,20 +14,80 @@
     },
     "4.1.2": {
       "1": {
-        "SUMMARY": "Moeten dit niet verschillende paragrafen zijn?",
-        "DESCRIPTION": "Deze text is gelabeld als één paragraaf, maar het moeten het niet verschillende paragrafen zijn? Vermijd zo veel mogelijk het breken van regels met regeleinden (line breaks). Het is beter om paragrafen te gebruiken. Maak van regels met verschillende uitlijning of opmaak verschillende paragrafen."
+        "SUMMARY": "Moeten dit niet verschillende alineas zijn?",
+        "DESCRIPTION": "Deze text is gelabeld als één alinea, maar het moeten het niet verschillende alineas zijn? Vermijd zo veel mogelijk het breken van regels met regeleinden (line breaks). Het is beter om alineas te gebruiken. Maak van regels met verschillende uitlijning of opmaak verschillende alineas."
       },
       "2": {
-        "SUMMARY": "Incorrect use of Span tag",
-        "DESCRIPTION": "The content is not identified as a single span of text"
+        "SUMMARY": "Hoort deze tekst wel bij elkaar?",
+        "DESCRIPTION": "Deze tekst is gelabeld alsof deze bij elkaar hoort, maar is dat ook zo? Zorg dat tekst die semantisch of qua opmaak niet bij elkaar hoort ook als verschillende tekst wordt gelabeld, bijvoorbeeld door er verschillende alineas van te maken."
       },
       "3": {
         "SUMMARY": "Is dit echt een tabel?",
-        "DESCRIPTION": "Deze tekst is als tabel gelabeld, maar het lijkt geen echte tabel. Gebruik tabellen nooit om tekst op te lijnen of te omkaderen. Maak deze tekst op als gewone paragraaf in plaats van een tabel. Gebruik daarbij tabs om op te lijnen en randen om tekst te omkaderen. Beter nog, gebruik stijlen om tekst door het document heen eenduidig op te lijnen en op te maken."
+        "DESCRIPTION": "Deze tekst is als tabel gelabeld, maar het lijkt geen echte tabel. Gebruik tabellen nooit om tekst op te lijnen of te omkaderen. Maak deze tekst op als gewone alinea in plaats van een tabel. Gebruik daarbij tabs om op te lijnen en randen om tekst te omkaderen. Beter nog, gebruik stijlen om tekst door het document heen eenduidig op te lijnen en op te maken."
       },      
+      "4": {
+        "SUMMARY": "Is dit wel een kop?",
+        "DESCRIPTION": "Deze tekst is gelabeld als kop, maar lijkt net als kop bedoeld te zijn. Als dit geen kop is, zorg dat deze dan ook niet als zodanig gelabeld is. Bijvoorbeeld door er een alinea in een standaard tekst stijl van te maken."
+      },
       "5": {
-        "SUMMARY": "Moet dit geen tabel zijn?",
-        "DESCRIPTION": "Deze tekst ziet er uit als een tabel, maar is niet als tabel gelabeld. Het is belangrijk om tabellen als zodanig te labellen zodat voorleessoftware weet dat het een tabel is. Vervang deze tekst dus door een echte tabel door met Invoegen-Tabel functie in Word of LibreOffice."
+        "SUMMARY": "Is dit wel een kop?",
+        "DESCRIPTION": "Deze tekst is gelabeld als kop, maar lijkt net als kop bedoeld te zijn. Als dit geen kop is, zorg dat deze dan ook niet als zodanig gelabeld is. Bijvoorbeeld door er een alinea in een standaard tekst stijl van te maken."
+      },
+      "6": {
+        "SUMMARY": "Is dit een rij in een tabel?",
+        "DESCRIPTION": "Deze tekst ziet eruit als een rij in een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+      },
+      "7": {
+        "SUMMARY": "Is dit een kop van een tabel?",
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabelkop maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+      },
+      "8": {
+        "SUMMARY": "Is dit een cel van een tabel?",
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabelcel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+      },
+      "9": {
+        "SUMMARY": "Is dit een tabel?",
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+      },
+      "10": {
+        "SUMMARY": "Is dit een kop?",
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weet voorleessoftware ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
+      },
+      "11": {
+        "SUMMARY": "Moet dit wel een aparte alinea zijn?",
+        "DESCRIPTION": "Deze tekst lijkt niet als aparte alinea bedoeld te zijn. Vermijd nieuwe alineas als dat niet nodig is."
+      },
+      "12": {
+        "SUMMARY": "Moet dit geen alinea zijn?",
+        "DESCRIPTION": "Deze tekst lijkt als alinea bedoeld te zijn, maar is anders gelabeld. Zorg dat je tekst als alinea opmaakt, bijvoorbeeld met de Standaard stijl of een andere alineastijl."
+      },
+      "13": {
+        "SUMMARY": "Is dit een kop?",
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weet voorleessoftware ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
+      },
+      "14": {
+        "SUMMARY": "Is dit wel een kop?",
+        "DESCRIPTION": "Deze tekst is gelabeld als kop, maar lijkt als gewone tekstalinea bedoeld te zijn. Als dit geen kop is, zorg dat deze dan ook niet als zodanig gelabeld is. Bijvoorbeeld door er een alinea in een standaard tekst stijl van te maken."
+      },
+      "15": {
+        "SUMMARY": "Is dit wel een kop?",
+        "DESCRIPTION": "Deze tekst is gelabeld als kop, maar lijkt als gewone tekstalinea bedoeld te zijn. Als dit geen kop is, zorg dat deze dan ook niet als zodanig gelabeld is. Bijvoorbeeld door er een alinea in een standaard tekst stijl van te maken."
+      },
+      "16": {
+        "SUMMARY": "Lege alinea",
+        "DESCRIPTION": "Hier lijkt een lege alinea te staan. Vermijd alineas zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege alineas om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+      },
+      "17": {
+        "SUMMARY": "Leeg tekstelement",
+        "DESCRIPTION": "Hier lijkt een lege tekst te staan. Vermijd regels zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit regels zonder tekst om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+      }, 
+      "18": {
+        "SUMMARY": "Lege kop",
+        "DESCRIPTION": "Hier lijkt een lege kop te staan. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+      },
+      "19": {
+        "SUMMARY": "Lege kop",
+        "DESCRIPTION": "Hier lijkt een lege kop te staan. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       }
     },
     "4.1.3": {

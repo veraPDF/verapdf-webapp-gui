@@ -26,14 +26,89 @@
         "RATIONALE": "If different lines of text have different formats they shouldn't be part of the same span."
       },
       "3": {
-        "STATUS": "error",
-        "CATEGORY": "code",
+        "STATUS": "warning",
+        "CATEGORY": "structure",
         "RATIONALE": "If something that is not a table is is tagged as a table, this can confuse reader software for people with visual impairments."
       },      
+      "4": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "If something that is not intended as a heading is tagged as a heading, this can confuse reader software for people with visual impairments. It will appear in the contents list as a heading, for example."
+      },
       "5": {
         "STATUS": "warning",
         "CATEGORY": "structure",
-        "RATIONALE": "If something is formatted as a table it should be tagged as such. Otherwise reader software for people with visual impairments won't know it's a table."
+        "RATIONALE": "If something that is not intended as a heading is tagged as a heading, this can confuse reader software for people with visual impairments. It will appear in the contents list as a heading, for example."
+      },
+      "6": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a table row must be tagged as a table element. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
+      },
+      "7": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a table head must be tagged as a table element. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
+      },
+      "8": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a table cell must be tagged as a table element. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
+      },
+      "9": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a part of a table must be tagged as a part of a table. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
+      },
+      "10": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a heading must be tagged as a heading. Otherwise reader software for people with visual impairments will not recognise the structure of the document and may have trouble reading it out in the correct order."
+      },
+      "11": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a span was not intended as a paragraph break, then it should not be tagged as such. Otherwise reader software for people with visual impairments will take this as a new paragraph and read it out as such."
+      },
+      "12": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a paragraph must be tagged as a paragraph. Otherwise reader software for people with visual impairments will not recognise the text as a paragraph and may become confused about the reading order if the document."
+      },
+      "13": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a heading must be tagged as a heading. Otherwise reader software for people with visual impairments will not recognise the text as a heading and may become confused about the reading order if the document."
+      },
+      "14": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a paragraph must be tagged as a paragraph. Otherwise reader software for people with visual impairments will not recognise the text as a paragraph and may become confused about the reading order if the document."
+      },
+      "15": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Text that is intended as a paragraph must be tagged as a paragraph. Otherwise reader software for people with visual impairments will not recognise the text as a paragraph and may become confused about the reading order if the document."
+      },
+      "16": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Empty paragraphs can confuse reader software for people with visual impairments. When multiple empty paragraphs are used to create white space in a document, they could be read out explicitly as empty paragraphs which is very disorienting and annoying."
+      },
+      "17": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Empty spans can confuse reader software for people with visual impairments. When multiple empty spans are used to create white space in a document, they could be read out explicitly as empty lines which is very disorienting and annoying."
+      },
+      "18": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Empty headings can confuse reader software for people with visual impairments. When multiple empty headings are used to create white space in a document, they could be read out explicitly as empty headings which is very disorienting and annoying."
+      },
+      "19": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Empty headings can confuse reader software for people with visual impairments. When multiple empty headings are used to create white space in a document, they could be read out explicitly as empty headings which is very disorienting and annoying."
       }
     },
     "4.1.3": {
@@ -105,7 +180,7 @@
       },
       "10": {
         "STATUS": "error",
-        "CATEGORY": "metadata",
+        "CATEGORY": "code",
         "RATIONALE": "The document settings must require the title to be shown in the title bar."
       },
       "13": {
@@ -365,14 +440,14 @@
     "7.15": {
       "1": {
         "STATUS": "error",
-        "CATEGORY": "accessibility",
+        "CATEGORY": "code",
         "RATIONALE": "Documents must not include dynamic XFA forms. Forms that configure and display differently depending on the context can cause accessibility problems."
       }
     },
     "7.16": {
       "1": {
         "STATUS": "error",
-        "CATEGORY": "accessibility",
+        "CATEGORY": "code",
         "RATIONALE": "Encryption can interfere with universal accessibility. A document may be encrypted only in a way that is compatible with universal accessibility as specified in PDF/UA."
       }
     },
@@ -448,7 +523,7 @@
     "7.20": {
       "1": {
         "STATUS": "error",
-        "CATEGORY": "accessibility",
+        "CATEGORY": "code",
         "RATIONALE": "If a document contains reference XObjects pointing to external content, this makes it difficult for reader applications to follow the reading order."
       },
       "2": {

@@ -407,7 +407,7 @@
       },
       "2": {
         "SUMMARY": "Deze link heeft geen alternatieve beschrijving",
-        "DESCRIPTION": "Links moeten een alternatieve beschrijving hebben, zodat mensen die voorleessoftware gebruiken horen waar de link naar wijst en geen ellenlange URLs voorgelezen krijgen. In sommige applicaties kan je de alternatieve tekst invoeren via de 'Hyperlink' optie die je vindt als je rechts klikt op tekst of boven in de menubalk. Ondersteunt je applicatie dat niet probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Een hyperlink moet een duidelijke beschrijving hebben van de bestemming waar hij naar verwijst. Als de link onder een stukje tekst staat die duidelijk de bestemming beschrijft, dan mag je deze waarschuwing negeren. Als de link in de tekst staat uitgeschreven of onder een afbeelding staat, dan moet je hem voorzien van alternatieve tekst. Zet geen lange URLs in je document zonder alternatieve tekst."
       }
     },
     "7.18.6.2": {

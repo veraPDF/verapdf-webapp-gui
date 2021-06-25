@@ -347,7 +347,7 @@
       },
       "2": {
         "SUMMARY": "This link does not have an alternate description",
-        "DESCRIPTION": "Links must have an alternative description so that people using reader applications hear what the link points to and don't hear long URLs read out. In some applications you can add alternative text to links using the 'Hyperlink' option in your application (you usually find this when you right click on the link, or above in the menu). Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "DESCRIPTION": "Hyperlinks must have a clear textual description of the destination they link to. If the hyperlink is placed under descriptive text, then you can ignore this warning. If the hyperlink has been spelled out in the document or is placed under an image, you must give an alternative description. Don't write full URLs in your document without alternative text."
       }
     },
     "7.18.6.2": {

@@ -122,12 +122,12 @@
   "ISO 14289-1:2014": {
     "5": {
       "1": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "metadata",
         "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but doesn't declare itself to be. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, the PDF/UA declaration must be present in the metadata."
       },
       "2": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "metadata",
         "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but the declaration is incorrect. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, this metadata must be correct."
       }
@@ -477,7 +477,7 @@
     },
     "7.18.3": {
       "1": {
-        "STATUS": "error",
+        "STATUS": "ignore",
         "CATEGORY": "code",
         "RATIONALE": "If annotations are not tagged properly, reader software cannot determine the logical reading order."
       }
@@ -496,7 +496,7 @@
         "RATIONALE": "If a link has not been tagged appropriately, reader software may not recognise the link as such."
       },
       "2": {
-        "STATUS": "error",
+        "STATUS": "warning",
         "CATEGORY": "alt-text",
         "RATIONALE": "If a link doesn't have an alternative text, people who use reader software have to work out the purpose of the link from the bare URL which can be very long and undescriptive."
       }

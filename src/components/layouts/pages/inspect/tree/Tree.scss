@@ -49,6 +49,14 @@
 
     .check-item {
       padding: 2px 2px 2px 30px;
+
+      &.Mui-selected {
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+      }
+      &_grouped {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
     }
   }
 }

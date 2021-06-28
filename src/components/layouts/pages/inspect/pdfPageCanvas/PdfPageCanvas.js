@@ -14,16 +14,7 @@ function PdfPageCanvas(props) {
         [height]
     );
 
-    return (
-        <canvas
-            id={id}
-            style={style}
-            data-page={pageIndex}
-            height={height}
-            width={width}
-            ref={canvas}
-        />
-    );
+    return <canvas id={id} style={style} data-page={pageIndex} height={height} width={width} ref={canvas} />;
 }
 
 export default React.memo(PdfPageCanvas);

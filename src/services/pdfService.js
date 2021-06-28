@@ -4,7 +4,8 @@ const COLOR = {
     DEFAULT: 'rgba(0, 0, 0, 0.75)',
     DEFAULT_CONTRAST: 'rgba(255, 255, 255, 0.75)',
     HOVER: 'rgba(0, 0, 0, 0.75)',
-    ACTIVE: 'rgba(207, 63, 79, 0.50)',
+    ACTIVE: 'rgba(207, 63, 79, 0.60)',
+    SECONDARY: 'rgba(207,109,63,0.2)',
 };
 
 // unite bboxes in single one

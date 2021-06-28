@@ -57,6 +57,7 @@ class PdfDocument extends React.PureComponent {
             defaultHeight: 0,
             defaultWidth: 0,
             mapOfErrors: null,
+            secondaryErrors: [],
             structureTree: {},
             annotationsByPage: {},
         };
@@ -143,6 +144,9 @@ class PdfDocument extends React.PureComponent {
                         listOfMcid,
                         pageIndex,
                         location: check.location,
+                        groupId: check.errorArguments[2]
+                            ? `${summary.clause}-${summary.testNumber}-${check.errorArguments[2]}`
+                            : null,
                     };
                 });
             });
@@ -164,6 +168,16 @@ class PdfDocument extends React.PureComponent {
                     this.state.mapOfErrors[this.props.selectedCheck] instanceof Array
                         ? this.state.mapOfErrors[this.props.selectedCheck]
                         : [this.state.mapOfErrors[this.props.selectedCheck]];
+            }
+            if (this.state.secondaryErrors.length) {
+                this.state.secondaryErrors.forEach(check => {
+                    const rect = this.state.errorsRects[check];
+                    if (!clearedPages.includes(rect.pageIndex)) {
+                        clearedPages.push(rect.pageIndex);
+                        this.redrawCanvasByPage(rect.pageIndex);
+                    }
+                });
+                this.state.secondaryErrors = [];
             }
             prevPages.forEach(prevCheck => {
                 if (prevCheck && _.isNumber(prevCheck.pageIndex) && !clearedPages.includes(prevCheck.pageIndex)) {
@@ -526,6 +540,9 @@ class PdfDocument extends React.PureComponent {
                             this.redrawCanvasByPage(hoveredPageIndex);
                         }
                     });
+                    this.state.secondaryErrors.forEach(check => {
+                        this.selectRect(this.state.errorsRects[check], true);
+                    });
                     this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
                 }
             }
@@ -658,14 +675,14 @@ class PdfDocument extends React.PureComponent {
         this.fillCanvasByPage(page);
     }
 
-    selectRect(errorObject) {
+    selectRect(errorObject, isSecondary = false) {
         if (!errorObject) return;
         const rectsArr = errorObject instanceof Array ? errorObject : [errorObject];
         return rectsArr.forEach(rect => {
             const canvas = document.querySelector(`canvas[data-page="${rect.pageIndex}"]`);
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = COLOR.ACTIVE;
+            ctx.fillStyle = isSecondary ? COLOR.SECONDARY : COLOR.ACTIVE;
             const bbox = convertRectToBbox(rect, this.props.scale, canvas.height);
             ctx.strokeStyle = calculateStokeColor(rect.pageIndex + 1, bbox);
             ctx.lineWidth = 2;
@@ -709,8 +726,26 @@ class PdfDocument extends React.PureComponent {
                     preventScroll = false;
                 }
 
+                const clearedPages = [];
+                const secondaryErrors = [];
+                if (this.state.mapOfErrors[this.props.selectedCheck].groupId) {
+                    const { groupId } = this.state.mapOfErrors[this.props.selectedCheck];
+                    Object.keys(this.state.mapOfErrors).forEach(check => {
+                        if (check === this.props.selectedCheck) {
+                            return;
+                        }
+                        if (this.state.mapOfErrors[check].groupId === groupId) {
+                            const rect = this.state.errorsRects[check];
+                            secondaryErrors.push(check);
+                            if (!clearedPages.includes(rect.pageIndex)) {
+                                clearedPages.push(rect.pageIndex);
+                                this.redrawCanvasByPage(rect.pageIndex);
+                            }
+                        }
+                    });
+                }
+
                 if (this.state.errorsRects[this.props.selectedCheck] instanceof Array) {
-                    const clearedPages = [];
                     this.state.errorsRects[this.props.selectedCheck].forEach(rect => {
                         if (!clearedPages.includes(rect.pageIndex)) {
                             clearedPages.push(rect.pageIndex);
@@ -719,7 +754,12 @@ class PdfDocument extends React.PureComponent {
                     });
                 } else {
                     this.redrawCanvasByPage(this.state.errorsRects[this.props.selectedCheck].pageIndex);
+                    clearedPages.push(this.state.errorsRects[this.props.selectedCheck].pageIndex);
                 }
+                this.state.secondaryErrors = [...secondaryErrors];
+                secondaryErrors.forEach(check => {
+                    this.selectRect(this.state.errorsRects[check], true);
+                });
                 this.selectRect(this.state.errorsRects[this.props.selectedCheck]);
             };
 

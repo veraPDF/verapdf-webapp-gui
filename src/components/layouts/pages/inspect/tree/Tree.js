@@ -207,13 +207,19 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
     return checksSorted.map(({ context, errorMessage, location }, index) => {
         const checkKey = `${ruleIndex}:${index}:${location || context}`;
         const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex, location });
+        const isGrouped =
+            selectedCheck &&
+            errorsMap[selectedCheck].groupId &&
+            errorsMap[checkKey].groupId &&
+            errorsMap[selectedCheck].groupId === errorsMap[checkKey].groupId &&
+            selectedCheck !== checkKey;
         return (
             <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
                 selected={selectedCheck === checkKey}
                 button
-                className="check-item"
+                className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
                 title={errorMessage || context}
                 checkTitle={checkTitle}
             />

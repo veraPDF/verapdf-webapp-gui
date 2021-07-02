@@ -3,6 +3,8 @@
 script_path=$(realpath "$0")
 script_dir=$(dirname "$script_path")
 project_root=$(dirname "$script_dir")
+echo "Updating submodules"
+"$script_dir/update-sources.sh"
 
 echo "Building webapp server"
 "$project_root/server/.bin/build-all.sh"

@@ -28,7 +28,8 @@
         "redux": "^4.0.5",
         "redux-actions": "^2.6.5",
         "redux-thunk": "^2.3.0",
-        "reselect": "^4.0.0"
+        "reselect": "^4.0.0",
+        "verapdf-js-viewer": "git+https://github.com/veraPDF/verapdf-js-viewer.git"
     },
     "scripts": {
         "start": "react-app-rewired start",

@@ -7,10 +7,7 @@ import _ from 'lodash';
 
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
-import {
-    convertContextToPath,
-    findAllMcid,
-} from '../../../../../services/pdfService';
+import { convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
 
 import './PdfDocument.scss';
 

@@ -209,6 +209,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
         const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex, location });
         const isGrouped =
             selectedCheck &&
+            errorsMap[selectedCheck] &&
             errorsMap[selectedCheck].groupId &&
             errorsMap[checkKey].groupId &&
             errorsMap[selectedCheck].groupId === errorsMap[checkKey].groupId &&
@@ -306,10 +307,7 @@ function getPageNumber(checkKey, errorsMap) {
     if (
         !errorsMap[checkKey] ||
         errorsMap[checkKey].pageIndex === UNSELECTED ||
-        (!errorsMap[checkKey].listOfMcid.length &&
-            errorsMap[checkKey].listOfMcid instanceof Array &&
-            errorsMap[checkKey].pageIndex !== METADATA &&
-            !errorsMap[checkKey].location)
+        (errorsMap[checkKey].pageIndex !== METADATA && !errorsMap[checkKey].location)
     ) {
         return UNSELECTED;
     }

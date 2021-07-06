@@ -146,7 +146,6 @@ function PdfDocument(props) {
             activeBboxIndex={activeBboxIndex}
             onBboxClick={data => onBboxSelect(data)}
             bboxes={Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
-                page: pageIndex + 1,
                 location,
                 groupId,
             }))}

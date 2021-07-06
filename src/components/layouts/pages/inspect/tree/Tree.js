@@ -203,10 +203,15 @@ function RuleList({
 }
 
 function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
-    let checksSorted = sortChecksByPage(checks, errorsMap);
-    return checksSorted.map(({ context, errorMessage, location }, index) => {
-        const checkKey = `${ruleIndex}:${index}:${location || context}`;
-        const checkTitle = getCheckTitle({ context, index, allChecks: checksSorted, errorsMap, ruleIndex, location });
+    let checksSorted = checks.map((check, index) => {
+        return {
+            ...check,
+            id: `${ruleIndex}:${index}:${check.location || check.context}`,
+        };
+    });
+    checksSorted = sortChecksByPage(checksSorted, errorsMap, ruleIndex);
+    return checksSorted.map(({ context, errorMessage, location, id: checkKey }, index) => {
+        const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap });
         const isGrouped =
             selectedCheck &&
             errorsMap[selectedCheck] &&
@@ -283,14 +288,14 @@ function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
     return errorMessages?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
-function getCheckTitle({ context, index, allChecks, errorsMap, ruleIndex, location }) {
-    const page = getPageNumber(`${ruleIndex}:${index}:${location || context}`, errorsMap);
+function getCheckTitle({ checkKey, index, allChecks, errorsMap }) {
+    const page = getPageNumber(checkKey, errorsMap);
     const pageString = page === UNSELECTED ? '' : `Page ${page}: `;
 
     let length = 0;
     let number = 1;
     allChecks.forEach((check, checkIndex) => {
-        if (getPageNumber(`${ruleIndex}:${checkIndex}:${check.location || check.context}`, errorsMap) !== page) {
+        if (getPageNumber(`${check.id}`, errorsMap) !== page) {
             return;
         }
 
@@ -315,9 +320,9 @@ function getPageNumber(checkKey, errorsMap) {
     return errorsMap[checkKey].pageIndex + 1;
 }
 
-function sortChecksByPage(checks, errorsMap) {
+function sortChecksByPage(checks, errorsMap, ruleIndex) {
     let newChecks = [...checks];
-    newChecks.sort(({ context: a }, { context: b }) => {
+    newChecks.sort(({ id: a }, { id: b }) => {
         const pageA = getPageNumber(a, errorsMap);
         const pageB = getPageNumber(b, errorsMap);
 

@@ -4,11 +4,16 @@
 .summary {
   @include centered-column;
   width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 
-  h2 {
+  &__document-title {
     margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
   }
 
   &__chart {

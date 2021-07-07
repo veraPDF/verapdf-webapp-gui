@@ -21,9 +21,6 @@ describe('Validation', () => {
         integrationTest(async (store, component) => {
             await storeFile(component, store);
 
-            // Move to settings
-            moveNext(component);
-
             // Click validate button
             moveNext(component);
             expect(createJob).toHaveBeenCalledTimes(1);

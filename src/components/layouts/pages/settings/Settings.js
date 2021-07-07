@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -6,6 +6,8 @@ import { Redirect } from 'react-router-dom';
 import AppPages from '../../../AppPages';
 import WizardStep from '../../wizardStep/WizardStep';
 import ProfileSelect from './profile/ProfileSelect';
+import Button from '../../../shared/button/Button';
+import LinkButton from '../../../shared/linkButton/LinkButton';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
 import { getJobId } from '../../../../store/job/selectors';
@@ -13,22 +15,9 @@ import { validate } from '../../../../store/job/actions';
 
 import './Settings.scss';
 
-const backButton = {
-    label: 'Upload files',
-    to: AppPages.UPLOAD,
-};
-
 function Settings(props) {
     const { allServicesAvailable, jobId, onValidateClick } = props;
-
-    const forwardButton = useMemo(
-        () => ({
-            label: 'Validate',
-            disabled: !allServicesAvailable,
-            onClick: () => onValidateClick(),
-        }),
-        [allServicesAvailable, onValidateClick]
-    );
+    const onForwardClick = useCallback(() => onValidateClick(), [onValidateClick]);
 
     if (jobId) {
         // Once job is initialized and we know its ID redirect to status page to track its progress
@@ -42,7 +31,20 @@ function Settings(props) {
                     <ProfileSelect />
                 </form>
             </section>
-            <PageNavigation back={backButton} forward={forwardButton} />
+            <PageNavigation>
+                <LinkButton className="nav-button_back" to={AppPages.UPLOAD} type="back" variant="outlined">
+                    Upload files
+                </LinkButton>
+                <Button
+                    className="nav-button_forward"
+                    variant="contained"
+                    color="primary"
+                    disabled={!allServicesAvailable}
+                    onClick={onForwardClick}
+                >
+                    Validate
+                </Button>
+            </PageNavigation>
         </WizardStep>
     );
 }

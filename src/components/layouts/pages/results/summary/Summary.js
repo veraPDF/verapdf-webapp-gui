@@ -23,7 +23,7 @@ function Summary({ fileInfo, resultSummary }) {
     const compliancePercent = useMemo(() => calculateCompliance(resultSummary), [resultSummary]);
     return (
         <Paper className="summary">
-            <h2>{fileInfo.name}</h2>
+            <h2 className="summary__document-title">{fileInfo.name}</h2>
             <section className="summary__chart">
                 <Chart
                     chartType="PieChart"

@@ -1,4 +1,12 @@
-import { TEST_FILE, integrationTest, getNextStepButton, storeFile, moveBack, moveNext } from './index';
+import {
+    TEST_FILE,
+    integrationTest,
+    getNextStepButton,
+    storeFile,
+    moveBack,
+    moveNext,
+    toggleSettingsCheckbox,
+} from './index';
 
 const EMPTY_DROPZONE_TEXT = 'Drop a PDF file, or click to select a file';
 const FAILED_FILE = {
@@ -29,7 +37,7 @@ describe('Upload', () => {
         integrationTest(async (store, component) => {
             await storeFile(component, store);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}${TEST_FILE.size}`);
             expect(getNextStepButton(component).props().disabled).toBeFalsy();
         })
     );
@@ -58,11 +66,12 @@ describe('Upload', () => {
         'File still attached after going back from next step',
         integrationTest(async (store, component) => {
             await storeFile(component, store);
+            toggleSettingsCheckbox(component, true);
 
             moveNext(component);
             moveBack(component);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}${TEST_FILE.size}`);
         })
     );
 });

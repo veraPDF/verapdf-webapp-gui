@@ -1,5 +1,6 @@
 export const JOB_FILE = 'JOB_FILE';
 export const JOB_SETTINGS = 'JOB_SETTINGS';
+export const USE_SETTINGS_FLAG = 'USE_SETTINGS_FLAG';
 
 export const JOB_STATUS = {
     CREATED: 'CREATED',

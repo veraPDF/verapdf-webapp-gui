@@ -46,7 +46,7 @@
 				"DESCRIPTION": "Part of the document is identified as a table cell, but is not marked as a Table related structure element"
 			},
 			"9": {
-				"SUMMARY": "Missing Table element",
+				"SUMMARY": "Missing Table element(s)",
 				"DESCRIPTION": "Part of the document is recognized as a table, but is not marked as a Table related structure element"
 			},
 			"10": {
@@ -90,8 +90,8 @@
 				"DESCRIPTION": "Numbered heading structure element has no real content"
 			},
 			"20": {
-				"SUMMARY": "Heading is incorrectly tagged as a paragraph",
-				"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a heading"
+				"SUMMARY": "Caption is incorrectly tagged as a paragraph",
+				"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a figure caption"
 			},
 			"21": {
 				"SUMMARY": "Missing List element(s)",

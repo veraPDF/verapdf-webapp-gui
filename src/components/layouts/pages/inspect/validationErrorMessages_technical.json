@@ -88,6 +88,14 @@
 			"19": {
 				"SUMMARY": "Numbered heading structure element is empty",
 				"DESCRIPTION": "Numbered heading structure element has no real content"
+			},
+			"20": {
+				"SUMMARY": "Heading is incorrectly tagged as a paragraph",
+				"DESCRIPTION": "Structure element uses <P> tag, but is recognized as a heading"
+			},
+			"21": {
+				"SUMMARY": "Missing List element(s)",
+				"DESCRIPTION": "Part of the document is recognized as a list, but is not marked as a List related structure element"
 			}
 		}, 	    
 		"4.1.3": {

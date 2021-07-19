@@ -19,7 +19,9 @@ function Footer(props) {
 
     return (
         <footer className="app-footer">
-            <div title={`File storage: ${fileServiceInfo}\nJob service: ${jobServiceInfo}`}>version: {appVersion}</div>
+            <div title={`File storage: ${fileServiceInfo}\nJob service: ${jobServiceInfo}`}>
+                version: {appVersion} - {process.env.REACT_APP_VERSION_DATE}
+            </div>
         </footer>
     );
 }

@@ -80,6 +80,7 @@ function PdfDocument(props) {
     }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
         props.setSelectedCheck(Object.keys(mapOfErrors)[activeBboxIndex]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
 
     const onDocumentReady = useCallback(

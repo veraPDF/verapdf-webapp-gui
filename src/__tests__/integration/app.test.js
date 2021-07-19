@@ -1,14 +1,14 @@
 import { integrationTest } from './index';
 import Loading from '../../components/layouts/pages/loading/Loading';
 
-const { REACT_APP_VERSION } = process.env;
+const { REACT_APP_VERSION, REACT_APP_VERSION_DATE } = process.env;
 
 describe('App', () => {
     it(
         'verify app version in footer',
         integrationTest((store, component) => {
             const version = component.find('.app-footer > div').text();
-            expect(version).toEqual(`version: ${REACT_APP_VERSION}`);
+            expect(version).toEqual(`version: ${REACT_APP_VERSION} - ${REACT_APP_VERSION_DATE}`);
         })
     );
 

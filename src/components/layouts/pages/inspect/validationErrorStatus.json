@@ -16,12 +16,12 @@
     },
     "4.1.2": {
       "1": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "structure",
         "RATIONALE": "If different lines have different formats they shouldn't be marked as a single paragraph."
       },
       "2": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "code",
         "RATIONALE": "If different lines of text have different formats they shouldn't be part of the same span."
       },
@@ -66,7 +66,7 @@
         "RATIONALE": "Text that is intended as a heading must be tagged as a heading. Otherwise reader software for people with visual impairments will not recognise the structure of the document and may have trouble reading it out in the correct order."
       },
       "11": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "structure",
         "RATIONALE": "If a span was not intended as a paragraph break, then it should not be tagged as such. Otherwise reader software for people with visual impairments will take this as a new paragraph and read it out as such."
       },
@@ -109,6 +109,16 @@
         "STATUS": "warning",
         "CATEGORY": "structure",
         "RATIONALE": "Empty headings can confuse reader software for people with visual impairments. When multiple empty headings are used to create white space in a document, they could be read out explicitly as empty headings which is very disorienting and annoying."
+      },
+      "20": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Captions must be tagged as such. If not, then reader software for people with visual impairments may not recognise the text as a caption that belongs with the figure."
+      },
+      "21": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Lists must be formatted and tagged as such. If not, then reader software for people with visual impairments may not recognise the text as a list and may fail to read it out properly."
       }
     },
     "4.1.3": {

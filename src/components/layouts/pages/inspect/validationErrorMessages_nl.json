@@ -88,6 +88,14 @@
       "19": {
         "SUMMARY": "Lege kop",
         "DESCRIPTION": "Hier lijkt een lege kop te staan. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+      },
+      "20": {
+        "SUMMARY": "Is dit een bijschrift van de figuur erboven?",
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur erboven. Zorg dat je bijschriften als onderdeel van de figuur opmaakt. In Word en LibreOffice doe je dat door met de rechtermuisknop op de figuur te klikken en dan in het menu 'Bijschrift invoegen' te kiezen."
+      },      
+      "21": {
+        "SUMMARY": "Is dit een opsomming of genummerde lijst?",
+        "DESCRIPTION": "Deze tekst lijkt een opsomming of genummerde lijst te zijn maar is niet als zodanig opgemaakt. Maak opsommingen en genummerde lijsten niet handmatig op maar gebruik hiervoor altijd de functionaliteit van Word of LibreOffice."
       }
     },
     "4.1.3": {

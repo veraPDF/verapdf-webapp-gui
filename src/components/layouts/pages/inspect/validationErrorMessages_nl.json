@@ -350,12 +350,12 @@
     },
     "7.10": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van de optionele inhoud",
-        "DESCRIPTION": "Dit document heeft één of meer lagen met optionele inhoud die niet goed geïdentificeerd zijn. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen en lagen met optionele inhoud te vermijden. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
+        "SUMMARY": "Een documentlaag heeft geen naam",
+        "DESCRIPTION": "Dit document bestaat uit één of meer lagen die niet goed geïdentificeerd zijn. Dit ze fout wordt waarschijnlijk veroorzaakt door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen.Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen ('merge' of 'flatten' layers)."
       },
       "2": {
-        "SUMMARY": "Een laag met optionele inhoud kan de leesbaarheid van het document beïnvloeden",
-        "DESCRIPTION": "Dit document heeft één of meer lagen met optionele inhoud die de leesbaarheid nadelig kunnen beïnvloeden. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen en lagen met optionele inhoud te vermijden. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
+        "SUMMARY": "Een documentlaag kan de leesbaarheid negatief beïnvloeden",
+        "DESCRIPTION": "Dit document bestaat uit één of meer lagen die de leesbaarheid nadelig kunnen beïnvloeden. Dit ze fout kan veroorzaakt zijn door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
       }
     },
     "7.11": {

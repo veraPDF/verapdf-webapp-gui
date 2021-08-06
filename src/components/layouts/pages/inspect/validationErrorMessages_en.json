@@ -282,12 +282,12 @@
     },
     "7.10": {
       "1": {
-        "SUMMARY": "There is something wrong with the tagging of optional content",
-        "DESCRIPTION": "This document has one or more layers of optional content without proper identification. You can try solving this problem by simplifying the document and avoiding layers of optional content. Or, if you can work with PDF tools you can solve this by flattening the layers of the document."
+        "SUMMARY": "A document layer has no name",
+        "DESCRIPTION": "This document has one or more layers without proper identification. This problem is probably caused by the office application you used to create it. You can try solving this problem by simplifying the document. Or, if you can work with PDF tools you can solve this by flattening or merging the layers of the document."
       },
       "2": {
         "SUMMARY": "A document layer may change visibility",
-        "DESCRIPTION": "This document has one or more layers of optional content that can affect the readability. You can try solving this problem by simplifying the document and avoiding layers of optional content. Or, if you can work with PDF tools you can solve this by flattening the layers of the document."
+        "DESCRIPTION": "This document has one or more layers that can affect the readability. This problem may have been caused by the office application you used to create it. You can try solving this problem by simplifying the document. Or, if you can work with PDF tools you can solve this by flattening or merging the layers of the document."
       }
     },
     "7.11": {

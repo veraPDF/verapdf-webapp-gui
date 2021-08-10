@@ -28,6 +28,70 @@
       "5": {
         "SUMMARY": "Shouldn't this be a table?",
         "DESCRIPTION": "This looks like a table, but it isn't tagged as such. It's important that tables are tagged are tagged as such so that reader applications for people with visual impairments know how to read it out. Replace this text by a real table using the Insert-Table function in Word or LibreOffice."
+      },
+      "6": {
+        "SUMMARY": "Is this a table row?",
+        "DESCRIPTION": "This text appears to be a table row but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
+      },
+      "7": {
+        "SUMMARY": "Is this a table head?",
+        "DESCRIPTION": "This text appears to be a table head but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
+      },
+      "8": {
+        "SUMMARY": "Is this a table cell?",
+        "DESCRIPTION": "This text appears to be a table cell but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
+      },
+      "9": {
+        "SUMMARY": "Is this a table?",
+        "DESCRIPTION": "This appears to be a table but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
+      },
+      "10": {
+        "SUMMARY": "Is this a heading?",
+        "DESCRIPTION": "This line appears to be intended as a heading, but is not tagged as such. Make sure to use heading styles (Heading 1, Heading 2, Heading 3, etc) to format headings. This allows reader applications for people with visual disabilities to recognise headings and help people navigate the document. If you don't like the way standard heading styles you can change the way they are formatted."
+      },
+      "11": {
+        "SUMMARY": "Should this be a new paragraph?",
+        "DESCRIPTION": "This line doesn't appear to be intended as a new paragraph. Avoid unnecessary paragraph breaks in your document."
+      },
+      "12": {
+        "SUMMARY": "Shouldn't this be a paragraph?",
+        "DESCRIPTION": "This text appears to be intended as a paragraph but is not tagged as such. Make sure to format text as paragraphs, for example with the Standard style or another paragraph styles."
+      },
+      "13": {
+        "SUMMARY": "Is this a heading?",
+        "DESCRIPTION": "This line appears to be intended as a heading, but is not tagged as such. Make sure to use heading styles (Heading 1, Heading 2, Heading 3, etc) to format headings. This allows reader applications for people with visual disabilities to recognise headings and help people navigate the document. If you don't like the way standard heading styles you can change the way they are formatted."
+      },
+      "14": {
+        "SUMMARY": "Is this really a heading?",
+        "DESCRIPTION": "This text is tagged as a heading but appears to be intended as a normal paragraph. If this is not a heading, make sure it's not formatted and tagged as such. Format it as a paragraph instead, for example using the Standard paragraph style."
+      },
+      "15": {
+        "SUMMARY": "Is this really a heading?",
+        "DESCRIPTION": "This text is tagged as a heading but appears to be intended as a normal paragraph. If this is not a heading, make sure it's not formatted and tagged as such. For example, by using the Standard paragraph style."
+      },
+      "16": {
+        "SUMMARY": "Empty paragraph",
+        "DESCRIPTION": "This appears to be an empty paragraph. Avoid paragraphs without text, as this can confuse reader applications for people with visual impairments. Never use paragraphs to create vertical white space. You can create vertical white space by opening the 'Paragraph' menu and adapting the settings for 'Indents and spacing'."
+      },
+      "17": {
+        "SUMMARY": "Empty text element",
+        "DESCRIPTION": "This text appears to be empty. Avoid lines without text as this can confuse reader applications for people with visual impairments. Never use empty lines to create vertical white space. You can create vertical white space by opening the 'Paragraph' menu and adapting the settings for 'Indents and spacing'."
+      }, 
+      "18": {
+        "SUMMARY": "Empty heading",
+        "DESCRIPTION": "This heading appears to be empty. Avoid headings without text as this can confuse reader applications for people with visual impairments. Never use empty headings to create vertical white space. You can create vertical white space by opening the 'Paragraph' menu and adapting the settings for 'Indents and spacing'."
+      },
+      "19": {
+        "SUMMARY": "Empty heading",
+        "DESCRIPTION": "This heading appears to be empty. Avoid headings without text as this can confuse reader applications for people with visual impairments. Never use empty headings to create vertical white space. You can create vertical white space by opening the 'Paragraph' menu and adapting the settings for 'Indents and spacing'."
+      },
+      "20": {
+        "SUMMARY": "Is this a figure caption?",
+        "DESCRIPTION": "This text appears to be intended as a caption for the figure above it. Make sure to format captions as part of the figure itself. You can do this in Word and LibreOffice by right clicking on the figure and selecting 'Insert caption'."
+      },      
+      "21": {
+        "SUMMARY": "Is this a list?",
+        "DESCRIPTION": "This text appears to be intended as a list, but is not formatted and tagged as such. Avoid formatting lists manually, use the list functionality of your Office application instead."
       }
     },
     "4.1.3": {

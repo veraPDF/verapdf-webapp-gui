@@ -144,17 +144,17 @@
     },
     "7.1": {
       "1": {
-        "STATUS": "error",
+        "STATUS": "serious",
         "CATEGORY": "code",
         "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
       },
       "2": {
-        "STATUS": "error",
+        "STATUS": "serious",
         "CATEGORY": "code",
         "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
       },
       "3": {
-        "STATUS": "error",
+        "STATUS": "serious",
         "CATEGORY": "code",
         "RATIONALE": "If content is not tagged, then reader applications will not be able to read the document properly."
       },
@@ -179,7 +179,7 @@
         "RATIONALE": "If the document remaps standard structure types, this may confuse applications trying to read out the document in the intended logical order."
       },
       "8": {
-        "STATUS": "error",
+        "STATUS": "serious",
         "CATEGORY": "metadata",
         "RATIONALE": "If the document has no metadata stream, then applications will have a hard time processing and reading it."
       },
@@ -201,7 +201,7 @@
     },
     "7.2": {
       "2": {
-        "STATUS": "error",
+        "STATUS": "critical",
         "CATEGORY": "metadata",
         "RATIONALE": "The language of a document must be set, otherwise reader applications will not know in which language to read the document out."
       },
@@ -326,7 +326,7 @@
         "RATIONALE": "If a table of contents has not been tagged correctly, this can confuse reader software."
       },
       "29": {
-        "STATUS": "error",
+        "STATUS": "critical",
         "CATEGORY": "metadata",
         "RATIONALE": "If the language of the document is not identified with the right identifier, reader software may not understand it."
       },
@@ -456,7 +456,7 @@
     },
     "7.16": {
       "1": {
-        "STATUS": "error",
+        "STATUS": "critical",
         "CATEGORY": "code",
         "RATIONALE": "Encryption can interfere with universal accessibility. A document may be encrypted only in a way that is compatible with universal accessibility as specified in PDF/UA."
       }
@@ -628,12 +628,12 @@
     },
     "7.21.7": {
       "1": {
-        "STATUS": "error",
+        "STATUS": "critical",
         "CATEGORY": "code",
         "RATIONALE": "If glyphs have no Unicode values, reader software may have problems reading the text out correctly."
       },
       "2": {
-        "STATUS": "error",
+        "STATUS": "critical",
         "CATEGORY": "code",
         "RATIONALE": "If glyphs have invalid Unicode values, reader software may have problems reading the text out correctly."
       }

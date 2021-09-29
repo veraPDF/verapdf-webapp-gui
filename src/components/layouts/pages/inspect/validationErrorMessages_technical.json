@@ -3,7 +3,7 @@
 		"1.3.1": {
 			"1": {
 				"SUMMARY": "ASCII text is used as a pseudographics",
-				"DESCRIPTION": "Repeated ASCII charaters are used for presentational purpose and are not marked as artifact"
+				"DESCRIPTION": "Repeated ASCII charaсters are used for presentational purpose and are not marked as artifact"
 			}
 		},		
 		"1.3.4": {

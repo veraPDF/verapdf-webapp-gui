@@ -2,8 +2,8 @@
     "WCAG2.1": {
 		"1.3.1": {
 			"1": {
-				"SUMMARY": "ASCII text is used as a preudographics",
-				"DESCRIPTION": "Repeated ASCII caraters are used for presentational purpose and are not marked as artifact"
+				"SUMMARY": "ASCII text is used as a pseudographics",
+				"DESCRIPTION": "Repeated ASCII charaters are used for presentational purpose and are not marked as artifact"
 			}
 		},		
 		"1.3.4": {

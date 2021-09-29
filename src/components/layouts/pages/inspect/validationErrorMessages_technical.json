@@ -1,5 +1,11 @@
 {
     "WCAG2.1": {
+		"1.3.1": {
+			"1": {
+				"SUMMARY": "ASCII text is used as a preudographics",
+				"DESCRIPTION": "Repeated ASCII caraters are used for presentational purpose and are not marked as artifact"
+			}
+		},		
 		"1.3.4": {
 			"1": {
 				"SUMMARY": "Pages have different orientation",
@@ -10,6 +16,28 @@
 			"1": {
 				"SUMMARY": "Insufficient text contrast",
 				"DESCRIPTION": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1."
+			}
+		},
+		"1.4.8": {
+			"1": {
+				"SUMMARY": "Inaccessible font",
+				"DESCRIPTION": "Font used for text rendering is not recommended for accessibility"
+			}
+		},
+		"2.4.9": {
+			"1": {
+				"SUMMARY": "Missing alternate Link description",
+				"DESCRIPTION": "The Link annotation has no Alt entry and is not associated with a meaningful text on the page"
+			}
+		},
+		"4.1.1": {
+			"1": {
+				"SUMMARY": "Table body contains merged cells",
+				"DESCRIPTION": "Merged table cells deteriorate the document accessibility and are not recommended"
+			},
+			"2": {
+				"SUMMARY": "Table header contains merged cells",
+				"DESCRIPTION": "Merged table cells deteriorate the document accessibility and are not recommended"
 			}
 		},
 		"4.1.2": {

@@ -1,5 +1,11 @@
 {
   "WCAG2.1": {
+    "1.3.1": {
+      "1": {
+	"SUMMARY": "Is deze regel bedoeld als lijn of figuur?",
+	"DESCRIPTION": "Deze regel bevat een heleboel herhaalde tekens. Bedenk dat voorleessoftware voor deze tekens één voor één opleest. Dat kan erg verwarrend en hinderlijk zijn voor mensen met een gezichtsbeperking. Probeerde je hiermee een figuur, lijn of formulier te maken? Voeg dan een lijn of afbeelding in. Gebruik hiervoor geen herhaalde underscores, streepjes of andere tekens."
+      }
+    },
     "1.3.4": {
       "1": {
         "SUMMARY": "Het document heeft pagina's in zowel staande als liggende opmaak",
@@ -10,6 +16,28 @@
       "1": {
         "SUMMARY": "Onvoldoende contrast",
         "DESCRIPTION": "Tekst moet voldoende contrast met de achtergrond hebben, anders kunnen slechtzienden en kleurenblinden problemen hebben om deze te lezen. Zwarte tekst op een (bijna) witte achtergrond is meestal het veiligst. Gebruik je toch kleuren, zorg dan dat de tekst tenminste een contrast van 4,5 : 1 met de achtergrond heeft (voor heel grote tekst mag het 3 : 1 zijn)."
+      }
+    },
+    "1.4.8": {
+      "1": {
+	"SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn",
+	"DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Voorleessoftware kan deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
+      }
+    },
+    "2.4.9": {
+      "1": {
+	"SUMMARY": "Deze link heeft geen heldere beschrijving",
+	"DESCRIPTION": "Deze link heeft geen alternatieve beschrijving. Bedenk dat voorleessoftware deze URL  van voor tot achter zal voorlezen. Dat is erg onhandig voor een gebruiker met een gezichtsbeperking. Vermijd daarom het opnemen van lange URLs in je tekst. Zet links onder een beschrijvende tekst OF voorzie de link van een alternatieve beschrijving (net als afbeeldingen)."
+      }
+    },
+    "4.1.1": {
+      "1": {
+	"SUMMARY": "Deze tabel bevat samengevoegde cellen",
+	  "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+      },
+      "2": {
+	"SUMMARY": "Deze tabelkop bevat samengevoegde cellen",
+	"DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
       }
     },
     "4.1.2": {
@@ -75,19 +103,19 @@
       },
       "16": {
         "SUMMARY": "Lege alinea",
-        "DESCRIPTION": "Hier lijkt een lege alinea te staan. Vermijd alineas zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege alineas om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege alinea's in je document. Vermijd alineas zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege alineas om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "17": {
         "SUMMARY": "Leeg tekstelement",
-        "DESCRIPTION": "Hier lijkt een lege tekst te staan. Vermijd regels zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit regels zonder tekst om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege tekstregels in je document. Vermijd regels zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit regels zonder tekst om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       }, 
       "18": {
         "SUMMARY": "Lege kop",
-        "DESCRIPTION": "Hier lijkt een lege kop te staan. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "19": {
         "SUMMARY": "Lege kop",
-        "DESCRIPTION": "Hier lijkt een lege kop te staan. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "20": {
         "SUMMARY": "Is dit een bijschrift van de figuur erboven?",
@@ -472,7 +500,7 @@
     },
     "7.21.4.1": {
       "1": {
-        "SUMMARY": "Een gebruikt lettertype is niet in het document ingesloten",
+        "SUMMARY": "Een gebruikt lettertype is niet in het document ingesloten. Dit betreft lettertype(s): ",
         "DESCRIPTION": "Alle lettertypen die in het document gebruikt worden, moeten in het document ingesloten zijn. Dit garandeert dat een document altijd correct kan worden weergegeven zonder afhankelijkheden van specifieke readers. Dit specifieke lettertype is niet in het document opgenomen. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
@@ -482,11 +510,11 @@
     },
     "7.21.4.2": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s): ",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
@@ -498,11 +526,11 @@
     },
     "7.21.6": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
         "DESCRIPTION": "De codering van dit lettertype maakt het niet mogelijk om de weergave van alle lettertypen op te zoeken. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
         "DESCRIPTION": "Lettertypen moeten op een standaard manier gecodeerd zijn, anders kan een reader problemen hebben om de letters correct weer te geven. In dit geval voldoet de codering niet aan de standaard vereist voor digitale toegankelijkheid. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {

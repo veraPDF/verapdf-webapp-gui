@@ -1,5 +1,11 @@
 {
   "WCAG2.1": {
+    "1.3.1": {
+      "1": {
+	"SUMMARY": "Is this meant to be a line or figure?",
+	"DESCRIPTION": "There are many repeated occurrences of the same character in this line. Beware that reader software for people with visual impairments wil read these out one by one. This can be confusing and annoying for the reader. If you were trying to make a line, figure or form then insert a real line of figure. Don't use repeated underscores, dashes or other characters."
+      }
+    },
     "1.3.4": {
       "1": {
         "SUMMARY": "The document contains pages in both landscape and portrait orientation",
@@ -11,6 +17,28 @@
         "SUMMARY": "Insufficient text contrast",
         "DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
       }    
+    },
+    "1.4.8": {
+      "1": {
+	"SUMMARY": "The document contains fonts that are difficult to read",
+	"DESCRIPTION": "You're using fonts that are difficult to read. Reader software will read the text out correctly, but people with impaired vision, ADHD or people in the autism spectrum may have problems reading this. Unless you meant this text to be unreadable, use standard fonts such as Arial, Verdana or Times Roman."
+      }
+    },
+    "2.4.9": {
+      "1": {
+	"SUMMARY": "This link does not have a clear description",
+	"DESCRIPTION": "This link does not have an alternative description. Beware that reader software wil read this URL out in full. This can be awkward for people with visual impairments. Avoid writing out long URLs in the text. Place them as links under explanatory text OR provide an alternative description."
+      }
+    },
+    "4.1.1": {
+      "1": {
+	"SUMMARY": "This table body contains merged cells",
+	"DESCRIPTION": "Merged cells in the table body make it more difficult for reader software to read a table out coherently. Please keep tables as simple as possible and avoid merging cells where you can."
+      },
+      "2": {
+	"SUMMARY": "This table head contains merged cells",
+	"DESCRIPTION": "Merged cells in the table head make it more difficult for reader software to read a table out coherently. Please keep tables as simple as possible and avoid merging cells where you can."
+      }
     },
     "4.1.2": {
       "1": {

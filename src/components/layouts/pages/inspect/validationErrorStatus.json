@@ -1,5 +1,12 @@
 {
   "WCAG2.1": {
+    "1.3.1": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Repeated characters should be avoided to represent lines or graphics, as the characters are read out one by one by reader software."
+      }
+    },
     "1.3.4": {
       "1": {
         "STATUS": "warning",
@@ -12,7 +19,33 @@
         "STATUS": "error",
         "CATEGORY": "structure",
         "RATIONALE": "Insufficient contrast makes the text difficult to read for people with visual impairments or colour blind people."
-      }    
+      }
+    },
+    "1.4.8": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "The use of fonts that are difficult to read should be avoided (unless it was the intention to make the text difficult to read). Reader software will read the text out correctly, but people with poor vision, ADHD or people in the autism spectrum may have problems reading the text."
+      }
+    },
+    "2.4.9": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Links should either have an alternative text or should be associated with text that explains the underlying link. Writing out URLS without alternative text should be avoided."
+      }
+    },
+    "4.1.1": {
+      "1": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Merged cells in table bodies should be avoided as much as possible as this makes the table more difficult to read out."
+      },
+      "2": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Merged cells in table heads should be avoided as much as possible as this makes the table more difficult to read out."
+      }
     },
     "4.1.2": {
       "1": {
@@ -154,7 +187,7 @@
         "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
       },
       "3": {
-        "STATUS": "serious",
+        "STATUS": "critical",
         "CATEGORY": "code",
         "RATIONALE": "If content is not tagged, then reader applications will not be able to read the document properly."
       },
@@ -380,7 +413,7 @@
     },
     "7.4.2": {
       "1": {
-        "STATUS": "error",
+        "STATUS": "serious",
         "CATEGORY": "structure",
         "RATIONALE": "If heading levels are not nested correctly, people who use reader software will have difficulty navigating the document."
       }

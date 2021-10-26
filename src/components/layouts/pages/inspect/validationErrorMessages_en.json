@@ -339,15 +339,15 @@
     "7.4.4": {
       "1": {
         "SUMMARY": "The structure of this document has not been tagged correctly",
-        "DESCRIPTION": "This problem occurs in the code of the PDF file and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word). "
+        "DESCRIPTION": "This problem occurs in the code of the PDF file and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "Incorrect use of heading tags",
-        "DESCRIPTION": "This problem stems from a wrong use of headings and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "The headings have been tagged incorrectly",
+        "DESCRIPTION": "There is a problem with the way the headings are tagged. This problem can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "Incorrect use of heading tags",
-        "DESCRIPTION": "This problem stems from a wrong use of headings and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "The headings have been tagged incorrectly",
+        "DESCRIPTION": "There is a problem with the way the headings are tagged. This problem can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       }
     },
     "7.5": {

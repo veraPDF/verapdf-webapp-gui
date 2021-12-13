@@ -139,11 +139,11 @@
 			},
 			"22": {
 				"SUMMARY": "Invalid List element(s)",
-				"DESCRIPTION": "The content is marked with <L> tag, but is not idenfied as a part of a list"
+				"DESCRIPTION": "The content is marked with <L> tag, but is not identified as a part of a list"
 			},
 			"26": {
 				"SUMMARY": "Table is incorrectly tagged as a list, or a list has invalid numbering",
-				"DESCRIPTION": "The content is identifed as a part of a table, but is tagged as a list"
+				"DESCRIPTION": "The content is identified as a part of a table, but is tagged as a list"
 			}
 		}, 	    
 		"4.1.3": {

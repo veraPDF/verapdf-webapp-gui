@@ -3,7 +3,15 @@
     "1.3.1": {
       "1": {
 	"SUMMARY": "Is this meant to be a line or figure?",
-	"DESCRIPTION": "There are many repeated occurrences of the same character in this line. Beware that reader software for people with visual impairments will read these out one by one. This can be confusing and annoying for the reader. If you were trying to make a line, figure or form then insert a real line of figure. Don't use repeated underscores, dashes or other characters."
+	"DESCRIPTION": "There are many repeated occurrences of the same character in this line. Beware that reader software for people with visual impairments wil read these out one by one. This can be confusing and annoying for the reader. If you were trying to make a line, figure or form then insert a real line of figure. Don't use repeated underscores, dashes or other characters."
+      },
+      "2": {
+	"SUMMARY": "Avoid repeated white space",
+	"DESCRIPTION": "This line contains repeated white spaces. Did you use these to align text? Then it's better to set paragraph indentation instead. Or to use tabs. If the white spaces occur at the end of the line, they probably have no use. In that case it's better to delete them."
+      },
+      "3": {
+	"SUMMARY": "Avoid underlining text",
+	"DESCRIPTION": "Het is niet verboden om tekst te onderstrepen, maar veel mensen zien onderstreepte tekst aan voor een hyperlink. Je kan onderstreping daarom beter vermijden. Als je tekst nadruk wilt geven gebruik dan het beste vetgedrukt."
       }
     },
     "1.3.4": {
@@ -20,7 +28,7 @@
     },
     "1.4.8": {
       "1": {
-	"SUMMARY": "The document contains fonts that are difficult to read",
+	"SUMMARY": "The document contains fonts that are difficult to read. This concerns font(s): ",
 	"DESCRIPTION": "You're using fonts that are difficult to read. Reader software will read the text out correctly, but people with impaired vision, ADHD or people in the autism spectrum may have problems reading this. Unless you meant this text to be unreadable, use standard fonts such as Arial, Verdana or Times Roman."
       }
     },
@@ -115,11 +123,19 @@
       },
       "20": {
         "SUMMARY": "Is this a figure caption?",
-        "DESCRIPTION": "This text appears to be intended as a caption for the figure above it. Make sure to format captions as part of the figure itself. You can do this in Word and LibreOffice by right clicking on the figure and selecting 'Insert caption'."
+        "DESCRIPTION": "This text appears to be intended as a caption for the figure or table. Make sure to format captions as part of the figure or table itself. You can do this in Word and LibreOffice by right clicking on the figure or table and selecting 'Insert caption'."
       },      
       "21": {
         "SUMMARY": "Is this a list?",
         "DESCRIPTION": "This text appears to be intended as a list, but is not formatted and tagged as such. Avoid formatting lists manually, use the list functionality of your Office application instead."
+      },
+      "22": {
+	"SUMMARY": "Are you sure this is intended as a list?",
+	"DESCRIPTION": "This text is tagged as a list but it doesn't appear to be a real list. If this text wasn't intended as a list, then format it as a normal paragraph. It's also possible that you got this warning because you interrupted a list with normal text paragraphs. It's better to avoid this as reader applications can have difficulties reading this out properly."
+      },
+      "26": {
+	"SUMMARY": "Is this a table?",
+	"DESCRIPTION": "This text looks like a table but it's tagged as a list. If you intended this to be a table it's better to format it as such."
       }
     },
     "4.1.3": {
@@ -151,7 +167,7 @@
       },
       "3": {
         "SUMMARY": "The document has content that has not been tagged",
-        "DESCRIPTION": "If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. This issue probably originates in the application you used to make the document. Try restructuring this part of the document or editing the document in another application (e.g. LibreOffice instead of Word)."
+        "DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 90005-1 (PDF/A)'."
       },
       "4": {
         "SUMMARY": "The application that created the document could not guarantee a correct reading order",
@@ -339,15 +355,15 @@
     "7.4.4": {
       "1": {
         "SUMMARY": "The structure of this document has not been tagged correctly",
-        "DESCRIPTION": "This problem occurs in the code of the PDF file and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "DESCRIPTION": "This problem occurs in the code of the PDF file and causes people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word). "
       },
       "2": {
-        "SUMMARY": "The headings have been tagged incorrectly",
-        "DESCRIPTION": "There is a problem with the way the headings are tagged. This problem can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "The heading structure has not been tagged correctly",
+        "DESCRIPTION": "This is a problem with the tagging of headings which can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "The headings have been tagged incorrectly",
-        "DESCRIPTION": "There is a problem with the way the headings are tagged. This problem can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "The heading structure has not been tagged correctly",
+        "DESCRIPTION": "This is a problem with the tagging of headings which can cause people who use reader software to have trouble navigating the document. The problem is probably due to the application you used to make the document. You can try solving the problem by structuring using headings of defined heading styles Heading 1, Heading 2, etc. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       }
     },
     "7.5": {
@@ -434,8 +450,8 @@
     },
     "7.18.5": {
       "1": {
-        "SUMMARY": "This link has been tagged incorrectly",
-        "DESCRIPTION": "There is something wrong with the way this link was tagged. Try removing the link and then adding it again using the 'Hyperlink' option in your application (you usually find this when you right click on text or above in the menu). Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "This reference has been tagged incorrectly",
+        "DESCRIPTION": "This tagging error is common in tables of contents. If the table of contents was generated automatically, then there is not much you can do about this error except removing the table of contents or creating it manually. Fortunately, this is not a critical error for most reader applications."
       },
       "2": {
         "SUMMARY": "This link does not have an alternate description",
@@ -470,87 +486,87 @@
     },
     "7.21.3.1": {
       "1": {
-        "SUMMARY": "There is a problem with the way a font is encoded",
+        "SUMMARY": "There is a problem with the way a font is encoded. This concerns font(s): ",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.3.2": {
       "1": {
-        "SUMMARY": "There is a problem with the way a font is encoded",
+        "SUMMARY": "There is a problem with the way a font is encoded. This concerns font(s): ",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded scalable (OpenType or TrueType) font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.3.3": {
       "1": {
-        "SUMMARY": "The document does not include the encoding for a font",
+        "SUMMARY": "The document does not include the encoding for a font. This concerns font(s): ",
         "DESCRIPTION": "This font has a non-standard encoding which is not included in the document. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "A font does not have a consistent writing order",
+        "SUMMARY": "A font does not have a consistent writing order. This concerns font(s): ",
         "DESCRIPTION": "The encoding of this font sets conflicting writing orders for different characters and symbols. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "A font is not encoded in a standard way",
+        "SUMMARY": "A font is not encoded in a standard way. This concerns font(s): ",
         "DESCRIPTION": "This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.4.1": {
       "1": {
-        "SUMMARY": "A font program is not embedded in the document",
+        "SUMMARY": "A font program is not embedded in the document. This concerns font(s): ",
         "DESCRIPTION": "All fonts that are used in the document must be embedded. This guarantees that the document can always be rendered correctly without any dependencies on specific readers. This particular font has not been embedded in the document. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "A font does not contain all characters or symbols used in the document",
+        "SUMMARY": "A font does not contain all characters or symbols used in the document. This concerns font(s): ",
         "DESCRIPTION": "The embedded font is incomplete. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.4.2": {
       "1": {
-        "SUMMARY": "Something is wrong with the encoding of a font",
+        "SUMMARY": "Something is wrong with the encoding of a font. This concerns font(s): ",
         "DESCRIPTION": "The document code does not describe all characters and symbols belonging to this font. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "Something is wrong with the encoding of a font",
+        "SUMMARY": "Something is wrong with the encoding of a font. This concerns font(s): ",
         "DESCRIPTION": "The document code does not describe all characters and symbols belonging to this font. To solve this, try saving the document as a PDF/A-1a, PDF/A-2a or PDF/UA file. Should this not solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not work either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.5": {
       "1": {
-        "SUMMARY": "A font does not have consistent character widths",
+        "SUMMARY": "A font does not have consistent character widths. This concerns font(s): ",
         "DESCRIPTION": "The encoding of this font sets conflicting character and symbol widths. This can make it difficult for readers to display text correctly. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.6": {
       "1": {
-        "SUMMARY": "There is something wrong with the encoding of a font",
+        "SUMMARY": "There is something wrong with the encoding of a font. This concerns font(s): ",
         "DESCRIPTION": "The encoding of this font does not allow the display of all characters and symbols to be looked up. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "There is something wrong with the encoding of a font",
+        "SUMMARY": "There is something wrong with the encoding of a font. This concerns font(s): ",
         "DESCRIPTION": "Fonts must be encoded in a standard way. If not, then reader applications may have problems displaying the correct characters. In this case the encoding does not comply with the required standard for accessibility. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem, try with another application (for example LibreOffice instead of Word)."
       },
       "3": {
-        "SUMMARY": "There is something wrong with the encoding of a symbol font",
+        "SUMMARY": "There is something wrong with the encoding of a symbol font. This concerns font(s): ",
         "DESCRIPTION": "The encoding of this symbol font does not comply with the required standard for accessibility, causing reader applications to have problems displaying the correct symbols. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard symbolic font such as Wingdings. Should this not solve the problem, try with another application or avoid the symbols altogether."
       },
       "4": {
-        "SUMMARY": "There is something wrong with the encoding of a symbol font",
+        "SUMMARY": "There is something wrong with the encoding of a symbol font. This concerns font(s): ",
         "DESCRIPTION": "These symbols have an ambiguous encoding, which causes reader applications to have problems looking up which symbol to display. This is a technical issue with the encoding of an embedded font. Try solving this problem by using another font. Use a well known standard symbolic font such as Wingdings. Should this not solve the problem, try with another application or avoid the symbols altogether."
       }
     },
     "7.21.7": {
       "1": {
-        "SUMMARY": "A character has no standard code",
+        "SUMMARY": "A character has no standard code. This concerns font(s): ",
         "DESCRIPTION": "To accommodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. This is not the case here. First make sure to export your document as a PDF with Unicode, for example by exporting to PDF/UA, PDF/A-1a or PDF/A-2a. If this doesn't solve the problem, try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
       },
       "2": {
-        "SUMMARY": "A character has an invalid code",
+        "SUMMARY": "A character has an invalid code. This concerns font(s): ",
         "DESCRIPTION": "To accommodate reader applications for people with visual impairments, all fonts in this document must have a standard Unicode encoding. The Unicode value for this character is invalid. This problem is probably due to the font or the application used to export the document. Try using another font. Use a well known standard font such as Arial or Times New Roman. Export the document as PDF/UA, PDF/A-1a or PDF/A-2a. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.21.8": {
       "1": {
-        "SUMMARY": "The document contains undefined characters",
+        "SUMMARY": "The document contains undefined characters. This concerns font(s): ",
         "DESCRIPTION": "A document must not contain undefined characters or symbols. Reader applications for people with visual impairments don't know how to handle these. If you know which characters or symbols cause this problem, remove them from the document. Or try using another font. Use a well known standard font such as Arial or Times New Roman. Should this not solve the problem either, try with another application (for example LibreOffice instead of Word)."
       }
     }

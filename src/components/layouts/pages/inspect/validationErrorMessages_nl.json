@@ -4,6 +4,14 @@
       "1": {
 	"SUMMARY": "Is deze regel bedoeld als lijn of figuur?",
 	"DESCRIPTION": "Deze regel bevat een heleboel herhaalde tekens. Bedenk dat voorleessoftware voor deze tekens één voor één opleest. Dat kan erg verwarrend en hinderlijk zijn voor mensen met een gezichtsbeperking. Probeerde je hiermee een figuur, lijn of formulier te maken? Voeg dan een lijn of afbeelding in. Gebruik hiervoor geen herhaalde underscores, streepjes of andere tekens."
+      },
+      "2": {
+	"SUMMARY": "Vermijd herhaalde spaties",
+	"DESCRIPTION": "Deze regel bevat herhaalde spaties. Gebruikte je deze om tekst op te lijnen? Dat kan je beter doen door in de alinea inspringen in te stellen. Of gebruik tabs. Als de spaties aan het einde van de regel staan, hebben ze waarschijnlijk geen functie en kan je ze beter weglaten."
+      },
+      "3": {
+	"SUMMARY": "Vermijd onderstrepen",
+	"DESCRIPTION": "Het is niet verboden om tekst te onderstrepen, maar veel mensen zien onderstreepte tekst aan voor een hyperlink. Je kan onderstreping daarom beter vermijden. Als je tekst nadruk wilt geven gebruik dan het beste vetgedrukt."
       }
     },
     "1.3.4": {
@@ -19,27 +27,27 @@
       }
     },
     "1.4.8": {
-      "1": {
-	"SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn",
-	"DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Voorleessoftware kan deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
-      }
-    },
+			"1": {
+				"SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn. Dit betreft lettertype(n): ",
+				"DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Voorleessoftware kan deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
+			}
+		},
     "2.4.9": {
-      "1": {
-	"SUMMARY": "Deze link heeft geen heldere beschrijving",
-	"DESCRIPTION": "Deze link heeft geen alternatieve beschrijving. Bedenk dat voorleessoftware deze URL  van voor tot achter zal voorlezen. Dat is erg onhandig voor een gebruiker met een gezichtsbeperking. Vermijd daarom het opnemen van lange URLs in je tekst. Zet links onder een beschrijvende tekst OF voorzie de link van een alternatieve beschrijving (net als afbeeldingen)."
-      }
-    },
+			"1": {
+				"SUMMARY": "Deze link heeft geen heldere beschrijving",
+				"DESCRIPTION": "Deze link heeft geen alternatieve beschrijving. Bedenk dat voorleessoftware deze URL  van voor tot achter zal voorlezen. Dat is erg onhandig voor een gebruiker met een gezichtsbeperking. Vermijd daarom het opnemen van lange URLs in je tekst. Zet links onder een beschrijvende tekst OF voorzie de link van een alternatieve beschrijving (net als afbeeldingen)."
+			}
+		},
     "4.1.1": {
-      "1": {
-	"SUMMARY": "Deze tabel bevat samengevoegde cellen",
-	  "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
-      },
-      "2": {
-	"SUMMARY": "Deze tabelkop bevat samengevoegde cellen",
-	"DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
-      }
-    },
+			"1": {
+				"SUMMARY": "Deze tabel bevat samengevoegde cellen",
+				"DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+			},
+			"2": {
+				"SUMMARY": "Deze tabelkop bevat samengevoegde cellen",
+				"DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+			}
+		},
     "4.1.2": {
       "1": {
         "SUMMARY": "Moeten dit niet verschillende alineas zijn?",
@@ -118,12 +126,20 @@
         "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "20": {
-        "SUMMARY": "Is dit een bijschrift van de figuur erboven?",
-        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur erboven. Zorg dat je bijschriften als onderdeel van de figuur opmaakt. In Word en LibreOffice doe je dat door met de rechtermuisknop op de figuur te klikken en dan in het menu 'Bijschrift invoegen' te kiezen."
+        "SUMMARY": "Is dit een bijschrift van de figuur of tabel?",
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel. Zorg dat je bijschriften als onderdeel van de figuur of tabel opmaakt. In Word en LibreOffice doe je dat door met de rechtermuisknop op de figuur of tabel te klikken en dan in het menu 'Bijschrift invoegen' te kiezen."
       },      
       "21": {
         "SUMMARY": "Is dit een opsomming of genummerde lijst?",
         "DESCRIPTION": "Deze tekst lijkt een opsomming of genummerde lijst te zijn maar is niet als zodanig opgemaakt. Maak opsommingen en genummerde lijsten niet handmatig op maar gebruik hiervoor altijd de functionaliteit van Word of LibreOffice."
+      },
+      "22": {
+	"SUMMARY": "Is dit wel een lijst?",
+	"DESCRIPTION": "Deze tekst is in de code gemarkeerd als lijst, maar het lijkt geen echte lijst te zijn. Als deze tekst niet als lijst bedoeld was, kan je hem beter opmaken als een gewone tekstalinea. Je kan deze waarschuwing ook krijgen als je een lijst onderbroken hebt met gewone tekst. Dat kan je beter vermijden omdat voorleessoftware er moeite mee heeft om dit op een begrijpelijke manier voor te lezen."
+      },
+      "26": {
+	"SUMMARY": "Is dit als tabel bedoeld?",
+	"DESCRIPTION": "Deze tekst ziet eruit als een tabel, maar is in de code gemarkeerd als lijst. Als dit als tabel bedoeld was, kan je het ook beter opmaken als tabel."
       }
     },
     "4.1.3": {
@@ -154,8 +170,8 @@
         "DESCRIPTION": "Door gebrekkige codering kan voorleessoftware inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Het document bevat inhoud die in de code niet gelabeld is",
-        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Het document bevat inhoud die niet gelabeld is in de code",
+        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Voor digitale toegankelijkheid is dit een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 90005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
       },
       "4": {
         "SUMMARY": "De applicatie die dit document creëerde kon geen correcte leesvolgorde garanderen",
@@ -346,12 +362,12 @@
         "DESCRIPTION": "Dit is een probleem in de code van het PDF bestand waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Het probleem is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Je kan proberen dit op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Het document is verkeerd gestructureerd",
-        "DESCRIPTION": "Dit probleem zit hem in een verkeerd gebruik van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "De koppenstructuur is verkeerd gecodeerd",
+        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Het document is verkeerd gestructureerd",
-        "DESCRIPTION": "Dit probleem zit hem in een verkeerd gebruik van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "De koppenstructuur is verkeerd gecodeerd",
+        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.5": {
@@ -379,11 +395,11 @@
     "7.10": {
       "1": {
         "SUMMARY": "Een documentlaag heeft geen naam",
-        "DESCRIPTION": "Dit document bestaat uit één of meer lagen die niet goed geïdentificeerd zijn. Dit ze fout wordt waarschijnlijk veroorzaakt door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen.Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen ('merge' of 'flatten' layers)."
+        "DESCRIPTION": "Dit PDF bestand bestaat uit één of meer lagen die niet goed geïdentificeerd zijn. Dit ze fout wordt waarschijnlijk veroorzaakt door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen.Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen ('merge' of 'flatten' layers)."
       },
       "2": {
         "SUMMARY": "Een documentlaag kan de leesbaarheid negatief beïnvloeden",
-        "DESCRIPTION": "Dit document bestaat uit één of meer lagen die de leesbaarheid nadelig kunnen beïnvloeden. Dit ze fout kan veroorzaakt zijn door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
+        "DESCRIPTION": "Dit PDF bestand bestaat uit één of meer lagen die de leesbaarheid nadelig kunnen beïnvloeden. Dit ze fout kan veroorzaakt zijn door de kantoorapplicatie die je hebt gebruikt om het document mee te maken. Je kan proberen dit probleem op te lossen door het document te vereenvoudigen. Als je met PDF tools overweg kan, kun je dit oplossen door de lagen van het document te verwijderen (flatten layers)."
       }
     },
     "7.11": {
@@ -438,8 +454,8 @@
     },
     "7.18.5": {
       "1": {
-        "SUMMARY": "Deze link is verkeerd gemarkeerd",
-        "DESCRIPTION": "Er is iets mis met de manier waarop deze link gemarkeerd is in de code van het document. Probeer de link opnieuw toe te voegen met de 'Hyperlink' optie in je applicatie (die vind je als je rechts klikt op tekst of boven in de menubalk). Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Deze verwijzing is verkeerd gemarkeerd in de code van het document",
+        "DESCRIPTION": "Dit is een codefout die veel voorkomt in inhoudsopgaven met links naar de hoofdstukken. Als de inhoudsopgave automatisch door je kantoorapplicatie gegenereerd is, kan je hier niet veel aan doen behalve de inhoudsopgave weghalen of handmatig te proberen te maken. Dit is gelukkig geen ernstige fout omdat veel voorleesapplicaties hier wel mee overweg kunnen."
       },
       "2": {
         "SUMMARY": "Deze link heeft geen alternatieve beschrijving",
@@ -474,87 +490,87 @@
     },
     "7.21.3.1": {
       "1": {
-        "SUMMARY": "Er is een probleem met de codering van een lettertype",
+        "SUMMARY": "Er is een probleem met de codering van een lettertype. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.3.2": {
       "1": {
-        "SUMMARY": "Er is een probleem met de codering van een lettertype",
+        "SUMMARY": "Er is een probleem met de codering van een lettertype. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het schaalbare lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.3.3": {
       "1": {
-        "SUMMARY": "Het document mist de codering van een lettertype",
+        "SUMMARY": "Het document mist de codering van een lettertype. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Het lettertype heeft een niet-standaard codering die niet in het document is opgenomen. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Een lettertype heeft geen eenduidige schrijfrichting",
+        "SUMMARY": "Een lettertype heeft geen eenduidige schrijfrichting. Dit betreft lettertype(n): ",
         "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige schrijfrichtingen voor verschillende letters en symbolen. Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Een lettertype is niet gecodeerd op een standaard manier",
+        "SUMMARY": "Een lettertype is niet gecodeerd op een standaard manier. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Dit is een technisch probleem met de codering van het  lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.4.1": {
       "1": {
-        "SUMMARY": "Een gebruikt lettertype is niet in het document ingesloten. Dit betreft lettertype(s): ",
+        "SUMMARY": "Een gebruikt lettertype is niet in het document ingesloten. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Alle lettertypen die in het document gebruikt worden, moeten in het document ingesloten zijn. Dit garandeert dat een document altijd correct kan worden weergegeven zonder afhankelijkheden van specifieke readers. Dit specifieke lettertype is niet in het document opgenomen. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Een lettertype bevat niet alle letters of symbolen die in het document gebruikt worden",
+        "SUMMARY": "Een lettertype bevat niet alle letters of symbolen die in het document gebruikt worden. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Het ingesloten lettertype is incompleet. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.4.2": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s): ",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(n): ",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(n):  ",
         "DESCRIPTION": "De code beschrijft niet alle letters en symbolen waar het lettertype uit bestaat. Om dit op te lossen kan je proberen het document op te slaan als een PDF/A-1a, PDF/A-2a of PDF/UA bestand. Lukt dat niet, kies dan een ander lettertype, liefst zo standaard mogelijk zoals Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.5": {
       "1": {
-        "SUMMARY": "Een lettertype heeft geen eenduidige letterbreedte ",
+        "SUMMARY": "Een lettertype heeft geen eenduidige letterbreedte. Dit betreft lettertype(n): ",
         "DESCRIPTION": "De codering van dit lettertype definiëert tegenstrijdige letterbreedten, waardoor een reader problemen kan hebben om tekst goed weer te geven. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.6": {
       "1": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(n):  ",
         "DESCRIPTION": "De codering van dit lettertype maakt het niet mogelijk om de weergave van alle lettertypen op te zoeken. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(s):  ",
+        "SUMMARY": "Er is iets mis met de codering van een lettertype. Dit betreft lettertype(n):  ",
         "DESCRIPTION": "Lettertypen moeten op een standaard manier gecodeerd zijn, anders kan een reader problemen hebben om de letters correct weer te geven. In dit geval voldoet de codering niet aan de standaard vereist voor digitale toegankelijkheid. Dit is een technisch probleem met de codering van het lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
-        "SUMMARY": "Er is iets mis met de codering van symbolen",
+        "SUMMARY": "Er is iets mis met de codering van symbolen. Dit betreft lettertype(n): ",
         "DESCRIPTION": "De codering van deze symbolen voldoet niet aan de standaard vereist voor digitale toegankelijkheid. Daardoor kunnen readers de symbolen mogelijk niet correct weergeven. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
       },
       "4": {
-        "SUMMARY": "Er is iets mis met de codering van symbolen",
+        "SUMMARY": "Er is iets mis met de codering van symbolen. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Deze symbolen zijn niet op een eenduidige manier gecodeerd. Daardoor kunnen readers niet bepalen welk symbool ze moeten afbeelden. Dit is een technisch probleem met de codering van het symbolen-lettertype dat ingesloten is in het document. Probeer dit probleem op te lossen door een ander lettertype te gebruiken voor de symbolen. Kies een zo standaard mogelijk symbolen-lettertype, bijvoorbeeld Wingdings. Lukt dat niet, probeer het dan met een andere applicatie of probeer de symbolen helemaal te vermijden."
       }
     },
     "7.21.7": {
       "1": {
-        "SUMMARY": "Een letter heeft geen standaard codering",
+        "SUMMARY": "Een letter heeft geen standaard codering. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. Dat is hier niet het geval. Zorg eerst dat je het document naar PDF exporteert met Unicode codering. Dat kan bijvoorbeeld door het document te exporteren als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer dan een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lukt dat ook niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
-        "SUMMARY": "Een letter heeft een ongeldige codering",
+        "SUMMARY": "Een letter heeft een ongeldige codering. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Om geschikt te zijn voor voorleesapplicaties moeten alle lettertypen in het document een standaard Unicode codering hebben. De Unicode codering van deze letter is ongeldig. Dit probleem is waarschijnlijk te wijten aan het lettertype dat je gebruikt, of de applicatie waarmee je de PDF hebt geëxporteerd. Probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Exporteer het document als PDF/UA, PDF/A-1a of PDF/A-2a. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.21.8": {
       "1": {
-        "SUMMARY": "Het document bevat ongedefinieerde letters",
+        "SUMMARY": "Het document bevat ongedefinieerde letters. Dit betreft lettertype(n): ",
         "DESCRIPTION": "Een document mag geen ongedefinieerde letters of symbolen bevatten. Voorleessoftware weet niet wat het hiermee aan moet. Als je weet om welke letter(s) het gaat, haal deze dan uit het document. Of probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     }

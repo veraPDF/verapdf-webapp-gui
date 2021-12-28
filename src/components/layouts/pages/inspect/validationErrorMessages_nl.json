@@ -126,7 +126,7 @@
         "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "20": {
-        "SUMMARY": "Is dit een bijschrift van de figuur?",
+        "SUMMARY": "Is dit een bijschrift van de figuur of tabel?",
         "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel. Zorg dat je bijschriften als onderdeel van de figuur of tabel opmaakt. In Word en LibreOffice doe je dat door met de rechtermuisknop op de figuur of tabel te klikken en dan in het menu 'Bijschrift invoegen' te kiezen."
       },      
       "21": {

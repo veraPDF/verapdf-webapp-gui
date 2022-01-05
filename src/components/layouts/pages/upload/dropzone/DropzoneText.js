@@ -12,7 +12,7 @@ function DropzoneText(props) {
             {files.length ? (
                 <>
                     {files[0].name}
-                    <span className="dropzone-text__file-size"> - {formatFileSize(files[0])}</span>
+                    <span className="dropzone-text__file-size">{formatFileSize(files[0])}</span>
                 </>
             ) : (
                 DROPZONE_TEXT

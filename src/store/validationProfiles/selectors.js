@@ -17,4 +17,6 @@ export const getProfileOptions = createSelector(getProfiles, profiles => {
 
 export const getDefaultProfileName = createSelector(getProfiles, profiles => _.first(profiles)?.profileName);
 
+export const getDefaultProfileLabel = createSelector(getProfiles, profiles => _.first(profiles)?.humanReadableName);
+
 export const getProfilesError = createSelector(getProfiles, profiles => _.get(profiles, 'error'));

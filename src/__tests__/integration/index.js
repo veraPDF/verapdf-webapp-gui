@@ -7,6 +7,7 @@ import fs from 'mz/fs';
 
 import App from '../../components/App';
 import configureStore from '../../store/rootStore';
+import Checkbox from '@material-ui/core/Checkbox';
 import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../services/fileService';
 import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
 import { getList as getProfilesList } from '../../services/profiles';
@@ -242,8 +243,8 @@ export const navigateWithHeaderLink = (component, linkSelector) => {
     component.update();
 };
 
-export const getNextStepButton = component => component.find('.page-navigation__end button');
-export const getPrevStepButton = component => component.find('.page-navigation__start button');
+export const getNextStepButton = component => component.find('.page-navigation > .nav-button_forward');
+export const getPrevStepButton = component => component.find('.page-navigation > .nav-button_back');
 
 export const moveBack = component => {
     getPrevStepButton(component).simulate('click', { button: 0 });
@@ -262,3 +263,13 @@ export const skipLoadingPage = async (store, component) => {
 
 export const isFileStored = state => state.pdfFiles.length;
 export const stepFinished = key => state => getProgress(state).steps.find(({ stepKey }) => stepKey === key)?.completed;
+
+export const toggleSettingsCheckbox = (component, checked) => {
+    expect(component.find(Checkbox)).toHaveLength(1);
+    component
+        .find(Checkbox)
+        .props()
+        .onChange({ target: { checked } });
+    component.update();
+    expect(component.find(Checkbox).props().checked).toBe(checked);
+};

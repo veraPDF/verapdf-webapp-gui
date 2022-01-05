@@ -1,4 +1,11 @@
-import { DEFAULT_STARTUP_RESPONSES, TEST_FILE, integrationTest, storeFile, moveNext } from './index';
+import {
+    DEFAULT_STARTUP_RESPONSES,
+    TEST_FILE,
+    integrationTest,
+    storeFile,
+    moveNext,
+    toggleSettingsCheckbox,
+} from './index';
 import MaterialSelect from '@material-ui/core/Select';
 import Settings from '../../components/layouts/pages/settings/Settings';
 
@@ -20,6 +27,7 @@ describe('Settings', () => {
             integrationTest(
                 async (store, component) => {
                     await storeFile(component, store);
+                    toggleSettingsCheckbox(component, true);
                     moveNext(component);
 
                     expect(component.find(Settings)).toHaveLength(1);
@@ -39,6 +47,7 @@ describe('Settings', () => {
             'Profiles list loaded',
             integrationTest(async (store, component) => {
                 await storeFile(component, store);
+                toggleSettingsCheckbox(component, true);
                 moveNext(component);
 
                 expect(component.find(Settings)).toHaveLength(1);
@@ -57,6 +66,7 @@ describe('Settings', () => {
             integrationTest(
                 async (store, component) => {
                     await storeFile(component, store);
+                    toggleSettingsCheckbox(component, true);
                     moveNext(component);
                     expect(component.find(Settings)).toHaveLength(1);
                     expect(getProfileSelectError(component).text()).toBe(
@@ -76,6 +86,7 @@ describe('Settings', () => {
         'Profile changed',
         integrationTest(async (store, component) => {
             await storeFile(component, store, TEST_FILE);
+            toggleSettingsCheckbox(component, true);
             moveNext(component);
 
             expect(getProfileValue(store)).toEqual(PROFILE_VALUES[0]);

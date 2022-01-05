@@ -7,6 +7,13 @@ div.stepper {
     background: $bg-color--basic;
     color: $text-color--secondary;
 
+    margin: 0 -10px;
+
+    &.with-config {
+        padding-left: 5.67%;
+        padding-right: 5.67%;
+    }
+
     .MuiSvgIcon-root {
         font-size: 2rem;
         opacity: 0.8;
@@ -35,5 +42,22 @@ div.stepper {
             border-color: $color-primary;
             border-top-width: 2px;
         }
+    }
+}
+
+h1.active-step {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    div.stepper .MuiStepLabel-labelContainer {
+        display: none;
+    }
+
+    h1.active-step {
+        display: block;
+        text-align: center;
+        color: $color-black--75;
+        margin-top: 0;
     }
 }

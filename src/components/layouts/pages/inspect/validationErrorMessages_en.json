@@ -35,7 +35,7 @@
     "2.4.9": {
       "1": {
 	"SUMMARY": "This link does not have a clear description",
-	"DESCRIPTION": "This link does not have an alternative description. Beware that reader software wil read this URL out in full. This can be awkward for people with visual impairments. Avoid writing out long URLs in the text. Place them as links under explanatory text OR provide an alternative description."
+	"DESCRIPTION": "This link does not have an alternative description. Beware that reader software will read this URL out in full. This can be awkward for people with visual impairments. Avoid writing out long URLs in the text. Place them as links under explanatory text OR provide an alternative description."
       }
     },
     "4.1.1": {
@@ -60,10 +60,6 @@
       "3": {
         "SUMMARY": "Is this really a table?",
         "DESCRIPTION": "This text is tagged as a table, but it doesn't appear to be a real table. Avoid using tables to align or format text in a document. Reformat this text as a paragraph. Use tabs to align and borders to format text in a paragraph. Best of all, use styles to consistently align and format text throughout the document."
-      },      
-      "5": {
-        "SUMMARY": "Shouldn't this be a table?",
-        "DESCRIPTION": "This looks like a table, but it isn't tagged as such. It's important that tables are tagged are tagged as such so that reader applications for people with visual impairments know how to read it out. Replace this text by a real table using the Insert-Table function in Word or LibreOffice."
       },
       "6": {
         "SUMMARY": "Is this a table row?",
@@ -191,7 +187,7 @@
       },
       "9": {
         "SUMMARY": "The title has not been set in the document properties",
-        "DESCRIPTION": "Thee document metadata does not contain the title. This is probably because you did not set the title in the document properties. You can get this error even if your document does have a title page or title heading; this error is not about content but about the metadata of the document. To repair this error, open the document properties in your editor (typically via the File tab in upper left corner of the menu) and set the title there. Or, if you have a PDF editor you can also set the title there."
+        "DESCRIPTION": "The document metadata does not contain the title. This is probably because you did not set the title in the document properties. You can get this error even if your document does have a title page or title heading; this error is not about content but about the metadata of the document. To fix this error, open the document properties in your editor (typically via the File tab in the upper left corner of the menu) and set the title there. Or, if you have a PDF editor you can also set the title there."
       },
       "10": {
         "SUMMARY": "The title bar does not show the title",

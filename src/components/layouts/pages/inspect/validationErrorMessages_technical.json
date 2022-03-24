@@ -12,6 +12,10 @@
 			"3": {
 				"SUMMARY": "Non-link underlined text",
 				"DESCRIPTION": "Underlined text is used outside of the link context"
+			},
+			"4": {
+				"SUMMARY": "Text has a different style but no semantic tagging",
+				"DESCRIPTION": "Text has visually different presentation suggesting the semantics of Span, Em, Strong or other appropriate inline element."
 			}
 		},
 		"1.3.4": {
@@ -26,10 +30,22 @@
 				"DESCRIPTION": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1."
 			}
 		},
+		"1.4.4": {
+			"1": {
+				"SUMMARY": "Text size is too small",
+				"DESCRIPTION": "Text is too small and may not be resized without assistive technology up to 200 percent without loss of content or functionality."
+			}
+		},
 		"1.4.8": {
 			"1": {
 				"SUMMARY": "Inaccessible font",
 				"DESCRIPTION": "Font used for text rendering is not recommended for accessibility"
+			}
+		},
+		"1.4.10": {
+			"1": {
+				"SUMMARY": "Figure has no BBox attribute",
+				"DESCRIPTION": "Bounding box should be present for a figure appearing in its entirety on a single page to indicate the area of the figure on the page"
 			}
 		},
 		"2.4.9": {
@@ -46,6 +62,14 @@
 			"2": {
 				"SUMMARY": "Table header contains merged cells",
 				"DESCRIPTION": "Merged table cells deteriorate the document accessibility and are not recommended"
+			},
+			"3": {
+				"SUMMARY": "Table visual appearance has merged cells",
+				"DESCRIPTION": "Merged cells in tables are advised to be avoided for accessibility reasons"
+			},
+			"4": {
+				"SUMMARY": "Document is not tagged",
+				"DESCRIPTION": "Document root contains no structure tree, which makes any real content in the document inaccessible"
 			}
 		},
 		"4.1.2": {
@@ -67,7 +91,7 @@
 			},
 			"5": {
 				"SUMMARY": "Incorrect use of Hn tag",
-				"DESCRIPTION": "The content is marked with <Hn> tag, but is not identified as a heading"
+				"DESCRIPTION": "The content is marked with one of <H1>, ..., <H7> tags, but is not identified as a heading"
 			},
 			"6": {
 				"SUMMARY": "Invalid Table row",

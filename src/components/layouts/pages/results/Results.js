@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import AppPages from '../../../AppPages';
@@ -15,14 +15,13 @@ import { isCompliant } from '../../../../store/job/result/selectors';
 
 function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
     const { id: jobId } = useParams();
-    const history = useHistory();
 
     const backButton = useMemo(
         () => ({
             label: 'Validate another file',
-            onClick: () => onBackClick(history),
+            onClick: () => onBackClick(),
         }),
-        [history, onBackClick]
+        [onBackClick]
     );
 
     const forwardButton = useMemo(
@@ -66,7 +65,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onBackClick: history => dispatch(reset(history)),
+        onBackClick: () => dispatch(reset()),
     };
 }
 

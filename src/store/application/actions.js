@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions';
 import { getFile } from '../pdfFiles/selectors';
 import { deleteFile } from '../../services/pdfStorage';
 import { getDefaultProfileName } from '../validationProfiles/selectors';
+import { storeFile } from '../pdfFiles/actions';
 
 const { PUBLIC_URL } = process.env;
 
@@ -28,6 +29,24 @@ export const reset = () => async (dispatch, getState) => {
 
     // Reset session storage
     sessionStorage.clear();
+
+    // Redirect to start screen and hide Loading view
+    window.location.replace(PUBLIC_URL);
+};
+
+export const resetOnFileUpload = file => async (dispatch, getState) => {
+    const profile = getDefaultProfileName(getState());
+    const oldFile = getFile(getState());
+
+    // Reset redux state, this will clean it and show Loading view
+    await dispatch(resetApp({ profile }));
+
+    // Delete file from IndexDB if there is any
+    if (oldFile) {
+        await deleteFile(oldFile);
+    }
+
+    await dispatch(storeFile(file));
 
     // Redirect to start screen and hide Loading view
     window.location.replace(PUBLIC_URL);

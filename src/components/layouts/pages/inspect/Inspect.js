@@ -7,18 +7,19 @@ import _ from 'lodash';
 
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
-import { lockApp, unlockApp } from '../../../../store/application/actions';
+import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import Toolbar from './toolbar/Toolbar';
 import Tree from './tree/Tree';
 import PdfDocument from './pdfDocument/PdfDocument';
+import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
 import './Inspect.scss';
 
 const { PUBLIC_URL } = process.env;
 pdfjs.GlobalWorkerOptions.workerSrc = `${PUBLIC_URL}/pdf.worker.js`;
 
-function Inspect({ jobStatus, taskStatus, lockApp, unlockApp }) {
+function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
@@ -40,6 +41,12 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp }) {
         },
         [unlockApp]
     );
+    const onDrop = useCallback(
+        acceptedFiles => {
+            onFileDrop(acceptedFiles[0]);
+        },
+        [onFileDrop]
+    );
 
     useEffect(() => {
         lockApp();
@@ -53,17 +60,19 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp }) {
     }
 
     return (
-        <section className="inspect">
-            <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
-            <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
-            <PdfDocument
-                selectedCheck={selectedCheck}
-                setSelectedCheck={setSelectedCheck}
-                setPdfName={setPdfName}
-                onDocumentReady={onDocumentReady}
-                scale={scale}
-            />
-        </section>
+        <DropzoneWrapper onFileDrop={onDrop}>
+            <section className="inspect">
+                <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
+                <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
+                <PdfDocument
+                    selectedCheck={selectedCheck}
+                    setSelectedCheck={setSelectedCheck}
+                    setPdfName={setPdfName}
+                    onDocumentReady={onDocumentReady}
+                    scale={scale}
+                />
+            </section>
+        </DropzoneWrapper>
     );
 }
 
@@ -85,6 +94,7 @@ const mapDispatchToProps = dispatch => {
     return {
         lockApp: () => dispatch(lockApp()),
         unlockApp: () => dispatch(unlockApp()),
+        onFileDrop: file => dispatch(resetOnFileUpload(file)),
     };
 };
 

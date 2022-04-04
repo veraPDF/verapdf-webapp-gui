@@ -5,14 +5,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { storeFile } from '../../../../../store/pdfFiles/actions';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
+import { DROPZONE_OPTIONS } from '../../../../../services/constants';
 import DropzoneText from './DropzoneText';
-import './Dropzone.scss';
 
-const DROPZONE_OPTIONS = {
-    accept: 'application/pdf',
-    multiple: false,
-    preventDropOnDocument: true,
-};
+import './Dropzone.scss';
 
 function Dropzone(props) {
     const { files, onFileDrop } = props;

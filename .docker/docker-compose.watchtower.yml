@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  gui:
+    image: ghcr.io/verapdf/verapdf_gui:latest
+    depends_on:
+      - file-storage
+      - job-service
+    ports:
+      - ${GUI_PORT:-80}:80
+    restart: always
+    labels:
+      - 'com.centurylinklabs.watchtower.depends-on=verapdf_file-storage_1,verapdf_job-service_1'

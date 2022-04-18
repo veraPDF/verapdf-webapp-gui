@@ -1,0 +1,41 @@
+name: Increment GUI version
+
+on:
+  pull_request:
+    types:
+      [ closed ]
+    branches:
+      [ master ]
+env:
+  DATE_ENV_VARIABLE: REACT_APP_VERSION_DATE
+
+jobs:
+  version-update:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Increment package version
+        run: npm version patch --commit-hooks=false --git-tag-version=false
+      - name: Get latest version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+      - name: Get version update date
+        id: date
+        run: echo "::set-output name=date::$(date '+%B %-d, %Y')"
+      - name: Update GUI version date
+        run: sed -i "s/${{ env.DATE_ENV_VARIABLE }}=.*/${{ env.DATE_ENV_VARIABLE }}=${{ steps.date.outputs.date }}/" .env
+      - name: Update landing version
+        run: echo "${{ steps.package-version.outputs.current-version }} - ${{ steps.date.outputs.date }}" > ./landing/assets/version.txt
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: v${{ steps.package-version.outputs.current-version }}
+

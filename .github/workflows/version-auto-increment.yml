@@ -26,7 +26,7 @@ jobs:
         run: npm version patch --commit-hooks=false --git-tag-version=false
       - name: Get latest version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
+        run: echo "::set-output name=current-version::$(cat ./package.json | grep -o '"version":.*$' | sed -e 's/[^0-9.]//g')"
       - name: Get version update date
         id: date
         run: echo "::set-output name=date::$(date '+%B %-d, %Y')"

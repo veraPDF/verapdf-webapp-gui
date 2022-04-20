@@ -1,0 +1,47 @@
+name: Release tagged image
+
+on:
+  push:
+    tags: 
+      - '*'
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  GUI_IMAGE_NAME: verapdf_gui
+  PROFILE: staging
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Set up Node
+        uses:  actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Update git submodules
+        run: git submodule update --init --recursive
+      - name: Build React app
+        run: npm ci && npm run build
+      - name: Get tag name
+        id: tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build gui Docker image
+        env:
+          RELEASE_VERSION: ${{ steps.tag.outputs.tag }}
+        run: docker build . -t  $REGISTRY/verapdf/$GUI_IMAGE_NAME:$RELEASE_VERSION --build-arg profile=$PROFILE
+      - name: Login into ${{ env.REGISTRY }}
+        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push gui Docker images to the ${{ env.REGISTRY }}
+        env:
+          RELEASE_VERSION: ${{ steps.tag.outputs.tag }}
+        run: docker push $REGISTRY/verapdf/$GUI_IMAGE_NAME:$RELEASE_VERSION

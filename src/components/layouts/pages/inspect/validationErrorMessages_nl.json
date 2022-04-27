@@ -12,6 +12,10 @@
       "3": {
 	"SUMMARY": "Vermijd onderstrepen",
 	"DESCRIPTION": "Het is niet verboden om tekst te onderstrepen, maar veel mensen zien onderstreepte tekst aan voor een hyperlink. Je kan onderstreping daarom beter vermijden. Als je tekst nadruk wilt geven gebruik dan het beste vetgedrukt."
+      },
+      "4": {
+	"SUMMARY": "Heeft deze tekst een bijzondere betekenis?",
+	"DESCRIPTION": "Deze tekst ziet er anders uit dan de omringende tekst. Als je de tekst anders hebt opgemaakt omdat deze tekst een bijzondere betekenis heeft, dan moet je ervoor zorgen dat die betekenis ook gecodeerd is. Je doet dat bijvoorbeeld door voor deze opmaak een speciale stijl te maken."
       }
     },
     "1.3.4": {
@@ -26,12 +30,24 @@
         "DESCRIPTION": "Tekst moet voldoende contrast met de achtergrond hebben, anders kunnen slechtzienden en kleurenblinden problemen hebben om deze te lezen. Zwarte tekst op een (bijna) witte achtergrond is meestal het veiligst. Gebruik je toch kleuren, zorg dan dat de tekst tenminste een contrast van 4,5 : 1 met de achtergrond heeft (voor heel grote tekst mag het 3 : 1 zijn)."
       }
     },
+    "1.4.4": {
+      "1": {
+	"SUMMARY": "Dit lettertype is erg klein",
+	"DESCRIPTION": "Dit lettertype is zo klein dat mensen met een gezichtsbeperking het waarschijnlijk moeilijk kunnen lezen. Probeer zoveel mogelijk lettertypen van 11 punten of meer te gebruiken."
+      }
+    },
     "1.4.8": {
 			"1": {
 				"SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn. Dit betreft lettertype(n): ",
 				"DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Voorleessoftware kan deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
 			}
 		},
+    "1.4.10": {
+      "1": {
+	"SUMMARY": "Deze afbeelding is niet volledig gecodeerd",
+	"DESCRIPTION": "De code van deze afbeelding heeft geen kenmerkobject ('bounding box'). Daardoor kunnen PDF readers de pagina mogelijk niet goed herschikken ('reflow')."
+      }
+    },
     "2.4.9": {
 			"1": {
 				"SUMMARY": "Deze link heeft geen heldere beschrijving",
@@ -46,6 +62,14 @@
 			"2": {
 				"SUMMARY": "Deze tabelkop bevat samengevoegde cellen",
 				"DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+			},
+			"3": {
+				"SUMMARY": "Deze tabel lijkt samengevoegde cellen te hebben",
+				"DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+			},
+			"4": {
+				"SUMMARY": "Het document is niet gecodeerd",
+				"DESCRIPTION": "Als het document geen code heeft, kan voorleessoftware het niet in de juiste volgorde voorlezen. Dit is een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 90005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
 			}
 		},
     "4.1.2": {
@@ -137,6 +161,14 @@
 	"SUMMARY": "Is dit wel een lijst?",
 	"DESCRIPTION": "Deze tekst is in de code gemarkeerd als lijst, maar het lijkt geen echte lijst te zijn. Als deze tekst niet als lijst bedoeld was, kan je hem beter opmaken als een gewone tekstalinea. Je kan deze waarschuwing ook krijgen als je een lijst onderbroken hebt met gewone tekst. Dat kan je beter vermijden omdat voorleessoftware er moeite mee heeft om dit op een begrijpelijke manier voor te lezen."
       },
+      "23": {
+	"SUMMARY": "Is dit wel een onderdeel van een lijst?",
+	"DESCRIPTION": "Deze tekst ziet er niet uit als onderdeel van een lijst, maar is wel zo gecodeerd. Dit kan voorleessoftware in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of paragrafen."
+      },
+      "25": {
+	"SUMMARY": "Is dit wel een lijst?",
+	"DESCRIPTION": "Deze tekst ziet er niet uit een lijst, maar is wel als lijst gecodeerd. Dit kan voorleessoftware in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of paragrafen."
+      },
       "26": {
 	"SUMMARY": "Is dit als tabel bedoeld?",
 	"DESCRIPTION": "Deze tekst ziet eruit als een tabel, maar is in de code gemarkeerd als lijst. Als dit als tabel bedoeld was, kan je het ook beter opmaken als tabel."
@@ -171,7 +203,7 @@
       },
       "3": {
         "SUMMARY": "Het document bevat inhoud die niet gelabeld is in de code",
-        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Voor digitale toegankelijkheid is dit een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 90005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
+        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 90005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
       },
       "4": {
         "SUMMARY": "De applicatie die dit document creëerde kon geen correcte leesvolgorde garanderen",

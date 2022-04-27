@@ -1,17 +1,25 @@
 name: Increment GUI version
 
 on:
-  pull_request:
-    types:
-      [ closed ]
-    branches:
-      [ master ]
+  push:
+    branches: [ master ]
 env:
   DATE_ENV_VARIABLE: REACT_APP_VERSION_DATE
 
 jobs:
+  test-commit-message:
+    runs-on: ubuntu-latest
+    outputs:
+      is_version: ${{ steps.validation.outputs.is_version }}
+    steps:
+      - id: validation
+        run: echo "::set-output name=is_version::$([[ '${{ github.event.head_commit.message }}' =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] && echo true || echo false)"
+      - name: Matches version pattern
+        run: echo "${{ steps.validation.outputs.is_version }}"
+
   version-update:
-    if: github.event.pull_request.merged == true
+    needs: test-commit-message
+    if: ${{ needs.test-commit-message.outputs.is_version == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

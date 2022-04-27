@@ -12,8 +12,19 @@ env:
 
 
 jobs:
+  test-commit-message:
+    runs-on: ubuntu-latest
+    outputs:
+      is_version: ${{ steps.validation.outputs.is_version }}
+    steps:
+      - id: validation
+        run: echo "::set-output name=is_version::$([[ '${{ github.event.head_commit.message }}' =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] && echo true || echo false)"
+      - name: Matches version pattern
+        run: echo "${{ steps.validation.outputs.is_version }}"
+
   build:
-    if: ${{ !startsWith(github.event.head_commit.message, 'Merge pull request') }}
+    needs: test-commit-message
+    if: ${{ needs.test-commit-message.outputs.is_version == 'true' }}
     runs-on: ubuntu-latest
 
     steps:

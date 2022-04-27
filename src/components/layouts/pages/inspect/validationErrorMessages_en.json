@@ -12,6 +12,10 @@
       "3": {
 	"SUMMARY": "Avoid underlining text",
 	"DESCRIPTION": "Underlined text is not forbidden, but easily confused with a hyperlink. It's therefore better to avoid underlining text. If you want to emphasize text, better use boldface."
+      },
+      "4": {
+	"SUMMARY": "Does this text have a specific meaning?",
+	"DESCRIPTION": "This text looks different from the surrounding text. If you formatted this text differently to convey a specific meaning, make sure this is also reflected in the code. You can do this for example by creating a style for this text format."
       }
     },
     "1.3.4": {
@@ -26,10 +30,22 @@
         "DESCRIPTION": "Text must have sufficient contrast with the background, otherwise people with visual impairments and colorblind people may have problems reading it. Black text on an (almost) white background is usually the safest option. Should you want to use colour, make sure the text has a contrast of at least 4,5 : 1 with the background (for very big text this may be 3 : 1)."
       }    
     },
+    "1.4.4": {
+      "1": {
+	"SUMMARY": "This text size is very small",
+	"DESCRIPTION": "This text is so small that people with visual impairments may have problems reading it, even after magnifying. Try using fonts with a size of 11pt or more wherever possible."
+      }
+    },
     "1.4.8": {
       "1": {
 	"SUMMARY": "The document contains fonts that are difficult to read. This concerns font(s): ",
 	"DESCRIPTION": "You're using fonts that are difficult to read. Reader software will read the text out correctly, but people with impaired vision, ADHD or people in the autism spectrum may have problems reading this. Unless you meant this text to be unreadable, use standard fonts such as Arial, Verdana or Times Roman."
+      }
+    },
+    "1.4.10": {
+      "1": {
+	"SUMMARY": "This figure has not been coded correctly",
+	"DESCRIPTION": "This figure is not coded with a bounding box. This may affect PDF readers' abililties to reflow the pages of the document."
       }
     },
     "2.4.9": {
@@ -46,6 +62,14 @@
       "2": {
 	"SUMMARY": "This table head contains merged cells",
 	"DESCRIPTION": "Merged cells in the table head make it more difficult for reader software to read a table out coherently. Please keep tables as simple as possible and avoid merging cells where you can."
+      },
+      "3": {
+	"SUMMARY": "This table appears to have merged cells",
+	"DESCRIPTION": "Merged cells in the table head make it more difficult for reader software to read a table out coherently. Please keep tables as simple as possible and avoid merging cells where you can."
+      },
+      "4": {
+	"SUMMARY": "Document is not tagged",
+	"DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 90005-1 (PDF/A)'."
       }
     },
     "4.1.2": {
@@ -60,6 +84,14 @@
       "3": {
         "SUMMARY": "Is this really a table?",
         "DESCRIPTION": "This text is tagged as a table, but it doesn't appear to be a real table. Avoid using tables to align or format text in a document. Reformat this text as a paragraph. Use tabs to align and borders to format text in a paragraph. Best of all, use styles to consistently align and format text throughout the document."
+      },
+      "4": {
+        "SUMMARY": "Is this really a heading?",
+        "DESCRIPTION": "This text is tagged as a heading but doesn't appear to be intended as one. If you didn't intend this as a heading, then make sure it isn't tagged as such. In this case just make it a paragraph in a standard style."
+      },
+      "5": {
+        "SUMMARY": "Is this really a heading?",
+        "DESCRIPTION": "This text is tagged as a heading but doesn't appear to be intended as one. If you didn't intend this as a heading, then make sure it isn't tagged as such. In this case just make it a paragraph in a standard style."
       },
       "6": {
         "SUMMARY": "Is this a table row?",
@@ -128,6 +160,14 @@
       "22": {
 	"SUMMARY": "Are you sure this is intended as a list?",
 	"DESCRIPTION": "This text is tagged as a list but it doesn't appear to be a real list. If this text wasn't intended as a list, then format it as a normal paragraph. It's also possible that you got this warning because you interrupted a list with normal text paragraphs. It's better to avoid this as reader applications can have difficulties reading this out properly."
+      },
+      "23": {
+	"SUMMARY": "Is this really part of a list?",
+	"DESCRIPTION": "This text is tagged as a list item but doesn't appear to be part of a real list. This can confuse reader applications. Don't use list functionality with the sole purpose of aligning text, and don't interrupt lists with line breaks of paragraphs."
+      },
+      "25": {
+	"SUMMARY": "Is this really a list?",
+	"DESCRIPTION": "This text is tagged as a list item but doesn't appear to be part of a real list. This can confuse reader applications. Don't use list functionality with the sole purpose of aligning text, and don't interrupt lists with line breaks of paragraphs."
       },
       "26": {
 	"SUMMARY": "Is this a table?",

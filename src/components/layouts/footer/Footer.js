@@ -13,13 +13,19 @@ const BUILD_TIME_FORMAT = {
 };
 
 function Footer(props) {
-    const { appVersion, fileService, jobService } = props;
+    const { appVersion, fileService, jobService, workerService } = props;
     const fileServiceInfo = useMemo(() => buildServiceInfo(fileService), [fileService]);
     const jobServiceInfo = useMemo(() => buildServiceInfo(jobService), [jobService]);
+    const workerServiceInfo = useMemo(() => buildAppsVersion(workerService), [workerService]);
+    const title = useMemo(
+        () =>
+            `File storage: ${fileServiceInfo}\nJob service: ${jobServiceInfo}\nveraPDF-apps version: ${workerServiceInfo}`,
+        [fileServiceInfo, jobServiceInfo, workerServiceInfo]
+    );
 
     return (
         <footer className="app-footer">
-            <div title={`File storage: ${fileServiceInfo}\nJob service: ${jobServiceInfo}`}>
+            <div title={title}>
                 version: {appVersion} - {process.env.REACT_APP_VERSION_DATE}
             </div>
         </footer>
@@ -43,6 +49,19 @@ function buildServiceInfo(service) {
     }
 }
 
+function buildAppsVersion(service) {
+    switch (service.available) {
+        case true:
+            return service.build.apps.version;
+
+        case false:
+            return 'service is not available.';
+
+        default:
+            return 'loading service status...';
+    }
+}
+
 const ServiceStatusShape = PropTypes.shape({
     available: PropTypes.bool,
     build: PropTypes.shape({
@@ -50,11 +69,22 @@ const ServiceStatusShape = PropTypes.shape({
         time: PropTypes.string,
     }),
 });
+const WorkerServiceStatusShape = PropTypes.shape({
+    available: PropTypes.bool,
+    build: PropTypes.shape({
+        version: PropTypes.string,
+        time: PropTypes.string,
+        apps: PropTypes.shape({
+            version: PropTypes.string,
+        }),
+    }),
+});
 
 Footer.propTypes = {
     appVersion: PropTypes.string.isRequired,
     fileService: ServiceStatusShape.isRequired,
     jobService: ServiceStatusShape.isRequired,
+    workerService: WorkerServiceStatusShape.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -62,6 +92,7 @@ function mapStateToProps(state) {
         appVersion: state.serverInfo.version,
         fileService: state.serverInfo.fileService,
         jobService: state.serverInfo.jobService,
+        workerService: state.serverInfo.workerService,
     };
 }
 

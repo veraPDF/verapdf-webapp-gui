@@ -5,8 +5,9 @@ services:
     depends_on:
       - file-storage
       - job-service
+      - worker
     ports:
       - ${GUI_PORT:-80}:80
     restart: always
     labels:
-      - 'com.centurylinklabs.watchtower.depends-on=verapdf_file-storage_1,verapdf_job-service_1'
+      - 'com.centurylinklabs.watchtower.depends-on=verapdf_file-storage_1,verapdf_job-service_1,verapdf_worker_1'

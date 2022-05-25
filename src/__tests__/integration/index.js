@@ -9,12 +9,14 @@ import App from '../../components/App';
 import configureStore from '../../store/rootStore';
 import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../services/fileService';
 import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
+import { getInfo as getWorkerServiceInfo } from '../../services/workerService';
 import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
 import { getProgress } from '../../store/job/progress/selectors';
 
 jest.mock('../../services/fileService');
 jest.mock('../../services/jobService');
+jest.mock('../../services/workerService');
 jest.mock('../../services/profiles');
 
 jest.mock('../../services/pdfStorage');
@@ -31,6 +33,8 @@ const DEFAULT_SERVICE_INFO = {
     version: '0.1.0-SNAPSHOT',
     time: '2020-03-17T07:30:59.207Z',
 };
+
+const DEFAULT_APPS_VERSION = '1.1.1';
 
 export const TEST_FILE = {
     path: './src/__tests__/integration/assets/test.pdf',
@@ -60,6 +64,17 @@ export const DEFAULT_STARTUP_RESPONSES = {
                 ...DEFAULT_SERVICE_INFO,
                 artifact: 'job-service-server',
                 name: 'job-service-server',
+            },
+        },
+    },
+    workerServiceStatus: {
+        ok: true,
+        responseJson: {
+            build: {
+                ...DEFAULT_SERVICE_INFO,
+                artifact: 'worker-service-server',
+                name: 'worker-service-server',
+                apps: { version: DEFAULT_APPS_VERSION },
             },
         },
     },
@@ -150,6 +165,7 @@ export const configureTestStore = startupResponses => {
     // Mock responses for startup requests
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
     mockServiceJsonResponse(getJobServiceInfo, startupResponses.jobServiceStatus);
+    mockServiceJsonResponse(getWorkerServiceInfo, startupResponses.workerServiceStatus);
     mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
 
     // TODO: all calls below ARE NOT startup, hence should be mocked in corresponding test file instead
@@ -192,6 +208,7 @@ export const integrationTest = (
         fetchSpy.mockReset();
         getFileServiceInfo.mockReset();
         getJobServiceInfo.mockReset();
+        getWorkerServiceInfo.mockReset();
         getProfilesList.mockReset();
         createJob.mockReset();
         uploadFile.mockReset();

@@ -9,7 +9,7 @@ import App from '../../components/App';
 import configureStore from '../../store/rootStore';
 import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../services/fileService';
 import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
-import { getInfo as getWorkerServiceInfo } from '../../services/workerService';
+import { getInfo as getWorkerServiceInfo, getAppsBuildInfo } from '../../services/workerService';
 import { getList as getProfilesList } from '../../services/profiles';
 import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
 import { getProgress } from '../../store/job/progress/selectors';
@@ -76,6 +76,12 @@ export const DEFAULT_STARTUP_RESPONSES = {
                 name: 'worker-service-server',
                 apps: { version: DEFAULT_APPS_VERSION },
             },
+        },
+    },
+    appsInfo: {
+        ok: true,
+        responseJson: {
+            lastUpdated: '2022-05-24T08:55:17.005Z',
         },
     },
     profilesList: {
@@ -166,6 +172,7 @@ export const configureTestStore = startupResponses => {
     mockServiceJsonResponse(getFileServiceInfo, startupResponses.fileServiceStatus);
     mockServiceJsonResponse(getJobServiceInfo, startupResponses.jobServiceStatus);
     mockServiceJsonResponse(getWorkerServiceInfo, startupResponses.workerServiceStatus);
+    mockServiceJsonResponse(getAppsBuildInfo, startupResponses.appsInfo);
     mockServiceJsonResponse(getProfilesList, startupResponses.profilesList);
 
     // TODO: all calls below ARE NOT startup, hence should be mocked in corresponding test file instead
@@ -209,6 +216,7 @@ export const integrationTest = (
         getFileServiceInfo.mockReset();
         getJobServiceInfo.mockReset();
         getWorkerServiceInfo.mockReset();
+        getAppsBuildInfo.mockReset();
         getProfilesList.mockReset();
         createJob.mockReset();
         uploadFile.mockReset();

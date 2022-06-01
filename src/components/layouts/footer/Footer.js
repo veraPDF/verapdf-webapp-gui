@@ -16,7 +16,7 @@ function Footer(props) {
     const { appVersion, fileService, jobService, workerService } = props;
     const fileServiceInfo = useMemo(() => buildServiceInfo(fileService), [fileService]);
     const jobServiceInfo = useMemo(() => buildServiceInfo(jobService), [jobService]);
-    const workerServiceInfo = useMemo(() => buildAppsVersion(workerService), [workerService]);
+    const workerServiceInfo = useMemo(() => buildAppsInfo(workerService), [workerService]);
     const title = useMemo(
         () =>
             `File storage: ${fileServiceInfo}\nJob service: ${jobServiceInfo}\nveraPDF-apps version: ${workerServiceInfo}`,
@@ -49,10 +49,15 @@ function buildServiceInfo(service) {
     }
 }
 
-function buildAppsVersion(service) {
+function buildAppsInfo(service) {
     switch (service.available) {
         case true:
-            return service.build.apps.version;
+            let info = service.build.apps.version;
+            if (service.build.apps.lastUpdated) {
+                let buildTime = new Date(service.build.apps.lastUpdated);
+                info += `, built on ${buildTime.toLocaleString(BUILD_TIME_FORMAT.locale, BUILD_TIME_FORMAT.options)}`;
+            }
+            return info;
 
         case false:
             return 'service is not available.';
@@ -76,6 +81,7 @@ const WorkerServiceStatusShape = PropTypes.shape({
         time: PropTypes.string,
         apps: PropTypes.shape({
             version: PropTypes.string,
+            lastUpdated: PropTypes.string,
         }),
     }),
 });

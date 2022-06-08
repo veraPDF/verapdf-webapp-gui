@@ -8,6 +8,6 @@ export const getInfo = () => {
 };
 
 export const getAppsBuildInfo = version => {
-    const url = `${process.env.REACT_APP_APPS_ARTIFACTORY_URL}/${version}`;
+    const url = `${REACT_APP_API_ROOT}/apps/${version}`;
     return get(url);
 };

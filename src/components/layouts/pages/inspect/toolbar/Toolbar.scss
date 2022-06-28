@@ -33,4 +33,10 @@
       margin-right: 4px;
     }
   }
+
+  &__filename {
+    max-width: 35vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

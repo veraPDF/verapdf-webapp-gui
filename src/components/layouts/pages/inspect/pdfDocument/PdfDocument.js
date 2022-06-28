@@ -85,6 +85,7 @@ function PdfDocument(props) {
 
     const onDocumentReady = useCallback(
         document => {
+            props.setPdfName(props.file.name);
             const newMapOfErrors = {};
             const structureTree = document._pdfInfo.structureTree;
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {

@@ -6,6 +6,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import _ from 'lodash';
 
 import AppPages from '../../../../AppPages';
@@ -41,7 +42,9 @@ function Toolbar({ jobId, name, scale, scaleOptions, onScaleChanged }) {
                 </Button>
             </section>
             <section className="toolbar__center">
-                <h1>{name}</h1>
+                <Typography class="toolbar__filename" variant="body2" component="div" noWrap title={name}>
+                    {name}
+                </Typography>
             </section>
             <section className="toolbar__end">
                 <IconButton onClick={onZoomOut} size="small" disabled={!currentScaleIndex}>

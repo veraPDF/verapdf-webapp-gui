@@ -162,6 +162,7 @@ function RuleList({
     return ruleSummaries.map((rule, index) => {
         const checks = rule.checks;
         const ruleTitle = getRuleTitle(rule, errorMessages);
+        const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
         return (
             <Fragment key={index}>
                 <ListItem button onClick={() => onRuleClick(index)} className="rule-item rule-item_error">
@@ -173,7 +174,7 @@ function RuleList({
                             <>
                                 <span className="content-text">{ruleTitle}</span>
                                 {checks.length ? (
-                                    <Chip size="small" className="rule-item__chip" label={checks.length} />
+                                    <Chip size="small" className="rule-item__chip" label={checksLabel} />
                                 ) : null}
                             </>
                         }

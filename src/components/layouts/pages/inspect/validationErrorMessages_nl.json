@@ -203,7 +203,7 @@
       },
       "3": {
         "SUMMARY": "Het document bevat inhoud die niet gelabeld is in de code",
-        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 19005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
+        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Je kan dit mogelijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan PDF/A' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren. Het is ook mogelijk dat je deze fout krijgt als je PDF bestand een gescand document is. Kijk in dat geval of het mogelijk om het document opnieuw te scannen met tekenherkenning (OCR) en check of het goed gecodeerd is."
       },
       "4": {
         "SUMMARY": "De applicatie die dit document creëerde kon geen correcte leesvolgorde garanderen",

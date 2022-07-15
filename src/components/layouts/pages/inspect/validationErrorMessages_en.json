@@ -203,7 +203,7 @@
       },
       "3": {
         "SUMMARY": "The document has content that has not been tagged",
-        "DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 19005-1 (PDF/A)'."
+        "DESCRIPTION": "If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You may be able to solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as PDF/A'. NEVER use the print menu to save to PDF. You can also get this error with scanned documents. In this case try re-scanning the document with optical character recognition (OCR) and check if it is properly tagged."
       },
       "4": {
         "SUMMARY": "The application that created the document could not guarantee a correct reading order",

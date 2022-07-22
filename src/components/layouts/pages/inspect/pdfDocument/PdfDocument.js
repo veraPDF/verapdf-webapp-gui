@@ -8,6 +8,8 @@ import _ from 'lodash';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
+import { getPage } from '../../../../../store/application/selectors';
+import { setNumPages, setPage } from '../../../../../store/application/actions';
 
 import './PdfDocument.scss';
 
@@ -15,6 +17,7 @@ const SummaryInterface = PropTypes.shape({
     clause: PropTypes.string.isRequired,
     testNumber: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
     checks: PropTypes.arrayOf(PropTypes.object).isRequired,
 });
 
@@ -25,6 +28,8 @@ PdfDocument.propTypes = {
     scale: PropTypes.string.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    setNumPages: PropTypes.func.isRequired,
 };
 
 function getPageFromErrorPlace(context, structureTree) {
@@ -86,6 +91,7 @@ function PdfDocument(props) {
     const onDocumentReady = useCallback(
         document => {
             props.setPdfName(props.file.name);
+            props.setNumPages(document.numPages);
             const newMapOfErrors = {};
             const structureTree = document._pdfInfo.structureTree;
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
@@ -151,6 +157,8 @@ function PdfDocument(props) {
                 location,
                 groupId,
             }))}
+            page={props.page}
+            onPageChange={props.onPageChange}
         />
     );
 }
@@ -159,7 +167,15 @@ function mapStateToProps(state) {
     return {
         file: getPdfFiles(state)[0],
         ruleSummaries: getRuleSummaries(state),
+        page: getPage(state),
     };
 }
 
-export default connect(mapStateToProps)(PdfDocument);
+function mapDispatchToProps(dispatch) {
+    return {
+        onPageChange: page => dispatch(setPage(page)),
+        setNumPages: numPages => dispatch(setNumPages(numPages)),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PdfDocument);

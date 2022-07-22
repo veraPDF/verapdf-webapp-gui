@@ -51,3 +51,7 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
     // Redirect to start screen and hide Loading view
     window.location.replace(PUBLIC_URL);
 };
+
+export const setPage = createAction('APP_PAGE_SET', page => page);
+
+export const setNumPages = createAction('APP_NUM_PAGES_SET', numPages => numPages);

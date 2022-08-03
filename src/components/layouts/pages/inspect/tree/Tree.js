@@ -136,7 +136,10 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
             </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog
-                    title={getRuleTitle(openedRule, errorMessages[language])}
+                    title={`${getRuleNumber(openedRule, errorMessages[language])}${getRuleTitle(
+                        openedRule,
+                        errorMessages[language]
+                    )}`}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
@@ -283,6 +286,10 @@ function getRuleTitle({ specification, clause, testNumber }, errorMessages) {
         errorMessages?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
         `${specification}, clause ${clause}, test ${testNumber}`
     );
+}
+
+function getRuleNumber({ specification, clause, testNumber }, errorMessages) {
+    return errorMessages?.[specification]?.[clause] ? `${clause}-${testNumber} (${specification}) ` : '';
 }
 
 function getRuleUrl({ specification, clause, testNumber }, errorMessages) {

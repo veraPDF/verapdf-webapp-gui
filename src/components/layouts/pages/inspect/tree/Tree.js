@@ -289,7 +289,7 @@ function getRuleTitle({ specification, clause, testNumber }, errorMessages) {
 }
 
 function getRuleNumber({ specification, clause, testNumber }, errorMessages) {
-    return errorMessages?.[specification]?.[clause] ? `${clause}(${testNumber}) ` : '';
+    return errorMessages?.[specification]?.[clause] ? `${clause}-${testNumber} (${specification}) ` : '';
 }
 
 function getRuleUrl({ specification, clause, testNumber }, errorMessages) {

@@ -26,10 +26,29 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           margin-right: 5px;
+          font-size: .9rem;
         }
 
         &_empty {
           padding-left: 24px;
+        }
+      }
+
+      &_expanded {
+        align-items: flex-start;
+
+        span {
+          align-items: flex-start;
+        }
+
+        & + .MuiListItemSecondaryAction-root {
+          top: 0;
+          transform: none;
+        }
+
+        .content-text {
+          white-space: normal;
+          line-height: normal;
         }
       }
 
@@ -58,6 +77,10 @@
         background-color: rgba(0, 0, 0, 0.08);
       }
     }
+  }
+
+  .MuiTypography-body1 {
+    font-size: .9rem;
   }
 }
 

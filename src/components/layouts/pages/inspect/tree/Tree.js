@@ -168,7 +168,7 @@ function RuleList({
         const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
         return (
             <Fragment key={index}>
-                <ListItem button onClick={() => onRuleClick(index)} className="rule-item rule-item_error">
+                <ListItem button onClick={() => onRuleClick(index)} className={classNames('rule-item rule-item_error', { 'rule-item_expanded': expandedRule === index })}>
                     {checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}

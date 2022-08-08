@@ -30,6 +30,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: Update git submodules
+        run: git submodule update --init --remote --recursive
       - name: Increment package version
         run: npm version patch --commit-hooks=false --git-tag-version=false
       - name: Get latest version

@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: false
           token: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Set up Node
         uses: actions/setup-node@v1

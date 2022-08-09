@@ -75,7 +75,12 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
     const [infoDialogOpened, setInfoDialogOpened] = useState(false);
     const errorMessages = useMemo(() => {
-        return errorMessagesMap[profile === errorProfiles.TAGGED_PDF ? profile : errorProfiles.OTHER][language];
+        switch (profile) {
+            case errorProfiles.TAGGED_PDF:
+                return errorMessagesMap[profile][language];
+            default:
+                return errorMessagesMap[errorProfiles.OTHER][language];
+        }
     }, [language, profile]);
     const onInfoClick = useCallback(rule => {
         setOpenedRule(rule);

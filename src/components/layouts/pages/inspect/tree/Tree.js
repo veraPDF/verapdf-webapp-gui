@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment, useEffect, useRef } from 'react';
+import React, { useState, useCallback, Fragment, useEffect, useRef, useMemo } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import _ from 'lodash';
 
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
+import { getProfile } from '../../../../../store/job/settings/selectors';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,6 +28,7 @@ import './Tree.scss';
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_technical from '../validationErrorMessages_technical.json';
+import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
@@ -37,14 +39,23 @@ const languageEnum = {
     Dutch: 'Dutch',
     Technical: 'Technical',
 };
-
-const errorMessages = {
-    [languageEnum.English]: errorMap_en,
-    [languageEnum.Dutch]: errorMap_nl,
-    [languageEnum.Technical]: errorMap_technical,
+const errorProfiles = {
+    TAGGED_PDF: 'TAGGED_PDF',
+    OTHER: 'Other',
 };
 
-function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
+const errorMessagesMap = {
+    [errorProfiles.OTHER]: {
+        [languageEnum.English]: errorMap_en,
+        [languageEnum.Dutch]: errorMap_nl,
+        [languageEnum.Technical]: errorMap_technical,
+    },
+    [errorProfiles.TAGGED_PDF]: {
+        [languageEnum.Technical]: errorMap_tagged_technical,
+    },
+};
+
+function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profile }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
     const [expandedRule, setExpandedRule] = useState(UNSELECTED);
@@ -63,6 +74,14 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
     // info dialog props
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
     const [infoDialogOpened, setInfoDialogOpened] = useState(false);
+    const errorMessages = useMemo(() => {
+        switch (profile) {
+            case errorProfiles.TAGGED_PDF:
+                return errorMessagesMap[profile][language];
+            default:
+                return errorMessagesMap[errorProfiles.OTHER][language];
+        }
+    }, [language, profile]);
     const onInfoClick = useCallback(rule => {
         setOpenedRule(rule);
         setInfoDialogOpened(true);
@@ -131,20 +150,17 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap }) {
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
                     errorsMap={errorsMap}
-                    errorMessages={errorMessages[language]}
+                    errorMessages={errorMessages}
                 />
             </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog
-                    title={`${getRuleNumber(openedRule, errorMessages[language])}${getRuleTitle(
-                        openedRule,
-                        errorMessages[language]
-                    )}`}
+                    title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
-                    {getRuleDescription(openedRule, errorMessages[language])}
-                    <RuleDetailsButton rule={openedRule} errorMessages={errorMessages[language]} />
+                    {getRuleDescription(openedRule, errorMessages)}
+                    <RuleDetailsButton rule={openedRule} errorMessages={errorMessages} />
                 </InfoDialog>
             )}
         </section>
@@ -296,7 +312,7 @@ function getRuleTitle({ specification, clause, testNumber }, errorMessages) {
 }
 
 function getRuleNumber({ specification, clause, testNumber }, errorMessages) {
-    return errorMessages?.[specification]?.[clause] ? `${clause}-${testNumber} (${specification}) ` : '';
+    return errorMessages?.[specification]?.[clause]?.[testNumber] ? `${clause}-${testNumber} (${specification}) ` : '';
 }
 
 function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
@@ -358,6 +374,7 @@ const SummaryInterface = PropTypes.shape({
 
 Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    profile: PropTypes.string.isRequired,
     selectedCheck: PropTypes.string,
     setSelectedCheck: PropTypes.func.isRequired,
     errorsMap: PropTypes.object.isRequired,
@@ -366,6 +383,7 @@ Tree.propTypes = {
 function mapStateToProps(state) {
     return {
         ruleSummaries: getRuleSummaries(state),
+        profile: getProfile(state),
     };
 }
 

@@ -222,6 +222,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
     checksSorted = sortChecksByPage(checksSorted, errorsMap, ruleIndex);
     return checksSorted.map(({ context, errorMessage, location, id: checkKey }, index) => {
         const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap });
+        const errorTitle = errorMessage + '\n\nContext: ' + context;
         const isGrouped =
             selectedCheck &&
             errorsMap[selectedCheck] &&
@@ -236,7 +237,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
                 selected={selectedCheck === checkKey}
                 button
                 className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
-                title={errorMessage || context}
+                title={errorTitle}
                 checkTitle={checkTitle}
             />
         );

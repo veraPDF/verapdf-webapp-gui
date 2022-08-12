@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import PropTypes from 'prop-types';
@@ -17,7 +17,6 @@ const SummaryInterface = PropTypes.shape({
     clause: PropTypes.string.isRequired,
     testNumber: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    page: PropTypes.number.isRequired,
     checks: PropTypes.arrayOf(PropTypes.object).isRequired,
 });
 
@@ -26,6 +25,7 @@ PdfDocument.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
     scale: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
@@ -80,6 +80,13 @@ function getPageFromErrorPlace(context, structureTree) {
 function PdfDocument(props) {
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [activeBboxIndex, setActiveBboxIndex] = useState(null);
+    const bboxes = useMemo(() => {
+        return Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
+            location,
+            groupId,
+        }));
+    }, [mapOfErrors]);
+
     useEffect(() => {
         setActiveBboxIndex(Object.keys(mapOfErrors).indexOf(props.selectedCheck));
     }, [mapOfErrors, props.selectedCheck]);
@@ -153,10 +160,7 @@ function PdfDocument(props) {
             onLoadSuccess={onDocumentReady}
             activeBboxIndex={activeBboxIndex}
             onBboxClick={data => onBboxSelect(data)}
-            bboxes={Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
-                location,
-                groupId,
-            }))}
+            bboxes={bboxes}
             page={props.page}
             onPageChange={props.onPageChange}
         />

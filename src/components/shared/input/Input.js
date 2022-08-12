@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MaterialInput from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 
-function Input({ id, className, value, type, labelId, disabled, inputProps, onChange, onBlur, onEnter }) {
+function Input({ id, className, value, type, disabled, inputProps, onChange, onBlur, onEnter }) {
     const handleChange = useCallback(e => onChange(e.target.value), [onChange]);
     const handleBlur = useCallback(e => onBlur(e.target.value), [onBlur]);
     const handleKeyUp = useCallback(
@@ -21,7 +21,6 @@ function Input({ id, className, value, type, labelId, disabled, inputProps, onCh
                 className="select-form-controller__select"
                 id={id}
                 value={value}
-                labelId={labelId}
                 type={type}
                 inputProps={inputProps}
                 onChange={handleChange}
@@ -36,7 +35,6 @@ Input.propTypes = {
     id: PropTypes.string.isRequired,
     value: PropTypes.string,
     type: PropTypes.string,
-    labelId: PropTypes.string,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,

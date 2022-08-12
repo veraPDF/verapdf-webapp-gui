@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import PropTypes from 'prop-types';
@@ -8,6 +8,8 @@ import _ from 'lodash';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
+import { getPage } from '../../../../../store/application/selectors';
+import { setNumPages, setPage } from '../../../../../store/application/actions';
 
 import './PdfDocument.scss';
 
@@ -23,8 +25,11 @@ PdfDocument.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
     scale: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    setNumPages: PropTypes.func.isRequired,
 };
 
 function getPageFromErrorPlace(context, structureTree) {
@@ -75,6 +80,13 @@ function getPageFromErrorPlace(context, structureTree) {
 function PdfDocument(props) {
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [activeBboxIndex, setActiveBboxIndex] = useState(null);
+    const bboxes = useMemo(() => {
+        return Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
+            location,
+            groupId,
+        }));
+    }, [mapOfErrors]);
+
     useEffect(() => {
         setActiveBboxIndex(Object.keys(mapOfErrors).indexOf(props.selectedCheck));
     }, [mapOfErrors, props.selectedCheck]);
@@ -85,6 +97,8 @@ function PdfDocument(props) {
 
     const onDocumentReady = useCallback(
         document => {
+            props.setPdfName(props.file.name);
+            props.setNumPages(document.numPages);
             const newMapOfErrors = {};
             const structureTree = document._pdfInfo.structureTree;
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
@@ -146,10 +160,9 @@ function PdfDocument(props) {
             onLoadSuccess={onDocumentReady}
             activeBboxIndex={activeBboxIndex}
             onBboxClick={data => onBboxSelect(data)}
-            bboxes={Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
-                location,
-                groupId,
-            }))}
+            bboxes={bboxes}
+            page={props.page}
+            onPageChange={props.onPageChange}
         />
     );
 }
@@ -158,7 +171,15 @@ function mapStateToProps(state) {
     return {
         file: getPdfFiles(state)[0],
         ruleSummaries: getRuleSummaries(state),
+        page: getPage(state),
     };
 }
 
-export default connect(mapStateToProps)(PdfDocument);
+function mapDispatchToProps(dispatch) {
+    return {
+        onPageChange: page => dispatch(setPage(page)),
+        setNumPages: numPages => dispatch(setNumPages(numPages)),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PdfDocument);

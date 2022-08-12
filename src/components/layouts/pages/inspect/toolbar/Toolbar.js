@@ -6,6 +6,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import _ from 'lodash';
 
 import AppPages from '../../../../AppPages';
@@ -14,10 +15,13 @@ import Button from '../../../../shared/button/Button';
 import Select from '../../../../shared/select/Select';
 
 import './Toolbar.scss';
+import Pagination from '../../../../shared/pagination/Pagination';
+import { getNumPages, getPage } from '../../../../../store/application/selectors';
+import { setPage } from '../../../../../store/application/actions';
 
 const BACK = 'Back to summary';
 
-function Toolbar({ jobId, name, scale, scaleOptions, onScaleChanged }) {
+function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChanged, setPage }) {
     const history = useHistory();
     const onBackClick = useMemo(() => () => history.push(AppPages.RESULTS.url(jobId)), [history, jobId]);
     const currentScaleIndex = useMemo(() => _.findIndex(scaleOptions, { value: scale }), [scaleOptions, scale]);
@@ -41,9 +45,12 @@ function Toolbar({ jobId, name, scale, scaleOptions, onScaleChanged }) {
                 </Button>
             </section>
             <section className="toolbar__center">
-                <h1>{name}</h1>
+                <Typography className="toolbar__filename" variant="body2" component="div" noWrap title={name}>
+                    {name}
+                </Typography>
             </section>
             <section className="toolbar__end">
+                <Pagination page={page} numPages={numPages} setPage={setPage} />
                 <IconButton onClick={onZoomOut} size="small" disabled={!currentScaleIndex}>
                     <RemoveIcon />
                 </IconButton>
@@ -68,13 +75,23 @@ Toolbar.propTypes = {
     jobId: PropTypes.string,
     scale: PropTypes.string.isRequired,
     scaleOptions: PropTypes.arrayOf(PropTypes.object).isRequired,
+    page: PropTypes.number.isRequired,
+    numPages: PropTypes.number.isRequired,
     onScaleChanged: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
     return {
         jobId: getJobId(state),
+        page: getPage(state),
+        numPages: getNumPages(state),
     };
 }
 
-export default connect(mapStateToProps)(Toolbar);
+function mapDispatchToProps(dispatch) {
+    return {
+        setPage: page => dispatch(setPage(page)),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

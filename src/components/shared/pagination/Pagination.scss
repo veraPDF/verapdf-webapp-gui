@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  padding-right: 20px;
+  padding-left: 5px;
+
+  &__max {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+  }
+
+  &__buttons > * {
+    margin-right: 5px;
+  }
+
+  &__input.MuiFormControl-root {
+    width: 50px;
+    margin-right: 5px;
+
+    input {
+      -moz-appearance: textfield;
+      text-align: end;
+      padding: 6px 3px 7px;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

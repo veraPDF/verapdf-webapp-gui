@@ -21,7 +21,7 @@ import { setPage } from '../../../../../store/application/actions';
 
 const BACK = 'Back to summary';
 
-function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChanged, setPage, onPageChange }) {
+function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChanged, setPage }) {
     const history = useHistory();
     const onBackClick = useMemo(() => () => history.push(AppPages.RESULTS.url(jobId)), [history, jobId]);
     const currentScaleIndex = useMemo(() => _.findIndex(scaleOptions, { value: scale }), [scaleOptions, scale]);
@@ -50,7 +50,7 @@ function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChan
                 </Typography>
             </section>
             <section className="toolbar__end">
-                <Pagination page={page} numPages={numPages} setPage={setPage} onPageChange={onPageChange} />
+                <Pagination page={page} numPages={numPages} setPage={setPage} />
                 <IconButton onClick={onZoomOut} size="small" disabled={!currentScaleIndex}>
                     <RemoveIcon />
                 </IconButton>
@@ -78,7 +78,6 @@ Toolbar.propTypes = {
     page: PropTypes.number.isRequired,
     numPages: PropTypes.number.isRequired,
     onScaleChanged: PropTypes.func.isRequired,
-    onPageChange: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

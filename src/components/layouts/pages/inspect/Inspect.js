@@ -48,8 +48,6 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
         [onFileDrop]
     );
 
-    const resetSelectedCheck = () => setSelectedCheck(null);
-
     useEffect(() => {
         lockApp();
     }, [lockApp]);
@@ -69,7 +67,6 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
                     scale={scale}
                     scaleOptions={scaleOptions}
                     onScaleChanged={setScale}
-                    onPageChange={resetSelectedCheck}
                 />
                 <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
                 <PdfDocument

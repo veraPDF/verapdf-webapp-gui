@@ -1,17 +1,20 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Input from '../input/Input';
-import './Pagination.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+
+import Input from '../input/Input';
 import { setPage } from '../../../store/application/actions';
 import { getPage } from '../../../store/application/selectors';
-import _ from 'lodash';
+
 import IconButton from '@material-ui/core/IconButton';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Typography from '@material-ui/core/Typography';
 
-function Pagination({ numPages, page, setPage, onPageChange }) {
+import './Pagination.scss';
+
+function Pagination({ numPages, page, setPage }) {
     const [pageValue, setPageValue] = useState(page + '');
 
     const onChange = page => setPageValue(page);
@@ -20,13 +23,11 @@ function Pagination({ numPages, page, setPage, onPageChange }) {
         const pageNumber = parseInt(pageValue);
         if (_.isFinite(pageNumber) && pageNumber > 0 && pageNumber <= numPages) {
             setPage(pageNumber);
-            onPageChange();
         } else {
             setPage(page);
             setPageValue(page + '');
-            onPageChange();
         }
-    }, [pageValue, numPages, setPage, onPageChange, page]);
+    }, [pageValue, numPages, setPage, page]);
 
     useEffect(
         useCallback(() => {
@@ -40,16 +41,14 @@ function Pagination({ numPages, page, setPage, onPageChange }) {
     const onNextPage = useCallback(() => {
         if (page < numPages) {
             setPage(page + 1);
-            onPageChange();
         }
-    }, [numPages, page, setPage, onPageChange]);
+    }, [numPages, page, setPage]);
 
     const onPreviousPage = useCallback(() => {
         if (page > 1) {
             setPage(page - 1);
-            onPageChange();
         }
-    }, [page, setPage, onPageChange]);
+    }, [page, setPage]);
 
     return (
         <div className="pagination">
@@ -81,7 +80,6 @@ function Pagination({ numPages, page, setPage, onPageChange }) {
 
 Pagination.propTypes = {
     numPages: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

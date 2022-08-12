@@ -6,3 +6,4 @@ build/*
 landing/*
 server/*
 src/serviceWorker.js
+pdfjs/

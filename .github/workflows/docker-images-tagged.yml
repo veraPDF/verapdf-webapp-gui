@@ -27,7 +27,7 @@ jobs:
       - name: Update git submodules
         run: git submodule update --init --recursive
       - name: Build React app
-        run: npm ci && npm run build
+        run: yarn install --frozen-lockfile && yarn run build
       - name: Get tag name
         id: tag
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}

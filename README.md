@@ -16,13 +16,13 @@ If you run `git submodule update --remote --recursive`, Git will go into your su
 
 **Prerequisites**
 
-Node (latest) + npm (latest)
+Node (latest) + yarn (latest)
 
 **Preparation**
 
 Install dependencies:
 
-`npm install`
+`yarn install`
 
 Build backend services and run them in docker as described in server's [README](./server/README.md), 
 section **Running in docker**.
@@ -31,7 +31,7 @@ section **Running in docker**.
 
 Runs the app in the development mode:
 
-`npm start`
+`yarn start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -40,17 +40,17 @@ You will also see any lint errors in the console.
 
 To execute unit tests run:
 
-`npm test`
+`yarn test`
 
 This will launch the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 **Using pdf.js submodule**
 
-To run the app using pdfjs submodule instead of npm dependency add an environment 
+To run the app using pdfjs submodule instead of yarn dependency add an environment 
 variable `USE_PDFJS_FROM_SOURCES=true` to your start configuration.
 
-To switch back to the pdfjs npm dependency remove the environment variable or set `USE_PDFJS_FROM_SOURCES=false`.
+To switch back to the pdfjs yarn dependency remove the environment variable or set `USE_PDFJS_FROM_SOURCES=false`.
 
 ## Running in Docker
 
@@ -69,8 +69,8 @@ mvn clean install
 Build production ready static content:
 
 ```
-npm install
-npm run build
+yarn install
+yarn run build
 ```
 
 **Run service stack**

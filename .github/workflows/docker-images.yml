@@ -38,7 +38,7 @@ jobs:
       - name: Update git submodules
         run: git submodule update --init --recursive
       - name: Build React app
-        run: npm ci && npm run build
+        run: yarn install --frozen-lockfile && yarn run build
       - name: Build gui Docker image
         run: docker build . -t  $REGISTRY/verapdf/$GUI_IMAGE_NAME:latest --build-arg profile=$PROFILE
       - name: Login into ${{ env.REGISTRY }}

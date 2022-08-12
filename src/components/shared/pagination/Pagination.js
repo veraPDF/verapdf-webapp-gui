@@ -42,14 +42,14 @@ function Pagination({ numPages, page, setPage, onPageChange }) {
             setPage(page + 1);
             onPageChange();
         }
-    }, [numPages, page, setPage]);
+    }, [numPages, page, setPage, onPageChange]);
 
     const onPreviousPage = useCallback(() => {
         if (page > 1) {
             setPage(page - 1);
             onPageChange();
         }
-    }, [page, setPage]);
+    }, [page, setPage, onPageChange]);
 
     return (
         <div className="pagination">

@@ -62,12 +62,7 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
     return (
         <DropzoneWrapper onFileDrop={onDrop}>
             <section className="inspect">
-                <Toolbar
-                    name={pdfName}
-                    scale={scale}
-                    scaleOptions={scaleOptions}
-                    onScaleChanged={setScale}
-                />
+                <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
                 <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
                 <PdfDocument
                     selectedCheck={selectedCheck}

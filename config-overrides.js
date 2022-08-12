@@ -22,7 +22,7 @@ module.exports = function override(config) {
                     to: 'pdf.worker.js.map',
                 },
                 {
-                    from: 'ABOUT.md',
+                    from: 'src/static/ABOUT.md',
                     to: 'ABOUT.md',
                 },
             ],

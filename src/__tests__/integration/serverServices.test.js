@@ -1,6 +1,6 @@
 import { integrationTest, waitFor } from './index';
-import { getInfo as getFileServiceInfo } from '../../services/fileService';
-import { getInfo as getJobServiceInfo } from '../../services/jobService';
+import { getInfo as getFileServiceInfo } from '../../common/services/fileService';
+import { getInfo as getJobServiceInfo } from '../../common/services/jobService';
 
 const SERVICE_NAMES = {
     fileService: 'File storage',

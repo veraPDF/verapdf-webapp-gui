@@ -1,6 +1,6 @@
 import { DEFAULT_STARTUP_RESPONSES, TEST_FILE, integrationTest, storeFile, moveNext } from './index';
 import MaterialSelect from '@material-ui/core/Select';
-import Settings from '../../components/layouts/pages/settings/Settings';
+import Settings from '../../common/components/layouts/pages/settings/Settings';
 
 const PROFILE_VALUES = DEFAULT_STARTUP_RESPONSES.profilesList.responseJson.map(({ profileName }) => profileName);
 

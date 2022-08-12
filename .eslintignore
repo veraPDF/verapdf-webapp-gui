@@ -5,4 +5,5 @@ node_modules
 build/*
 landing/*
 server/*
-src/serviceWorker.js
+src/renderer/serviceWorker.js
+pdfjs/

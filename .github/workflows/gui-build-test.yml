@@ -8,6 +8,12 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  GUI_IMAGE_NAME: verapdf_gui
+  PROFILE: staging
 
 jobs:
   build:
@@ -24,9 +30,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run lint
-    - run: npm run build --if-present
-    - run: npm test
+    - run: yarn install --frozen-lockfile
+    - run: yarn run lint
+    - run: yarn run build
+    - run: yarn test
       env:
         CI: true

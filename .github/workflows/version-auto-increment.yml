@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: Increment package version
-        run: npm version patch --commit-hooks=false --git-tag-version=false
+        run: yarn version --patch --no-commit-hooks --no-git-tag-version
       - name: Get latest version
         id: package-version
         run: echo "::set-output name=current-version::$(cat ./package.json | grep -o '"version":.*$' | sed -e 's/[^0-9.]//g')"

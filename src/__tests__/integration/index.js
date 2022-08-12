@@ -5,21 +5,27 @@ import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
 import fs from 'mz/fs';
 
-import App from '../../components/App';
-import configureStore from '../../store/rootStore';
-import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../services/fileService';
-import { getInfo as getJobServiceInfo, createJob, updateJob, executeJob, getJob } from '../../services/jobService';
-import { getInfo as getWorkerServiceInfo, getAppsBuildInfo } from '../../services/workerService';
-import { getList as getProfilesList } from '../../services/profiles';
-import { getAllFiles, setFile, getFile } from '../../services/pdfStorage';
-import { getProgress } from '../../store/job/progress/selectors';
+import App from '../../common/components/App';
+import configureStore from '../../common/store/rootStore';
+import { getInfo as getFileServiceInfo, uploadFile, getFileContent } from '../../common/services/fileService';
+import {
+    getInfo as getJobServiceInfo,
+    createJob,
+    updateJob,
+    executeJob,
+    getJob,
+} from '../../common/services/jobService';
+import { getInfo as getWorkerServiceInfo, getAppsBuildInfo } from '../../common/services/workerService';
+import { getList as getProfilesList } from '../../common/services/profiles';
+import { getAllFiles, setFile, getFile } from '../../common/services/pdfStorage';
+import { getProgress } from '../../common/store/job/progress/selectors';
 
-jest.mock('../../services/fileService');
-jest.mock('../../services/jobService');
-jest.mock('../../services/workerService');
-jest.mock('../../services/profiles');
+jest.mock('../../common/services/fileService');
+jest.mock('../../common/services/jobService');
+jest.mock('../../common/services/workerService');
+jest.mock('../../common/services/profiles');
 
-jest.mock('../../services/pdfStorage');
+jest.mock('../../common/services/pdfStorage');
 getAllFiles.mockImplementation(() => Promise.resolve([]));
 getFile.mockImplementation(() => Promise.resolve(-1));
 setFile.mockImplementation(({ name }) => Promise.resolve(!!name));

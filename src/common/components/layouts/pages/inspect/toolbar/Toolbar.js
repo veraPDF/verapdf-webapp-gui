@@ -13,11 +13,11 @@ import AppPages from '../../../../AppPages';
 import { getJobId } from '../../../../../store/job/selectors';
 import Button from '../../../../shared/button/Button';
 import Select from '../../../../shared/select/Select';
-
-import './Toolbar.scss';
 import Pagination from '../../../../shared/pagination/Pagination';
 import { getNumPages, getPage } from '../../../../../store/application/selectors';
 import { setPage } from '../../../../../store/application/actions';
+
+import './Toolbar.scss';
 
 const BACK = 'Back to summary';
 

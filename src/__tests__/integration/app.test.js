@@ -1,5 +1,5 @@
 import { integrationTest } from './index';
-import Loading from '../../components/layouts/pages/loading/Loading';
+import Loading from '../../common/components/layouts/pages/loading/Loading';
 
 const { REACT_APP_VERSION, REACT_APP_VERSION_DATE } = process.env;
 

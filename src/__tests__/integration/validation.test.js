@@ -1,9 +1,9 @@
 import { integrationTest, moveNext, storeFile, waitFor, stepFinished } from './index';
-import { createJob, executeJob, getJob, updateJob } from '../../services/jobService';
-import { getFileContent, uploadFile } from '../../services/fileService';
+import { createJob, executeJob, getJob, updateJob } from '../../common/services/jobService';
+import { getFileContent, uploadFile } from '../../common/services/fileService';
 import { Chart } from 'react-google-charts';
-import Progress from '../../components/shared/progress/Progress';
-import Results from '../../components/layouts/pages/results/Results';
+import Progress from '../../common/components/shared/progress/Progress';
+import Results from '../../common/components/layouts/pages/results/Results';
 
 const verifyProgressTitle = (component, expectedLines) => {
     component.update();

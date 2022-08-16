@@ -151,7 +151,7 @@
       },
       "20": {
         "SUMMARY": "Is dit een bijschrift van de figuur of tabel?",
-        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel. Zorg dat je bijschriften als onderdeel van de figuur of tabel opmaakt. In Word en LibreOffice doe je dat door met de rechtermuisknop op de figuur of tabel te klikken en dan in het menu 'Bijschrift invoegen' te kiezen."
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel, maar is gecodeerd als gewone paragraaf. Voor digitale toegankelijkheid is het beter om een bijschrift ook als zodanig te coderen. Helaas kan dat niet met de huidige PDF export van Word."
       },
       "21": {
         "SUMMARY": "Is dit een opsomming of genummerde lijst?",

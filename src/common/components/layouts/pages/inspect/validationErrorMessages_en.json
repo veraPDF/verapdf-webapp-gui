@@ -151,7 +151,7 @@
       },
       "20": {
         "SUMMARY": "Is this a figure or table caption?",
-        "DESCRIPTION": "This text appears to be intended as a caption for the figure or table. Make sure to format captions as part of the figure or table itself. You can do this in Word and LibreOffice by right clicking on the figure or table and selecting 'Insert caption'."
+        "DESCRIPTION": "This text appears to be intended as a caption for the figure or table, but is tagged as a paragraph. For the sale of accessibility it's better to tag captions as such. Unfortunately this is not possible with the current PDF export in Word."
       },
       "21": {
         "SUMMARY": "Is this a list?",

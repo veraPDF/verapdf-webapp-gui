@@ -9302,9 +9302,9 @@ pdfjs-dist@2.1.266:
     node-ensure "^0.0.0"
     worker-loader "^2.0.0"
 
-pdfjs-dist@2.5.207, "pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.4":
+pdfjs-dist@2.5.207, "pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.5":
   version "2.5.207"
-  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/e222fc672fae88755dbd985bb5f0fd5986629b2e"
+  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/a49e6b41cdad4dd8e9599462e80695c1a6820370"
 
 "pdfjs-dist@git+https://github.com/veraPDF/pdfjs-dist.git":
   version "2.8.335"
@@ -12765,9 +12765,9 @@ vendors@^1.0.0:
 
 "verapdf-js-viewer@git+https://github.com/veraPDF/verapdf-js-viewer.git":
   version "1.4.8"
-  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#063329ae7b8cc96744b169138cb4245411f8950a"
+  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#7765406119da1d7a8ab137e52b268d89e1790b58"
   dependencies:
-    pdfjs-dist "github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.4"
+    pdfjs-dist "github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.5"
     react-pdf "5.1.0"
     react-use "^17.1.0"
     styled-components "^5.2.1"

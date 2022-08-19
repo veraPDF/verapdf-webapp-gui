@@ -157,6 +157,7 @@ function PdfDocument(props) {
             file={props.file}
             scale={parseFloat(props.scale)}
             showAllPages
+            externalLinkTarget="_blank"
             onLoadSuccess={onDocumentReady}
             activeBboxIndex={activeBboxIndex}
             onBboxClick={data => onBboxSelect(data)}

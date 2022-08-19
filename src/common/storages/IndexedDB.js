@@ -60,17 +60,16 @@ const getAll = (db, storeName) => {
 const setOne = async (db, storeName, storeObject) => {
     return new Promise(async resolve => {
         try {
-            const request = db
-                .transaction(storeName, METHOD.READ_WRITE)
-                .objectStore(storeName)
-                .put(storeObject);
-            request.onsuccess = () => {
-                resolve(true);
-            };
+            let result = false;
+            const transaction = db.transaction(storeName, METHOD.READ_WRITE);
+            const request = transaction.objectStore(storeName).put(storeObject);
+            request.onsuccess = () => (result = true);
             request.onerror = e => {
                 logError(e);
-                resolve(false);
+                result = false;
             };
+            transaction.oncomplete = () => resolve(result);
+            ['error', 'abort'].forEach(e => transaction.addEventListener(e, () => resolve(false)));
         } catch (e) {
             logError(e);
             resolve(false);
@@ -79,14 +78,20 @@ const setOne = async (db, storeName, storeObject) => {
 };
 
 const deleteOne = async (db, storeName, keyValue) => {
-    const request = db
-        .transaction(storeName, METHOD.READ_WRITE)
-        .objectStore(storeName)
-        .delete(keyValue);
-    request.onerror = logError;
-    request.onsuccess = () => {
-        console.log('File delete from DB:', keyValue);
-    };
+    return new Promise(async resolve => {
+        const request = db
+            .transaction(storeName, METHOD.READ_WRITE)
+            .objectStore(storeName)
+            .delete(keyValue);
+        request.onerror = e => {
+            logError(e);
+            resolve(false);
+        };
+        request.onsuccess = () => {
+            console.log('File delete from DB:', keyValue);
+            resolve(true);
+        };
+    });
 };
 
 const clearStorage = async (db, storeName) => {

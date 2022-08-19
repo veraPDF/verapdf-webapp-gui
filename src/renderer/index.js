@@ -36,12 +36,12 @@ const theme = createMuiTheme({
 ReactDOM.render(
     <Provider store={configureStore()}>
         <ThemeProvider theme={theme}>
-            <Router basename="/demo">
+            <Router basename={process.env.REACT_APP_BASE_NAME || ''}>
                 <App />
             </Router>
         </ThemeProvider>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('app')
 );
 
 // If you want your app to work offline and load faster, you can change

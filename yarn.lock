@@ -1495,9 +1495,9 @@
   integrity sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==
 
 "@jridgewell/trace-mapping@^0.3.9":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.14.tgz#b231a081d8f66796e475ad588a1ef473112701ed"
-  integrity sha512-bJWEfQ9lPTvm3SneWwRFVLzrh6nhjwqw7TUFFBEMzwvg7t7PCDenf2lDwqo4NQXzdpgBXyFgDWnQA+2vkruksQ==
+  version "0.3.15"
+  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.15.tgz#aba35c48a38d3fd84b37e66c9c0423f9744f9774"
+  integrity sha512-oWZNOULl+UbhsgB51uuZzglikfIKSUBO/M9W2OfEjn7cmqoAiCgmv9lyACTUacZwBz0ITnJ2NqjU8Tx0DHL88g==
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
@@ -1896,9 +1896,9 @@
   integrity sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==
 
 "@types/node@*":
-  version "18.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.1.tgz#352bee64f93117d867d05f7406642a52685cbca6"
-  integrity sha512-GKX1Qnqxo4S+Z/+Z8KKPLpH282LD7jLHWJcVryOflnsnH+BtSDfieR6ObwBMwpnNws0bUK8GI7z0unQf9bARNQ==
+  version "18.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.9.tgz#180bfc495c91dc62573967edf047e15dbdce1491"
+  integrity sha512-0N5Y1XAdcl865nDdjbO0m3T6FdmQ4ijE89/urOHLREyTXbpMWbSafx9y7XIsgWGtwUP2iYTinLyyW3FatAxBLQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -3350,9 +3350,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001370:
-  version "1.0.30001375"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001375.tgz#8e73bc3d1a4c800beb39f3163bf0190d7e5d7672"
-  integrity sha512-kWIMkNzLYxSvnjy0hL8w1NOaWNr2rn39RTAVyIwcw8juu60bZDWiF1/loOYANzjtJmy6qPgNmn38ro5Pygagdw==
+  version "1.0.30001381"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001381.tgz#e62955310e6e69cdf4b40bc5bc0895aa24bc4b8b"
+  integrity sha512-fEnkDOKpvp6qc+olg7+NzE1SqyfiyKf4uci7fAU38M3zxs0YOyKOxW/nMZ2l9sJbt7KZHcDIxUnbI0Iime7V4w==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -4688,9 +4688,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.4.202:
-  version "1.4.215"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.215.tgz#553372e74bde3164290d61f6792f93e443b16733"
-  integrity sha512-vqZxT8C5mlDZ//hQFhneHmOLnj1LhbzxV0+I1yqHV8SB1Oo4Y5Ne9+qQhwHl7O1s9s9cRuo2l5CoLEHdhMTwZg==
+  version "1.4.225"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.225.tgz#3e27bdd157cbaf19768141f2e0f0f45071e52338"
+  integrity sha512-ICHvGaCIQR3P88uK8aRtx8gmejbVJyC6bB4LEC3anzBrIzdzC7aiZHY4iFfXhN4st6I7lMO0x4sgBHf/7kBvRw==
 
 elliptic@^6.5.3:
   version "6.5.4"
@@ -5002,12 +5002,11 @@ eslint-loader@3.0.3:
     schema-utils "^2.6.1"
 
 eslint-module-utils@^2.4.1:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.7.3.tgz#ad7e3a10552fdd0642e1e55292781bd6e34876ee"
-  integrity sha512-088JEC7O3lDZM9xGe0RerkOMd0EjFl+Yvd1jPWIkMT5u3H9+HC34mWWPnqPrN13gieT9pBOO+Qt07Nb/6TresQ==
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.7.4.tgz#4f3e41116aaf13a20792261e61d3a2e7e0583974"
+  integrity sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==
   dependencies:
     debug "^3.2.7"
-    find-up "^2.1.0"
 
 eslint-plugin-flowtype@4.6.0:
   version "4.6.0"
@@ -5587,7 +5586,7 @@ find-up@^1.0.0:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
-find-up@^2.0.0, find-up@^2.1.0:
+find-up@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   integrity sha512-NWzkk0jSJtTt08+FBFMvXoeZnOJD+jTtsRmBYbAIzJdX6l7dLgR7CTubCM5/eDdPUBvLCeVasP1brfVR/9/EZQ==
@@ -8827,9 +8826,9 @@ object-visit@^1.0.0:
     isobject "^3.0.0"
 
 object.assign@^4.1.0, object.assign@^4.1.2, object.assign@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.3.tgz#d36b7700ddf0019abb6b1df1bb13f6445f79051f"
-  integrity sha512-ZFJnX3zltyjcYJL0RoCJuzb+11zWGyaDbjgxZbdV7rFEcHQuYxrZqhow67aA7xpes6LhojyFDaBKAFfogQrikA==
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.4.tgz#9673c7c7c351ab8c4d0b516f4343ebf4dfb7799f"
+  integrity sha512-1mxKf0e58bvyjSCtKYY4sRe9itRk3PJpquJOjeIkz885CczcI4IvJJDLPS72oowuSh+pBxUFROpX+TU++hxhZQ==
   dependencies:
     call-bind "^1.0.2"
     define-properties "^1.1.4"
@@ -9302,13 +9301,18 @@ pdfjs-dist@2.1.266:
     node-ensure "^0.0.0"
     worker-loader "^2.0.0"
 
-pdfjs-dist@2.5.207, "pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.5":
+pdfjs-dist@2.5.207:
   version "2.5.207"
-  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/a49e6b41cdad4dd8e9599462e80695c1a6820370"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.5.207.tgz#b5e8c19627be64269cd3fb6df3eaaf45ddffe7b6"
+  integrity sha512-xGDUhnCYPfHy+unMXCLCJtlpZaaZ17Ew3WIL0tnSgKFUZXHAPD49GO9xScyszSsQMoutNDgRb+rfBXIaX/lJbw==
 
 "pdfjs-dist@git+https://github.com/veraPDF/pdfjs-dist.git":
   version "2.8.335"
   resolved "git+https://github.com/veraPDF/pdfjs-dist.git#75158b4de095a6ce6c13fe165f98810ca9e63be6"
+
+"pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.6":
+  version "2.5.207"
+  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/c80844e5bcd382838b104371aa0d941c3001ea17"
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -9408,9 +9412,9 @@ popper.js@1.16.1-lts:
   integrity sha512-Kjw8nKRl1m+VrSFCoVGPph93W/qrSO7ZkqPpTf7F4bk/sqcfWK019dWBUpE/fBOsOQY1dks/Bmcbfn1heM/IsA==
 
 portfinder@^1.0.25:
-  version "1.0.29"
-  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.29.tgz#d06ff886f4ff91274ed3e25c7e6b0c68d2a0735a"
-  integrity sha512-Z5+DarHWCKlufshB9Z1pN95oLtANoY5Wn9X3JGELGyQ6VhEcBfT2t+1fGUBq7MwUant6g/mqowH+4HifByPbiQ==
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.32.tgz#2fe1b9e58389712429dc2bea5beb2146146c7f81"
+  integrity sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==
   dependencies:
     async "^2.6.4"
     debug "^3.2.7"
@@ -12765,9 +12769,9 @@ vendors@^1.0.0:
 
 "verapdf-js-viewer@git+https://github.com/veraPDF/verapdf-js-viewer.git":
   version "1.4.8"
-  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#7765406119da1d7a8ab137e52b268d89e1790b58"
+  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#b98c49129a7f9b16b01cebc2fb1aa6d2e5f7bf6f"
   dependencies:
-    pdfjs-dist "github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.5"
+    pdfjs-dist "github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.6"
     react-pdf "5.1.0"
     react-use "^17.1.0"
     styled-components "^5.2.1"

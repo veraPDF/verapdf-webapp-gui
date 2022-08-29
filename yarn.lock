@@ -9301,18 +9301,13 @@ pdfjs-dist@2.1.266:
     node-ensure "^0.0.0"
     worker-loader "^2.0.0"
 
-pdfjs-dist@2.5.207:
+pdfjs-dist@2.5.207, "pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.6":
   version "2.5.207"
-  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.5.207.tgz#b5e8c19627be64269cd3fb6df3eaaf45ddffe7b6"
-  integrity sha512-xGDUhnCYPfHy+unMXCLCJtlpZaaZ17Ew3WIL0tnSgKFUZXHAPD49GO9xScyszSsQMoutNDgRb+rfBXIaX/lJbw==
+  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/c80844e5bcd382838b104371aa0d941c3001ea17"
 
 "pdfjs-dist@git+https://github.com/veraPDF/pdfjs-dist.git":
   version "2.8.335"
   resolved "git+https://github.com/veraPDF/pdfjs-dist.git#75158b4de095a6ce6c13fe165f98810ca9e63be6"
-
-"pdfjs-dist@github:veraPDF/pdfjs-dist#v2.5.207-taggedPdf-0.1.6":
-  version "2.5.207"
-  resolved "https://codeload.github.com/veraPDF/pdfjs-dist/tar.gz/c80844e5bcd382838b104371aa0d941c3001ea17"
 
 performance-now@^2.1.0:
   version "2.1.0"

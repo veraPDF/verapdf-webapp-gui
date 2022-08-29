@@ -13,6 +13,8 @@ import { setNumPages, setPage } from '../../../../../store/application/actions';
 
 import './PdfDocument.scss';
 
+const { PUBLIC_URL } = process.env;
+
 const SummaryInterface = PropTypes.shape({
     clause: PropTypes.string.isRequired,
     testNumber: PropTypes.number.isRequired,
@@ -94,6 +96,11 @@ function PdfDocument(props) {
         props.setSelectedCheck(Object.keys(mapOfErrors)[activeBboxIndex]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
+    useEffect(() => {
+        if (!props.file) {
+            window.location.replace(PUBLIC_URL);
+        }
+    }, [props.file]);
 
     const onDocumentReady = useCallback(
         document => {

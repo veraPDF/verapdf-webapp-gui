@@ -36,12 +36,13 @@ export const validate = (completedSteps = []) => async (dispatch, getState) => {
 
 export const loadValidationResult = async (dispatch, getState) => {
     const taskStatus = getTaskStatus(getState());
+    const userAgent = navigator.userAgent.toLowerCase();
     if (taskStatus === TASK_STATUS.ERROR) {
         throw new Error(getTaskErrorMessage(getState()));
     }
     const resultFileId = getTaskResultId(getState());
     const validationResult = await FileService.getFileContent(resultFileId);
-    dispatch(setResult(validationResult));
+    dispatch(setResult(userAgent.indexOf(' electron/') > -1 ? validationResult.validationResult : validationResult));
 };
 
 const createStep = (key, percentage = 0, stepFn) => async (dispatch, getState, completedSteps) => {

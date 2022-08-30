@@ -41,7 +41,11 @@ export const loadValidationResult = async (dispatch, getState) => {
     }
     const resultFileId = getTaskResultId(getState());
     const validationResult = await FileService.getFileContent(resultFileId);
-    dispatch(setResult(validationResult));
+    dispatch(
+        setResult(
+            validationResult.hasOwnProperty('validationResult') ? validationResult.validationResult : validationResult
+        )
+    );
 };
 
 const createStep = (key, percentage = 0, stepFn) => async (dispatch, getState, completedSteps) => {

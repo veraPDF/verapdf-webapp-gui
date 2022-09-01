@@ -5,7 +5,7 @@ import './Loading.scss';
 function Loading() {
     return (
         <section className="loading" title="Starting application...">
-            <CircularProgress />
+            <CircularProgress disableShrink />
         </section>
     );
 }

@@ -29,7 +29,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
       - name: Increment package version
         run: yarn version --patch --no-commit-hooks --no-git-tag-version
       - name: Get latest version

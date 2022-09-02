@@ -5,6 +5,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
 import _ from 'lodash';
+import { usePrevious } from 'react-use';
 
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { getProfile } from '../../../../../store/job/settings/selectors';
@@ -59,6 +60,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
     const [expandedRule, setExpandedRule] = useState(UNSELECTED);
+    const prevSelectedCheck = usePrevious(selectedCheck);
     const onRuleClick = useCallback(
         index => {
             if (expandedRule === index) {
@@ -100,18 +102,15 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
         setAnchorMenuEl(null);
     }, []);
 
-    useEffect(
-        useCallback(() => {
-            if (selectedCheck) {
-                let [ruleIndex] = selectedCheck.split(':');
-                ruleIndex = parseInt(ruleIndex);
-                if (ruleIndex !== expandedRule) {
-                    setExpandedRule(ruleIndex);
-                }
+    useEffect(() => {
+        if (selectedCheck && selectedCheck !== prevSelectedCheck) {
+            let [ruleIndex] = selectedCheck.split(':');
+            ruleIndex = parseInt(ruleIndex);
+            if (ruleIndex !== expandedRule) {
+                setExpandedRule(ruleIndex);
             }
-        }, [expandedRule, selectedCheck]),
-        [selectedCheck]
-    );
+        }
+    }, [expandedRule, selectedCheck, prevSelectedCheck]);
 
     return (
         <section className="summary-tree">
@@ -268,17 +267,19 @@ function LI({ selected, title, checkTitle, onClick, className }) {
         return onClick();
     }, [onClick]);
     const listItem = useRef();
-    useEffect(
-        useCallback(() => {
-            if (selected && !disableAutoScroll) {
-                // To be sure that list expanded before auto scroll call it in next tick
-                setTimeout(() => listItem.current.scrollIntoView({ block: 'center' }), 0);
-            } else {
-                setDisableAutoScroll(false);
-            }
-        }, [disableAutoScroll, selected]),
-        [selected]
-    );
+    const prevSelected = usePrevious(selected);
+
+    useEffect(() => {
+        if (selected === prevSelected) {
+            return;
+        }
+        if (selected && !disableAutoScroll) {
+            // To be sure that list expanded before auto scroll call it in next tick
+            setTimeout(() => listItem.current.scrollIntoView({ block: 'center' }), 0);
+        } else {
+            setDisableAutoScroll(false);
+        }
+    }, [selected, prevSelected, disableAutoScroll]);
 
     return (
         <ListItem onClick={onItemClick} selected={selected} button className={className} title={title} ref={listItem}>
@@ -351,7 +352,7 @@ function getPageNumber(checkKey, errorsMap) {
     return errorsMap[checkKey].pageIndex + 1;
 }
 
-function sortChecksByPage(checks, errorsMap, ruleIndex) {
+function sortChecksByPage(checks, errorsMap) {
     let newChecks = [...checks];
     newChecks.sort(({ id: a }, { id: b }) => {
         const pageA = getPageNumber(a, errorsMap);

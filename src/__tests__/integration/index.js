@@ -24,11 +24,7 @@ jest.mock('../../common/services/fileService');
 jest.mock('../../common/services/jobService');
 jest.mock('../../common/services/workerService');
 jest.mock('../../common/services/profiles');
-
 jest.mock('../../common/services/pdfStorage');
-getAllFiles.mockImplementation(() => Promise.resolve([]));
-getFile.mockImplementation(() => Promise.resolve(-1));
-setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
 
 const fetchSpy = jest.spyOn(global, 'fetch');
 
@@ -189,6 +185,10 @@ export const configureTestStore = startupResponses => {
     mockServiceJsonResponse(getJob, startupResponses.finishedJob);
     mockServiceJsonResponse(getFileContent, startupResponses.resultFile);
 
+    getAllFiles.mockImplementation(() => Promise.resolve([]));
+    getFile.mockImplementation(() => Promise.resolve(-1));
+    setFile.mockImplementation(({ name }) => Promise.resolve(!!name));
+
     return configureStore();
 };
 
@@ -230,6 +230,9 @@ export const integrationTest = (
         executeJob.mockReset();
         getJob.mockReset();
         getFileContent.mockReset();
+        getAllFiles.mockReset();
+        getFile.mockReset();
+        setFile.mockReset();
 
         // Cleanup session storage
         sessionStorage.clear();

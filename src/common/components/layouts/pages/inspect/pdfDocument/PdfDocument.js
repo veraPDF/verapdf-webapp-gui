@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';

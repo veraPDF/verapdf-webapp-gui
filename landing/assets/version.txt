@@ -1,1 +1,1 @@
-0.7.23 - September 1, 2022
+0.7.24 - September 2, 2022

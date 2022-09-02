@@ -13,23 +13,24 @@
         "crypto-js": "^4.0.0",
         "jquery": "^3.5.1",
         "lodash": "^4.17.15",
-        "node-sass": "^4.13.1",
-        "pdfjs-dist": "git+https://github.com/veraPDF/pdfjs-dist.git",
+        "node-sass": "^7.0.1",
         "prop-types": "^15.7.2",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-dropzone": "^10.2.2",
         "react-google-charts": "^3.0.15",
         "react-md-file": "^2.0.0",
-        "react-pdf": "^4.1.0",
         "react-redux": "^7.2.0",
         "react-router-dom": "^5.1.2",
-        "react-scripts": "3.4.0",
+        "react-scripts": "^5.0.0",
         "redux": "^4.0.5",
         "redux-actions": "^2.6.5",
         "redux-thunk": "^2.3.0",
         "reselect": "^4.0.0",
         "verapdf-js-viewer": "git+https://github.com/veraPDF/verapdf-js-viewer.git"
+    },
+    "resolutions": {
+        "scss-tokenizer": "^0.4.3"
     },
     "scripts": {
         "start": "react-app-rewired start",

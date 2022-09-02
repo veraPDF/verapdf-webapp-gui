@@ -20,7 +20,8 @@
                 "printWidth": 120,
                 "tabWidth": 4
             }
-        ]
+        ],
+        "import/no-anonymous-default-export": ["error", { "allowObject": true }]
     },
     "settings": {
         "import/resolver": {

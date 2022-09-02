@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import { pdfjs } from 'react-pdf';
 import _ from 'lodash';
 
 import AppPages from '../../../AppPages';
@@ -15,9 +14,6 @@ import PdfDocument from './pdfDocument/PdfDocument';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
 import './Inspect.scss';
-
-const { PUBLIC_URL } = process.env;
-pdfjs.GlobalWorkerOptions.workerSrc = `${PUBLIC_URL}/pdf.worker.js`;
 
 function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();

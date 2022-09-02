@@ -29,14 +29,9 @@ function Pagination({ numPages, page, setPage }) {
         }
     }, [pageValue, numPages, setPage, page]);
 
-    useEffect(
-        useCallback(() => {
-            if (page !== pageValue) {
-                setPageValue(page + '');
-            }
-        }, [page, pageValue]),
-        [page]
-    );
+    useEffect(() => {
+        setPageValue(page + '');
+    }, [page]);
 
     const onNextPage = useCallback(() => {
         if (page < numPages) {

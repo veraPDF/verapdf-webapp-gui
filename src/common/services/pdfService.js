@@ -58,6 +58,14 @@ function convertContextToPath(errorContext = '') {
                 }
             });
             return path;
+        } else if (contextString.includes('pages')) {
+            let path = {};
+            contextString.split('/').forEach(nodeString => {
+                if (nodeString.includes('page')) {
+                    path.pageNumber = parseInt(nodeString.split(/[[\]]/)[1], 10);
+                }
+            });
+            return path;
         } else if (contextString.includes('annots')) {
             let path = {};
             contextString.split('/').forEach(nodeString => {

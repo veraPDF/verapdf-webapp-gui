@@ -10,6 +10,9 @@ import { convertContextToPath, findAllMcid } from '../../../../../services/pdfSe
 import { getPage } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 
+import Alert from '@material-ui/lab/Alert';
+import Close from '@material-ui/icons/Close';
+
 import './PdfDocument.scss';
 
 const { PUBLIC_URL } = process.env;
@@ -31,6 +34,8 @@ PdfDocument.propTypes = {
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
     setNumPages: PropTypes.func.isRequired,
+    onWarning: PropTypes.func,
+    warningMessage: PropTypes.string,
 };
 
 function getPageFromErrorPlace(context, structureTree) {
@@ -166,18 +171,27 @@ function PdfDocument(props) {
         [props]
     );
     return (
-        <PdfViewer
-            file={props.file}
-            scale={parseFloat(props.scale)}
-            showAllPages
-            externalLinkTarget="_blank"
-            onLoadSuccess={onDocumentReady}
-            activeBboxIndex={activeBboxIndex}
-            onBboxClick={data => onBboxSelect(data)}
-            bboxes={bboxes}
-            page={props.page}
-            onPageChange={props.onPageChange}
-        />
+        <>
+            {props.warningMessage && (
+                <Alert severity="warning">
+                    {props.warningMessage}
+                    <Close onClick={() => props.onWarning(null)} />
+                </Alert>
+            )}
+            <PdfViewer
+                file={props.file}
+                scale={parseFloat(props.scale)}
+                showAllPages
+                externalLinkTarget="_blank"
+                onLoadSuccess={onDocumentReady}
+                activeBboxIndex={activeBboxIndex}
+                onBboxClick={data => onBboxSelect(data)}
+                bboxes={bboxes}
+                page={props.page}
+                onPageChange={props.onPageChange}
+                onWarning={props.onWarning}
+            />
+        </>
     );
 }
 

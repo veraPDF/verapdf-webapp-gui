@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
+import { WARNING_MESSAGES } from '../../../../services/constants';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import Toolbar from './toolbar/Toolbar';
@@ -19,6 +20,7 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
+    const [warningMessage, setWarningMessage] = useState(null);
     const [errorsMap, setErrorsMap] = useState({});
     const [scale, setScale] = useState('1');
     const scaleOptions = [
@@ -43,7 +45,14 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
         },
         [onFileDrop]
     );
+    const onWarning = useCallback(warningCode => {
+        setWarningMessage(WARNING_MESSAGES[warningCode]);
+    }, []);
 
+    useEffect(() => {
+        warningMessage && setWarningMessage(null);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedCheck]);
     useEffect(() => {
         lockApp();
     }, [lockApp]);
@@ -64,6 +73,8 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
                     setPdfName={setPdfName}
+                    onWarning={onWarning}
+                    warningMessage={warningMessage}
                     onDocumentReady={onDocumentReady}
                     scale={scale}
                 />

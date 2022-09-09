@@ -96,7 +96,8 @@ function PdfDocument(props) {
             const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
             pageIndex > -1 && props.onPageChange(pageIndex + 1);
         }
-    }, [mapOfErrors, props, props.selectedCheck]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
         props.setSelectedCheck(Object.keys(mapOfErrors)[activeBboxIndex]);
         // eslint-disable-next-line react-hooks/exhaustive-deps

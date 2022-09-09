@@ -58,7 +58,7 @@ function convertContextToPath(errorContext = '') {
                 }
             });
             return path;
-        } else if (contextString.includes('pages')) {
+        } else if (contextString.includes('pages') && !contextString.includes('annots')) {
             let path = {};
             contextString.split('/').forEach(nodeString => {
                 if (nodeString.includes('page')) {

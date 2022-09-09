@@ -45,6 +45,8 @@ function getPageFromErrorPlace(context, structureTree) {
         return selectedTag.pageIndex;
     } else if (selectedTag.hasOwnProperty('annot') && selectedTag.hasOwnProperty('pageIndex')) {
         return selectedTag.pageIndex;
+    } else if (selectedTag.hasOwnProperty('pageNumber')) {
+        return selectedTag.pageNumber;
     } else if (selectedTag instanceof Array) {
         let objectOfErrors = { ...structureTree };
         selectedTag.forEach((node, index) => {
@@ -90,6 +92,11 @@ function PdfDocument(props) {
 
     useEffect(() => {
         setActiveBboxIndex(Object.keys(mapOfErrors).indexOf(props.selectedCheck));
+        if (!props.selectedCheck?.includes('bbox')) {
+            const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
+            pageIndex > -1 && props.onPageChange(pageIndex + 1);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
         props.setSelectedCheck(Object.keys(mapOfErrors)[activeBboxIndex]);

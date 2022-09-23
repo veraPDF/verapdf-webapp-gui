@@ -171,7 +171,7 @@ function PdfDocument(props) {
         [props]
     );
     return (
-        <>
+        <div className="pdf-viewer__wrapper">
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}
@@ -191,7 +191,7 @@ function PdfDocument(props) {
                 onPageChange={props.onPageChange}
                 onWarning={props.onWarning}
             />
-        </>
+        </div>
     );
 }
 

@@ -40,3 +40,39 @@
     text-overflow: ellipsis;
   }
 }
+
+@media (max-width: 1070px) {
+  .toolbar {
+     section:not(:first-of-type) {
+       flex-grow: 2;
+    }
+  }
+}
+
+@media (max-width: 895px) {
+  .toolbar {
+    section:not(:last-of-type) {
+      flex-grow: 1;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .toolbar {
+     section.toolbar__center {
+       display: none;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .toolbar {
+     .pagination {
+       display: none;
+    }
+
+    section.toolbar__end {
+      flex-grow: 1;
+    }
+  }
+}

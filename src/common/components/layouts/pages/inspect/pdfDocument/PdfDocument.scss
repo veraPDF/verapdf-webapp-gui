@@ -7,31 +7,35 @@
   margin-bottom: 7px;
 }
 
-.MuiAlert-root {
-  z-index: 5000;
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  right: 50%;
-  transform: translate(0, -50%);
-  max-width: 40%;
-  min-width: 300px;
+.pdf-viewer__wrapper {
+  position: relative;
+  overflow: auto;
 
-  .MuiAlert-message {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: calc(100% - 30px);
-  }
+  .MuiAlert-root {
+    z-index: 5000;
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 40%;
+    min-width: 300px;
 
-  .MuiSvgIcon-root {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    opacity: .7;
+    .MuiAlert-message {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: calc(100% - 30px);
 
-    &:hover {
-      opacity: 1;
+      .MuiSvgIcon-root {
+        width: 20px;
+        height: 20px;
+        opacity: .7;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }

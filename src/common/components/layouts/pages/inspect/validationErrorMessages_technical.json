@@ -202,8 +202,8 @@
 				"DESCRIPTION": "<TOCI> structure element (Table of Content item) text does not match the heading on the page it points to"
 			},
 			"34": {
-				"SUMMARY": "Single list is tagged as multiple lists or paragraps",
-				"DESCRIPTION": "The context is identified as a continued list, but is split into multiple <L> or <P> tags"
+				"SUMMARY": "Single list is tagged as multiple structure elements",
+				"DESCRIPTION": "The context is identified as a continued list, but is split into multiple structure elements"
 			},
 			"35": {
 				"SUMMARY": "Single TOC is tagged as multiple ones",

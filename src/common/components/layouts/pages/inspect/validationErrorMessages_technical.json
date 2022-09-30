@@ -174,36 +174,36 @@
 				"DESCRIPTION": "The content is identified as a part of a table, but is tagged as a list"
 			},
 			"27": {
-				"SUMMARY": "Several paragrahs tagged as one",
-				"DESCRIPTION": "The content is identified as two or more paragraphs, but is merked with a single <P> tag"
+				"SUMMARY": "Several paragraphs tagged as one",
+				"DESCRIPTION": "The content is identified as two or more paragraphs, but is marked with a single <P> tag"
 			},
 			"28": {
-			"SUMMARY": "Missing TOC item",
+				"SUMMARY": "Missing TOC item",
 				"DESCRIPTION": "The content is identified as a part of the table of content, but is not marked with a <TOCI> tag"
 			},
 			"29": {
 				"SUMMARY": "Empty TOC item",
-				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no text"
+				"DESCRIPTION": "<TOCI> structure element (Table of Content item) contains no text"
 			},
 			"30": {
 				"SUMMARY": "TOC item has no destination link",
-				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no link to the destination page"
+				"DESCRIPTION": "<TOCI> structure element (Table of Content item) contains no link to the destination page"
 			},
 			"31": {
 				"SUMMARY": "TOC item points to the wrong page",
 				"DESCRIPTION": "Page number inside the TOCI element (Table of Content item) does not match the page number of its link destination"
 			},
 			"32": {
-				"SUMMARY": "TOC item has no destination link",
-				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no link to the destination page"
+				"SUMMARY": "TOC items are not right aligned",
+				"DESCRIPTION": "<TOCI> structure element (Table of Content item) is not right aligned with other <TOCI> elements in the same <TOC>"
 			},
 			"33": {
 				"SUMMARY": "TOC item does not match heading",
-				"DESCRIPTION": "Structure element TOCI (Table of Content item) text does not match the heading on the page it points to"
+				"DESCRIPTION": "<TOCI> structure element (Table of Content item) text does not match the heading on the page it points to"
 			},
 			"34": {
-				"SUMMARY": "Single list is tagged as multiple ones",
-				"DESCRIPTION": "The context is identified as a continued list, but is split into multiple <L> tags"
+				"SUMMARY": "Single list is tagged as multiple lists or paragraps",
+				"DESCRIPTION": "The context is identified as a continued list, but is split into multiple <L> or <P> tags"
 			},
 			"35": {
 				"SUMMARY": "Single TOC is tagged as multiple ones",
@@ -244,6 +244,10 @@
 			"44": {
 				"SUMMARY": "Table cell is shifted left",
 				"DESCRIPTION": "The content of a <TD> or <TH> structure element (table cell) is located to the left to some of the table cells of the previous table column"
+			},
+			"45": {
+				"SUMMARY": "Invalid table header",
+				"DESCRIPTION": "This structure element is recognized as <TD> (regular table cell), but is tagged as <TH> (table header)"
 			}
 		}
 	},

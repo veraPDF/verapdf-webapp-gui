@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
-import { convertContextToPath, findAllMcid } from '../../../../../services/pdfService';
+import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
 import { getPage } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 
@@ -143,12 +143,11 @@ function PdfDocument(props) {
                                 }
                             }
                         }
+                        const checkId = getCheckId(check);
                         newMapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {
                             pageIndex,
                             location: check.location || check.context,
-                            groupId: check.errorArguments[2]
-                                ? `${summary.clause}-${summary.testNumber}-${check.errorArguments[2]}`
-                                : null,
+                            groupId: checkId ? `${summary.clause}-${summary.testNumber}-${checkId}` : null,
                         };
                     });
                 });

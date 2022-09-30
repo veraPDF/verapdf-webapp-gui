@@ -480,8 +480,8 @@
     },
     "7.18.4": {
       "1": {
-        "SUMMARY": "Er is iets mis met de code van dit dynamische formulier",
-        "DESCRIPTION": "Dynamische formulieren geven vaak problemen, en kan je beter vermijden. Gebruik je toch een dynamisch formulier, dan moet dat op de juiste manier door je applicatie gecodeerd zijn zodat voorleessoftware weet hoe het ermee om moet gaan. Verwijder het formulier en probeer het weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Er is iets mis met de code van dit interactive formulier",
+        "DESCRIPTION": "Interactive formulieren geven vaak problemen, en kan je beter vermijden. Gebruik je toch een interactive formulier, dan moet dat op de juiste manier door je applicatie gecodeerd zijn zodat voorleessoftware weet hoe het ermee om moet gaan. Verwijder het formulier en probeer het weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.18.5": {

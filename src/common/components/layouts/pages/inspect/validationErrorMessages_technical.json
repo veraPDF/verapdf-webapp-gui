@@ -172,6 +172,78 @@
 			"26": {
 				"SUMMARY": "Table is incorrectly tagged as a list, or a list has invalid numbering",
 				"DESCRIPTION": "The content is identified as a part of a table, but is tagged as a list"
+			},
+			"27": {
+				"SUMMARY": "Several paragrahs tagged as one",
+				"DESCRIPTION": "The content is identified as two or more paragraphs, but is merked with a single <P> tag"
+			},
+			"28": {
+			"SUMMARY": "Missing TOC item",
+				"DESCRIPTION": "The content is identified as a part of the table of content, but is not marked with a <TOCI> tag"
+			},
+			"29": {
+				"SUMMARY": "Empty TOC item",
+				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no text"
+			},
+			"30": {
+				"SUMMARY": "TOC item has no destination link",
+				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no link to the destination page"
+			},
+			"31": {
+				"SUMMARY": "TOC item points to the wrong page",
+				"DESCRIPTION": "Page number inside the TOCI element (Table of Content item) does not match the page number of its link destination"
+			},
+			"32": {
+				"SUMMARY": "TOC item has no destination link",
+				"DESCRIPTION": "Structure element TOCI (Table of Content item) contains no link to the destination page"
+			},
+			"33": {
+				"SUMMARY": "TOC item does not match heading",
+				"DESCRIPTION": "Structure element TOCI (Table of Content item) text does not match the heading on the page it points to"
+			},
+			"34": {
+				"SUMMARY": "Single list is tagged as multiple ones",
+				"DESCRIPTION": "The context is identified as a continued list, but is split into multiple <L> tags"
+			},
+			"35": {
+				"SUMMARY": "Single TOC is tagged as multiple ones",
+				"DESCRIPTION": "The context is identified as a single TOC, but is split into multiple <TOC> tags"
+			},
+			"36": {
+				"SUMMARY": "Invalid number of rows in a table",
+				"DESCRIPTION": "The number of <TR> tags in a <Table> structure element does not match the number of rows of the visual representation of this table"
+			},
+			"37": {
+				"SUMMARY": "Invalid number of columns in a table",
+				"DESCRIPTION": "The number of columns in a <Table> structure element does not match the number of rows of the visual representation of this table"
+			},
+			"38": {
+				"SUMMARY": "Invalid row span a table cell",
+				"DESCRIPTION": "The row span of a <TD> or <TH> structure element (table cell) does not match the row span of the visual representation of this table cell"
+			},
+			"39": {
+				"SUMMARY": "Invalid column span a table cell",
+				"DESCRIPTION": "The column span of a <TD> or <TH> structure element (table cell) does not match the column span of the visual representation of this table cell"
+			},
+			"40": {
+				"SUMMARY": "Missing list item",
+				"DESCRIPTION": "The content is recognized as a list item, but is not marked with <LI> tag"
+			},
+			"41": {
+				"SUMMARY": "Table cell is lower than expected",
+				"DESCRIPTION": "The content of a <TD> or <TH> structure element (table cell) is located below than some of the table cells of the next table row"
+			},
+			"42": {
+				"SUMMARY": "Table cell is higher than expected",
+				"DESCRIPTION": "The content of a <TD> or <TH> structure element (table cell) is located above than some of the table cells of the previous table row"
+			},
+			"43": {
+				"SUMMARY": "Table cell is shifted right",
+				"DESCRIPTION": "The content of a <TD> or <TH> structure element (table cell) is located to the right to some of the table cells of the next table column"
+			},
+			"44": {
+				"SUMMARY": "Table cell is shifted left",
+				"DESCRIPTION": "The content of a <TD> or <TH> structure element (table cell) is located to the left to some of the table cells of the previous table column"
 			}
 		}
 	},

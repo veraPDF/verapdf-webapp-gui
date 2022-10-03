@@ -560,7 +560,7 @@
 				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded Type 1 font contains a CharSet string, then it shall list the character names of all glyphs present in the font program, regardless of whether a glyph in the font is referenced or used by the PDF or not."
 			},
 			"2": {
-				"SUMMARY": ""Multibyte TrueType (CIDFontType2) font subset incorrectly identifies its glyphs",
+				"SUMMARY": "Multibyte TrueType (CIDFontType2) font subset incorrectly identifies its glyphs",
 				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded CID font contains a CIDSet stream, then it shall identify all CIDs which are present in the font program, regardless of whether a CID in the font is referenced or used by the PDF or not."
 			}
 		},

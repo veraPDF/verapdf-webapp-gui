@@ -532,7 +532,7 @@
 				"DESCRIPTION": "An annotation (except annotations of type Link, Widget or Popup, or hidden annotations, or those having rectangle outside the crop-box) shall have either Contents key or an Alt entry in the enclosing structure element"
 			},
 			"3": {
-				"SUMMARY": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box and does not have a TU key and its Widget annotations do not have alternative descriptions (in the form of an Alt entry in the enclosing structure element)",
+				"SUMMARY": "Form field has no alternative description",
 				"DESCRIPTION": "A form field whose hidden flag is not set and whose rectangle is not outside the crop-box shall have a TU key present or all its Widget annotations shall have alternative descriptions (in the form of an Alt entry in the enclosing structure elements)"
 			}
 		},
@@ -602,7 +602,7 @@
 		},
 		"7.21.3.2": {
 			"1": {
-				"SUMMARY": "TrueType (OpenType) font has incorrect glyph mapping",
+				"SUMMARY": "Multibyte TrueType (CIDFontType2) font does not contain character to glyph mapping",
 				"DESCRIPTION": "ISO 32000-1:2008, 9.7.4, Table 117 requires that all embedded Type 2 CIDFonts in the CIDFont dictionary shall contain a CIDToGIDMap entry that shall be a stream mapping from CIDs to glyph indices or the name Identity, as described in ISO 32000-1:2008, 9.7.4, Table 117."
 			}
 		},
@@ -626,7 +626,7 @@
 				"DESCRIPTION": "The font programs for all fonts used for rendering within a conforming file shall be embedded within that file, as defined in ISO 32000-1:2008, 9.9."
 			},
 			"2": {
-				"SUMMARY": "Not all glyphs are present in the embedded font program",
+				"SUMMARY": "Not all glyphs referenced for rendering are present in the embedded font program",
 				"DESCRIPTION": "Embedded fonts shall define all glyphs referenced for rendering within the conforming file. A font referenced for use solely in rendering mode 3 is therefore not rendered and is thus exempt from the embedding requirement."
 			}
 		},
@@ -636,7 +636,7 @@
 				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded Type 1 font contains a CharSet string, then it shall list the character names of all glyphs present in the font program, regardless of whether a glyph in the font is referenced or used by the PDF or not."
 			},
 			"2": {
-				"SUMMARY": "TrueType (OpenType) font subset incorrectly identifies its glyphs",
+				"SUMMARY": "Multibyte TrueType (CIDFontType2) font subset incorrectly identifies its glyphs",
 				"DESCRIPTION": "If the FontDescriptor dictionary of an embedded CID font contains a CIDSet stream, then it shall identify all CIDs which are present in the font program, regardless of whether a CID in the font is referenced or used by the PDF or not."
 			}
 		},

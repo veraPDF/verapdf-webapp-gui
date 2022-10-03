@@ -480,8 +480,8 @@
     },
     "7.18.4": {
       "1": {
-        "SUMMARY": "This dynamic form has been tagged incorrectly",
-        "DESCRIPTION": "It's better to avoid dynamic forms as they are prone to accessibility problems. If you must use a dynamic form, it must be tagged correctly so that reader software for people with visual impairments knows how to handle it. Try removing the form and adding it again, or try with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "This interactive form has been tagged incorrectly",
+        "DESCRIPTION": "It's better to avoid interactive forms as they are prone to accessibility problems. If you must use a interactive form, it must be tagged correctly so that reader software for people with visual impairments knows how to handle it. Try removing the form and adding it again, or try with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.18.5": {

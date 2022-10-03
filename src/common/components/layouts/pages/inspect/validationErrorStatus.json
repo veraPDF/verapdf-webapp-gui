@@ -588,7 +588,7 @@
       "1": {
         "STATUS": "error",
         "CATEGORY": "code",
-        "RATIONALE": "If dynamic forms are not tagged properly, reader software may not know how to handle them."
+        "RATIONALE": "If interactive forms are not tagged properly, reader software may not know how to handle them."
       }
     },
     "7.18.5": {

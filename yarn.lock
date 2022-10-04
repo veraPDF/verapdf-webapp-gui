@@ -10831,7 +10831,7 @@ vary@~1.1.2:
 
 "verapdf-js-viewer@git+https://github.com/veraPDF/verapdf-js-viewer.git":
   version "1.4.18"
-  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#526339e0dcc278e0f8f916653f17f82adac8b50d"
+  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#5b77a02dd1238868dd5df772bcc67aa8079614ed"
   dependencies:
     pdfjs-dist "github:veraPDF/pdfjs-dist#v2.14.305-taggedPdf-0.1.7"
     react-pdf "6.0.0-beta.3"

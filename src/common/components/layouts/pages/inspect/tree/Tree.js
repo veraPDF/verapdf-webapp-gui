@@ -243,7 +243,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
             errorsMap[selectedCheck] &&
             errorsMap[selectedCheck].groupId &&
             errorsMap[checkKey].groupId &&
-            errorsMap[selectedCheck].groupId === errorsMap[checkKey].groupId &&
+            errorsMap[selectedCheck].groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
             selectedCheck !== checkKey;
         return (
             <LI

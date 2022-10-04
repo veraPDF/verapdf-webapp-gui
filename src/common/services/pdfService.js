@@ -252,6 +252,14 @@ const calculateStokeColor = (pageNumber, bbox) => {
     }
 };
 
+const getCheckId = check => {
+    return check.errorArguments[2] &&
+        check.errorArguments[2].includes('id:') &&
+        !isNaN(+check.errorArguments[2].slice(3))
+        ? check.errorArguments[2].slice(3)
+        : null;
+};
+
 export {
     COLOR,
     convertContextToPath,
@@ -262,4 +270,5 @@ export {
     calculateBboxFromJSON,
     calculateStokeColor,
     convertRectToBbox,
+    getCheckId,
 };

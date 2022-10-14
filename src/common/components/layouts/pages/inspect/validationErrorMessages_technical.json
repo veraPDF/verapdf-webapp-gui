@@ -218,11 +218,11 @@
 				"DESCRIPTION": "The number of columns in a <Table> structure element does not match the number of rows of the visual representation of this table"
 			},
 			"38": {
-				"SUMMARY": "Invalid row span a table cell",
+				"SUMMARY": "Invalid row span of a table cell",
 				"DESCRIPTION": "The row span of a <TD> or <TH> structure element (table cell) does not match the row span of the visual representation of this table cell"
 			},
 			"39": {
-				"SUMMARY": "Invalid column span a table cell",
+				"SUMMARY": "Invalid column span of a table cell",
 				"DESCRIPTION": "The column span of a <TD> or <TH> structure element (table cell) does not match the column span of the visual representation of this table cell"
 			},
 			"40": {

@@ -3,7 +3,7 @@
     "1.3.1": {
       "1": {
         "SUMMARY": "Is deze regel bedoeld als lijn of figuur?",
-        "DESCRIPTION": "Deze regel bevat een heleboel herhaalde tekens. Bedenk dat voorleessoftware voor deze tekens één voor één opleest. Dat kan erg verwarrend en hinderlijk zijn voor mensen met een gezichtsbeperking. Probeerde je hiermee een figuur, lijn of formulier te maken? Voeg dan een lijn of afbeelding in. Gebruik hiervoor geen herhaalde underscores, streepjes of andere tekens."
+        "DESCRIPTION": "Deze regel bevat een heleboel herhaalde tekens. Bedenk dat een screenreader deze tekens één voor één opleest. Dat kan erg verwarrend en hinderlijk zijn voor mensen met een gezichtsbeperking. Probeerde je hiermee een figuur, lijn of formulier te maken? Voeg dan een lijn of afbeelding in. Gebruik hiervoor geen herhaalde underscores, streepjes of andere tekens."
       },
       "2": {
         "SUMMARY": "Vermijd herhaalde spaties",
@@ -39,7 +39,7 @@
     "1.4.8": {
       "1": {
         "SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn. Dit betreft lettertype(n): ",
-        "DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Voorleessoftware kan deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
+        "DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Screenreaders kunnen deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
       }
     },
     "1.4.10": {
@@ -51,25 +51,25 @@
     "2.4.9": {
       "1": {
         "SUMMARY": "Deze link heeft geen heldere beschrijving",
-        "DESCRIPTION": "Deze link heeft geen alternatieve beschrijving. Bedenk dat voorleessoftware deze URL  van voor tot achter zal voorlezen. Dat is erg onhandig voor een gebruiker met een gezichtsbeperking. Vermijd daarom het opnemen van lange URLs in je tekst. Zet links onder een beschrijvende tekst OF voorzie de link van een alternatieve beschrijving (net als afbeeldingen)."
+        "DESCRIPTION": "Deze link heeft geen alternatieve beschrijving. Bedenk dat screenreaders deze URL van voor tot achter voorlezen. Dat is erg onhandig voor een gebruiker met een gezichtsbeperking. Vermijd daarom het opnemen van lange URLs in je tekst. Zet links onder een beschrijvende tekst OF voorzie de link van een alternatieve beschrijving (net als afbeeldingen)."
       }
     },
     "4.1.1": {
       "1": {
         "SUMMARY": "Deze tabel bevat samengevoegde cellen",
-        "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+        "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor screenreaders om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
       },
       "2": {
         "SUMMARY": "Deze tabelkop bevat samengevoegde cellen",
-        "DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+        "DESCRIPTION": "Samengevoegde cellen in de kop maken het moelijker voor screenreaders om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen en hun koppen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
       },
       "3": {
         "SUMMARY": "Deze tabel lijkt samengevoegde cellen te hebben",
-        "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor voorleessoftware om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
+        "DESCRIPTION": "Samengevoegde cellen maken het moelijker voor screenreaders om de tabel voor te lezen voor mensen met een gezichtsbeperking. Houd tabellen zo eenvoudig mogelijk en probeer het samenvoegen van cellen zoveel mogelijk te beperken."
       },
       "4": {
         "SUMMARY": "Het document is niet gecodeerd",
-        "DESCRIPTION": "Als het document geen code heeft, kan voorleessoftware het niet in de juiste volgorde voorlezen. Dit is een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 19005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
+        "DESCRIPTION": "Als het document geen code heeft, kunnen screenreaders het niet in de juiste volgorde voorlezen. Dit is een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 19005-1 (PDF/A)' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren."
       }
     },
     "4.1.2": {
@@ -95,23 +95,23 @@
       },
       "6": {
         "SUMMARY": "Is dit een rij in een tabel?",
-        "DESCRIPTION": "Deze tekst ziet eruit als een rij in een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+        "DESCRIPTION": "Deze tekst ziet eruit als een rij in een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "7": {
         "SUMMARY": "Is dit een kop van een tabel?",
-        "DESCRIPTION": "Deze tekst ziet eruit als een tabelkop maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabelkop maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "8": {
         "SUMMARY": "Is dit een cel van een tabel?",
-        "DESCRIPTION": "Deze tekst ziet eruit als een tabelcel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabelcel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "9": {
         "SUMMARY": "Is dit een tabel?",
-        "DESCRIPTION": "Deze tekst ziet eruit als een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt voorleessoftware in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+        "DESCRIPTION": "Deze tekst ziet eruit als een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen -> tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "10": {
         "SUMMARY": "Is dit een kop?",
-        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weet voorleessoftware ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weten screenreaders ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
       },
       "11": {
         "SUMMARY": "Moet dit wel een aparte alinea zijn?",
@@ -123,7 +123,7 @@
       },
       "13": {
         "SUMMARY": "Is dit een kop?",
-        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weet voorleessoftware ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als kop, maar is niet als zodanig gelabeld. Zorg dat je koppen altijd in één van de standaard kopstijlen (Kop 1, Kop 2, Kop 3, enz) opmaakt. Dan weten screenreaders ook dat het echt koppen zijn, en dat helpt de gebruiker navigeren door het document. Als je de standaard kopstijlen niet mooi vindt kan je de opmaak ervan zelf aanpassen."
       },
       "14": {
         "SUMMARY": "Is dit wel een kop?",
@@ -135,23 +135,23 @@
       },
       "16": {
         "SUMMARY": "Lege alinea",
-        "DESCRIPTION": "Er staan lege alinea's in je document. Vermijd alineas zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege alineas om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege alinea's in je document. Vermijd alineas zonder tekst, dit brengt screenreaders in de war. Gebruik nooit lege alineas om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "17": {
         "SUMMARY": "Leeg tekstelement",
-        "DESCRIPTION": "Er staan lege tekstregels in je document. Vermijd regels zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit regels zonder tekst om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege tekstregels in je document. Vermijd regels zonder tekst, dit brengt screenreaders in de war. Gebruik nooit regels zonder tekst om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "18": {
         "SUMMARY": "Lege kop",
-        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt screenreaders in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "19": {
         "SUMMARY": "Lege kop",
-        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt voorleessoftware in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
+        "DESCRIPTION": "Er staan lege koppen in je document. Vermijd koppen zonder tekst, dit brengt screenreaders in de war. Gebruik nooit lege koppen om witregels in te voegen. Witregels maak je door in het menu 'Alinea' naar de tab 'Inspringen en afstand' te gaan en daar de Afstand 'voor' of 'na' groter te maken."
       },
       "20": {
         "SUMMARY": "Is dit een bijschrift van de figuur of tabel?",
-        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel, maar is gecodeerd als gewone paragraaf. Voor digitale toegankelijkheid is het beter om een bijschrift ook als zodanig te coderen. Helaas kan dat niet met de huidige PDF export van Word."
+        "DESCRIPTION": "Deze tekst lijkt bedoeld te zijn als bijschrift van de figuur of tabel, maar is gecodeerd als gewone alinea. Voor digitale toegankelijkheid is het beter om een bijschrift ook als zodanig te coderen. Helaas kan dat niet met de huidige PDF export van Word."
       },
       "21": {
         "SUMMARY": "Is dit een opsomming of genummerde lijst?",
@@ -159,25 +159,101 @@
       },
       "22": {
         "SUMMARY": "Is dit wel een lijst?",
-        "DESCRIPTION": "Deze tekst is in de code gemarkeerd als lijst, maar het lijkt geen echte lijst te zijn. Als deze tekst niet als lijst bedoeld was, kan je hem beter opmaken als een gewone tekstalinea. Je kan deze waarschuwing ook krijgen als je een lijst onderbroken hebt met gewone tekst. Dat kan je beter vermijden omdat voorleessoftware er moeite mee heeft om dit op een begrijpelijke manier voor te lezen."
+        "DESCRIPTION": "Deze tekst is in de code gemarkeerd als lijst, maar het lijkt geen echte lijst te zijn. Als deze tekst niet als lijst bedoeld was, kan je hem beter opmaken als een gewone tekstalinea. Je kan deze waarschuwing ook krijgen als je een lijst onderbroken hebt met gewone tekst. Dat kan je beter vermijden omdat screenreaders er moeite mee hebben om dit op een begrijpelijke manier voor te lezen."
       },
       "23": {
         "SUMMARY": "Is dit wel een onderdeel van een lijst?",
-        "DESCRIPTION": "Deze tekst ziet er niet uit als onderdeel van een lijst, maar is wel zo gecodeerd. Dit kan voorleessoftware in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of paragrafen."
+        "DESCRIPTION": "Deze tekst ziet er niet uit als onderdeel van een lijst, maar is wel zo gecodeerd. Dit kan screenreaders in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of alinea's."
       },
       "25": {
         "SUMMARY": "Is dit wel een lijst?",
-        "DESCRIPTION": "Deze tekst ziet er niet uit een lijst, maar is wel als lijst gecodeerd. Dit kan voorleessoftware in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of paragrafen."
+        "DESCRIPTION": "Deze tekst ziet er niet uit een lijst, maar is wel als lijst gecodeerd. Dit kan screenreaders in de war brengen. Als je lijsten maakt, onderbreek deze dan niet met regeleinden of alinea's."
       },
       "26": {
         "SUMMARY": "Is dit als tabel bedoeld?",
         "DESCRIPTION": "Deze tekst ziet eruit als een tabel, maar is in de code gemarkeerd als lijst. Als dit als tabel bedoeld was, kan je het ook beter opmaken als tabel."
+      },
+      "27": {
+        "SUMMARY": "Zijn dit verschillende alinea's?",
+        "DESCRIPTION": "Deze tekst is gecodeerd als één enkele alinea, maar het lijken verschillende alinea's te zijn. Gebruik voor nieuwe alinea altijd een alineaeinde (<Enter>). Gebruik geen regeleinde (<Shift><Enter>) om een nieuwe alinea te beginnen. In Word kan je de alineaeinden zien door het Bestand - Opties - Weergave menu te openen en dan Alineamarkeringen aan te vinken."
+      },
+      "28": {
+        "SUMMARY": "Is dit deel van de inhoudsopgave?",
+        "DESCRIPTION": "Deze tekst lijkt onderdeel van de inhoudsopgave te zijn, maar is niet als zodanig gecodeerd. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "29": {
+        "SUMMARY": "Lege titel in de inhoudsopgave",
+        "DESCRIPTION": "Deze titel in de inhoudsopgave lijkt leeg te zijn. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "30": {
+        "SUMMARY": "Deze titel in de inhoudsopgave verwijst nergens naar",
+        "DESCRIPTION": "Deze titel in de inhoudsopgave heeft geen link naar een pagina. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "31": {
+        "SUMMARY": "Deze titel verwijst naar de verkeerde pagina",
+        "DESCRIPTION": "Het paginanummer bij deze titel komt niet overeen met de paginalink. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "32": {
+        "SUMMARY": "Inhoudsopgave lijkt niet goed opgelijnd",
+        "DESCRIPTION": "Het lijkt erop dat verschillende onderdelen van de inhoudsopgave niet goed zijn opgelijnd. Daardoor is de inhoudsopgave moeilijker leesbaar. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "33": {
+        "SUMMARY": "Titel in de inhoudsopgave komt niet overeen met hoofdstuk op de pagina",
+        "DESCRIPTION": "De titel die in de inhoudsopgave staat komt niet overeen met het hoofdstuk waar hij naar verwijst. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "34": {
+        "SUMMARY": "Is dit één lijst?",
+        "DESCRIPTION": "Dit lijkt één lijst te zijn maar is gecodeerd als een serie kortere lijsten. Als het één lijst is, zorg dan ook dat deze als één lijst gecodeerd is. Maakt lijsten niet met de hand aan, maar met de lijstfunctionaliteit in je kantoorapplicatie."
+      },
+      "35": {
+        "SUMMARY": "De inhoudsopgave is onhandig gecodeerd",
+        "DESCRIPTION": "De inhoudsopgave is gecodeerd als een serie verschillende inhoudsopgaven. Dat maakt navigeren door het document lastig. Genereer inhoudsopgaven altijd automatisch. Maak ze niet met de hand aan en bewerk ze niet."
+      },
+      "36": {
+        "SUMMARY": "Hoeveel rijen heeft deze tabel?",
+        "DESCRIPTION": "Het werkelijke aantal rijen in de tabel lijkt niet overeen te komen met de codering. Een screenreader zal daardoor iets anders voorlezen dan wat er te zien is. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "37": {
+        "SUMMARY": "Hoeveel kolommen heeft deze tabel?",
+        "DESCRIPTION": "Het werkelijke aantal kolommen in de tabel lijkt niet overeen te komen met de codering. Een screenreader zal daardoor iets anders voorlezen dan wat er te zien is. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "38": {
+        "SUMMARY": "De codering van deze samengevoegde cel komt niet overeen met hoe hij eruit ziet",
+        "DESCRIPTION": "Deze samengevoegde cel is over meer of minder rijen verspreid dan de codering vermeldt. Een screenreader zal de tabel daarom anders voorlezen dan hoe je hem in het document ziet. Vermijd het samenvoegen en splitsen van cellen zoveel mogelijk in tabellen."
+      },
+      "39": {
+        "SUMMARY": "De codering van deze samengevoegde cel komt niet overeen met hoe hij eruit ziet",
+        "DESCRIPTION": "Deze samengevoegde cel is over meer of minder kolommen verspreid dan de codering vermeldt. Een screenreader zal de tabel daarom anders voorlezen dan hoe je hem in het document ziet. Vermijd het samenvoegen en splitsen van cellen zoveel mogelijk in tabellen."
+      },
+      "40": {
+        "SUMMARY": "Is dit onderdeel van een lijst?",
+        "DESCRIPTION": "Dit ziet eruit als een onderdeel van een lijst, maar is niet als zodanig gecodeerd. Maak lijsten altijd met de lijstenfunctionaliteit van je kantoorsoftware. Maak lijsten niet handmatig op."
+      },
+      "41": {
+        "SUMMARY": "Deze cel lijkt te laag te staan",
+        "DESCRIPTION": "De inhoud van deze cel staat lager dan sommige cellen van de volgende rij. De cel staat dus niet waar de codering zegt dat hij moet staan. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "42": {
+        "SUMMARY": "Deze cel lijkt te hoog te staan",
+        "DESCRIPTION": "De inhoud van deze cel staat hoger dan sommige cellen van de volgende rij. De cel staat dus niet waar de codering zegt dat hij moet staan. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "43": {
+        "SUMMARY": "Deze cel lijkt teveel naar rechts te staan",
+        "DESCRIPTION": "De inhoud van deze cel staat meer naar rechts dan sommige cellen van de volgende kolom. De cel staat dus niet waar de codering zegt dat hij moet staan. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "44": {
+        "SUMMARY": "Deze cel lijkt teveel naar links te staan",
+        "DESCRIPTION": "De inhoud van deze cel staat meer naar links dan sommige cellen van de volgende kolom. De cel staat dus niet waar de codering zegt dat hij moet staan. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
+      },
+      "45": {
+        "SUMMARY": "Is dit wel een tabelkop?",
+        "DESCRIPTION": "Dit ziet eruit als een gewone tabelcel, maar is gecodeerd als een tabelkop. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Beperk koppen tot de eerste rij of eerste kolom. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
       }
     },
     "4.1.3": {
       "1": {
         "SUMMARY": "De codering komt niet overeen met de inhoud",
-        "DESCRIPTION": "Als de codering niet overeenkomt met de inhoud, zal voorleessoftware het document niet in de juiste volgorde of op de juiste manier voorlezen."
+        "DESCRIPTION": "Als de codering niet overeenkomt met de inhoud, zullen screenreaders het document niet in de juiste volgorde of op de juiste manier voorlezen."
       }
     }
   },
@@ -195,35 +271,35 @@
     "7.1": {
       "1": {
         "SUMMARY": "De codering maakt geen goed onderscheid tussen inhoud en decoratieve elementen",
-        "DESCRIPTION": "Door gebrekkige codering kan voorleessoftware inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Door gebrekkige codering kunnen screenreaders inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
         "SUMMARY": "De codering maakt geen goed onderscheid tussen inhoud en decoratieve elementen",
-        "DESCRIPTION": "Door gebrekkige codering kan voorleessoftware inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Door gebrekkige codering kunnen screenreaders inhoud niet onderscheiden van decoratieve elementen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer dit deel van het document anders te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
         "SUMMARY": "Het document bevat inhoud die niet gelabeld is in de code",
-        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kan voorleessoftware niet achterhalen hoe het dit document moet voorlezen. Je kan dit mogelijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan PDF/A' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren. Het is ook mogelijk dat je deze fout krijgt als je PDF bestand een gescand document is. Kijk in dat geval of het mogelijk om het document opnieuw te scannen met tekenherkenning (OCR) en check of het goed gecodeerd is."
+        "DESCRIPTION": "Als inhoud niet gelabeld is in de code, kunnen screenreaders niet achterhalen hoe het dit document moet voorlezen. Je kan dit mogelijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand -> Opslaan als -> (kies PDF) -> Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan PDF/A' aan te vinken. Gebruik NOOIT 'afdrukken -> Adobe PDF' om je document naar PDF te exporteren. Het is ook mogelijk dat je deze fout krijgt als je PDF bestand een gescand document is. Kijk in dat geval of het mogelijk om het document opnieuw te scannen met tekenherkenning (OCR) en check of het goed gecodeerd is."
       },
       "4": {
         "SUMMARY": "De applicatie die dit document creëerde kon geen correcte leesvolgorde garanderen",
-        "DESCRIPTION": "Je krijgt deze waarschuwing als de applicatie waarmee het document aangemaakt werd, niet kon garanderen dat de leesvolgorde correct is. Op zich hoeft de leesvolgorde niet fout te zijn. Of er echt een probleem is met de leesvolgorde kan je zien aan andere codefouten die deze checker vindt. Deze waarschuwing kan wel tot gevolg hebben dat voorleessoftware het document niet accepteert. Om van deze waarschuwing af te komen, kun je proberen het document eenvoudiger te structureren of het document met een andere applicatie te bewerken (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Je krijgt deze waarschuwing als de applicatie waarmee het document aangemaakt werd, niet kon garanderen dat de leesvolgorde correct is. Op zich hoeft de leesvolgorde niet fout te zijn. Of er echt een probleem is met de leesvolgorde kan je zien aan andere codefouten die deze checker vindt. Deze waarschuwing kan wel tot gevolg hebben dat screenreaders het document niet accepteren. Om van deze waarschuwing af te komen, kun je proberen het document eenvoudiger te structureren of het document met een andere applicatie te bewerken (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "5": {
         "SUMMARY": "Het document heeft geen standaard codering",
-        "DESCRIPTION": "Het document gebruikt een eigen codering die niet te herleiden is tot de standaardcodering. Daardoor kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Het document gebruikt een eigen codering die niet te herleiden is tot de standaardcodering. Daardoor kunnen screenreaders het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "6": {
         "SUMMARY": "Er zitten circulaire verwijzingen in de codering van het document",
-        "DESCRIPTION": "In de codering van het document zitten circulaire verwijzingen. Daardoor kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "In de codering van het document zitten circulaire verwijzingen. Daardoor kunnen screenreaders het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "7": {
         "SUMMARY": "Het document heeft gewijzigde standaardcodering",
-        "DESCRIPTION": "De standaardcodering is gewijzigd in dit document. Als er geen standaardcodering wordt gebruikt, kan voorleessoftware het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "De standaardcodering is gewijzigd in dit document. Als er geen standaardcodering wordt gebruikt, kunnen screenreaders het document mogelijk niet goed voorlezen. Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document eenvoudiger te structureren of bewerk het document met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "8": {
         "SUMMARY": "Het document mist essentiële metadata",
-        "DESCRIPTION": "Het document heeft geen metadata. Daardoor mist voorleessoftware essentiële informatie om het voor te kunnen lezen (zoals de voorleestaal). Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document te bewerken met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word) en sla het op als een 'tagged' PDF, bijvoorbeeld in PDF/A-1a of PDF/UA format."
+        "DESCRIPTION": "Het document heeft geen metadata. Daardoor missen screenreaders essentiële informatie om het voor te kunnen lezen (zoals de voorleestaal). Dit is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Probeer het document te bewerken met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word) en sla het op als een 'tagged' PDF, bijvoorbeeld in PDF/A-1a of PDF/UA format."
       },
       "9": {
         "SUMMARY": "De titel is niet ingevuld in de documenteigenschappen",
@@ -273,15 +349,15 @@
       },
       "10": {
         "SUMMARY": "Deze tabelrij bevat elementen die niet bij een tabel horen",
-        "DESCRIPTION": "Een tabelrij mag alleen tabelkopcellen of tabelinhoudcellen bevatten. Deze tabelrij bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabelrij moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+        "DESCRIPTION": "Een tabelrij mag alleen tabelkopcellen of tabelinhoudcellen bevatten. Deze tabelrij bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze tabelrij moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       },
       "11": {
         "SUMMARY": "De tabel heeft meer dan één kop",
-        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als kop gemarkeerd zijn. Als een tabel meer dan één kop heeft, weet voorleessoftware niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te makenen en zorg dat deze maar één koprij heeft."
+        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als kop gemarkeerd zijn. Als een tabel meer dan één kop heeft, weten screenreaders niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te makenen en zorg dat deze maar één koprij heeft."
       },
       "12": {
         "SUMMARY": "De tabel heeft meer dan één voet",
-        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als voet gemarkeerd zijn. Als een tabel meer dan één voet heeft, weet voorleessoftware niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken en zorg dat deze maar één voetrij heeft."
+        "DESCRIPTION": "Een tabel mag hoogstens één groep rijen hebben die als voet gemarkeerd zijn. Als een tabel meer dan één voet heeft, weten screenreaders niet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken en zorg dat deze maar één voetrij heeft."
       },
       "13": {
         "SUMMARY": "De tabel heeft een voet maar geen body",
@@ -305,31 +381,31 @@
       },
       "19": {
         "SUMMARY": "Deze lijst bevat elementen die niet bij een lijst horen",
-        "DESCRIPTION": "Een lijst mag alleen een bijschrift, lijstelementen en sublijsten bevatten. Deze lijst bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Een lijst mag alleen een bijschrift, lijstelementen en sublijsten bevatten. Deze lijst bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "20": {
         "SUMMARY": "Een lijst item mag alleen bestaan uit een label en de itemtekst",
-        "DESCRIPTION": "Dit lijst item bevat andere elementen dan het label (bijvoorbeeld een bullet of nummer) en de itemtekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Dit lijst item bevat andere elementen dan het label (bijvoorbeeld een bullet of nummer) en de itemtekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze lijst moet voorlezen. Probeer de lijst opnieuw op te maken. Houd de lijst zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "21": {
         "SUMMARY": "De taal van de vervangende tekst is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "22": {
         "SUMMARY": "De taal van de alternatieve tekst is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "23": {
         "SUMMARY": "De taal van de uitklaptekst van de afkorting is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "24": {
         "SUMMARY": "De taal van dit commentaarveld is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het dit commentaarveld moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het dit commentaarveld moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "25": {
         "SUMMARY": "De taal van dit formulier is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het dit formulier moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellend"
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het dit formulier moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellend"
       },
       "26": {
         "SUMMARY": "Deze tekst is verkeerd gemarkeerd als onderdeel van de inhoudsopgave",
@@ -345,15 +421,15 @@
       },
       "30": {
         "SUMMARY": "De taal van de vervangende tekst is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de vervangende tekst van deze tekst moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "31": {
         "SUMMARY": "De taal van de alternatieve tekst is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de alternatieve tekst van dit element moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "32": {
         "SUMMARY": "De taal van de uitklaptekst van de afkorting is niet ingesteld",
-        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Voorleessoftware weet dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Waarschijnlijk is de taal van het document niet ingesteld. Screenreaders weten dan niet hoe het de uitklaptekst van deze afkorting moet voorlezen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "33": {
         "SUMMARY": "De taal van de metadata van het document is niet ingesteld",
@@ -361,19 +437,19 @@
       },
       "34": {
         "SUMMARY": "De taal van deze tekst is niet ingesteld",
-        "DESCRIPTION": "Voorleessoftware weet niet in welke taal het deze tekst moet voorlezen. Waarschijnlijk is de taal van het document niet ingesteld. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
+        "DESCRIPTION": "Screenreaders weten niet in welke taal het deze tekst moet voorlezen. Waarschijnlijk is de taal van het document niet ingesteld. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "36": {
         "SUMMARY": "De tabelkop bevat elementen die niet bij een kop horen",
-        "DESCRIPTION": "Een tabelkop mag alleen uit rijen bestaan. Deze tabelkop bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabelkop moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+        "DESCRIPTION": "Een tabelkop mag alleen uit rijen bestaan. Deze tabelkop bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze tabelkop moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       },
       "37": {
         "SUMMARY": "De body van deze tabel bevat elementen die niet bij een tabel body horen",
-        "DESCRIPTION": "De body van een tabel mag alleen uit rijen bestaan. De body van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+        "DESCRIPTION": "De body van een tabel mag alleen uit rijen bestaan. De body van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       },
       "38": {
         "SUMMARY": "De voettekst van deze tabel bevat elementen die niet bij voettekst horen",
-        "DESCRIPTION": "De voettekst van een tabel mag alleen uit rijen bestaan. De voettekst van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat voorleessoftware niet weet hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
+        "DESCRIPTION": "De voettekst van een tabel mag alleen uit rijen bestaan. De voettekst van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       }
     },
     "7.3": {
@@ -385,27 +461,27 @@
     "7.4.2": {
       "1": {
         "SUMMARY": "Verkeerd gebruik van koppen",
-        "DESCRIPTION": "De koppen worden niet in logische volgorde gebruikt. Dit kan ertoe leiden dat een slechtziende met voorleessoftware moeite heeft om door het document te navigeren. Om aan WCAG 2.1 te voldoen moet het document altijd beginnen met een kop van niveau 1 en moeten de niveaus van koppen logisch op elkaar volgen van hoog naar laag. Begin het document dus niet met een kop van niveau 2 of 3. Sla geen niveaus van koppen over: laat bijvoorbeeld niet een kop van niveau 3 volgen op een kop van niveau 1."
+        "DESCRIPTION": "De koppen worden niet in logische volgorde gebruikt. Dit kan ertoe leiden dat een slechtziende met screenreaders moeite hebben om door het document te navigeren. Om aan WCAG 2.1 te voldoen moet het document altijd beginnen met een kop van niveau 1 en moeten de niveaus van koppen logisch op elkaar volgen van hoog naar laag. Begin het document dus niet met een kop van niveau 2 of 3. Sla geen niveaus van koppen over: laat bijvoorbeeld niet een kop van niveau 3 volgen op een kop van niveau 1."
       }
     },
     "7.4.4": {
       "1": {
         "SUMMARY": "De structuur van het document is verkeerd gecodeerd",
-        "DESCRIPTION": "Dit is een probleem in de code van het PDF bestand waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Het probleem is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Je kan proberen dit op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Dit is een probleem in de code van het PDF bestand waardoor een slechtziende met een screenreader moeite kan hebben om door het document te navigeren. Het probleem is waarschijnlijk te wijten aan de applicatie waarmee je dit bestand gemaakt hebt. Je kan proberen dit op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
         "SUMMARY": "De koppenstructuur is verkeerd gecodeerd",
-        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met een screenreader moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "3": {
         "SUMMARY": "De koppenstructuur is verkeerd gecodeerd",
-        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met voorleessoftware moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Dit is een probleem met de codering van koppen waardoor een slechtziende met een screenreader moeite kan hebben om door het document te navigeren. Probeer dit probleem op te lossen door het document te voorzien van koppen met stijl Kop 1, Kop 2, enz. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.5": {
       "1": {
         "SUMMARY": "De code beschrijft de structuur van deze tabel onvoldoende",
-        "DESCRIPTION": "Deze tabel mist code waaruit de structuur kan worden opgemaakt. Daardoor heeft voorleessoftware voor slechtzienden moeite om de tabel correct voor te lezen. Probeer de tabel opnieuw op te maken, geef de tabel duidelijke kop-rij of kop-kolom en houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Deze tabel mist code waaruit de structuur kan worden opgemaakt. Daardoor hebben screenreaders moeite om de tabel correct voor te lezen. Probeer de tabel opnieuw op te maken, geef de tabel duidelijke kop-rij of kop-kolom en houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.7": {
@@ -417,11 +493,11 @@
     "7.9": {
       "1": {
         "SUMMARY": "Deze noot is niet goed gecodeerd",
-        "DESCRIPTION": "Deze noot heeft geen eenduidige referentie in de documentcode. Daardoor kan voorleessoftware moeite hebben om door het document te navigeren. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Deze noot heeft geen eenduidige referentie in de documentcode. Daardoor kunnen screenreaders moeite hebben om door het document te navigeren. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
         "SUMMARY": "Er is een probleem met de indexering van noten en verwijzingen",
-        "DESCRIPTION": "In het document zijn conflicterende verwijzingen gevonden. Daardoor kan voorleessoftware niet goed overweg met de noten en verwijzingen in het document. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "In het document zijn conflicterende verwijzingen gevonden. Daardoor kunnen screenreaders niet goed overweg met de noten en verwijzingen in het document. Voor digitale toegankelijkheid kan je noten het beste helemaal vermijden omdat ze de leesvolgorde onderbreken. Moet je toch echt met noten werken, gebruik hier dan de functionaliteit voor die je kantoorapplicatie biedt voor voetnoten, eindnoten of verwijzingen. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.10": {
@@ -455,7 +531,7 @@
     "7.18.1": {
       "1": {
         "SUMMARY": "Deze annotatie is verkeerd gemarkeerd",
-        "DESCRIPTION": "Omdat deze annotatie niet correct gemarkeerd is in de code, kan voorleessoftware de annotatie mogelijk niet goed vinden of voorlezen. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de annotatie te verwijderen en daarna weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Omdat deze annotatie niet correct gemarkeerd is in de code, kunnen screenreaders de annotatie mogelijk niet goed vinden of voorlezen. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de annotatie te verwijderen en daarna weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
         "SUMMARY": "Deze annotatie heeft geen alternatieve tekst",
@@ -463,7 +539,7 @@
       },
       "3": {
         "SUMMARY": "Alternatieve beschrijving mist voor dit formulierveld",
-        "DESCRIPTION": "Een invulveld dat niet verborgen is moet een alternatieve beschrijving hebben. Dit kan ertoe leiden dat iemand, die voorleessoftware gebruikt, moeite heeft om het formulier in te vullen. Voeg een alternatieve tekst toe OF zorg dat alle widget annotaties van dit veld alternatieve teksten hebben."
+        "DESCRIPTION": "Een invulveld dat niet verborgen is moet een alternatieve beschrijving hebben. Dit kan ertoe leiden dat iemand die een screenreader gebruikt, moeite heeft om het formulier in te vullen. Voeg een alternatieve tekst toe OF zorg dat alle widget annotaties van dit veld alternatieve teksten hebben."
       }
     },
     "7.18.2": {
@@ -480,8 +556,12 @@
     },
     "7.18.4": {
       "1": {
-        "SUMMARY": "Er is iets mis met de code van dit interactive formulier",
-        "DESCRIPTION": "Interactive formulieren geven vaak problemen, en kan je beter vermijden. Gebruik je toch een interactive formulier, dan moet dat op de juiste manier door je applicatie gecodeerd zijn zodat voorleessoftware weet hoe het ermee om moet gaan. Verwijder het formulier en probeer het weer toe te voegen, of probeer het met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Er is iets mis met de code van dit dynamische formulier",
+        "DESCRIPTION": "Dynamische formulieren geven vaak problemen, en kan je beter vermijden. Gebruik je toch een dynamisch formulier, dan moet dat op de juiste manier door je applicatie gecodeerd zijn zodat screenreaders weten hoe het ermee om moet gaan. Verwijder het formulier en probeer het weer toe te voegen, of probeer het met een andere applicatie."
+      },
+      "2": {
+        "SUMMARY": "Dit onderdeel van het formulier is niet juist gecodeerd",
+        "DESCRIPTION": "De codering beschrijft niet duidelijk hoe dit onderdeel van het formulier moet worden gebruikt. Daardoor kan een screenreader er mogelijk niet mee overweg. Probeer om dit onderdeel van het formulier anders te implementeren, bijvoorbeeld een drop-downmenu in plaats van een tekstvak."
       }
     },
     "7.18.5": {
@@ -497,7 +577,7 @@
     "7.18.6.2": {
       "1": {
         "SUMMARY": "Het type van deze media clip is niet correct beschreven in de code van het document",
-        "DESCRIPTION": "Media clips moeten in de code van het document een gestandaardiseerde beschrijving van het type media hebben. Anders weet voorleessoftware niet wat het met de media clip moet doen. Deze fout is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de media clip te verwijderen en expliciet als audio of video toe te voegen. Werkt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Media clips moeten in de code van het document een gestandaardiseerde beschrijving van het type media hebben. Anders weten screenreaders niet wat het met de media clip moet doen. Deze fout is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Probeer de media clip te verwijderen en expliciet als audio of video toe te voegen. Werkt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "2": {
         "SUMMARY": "Deze mediaclip heeft geen alternatieve beschrijving",
@@ -507,7 +587,7 @@
     "7.18.8": {
       "1": {
         "SUMMARY": "Afrukmarkeringen zijn niet als zodanig gemarkeerd",
-        "DESCRIPTION": "Afdrukmarkeringen moeten gemarkeerd zijn als grafische informatie die geen deel uitmaken van de documentinhoud. In dit geval zijn de afdrukmarkeringen verkeerd gemarkeerd waardoor het lijkt of ze bij de inhoud horen. Hierdoor kan voorleessoftware in de war raken. Verwijder de markeringen en voeg ze opnieuw toe met de functionaliteit die je applicatie daarvoor heeft (in Word via Bestand -> Opties -> Geavanceerd -> Bijsnijdmarkeringen). Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Afdrukmarkeringen moeten gemarkeerd zijn als grafische informatie die geen deel uitmaken van de documentinhoud. In dit geval zijn de afdrukmarkeringen verkeerd gemarkeerd waardoor het lijkt of ze bij de inhoud horen. Hierdoor kunnen screenreaders in de war raken. Verwijder de markeringen en voeg ze opnieuw toe met de functionaliteit die je applicatie daarvoor heeft (in Word via Bestand -> Opties -> Geavanceerd -> Bijsnijdmarkeringen). Lukt dat niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     },
     "7.20": {
@@ -517,7 +597,7 @@
       },
       "2": {
         "SUMMARY": "Herbruikbare documentelementen zijn niet correct gecodeerd",
-        "DESCRIPTION": "Dit document bevat hebruikbare documentelementen (zogenaamde XObjects) die niet correct gecodeerd zijn. Daarom kan voorleessoftware er niet goed mee overweg. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Kijk of er in je document zich herhalende figuren of teksten voorkomen. Hier kan het probleem uit voortkomen. Probeer deze herhalende elementen dan op een andere manier of met een andere applicatie in te voegen."
+        "DESCRIPTION": "Dit document bevat hebruikbare documentelementen (zogenaamde XObjects) die niet correct gecodeerd zijn. Daarom kunnen screenreaders er niet goed mee overweg. Dit probleem is waarschijnlijk te wijten aan de applicatie waarmee je het document gemaakt hebt. Kijk of er in je document zich herhalende figuren of teksten voorkomen. Hier kan het probleem uit voortkomen. Probeer deze herhalende elementen dan op een andere manier of met een andere applicatie in te voegen."
       }
     },
     "7.21.3.1": {
@@ -603,7 +683,7 @@
     "7.21.8": {
       "1": {
         "SUMMARY": "Het document bevat ongedefinieerde letters. Dit betreft lettertype(n): ",
-        "DESCRIPTION": "Een document mag geen ongedefinieerde letters of symbolen bevatten. Voorleessoftware weet niet wat het hiermee aan moet. Als je weet om welke letter(s) het gaat, haal deze dan uit het document. Of probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Een document mag geen ongedefinieerde letters of symbolen bevatten. Screenreaders weten niet wat ze hiermee aan moeten. Als je weet om welke letter(s) het gaat, haal deze dan uit het document. Of probeer een ander lettertype te gebruiken. Kies een zo standaard mogelijk lettertype, bijvoorbeeld Arial of Times New Roman. Lost dit het probleem niet op, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
     }
   }

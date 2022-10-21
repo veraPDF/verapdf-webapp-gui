@@ -211,6 +211,101 @@
         "STATUS": "warning",
         "CATEGORY": "structure",
         "RATIONALE": "Lists should not be misused to represent tables."
+      },
+      "27": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Multiple paragraphs should be tagged as such. Line breaks should not be used to delimit paragraphs."
+      },
+      "28": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Table of content items should be tagged as such."
+      },
+      "29": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Table of content items should not be empty."
+      },
+      "30": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "Table of content items should point somwhere in the document."
+      },
+      "31": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "Table of content items should point to the right place in the document."
+      },
+      "32": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Table of content items should be correctly aligned for readability."
+      },
+      "33": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Table of contents item should match the heading it refers to."
+      },
+      "34": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "A single list should be tagged as such and not a series of smaller lists."
+      },
+      "35": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "A single table of contents should be tagged as such and not a series of tables of contents."
+      },
+      "36": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The number of table row tags must correspond to the actual amount of table rows."
+      },
+      "37": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "The number of table column tags must correspond to the actual amount of table columns."
+      },
+      "38": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "A merged cell must be tagged correctly corresponding to the amount of rows it spans."
+      },
+      "39": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "A merged cell must be tagged correctly corresponding to the amount of columns it spans."
+      },
+      "40": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "List items must be tagged as such."
+      },
+      "41": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The content of a table cell should appear in a position that is coherent with its tag."
+      },
+      "42": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The content of a table cell should appear in a position that is coherent with its tag."
+      },
+      "43": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The content of a table cell should appear in a position that is coherent with its tag."
+      },
+      "44": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "The content of a table cell should appear in a position that is coherent with its tag."
+      },
+      "45": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "A normal table cell should not be tagged as a table head."
       }
     },
     "4.1.3": {
@@ -246,7 +341,7 @@
         "RATIONALE": "If tags don't distinguish content from decorative elements, then reader applications will not be able to read the document properly."
       },
       "3": {
-        "STATUS": "critical",
+        "STATUS": "serious",
         "CATEGORY": "code",
         "RATIONALE": "If content is not tagged, then reader applications will not be able to read the document properly."
       },
@@ -588,7 +683,12 @@
       "1": {
         "STATUS": "error",
         "CATEGORY": "code",
-        "RATIONALE": "If interactive forms are not tagged properly, reader software may not know how to handle them."
+        "RATIONALE": "If dynamic forms are not tagged properly, reader software may not know how to handle them."
+      },
+      "2": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If form elements are not tagged properly, reader software may not know how to handle them."
       }
     },
     "7.18.5": {

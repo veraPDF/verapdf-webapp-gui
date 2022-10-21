@@ -172,6 +172,83 @@
       "26": {
         "SUMMARY": "Is this a table?",
         "DESCRIPTION": "This text looks like a table but it's tagged as a list. If you intended this to be a table it's better to format it as such."
+      },
+      "27": {
+        "SUMMARY": "Are these different paragraphs?",
+        "DESCRIPTION": "This text is tagged as a single paragraph but appears to be several. Always use paragraph breaks (<Enter>), don't use line breaks (<Shift><Enter>) to delimit paragraphs. In Word you can see paragraph breaks by going to the File - Options - Display menu and selecting Paragraph marks there."
+      },
+      "28": {
+        "SUMMARY": "Is this part of the table of contents?",
+        "DESCRIPTION": "This text appears to be part of the table of contents but is not tagged as such. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "29": {
+        "SUMMARY": "Emty table of contents entry",
+        "DESCRIPTION": "This entry in the table of contents appears to be empty. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "30": {
+        "SUMMARY": "Table of content entry does not link to any page",
+        "DESCRIPTION": "Make sure table of contents entries link to pages in the document. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "31": {
+        "SUMMARY": "Table of contents entry points to the wrong page",
+        "DESCRIPTION": "The page number of this entry does not correspond to the page link. this Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "32": {
+        "SUMMARY": "Badly aligned table of content entries",
+        "DESCRIPTION": "Table of content entries of the same level appear to be badly aligned. This makes the table of contents less readable. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "33": {
+        "SUMMARY": "Table of contents entry not the same as the header it refers to",
+        "DESCRIPTION": "The name of this entry is not the same as the header on the page it refers to. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "34": {
+        "SUMMARY": "Is this one list?",
+        "DESCRIPTION": "This looks like one list, but it is tagged as a sequence of shorter lists. If it's meant to be one list, please make sure it is tagged as such. To make a list, always use the list functionality of your office application. Don't format lists manually."
+      },
+      "35": {
+        "SUMMARY": "Table of contents is awkwardly tagged",
+        "DESCRIPTION": "This table of contents has been tagged as a sequence of smaller tables of contents, which can make navigating the document more difficult. Always generate tables of contents automatically. Don't make them by hand and don't edit them manually."
+      },
+      "36": {
+        "SUMMARY": "How many rows does this table have?",
+        "DESCRIPTION": "Tagging does not correspond to the actual number of rows this table appears to have. A screenreader will therefore read something that differs from the visual representation. To create tables, always use the table function of your office application. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Avoid merging and splitting cells and don't format your table manually."
+      },
+      "37": {
+        "SUMMARY": "How many columns does this table have?",
+        "DESCRIPTION": "Tagging does not correspond to the actual number of columns this table appears to have. A screenreader will therefore read the table differently from its visual representation. To create tables, always use the table function of your office application. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Avoid merging and splitting cells and don't format your table manually."
+      },
+      "38": {
+        "SUMMARY": "Cell's span does not match with its appearance",
+        "DESCRIPTION": "This merged cell spans more or less rows than apparent from its tags. A screenreader will therefore read the table differently from its visual representation. To avoid this problem, avoid merging and splitting cells as much as possible."
+      },
+      "39": {
+        "SUMMARY": "Cell's span does not match with its appearance",
+        "DESCRIPTION": "This merged cell spans more or less columns than apparent from its tags. A screenreader will therefore read the table differently from its visual representation. To avoid this problem, avoid merging and splitting cells as much as possible."
+      },
+      "40": {
+        "SUMMARY": "Is this a list item?",
+        "DESCRIPTION": "This looks like a list item but is not tagged as such. Always create lists with the list functionality of your office application. Don't format lists manually."
+      },
+      "41": {
+        "SUMMARY": "This cell appears too low ",
+        "DESCRIPTION": "The content of this cell appears lower than some cells of the next row. In other words, the cell does not appear where its tags say it should be. Always create tables with the table functionality of your office application. Don't format tables manually and avoid merging and splitting cells.",
+        "": ""
+      },
+      "42": {
+        "SUMMARY": "This cell appears too high",
+        "DESCRIPTION": "The content of this cell appears higher than some cells of the previous row. In other words, the cell does not appear where its tags say it should be. Always create tables with the table functionality of your office application. Don't format tables manually and avoid merging and splitting cells."
+      },
+      "43": {
+        "SUMMARY": "This cell appears too much to the right",
+        "DESCRIPTION": "The content of this cell appears more to the right than some cells of the next column. In other words, the cell does not appear where its tags say it should be. Always create tables with the table functionality of your office application. Don't format tables manually and avoid merging and splitting cells."
+      },
+      "44": {
+        "SUMMARY": "This cell appears too much to the left",
+        "DESCRIPTION": "The content of this cell appears more to the left than some cells of the previous column. In other words, the cell does not appear where its tags say it should be. Always create tables with the table functionality of your office application. Don't format tables manually and avoid merging and splitting cells."
+      },
+      "45": {
+        "SUMMARY": "Should this be a table head?",
+        "DESCRIPTION": "This looks like a normal cell but it is tagged as a table head. Always create tables with the table functionality of your office application. Only the first row or column should contain table heads. Avoid merging and splitting cells and don't format tables manually."
       }
     },
     "4.1.3": {
@@ -480,8 +557,12 @@
     },
     "7.18.4": {
       "1": {
-        "SUMMARY": "This interactive form has been tagged incorrectly",
-        "DESCRIPTION": "It's better to avoid interactive forms as they are prone to accessibility problems. If you must use a interactive form, it must be tagged correctly so that reader software for people with visual impairments knows how to handle it. Try removing the form and adding it again, or try with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "This dynamic form has been tagged incorrectly",
+        "DESCRIPTION": "It's better to avoid dynamic forms as they are prone to accessibility problems. If you must use a dynamic form, it must be tagged correctly so that reader software for people with visual impairments knows how to handle it. Try removing the form and adding it again, or try with another application (for example LibreOffice instead of Word)."
+      },
+      "2": {
+        "SUMMARY": "This form element is not properly tagged",
+        "DESCRIPTION": "The tags do not clearly describe the role of this form element, and it should be used. This may cause screenreaders to misrepresent this part of the form. Try implementing this form element differently, for example using free text instead of a drop-down menu."
       }
     },
     "7.18.5": {

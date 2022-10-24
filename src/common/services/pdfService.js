@@ -48,6 +48,28 @@ function convertContextToPath(errorContext = '') {
     let contextString = errorContext;
 
     try {
+        if (contextString.includes('contentItem') && !contextString.includes('mcid')) {
+            const result = contextString.match(
+                /pages\[(?<pages>\d+)\](\(.+\))?\/contentStream\[(?<contentStream>\d+)\](\(.+\))?\/content\[(?<content>\d+)\](?<contentItems>(\(.+\))?\/contentItem\[(\d+)\])+/d
+            );
+            if (result) {
+                try {
+                    let path = {};
+                    path.pageIndex = parseInt(result.groups.pages, 10);
+                    path.contentStream = parseInt(result.groups.contentStream, 10);
+                    path.content = parseInt(result.groups.content, 10);
+                    path.contentItems = result.groups.contentItems
+                        .split('/')
+                        .filter(ci => ci.includes('contentItem'))
+                        .map(ci => {
+                            const contentItemIndex = ci.match(/\[(?<contentItem>\d+)\]/d);
+                            return parseInt(contentItemIndex?.groups?.contentItem || '-1', 10);
+                        });
+                    return path;
+                } catch {}
+            }
+        }
+
         if (contextString.includes('contentItem')) {
             let path = {};
             contextString.split('/').forEach(nodeString => {

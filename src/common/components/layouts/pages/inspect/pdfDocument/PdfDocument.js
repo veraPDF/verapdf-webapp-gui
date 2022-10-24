@@ -50,6 +50,8 @@ function getPageFromErrorPlace(context, structureTree) {
         return selectedTag.pageIndex;
     } else if (selectedTag.hasOwnProperty('annot') && selectedTag.hasOwnProperty('pageIndex')) {
         return selectedTag.pageIndex;
+    } else if (selectedTag.hasOwnProperty('contentItems')) {
+        return selectedTag.pageIndex;
     } else if (selectedTag.hasOwnProperty('pageNumber')) {
         return selectedTag.pageNumber;
     } else if (selectedTag instanceof Array) {

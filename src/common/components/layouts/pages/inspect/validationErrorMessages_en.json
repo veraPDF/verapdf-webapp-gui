@@ -182,7 +182,7 @@
         "DESCRIPTION": "This text appears to be part of the table of contents but is not tagged as such. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
       },
       "29": {
-        "SUMMARY": "Emty table of contents entry",
+        "SUMMARY": "Empty table of contents entry",
         "DESCRIPTION": "This entry in the table of contents appears to be empty. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
       },
       "30": {
@@ -215,7 +215,7 @@
       },
       "37": {
         "SUMMARY": "How many columns does this table have?",
-        "DESCRIPTION": "Tagging does not correspond to the actual number of columns this table appears to have. A screenreader will therefore read the table differently from its visual representation. To create tables, always use the table function of your office application. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Avoid merging and splitting cells and don't format your table manually."
+        "DESCRIPTION": "Tagging does not correspond to the actual number of columns this table appears to have. A screenreader will therefore read the table differently from its visual representation. To create tables, always use the table function of your office application. Avoid merging and splitting cells and don't format your table manually."
       },
       "38": {
         "SUMMARY": "Cell's span does not match with its appearance",

@@ -55,6 +55,9 @@ function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
     const { id: jobId } = useParams();
 
     switch (jobStatus) {
+        case undefined:
+            return <Redirect to={AppPages.LOADING} />;
+
         case JOB_STATUS.NOT_FOUND:
             return <Redirect to={AppPages.NOT_FOUND} />;
 

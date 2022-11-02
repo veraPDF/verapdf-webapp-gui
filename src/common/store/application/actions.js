@@ -48,7 +48,7 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
 
     await dispatch(storeFile(file));
 
-    // Redirect to start screen and hide Loading view
+    window.history.replaceState(null, '', PUBLIC_URL);
     window.location.replace(PUBLIC_URL);
 };
 

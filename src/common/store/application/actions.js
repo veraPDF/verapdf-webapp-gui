@@ -48,7 +48,7 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
 
     await dispatch(storeFile(file));
 
-    window.history.replaceState(null, '', PUBLIC_URL);
+    window.history.replaceState(null, '', '/demo');
     window.location.replace(PUBLIC_URL);
 };
 

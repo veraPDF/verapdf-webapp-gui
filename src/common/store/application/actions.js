@@ -5,7 +5,7 @@ import { deleteFile } from '../../services/pdfStorage';
 import { getDefaultProfileName } from '../validationProfiles/selectors';
 import { storeFile } from '../pdfFiles/actions';
 
-const { PUBLIC_URL } = process.env;
+const { PUBLIC_URL, REACT_APP_BASE_NAME } = process.env;
 
 export const finishAppStartup = createAction('APP_STARTUP_FINISH');
 
@@ -48,7 +48,7 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
 
     await dispatch(storeFile(file));
 
-    window.history.replaceState(null, '', '/demo');
+    window.history.replaceState(null, '', REACT_APP_BASE_NAME);
     window.location.replace(PUBLIC_URL);
 };
 

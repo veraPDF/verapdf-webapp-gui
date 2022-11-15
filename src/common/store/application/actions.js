@@ -46,6 +46,10 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
         await deleteFile(oldFile);
     }
 
+    console.log('REACT_APP_BASE_NAME: ', REACT_APP_BASE_NAME);
+    console.log('PUBLIC_URL: ', PUBLIC_URL);
+    console.log('process.env: ', process.env);
+
     await dispatch(storeFile(file));
 
     window.history.replaceState(null, '', REACT_APP_BASE_NAME);

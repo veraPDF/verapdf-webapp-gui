@@ -50,7 +50,7 @@ function convertContextToPath(errorContext = '') {
     try {
         if (contextString.includes('contentItem') && !contextString.includes('mcid')) {
             const result = contextString.match(
-                /pages\[(?<pages>\d+)\](\(.+\))?\/contentStream\[(?<contentStream>\d+)\](\(.+\))?\/content\[(?<content>\d+)\](?<contentItems>((\(.+\))?\/contentItem\[(\d+)\])+)/d
+                /pages\[(?<pages>\d+)\](\(.+\))?\/contentStream\[(?<contentStream>\d+)\](\(.+\))?\/content\[(?<content>\d+)\](?<contentItems>((\(.+\))?\/contentItem\[(\d+)\])+)/
             );
             if (result) {
                 try {
@@ -62,7 +62,7 @@ function convertContextToPath(errorContext = '') {
                         .split('/')
                         .filter(ci => ci.includes('contentItem'))
                         .map(ci => {
-                            const contentItemIndex = ci.match(/\[(?<contentItem>\d+)\]/d);
+                            const contentItemIndex = ci.match(/\[(?<contentItem>\d+)\]/);
                             return parseInt(contentItemIndex?.groups?.contentItem || '-1', 10);
                         });
                     return path;

@@ -2,7 +2,7 @@
 
 .progress {
   position: relative;
-  height: 20px;
+  height: 24px;
 
   display: flex;
   justify-content: center;
@@ -18,5 +18,10 @@
   &__percentage {
     z-index: 1;
     color: $color-white;
+  }
+
+  &__message {
+    text-align: center;
+    color: $color-black--50;
   }
 }

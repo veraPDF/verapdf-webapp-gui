@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
-import { getJobError, getJobStatus } from '../../../../store/job/selectors';
+import { getJobError, getJobProgress, getJobQueuePosition, getJobStatus } from '../../../../store/job/selectors';
 import { getProgress } from '../../../../store/job/progress/selectors';
 import { hasResult } from '../../../../store/job/result/selectors';
 import Progress from '../../../shared/progress/Progress';
@@ -37,6 +37,11 @@ export const STEPS = {
         complete: 'Job execution started.',
         errorDetails: errorMessage => `Failed to start job execution: ${errorMessage}`,
     },
+    JOB_WAITING: {
+        active: position => `Waiting... Position in queue: ${position + 1}`,
+        complete: 'Job validation started.',
+        errorDetails: errorMessage => `Failed to start job validation: ${errorMessage}`,
+    },
     JOB_COMPLETE: {
         active: 'Validating...',
         complete: 'Validation complete.',
@@ -51,7 +56,7 @@ export const STEPS = {
     },
 };
 
-function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
+function JobStatus({ jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete }) {
     const { id: jobId } = useParams();
 
     switch (jobStatus) {
@@ -82,7 +87,12 @@ function JobStatus({ jobStatus, percentage, steps, errorMessage, complete }) {
         default:
             return (
                 <StatusPage>
-                    <Progress percents={percentage} title={getProgressTitle(steps)} />
+                    <Progress
+                        percents={percentage}
+                        title={getProgressTitle(steps, jobQueuePosition)}
+                        summary={getProgressSummary(steps, jobQueuePosition)}
+                        progress={jobProgress}
+                    />
                 </StatusPage>
             );
     }
@@ -96,15 +106,27 @@ function StatusPage({ children }) {
     );
 }
 
-function getProgressTitle(steps) {
-    return steps
+function getProgressSummary(steps, jobQueuePosition) {
+    const lastStep = STEPS[steps[steps.length - 1].stepKey];
+    return typeof lastStep.active === 'function' ? lastStep.active(jobQueuePosition) : lastStep.active;
+}
+
+function getProgressTitle(steps, jobQueuePosition) {
+    return _.chain(steps)
         .map(({ stepKey, completed }) => {
             if (completed) {
-                return '✓ ' + STEPS[stepKey].complete;
+                return STEPS[stepKey].complete ? '✓ ' + STEPS[stepKey].complete : null;
             } else {
-                return '● ' + STEPS[stepKey].active;
+                return (
+                    '● ' +
+                    (typeof STEPS[stepKey].active === 'function'
+                        ? STEPS[stepKey].active(jobQueuePosition)
+                        : STEPS[stepKey].active)
+                );
             }
         })
+        .filter(label => label)
+        .value()
         .join('\n');
 }
 
@@ -126,6 +148,8 @@ const StepShape = PropTypes.shape({
 
 JobStatus.propTypes = {
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)),
+    jobProgress: PropTypes.string,
+    jobQueuePosition: PropTypes.number,
     percentage: PropTypes.number.isRequired,
     steps: PropTypes.arrayOf(StepShape).isRequired,
     errorMessage: PropTypes.string,
@@ -135,9 +159,11 @@ JobStatus.propTypes = {
 function mapStateToProps(state) {
     const { percentage, steps } = getProgress(state);
     const jobStatus = getJobStatus(state);
+    const jobProgress = getJobProgress(state);
+    const jobQueuePosition = getJobQueuePosition(state);
     const errorMessage = getJobError(state);
     const complete = hasResult(state);
-    return { jobStatus, percentage, steps, errorMessage, complete };
+    return { jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete };
 }
 
 export default connect(mapStateToProps)(JobStatus);

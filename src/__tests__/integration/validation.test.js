@@ -55,6 +55,16 @@ describe('Validation', () => {
                 '✓ Job execution started.',
             ]);
 
+            await waitFor(store, stepFinished('JOB_WAITING'));
+            expect(executeJob).toHaveBeenCalledTimes(1);
+            verifyProgressTitle(component, [
+                '✓ Validation job initiated.',
+                '✓ PDF uploaded.',
+                '✓ Validation job updated.',
+                '✓ Job execution started.',
+                '✓ Job validation started.',
+            ]);
+
             await waitFor(store, stepFinished('JOB_COMPLETE'));
             expect(getJob).toHaveBeenCalled();
             verifyProgressTitle(component, [
@@ -62,6 +72,7 @@ describe('Validation', () => {
                 '✓ PDF uploaded.',
                 '✓ Validation job updated.',
                 '✓ Job execution started.',
+                '✓ Job validation started.',
                 '✓ Validation complete.',
             ]);
 

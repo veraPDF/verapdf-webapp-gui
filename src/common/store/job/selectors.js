@@ -10,6 +10,10 @@ export const getJobError = createSelector(getJob, job => job?.errorMessage);
 
 export const getJobProfile = createSelector(getJob, job => job?.profile);
 
+export const getJobQueuePosition = createSelector(getJob, job => job?.queuePosition);
+
+export const getJobProgress = createSelector(getJob, job => job?.progress);
+
 export const getTask = createSelector(getJob, job => job?.tasks?.[0]);
 
 export const getTaskStatus = createSelector(getTask, task => task?.status);

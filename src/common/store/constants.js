@@ -3,6 +3,7 @@ export const JOB_SETTINGS = 'JOB_SETTINGS';
 
 export const JOB_STATUS = {
     CREATED: 'CREATED',
+    WAITING: 'WAITING',
     PROCESSING: 'PROCESSING',
     FINISHED: 'FINISHED',
     ERROR: 'ERROR',

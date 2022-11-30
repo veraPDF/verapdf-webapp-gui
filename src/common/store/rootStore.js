@@ -87,9 +87,13 @@ const restoreJob = (store, id, fileRestored) =>
                         throw Error('File cannot be restored');
                     }
                 }
-                if (job.status === JOB_STATUS.PROCESSING) {
-                    // Job already started
+                if (job.status === JOB_STATUS.WAITING) {
+                    // Job has already started
                     completedSteps.push('JOB_EXECUTE');
+                }
+                if (job.status === JOB_STATUS.PROCESSING) {
+                    // Job processing has already started
+                    completedSteps.push('JOB_EXECUTE', 'JOB_WAITING');
                 }
                 store.dispatch(validate(completedSteps));
             } else {

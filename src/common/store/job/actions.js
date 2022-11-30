@@ -20,6 +20,7 @@ export const validate = (completedSteps = []) => async (dispatch, getState) => {
         await uploadPdfFile(dispatch, getState, completedSteps);
         await addTask(dispatch, getState, completedSteps);
         await startJob(dispatch, getState, completedSteps);
+        await waitToStart(dispatch, getState, completedSteps);
         await waitForComplete(dispatch, getState, completedSteps);
         await downloadValidationResult(dispatch, getState, completedSteps);
     } catch (error) {
@@ -93,6 +94,35 @@ const startJob = createStep('JOB_EXECUTE', 10, async (dispatch, getState) => {
     dispatch(setJob(job));
 });
 
+const waitToStart = createStep(
+    'JOB_WAITING',
+    10,
+    (dispatch, getState) =>
+        new Promise((resolve, reject) => {
+            const REFRESH_INTERVAL = 1000;
+            const checkStatus = () =>
+                setTimeout(async () => {
+                    const jobId = getJobId(getState());
+                    const job = await JobService.getJob(jobId);
+                    dispatch(setJob(job));
+                    if (job.status === JOB_STATUS.WAITING) {
+                        checkStatus();
+                    } else {
+                        if (
+                            job.status === JOB_STATUS.PROCESSING ||
+                            getTaskStatus(getState()) === TASK_STATUS.FINISHED
+                        ) {
+                            resolve();
+                        } else {
+                            reject(new Error(getTaskErrorMessage(getState())));
+                        }
+                    }
+                }, REFRESH_INTERVAL);
+
+            checkStatus();
+        })
+);
+
 const waitForComplete = createStep(
     'JOB_COMPLETE',
     35,
@@ -103,11 +133,10 @@ const waitForComplete = createStep(
                 setTimeout(async () => {
                     const jobId = getJobId(getState());
                     const job = await JobService.getJob(jobId);
-
+                    dispatch(setJob(job));
                     if (job.status === JOB_STATUS.PROCESSING) {
                         checkStatus();
                     } else {
-                        dispatch(setJob(job));
                         if (getTaskStatus(getState()) === TASK_STATUS.FINISHED) {
                             resolve();
                         } else {

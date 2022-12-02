@@ -303,9 +303,9 @@
 				"SUMMARY": "Viewer preferences miss the requirement to use the document title in the title bar",
 				"DESCRIPTION": "The document catalog dictionary shall include a ViewerPreferences dictionary containing a DisplayDocTitle key, whose value shall be true."
 			},
-			"13": {
-				"SUMMARY": "The structure type and attributes of a structure element are not semantically appropriate for the structure element.",
-				"DESCRIPTION": "The structure type and attributes of a structure element shall be semantically appropriate."
+			"11": {
+				"SUMMARY": "Document is not tagged",
+				"DESCRIPTION": "Document root contains no structure tree, which makes any real content in the document inaccessible"
 			}
 		},
 		"7.2": {
@@ -314,32 +314,32 @@
 				"DESCRIPTION": "Natural language in the Outline entries shall be determined"
 			},
 			"3": {
-				"SUMMARY": "Table contains more than one Caption, or Table contains a Caption not as its first or last kid",
-				"DESCRIPTION": "Table element may contain a Caption element as its first or last kid"
+				"SUMMARY": "Table contains forbidden elements",
+				"DESCRIPTION": "Table element may contain only TR, THead, TBode, TFoot and Caption elements"
 			},
 			"4": {
 				"SUMMARY": "TR (table row) found outside of the Table context",
-				"DESCRIPTION": "TR element should contained in Table, THead, TBody or TFoot element"
+				"DESCRIPTION": "TR element should be contained in Table, THead, TBody or TFoot element"
 			},
 			"5": {
 				"SUMMARY": "THead (table header) found outside of the Table context",
-				"DESCRIPTION": "THead element should contained in Table element"
+				"DESCRIPTION": "THead element should be contained in Table element"
 			},
 			"6": {
 				"SUMMARY": "TBody (table body) found outside of the Table context",
-				"DESCRIPTION": "TBody element should contained in Table element"
+				"DESCRIPTION": "TBody element should be contained in Table element"
 			},
 			"7": {
 				"SUMMARY": "TFoot (table footer) found outside of the Table context",
-				"DESCRIPTION": "TFoot element should contained in Table element"
+				"DESCRIPTION": "TFoot element should be contained in Table element"
 			},
 			"8": {
 				"SUMMARY": "TH (table header cell) found outside of the Table row context",
-				"DESCRIPTION": "TH element should contained in TR element"
+				"DESCRIPTION": "TH element should be contained in TR element"
 			},
 			"9": {
 				"SUMMARY": "TD (table cell) found outside of the Table row context",
-				"DESCRIPTION": "TD element should contained in TR element"
+				"DESCRIPTION": "TD element should be contained in TR element"
 			},
 			"10": {
 				"SUMMARY": "TR (table row) may contain only table cells (TH or TD elements)",
@@ -365,17 +365,21 @@
 				"SUMMARY": "Irregular table found",
 				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
 			},
+			"16": {
+				"SUMMARY": "Table contains a Caption not as its first or last kid",
+				"DESCRIPTION": "Table element may contain a Caption element as its first or last kid"
+			},
 			"17": {
 				"SUMMARY": "List item is found outside List context",
-				"DESCRIPTION": "LI element should contained in L element"
+				"DESCRIPTION": "LI element should be contained in L element"
 			},
 			"18": {
 				"SUMMARY": "List item text found outside List item",
-				"DESCRIPTION": "LBody element should contained in LI element"
+				"DESCRIPTION": "LBody element should be contained in LI element"
 			},
 			"19": {
 				"SUMMARY": "List contains forbidden elements",
-				"DESCRIPTION": "L element may contain a Caption element as its first kid and L element may contain only L, LI and Caption elements"
+				"DESCRIPTION": "L element may contain only L, LI and Caption elements"
 			},
 			"20": {
 				"SUMMARY": "List item may contain only list label followed by the item text",
@@ -403,11 +407,15 @@
 			},
 			"26": {
 				"SUMMARY": "TOC item is found outside the TOC context",
-				"DESCRIPTION": "TOCI element should contained in TOC element"
+				"DESCRIPTION": "TOCI element should be contained in TOC element"
 			},
 			"27": {
-				"SUMMARY": "TOC has more than one Caption, or Caption is not a first or last kid of the TOC",
-				"DESCRIPTION": "TOC element may contain a Caption element as its first kid and TOC element may contain only TOC, TOCI and Caption elements"
+				"SUMMARY": "TOC contains forbidden elements",
+				"DESCRIPTION": "TOC element may contain only TOC, TOCI and Caption elements"
+			},
+			"28": {
+				"SUMMARY": "Caption is not a first kid of the TOC",
+				"DESCRIPTION": "TOC element may contain a Caption element as its first kid"
 			},
 			"29": {
 				"SUMMARY": "Invalid Language identifier",
@@ -444,6 +452,14 @@
 			"38": {
 				"SUMMARY": "Table footer contains elements other than Table rows",
 				"DESCRIPTION": "TFoot element may contain only TR elements"
+			},
+			"39": {
+				"SUMMARY": "Table contains more than one Caption",
+				"DESCRIPTION": "Table element may contain only one Caption element"
+			},
+			"40": {
+				"SUMMARY": "Caption is not a first kid of the List",
+				"DESCRIPTION": "L element may contain a Caption element as its first kid"
 			}
 		},
 		"7.3": {

@@ -3,6 +3,7 @@ import { handleActions } from 'redux-actions';
 const DEFAULT_STATE = {
     steps: [],
     percentage: 0,
+    cancelling: false,
 };
 
 export default handleActions(
@@ -21,6 +22,10 @@ export default handleActions(
                 }
                 return step;
             }),
+        }),
+        JOB_CANCEL: state => ({
+            ...state,
+            cancelling: true,
         }),
     },
     DEFAULT_STATE

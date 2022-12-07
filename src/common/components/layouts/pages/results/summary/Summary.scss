@@ -63,4 +63,14 @@
       }
     }
   }
+
+  .cancelled-section {
+    @include centered-column;
+    margin: 30px;
+    svg {
+      font-size: 130px;
+      color: $color-black--35;
+      margin-bottom: 15px;
+    }
+  }
 }

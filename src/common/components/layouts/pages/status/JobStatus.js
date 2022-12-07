@@ -7,10 +7,12 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
 import { getJobError, getJobProgress, getJobQueuePosition, getJobStatus } from '../../../../store/job/selectors';
-import { getProgress } from '../../../../store/job/progress/selectors';
+import { getProgress, isCancellingJob } from '../../../../store/job/progress/selectors';
 import { hasResult } from '../../../../store/job/result/selectors';
 import Progress from '../../../shared/progress/Progress';
 import WizardStep from '../../wizardStep/WizardStep';
+import Button from '../../../shared/button/Button';
+import { cancelValidation } from '../../../../store/job/actions';
 
 import './JobStatus.scss';
 
@@ -56,7 +58,17 @@ export const STEPS = {
     },
 };
 
-function JobStatus({ jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete }) {
+function JobStatus({
+    jobStatus,
+    jobProgress,
+    jobQueuePosition,
+    percentage,
+    steps,
+    errorMessage,
+    complete,
+    onCancel,
+    cancellingJob,
+}) {
     const { id: jobId } = useParams();
 
     switch (jobStatus) {
@@ -89,10 +101,15 @@ function JobStatus({ jobStatus, jobProgress, jobQueuePosition, percentage, steps
                 <StatusPage>
                     <Progress
                         percents={percentage}
-                        title={getProgressTitle(steps, jobQueuePosition)}
-                        summary={getProgressSummary(steps, jobQueuePosition)}
-                        progress={jobProgress}
+                        title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}
+                        summary={getProgressSummary(steps, jobQueuePosition, cancellingJob)}
+                        progress={!cancellingJob ? jobProgress : null}
                     />
+                    {jobStatus === JOB_STATUS.PROCESSING && !cancellingJob && (
+                        <div className="processing-controls">
+                            <Button onClick={onCancel}>Cancel validation</Button>
+                        </div>
+                    )}
                 </StatusPage>
             );
     }
@@ -106,13 +123,16 @@ function StatusPage({ children }) {
     );
 }
 
-function getProgressSummary(steps, jobQueuePosition) {
+function getProgressSummary(steps, jobQueuePosition, cancellingJob) {
+    if (cancellingJob) {
+        return 'Cancelling...';
+    }
     const lastStep = STEPS[steps[steps.length - 1].stepKey];
     return typeof lastStep.active === 'function' ? lastStep.active(jobQueuePosition) : lastStep.active;
 }
 
-function getProgressTitle(steps, jobQueuePosition) {
-    return _.chain(steps)
+function getProgressTitle(steps, jobQueuePosition, cancellingJob) {
+    let title = _.chain(steps)
         .map(({ stepKey, completed }) => {
             if (completed) {
                 return STEPS[stepKey].complete ? '✓ ' + STEPS[stepKey].complete : null;
@@ -128,6 +148,10 @@ function getProgressTitle(steps, jobQueuePosition) {
         .filter(label => label)
         .value()
         .join('\n');
+    if (cancellingJob) {
+        title += '\n● Cancelling...';
+    }
+    return title;
 }
 
 function getErrorInfo(steps, errorMessage) {
@@ -154,6 +178,8 @@ JobStatus.propTypes = {
     steps: PropTypes.arrayOf(StepShape).isRequired,
     errorMessage: PropTypes.string,
     complete: PropTypes.bool,
+    isCancellingJob: PropTypes.bool,
+    onCancel: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -163,7 +189,14 @@ function mapStateToProps(state) {
     const jobQueuePosition = getJobQueuePosition(state);
     const errorMessage = getJobError(state);
     const complete = hasResult(state);
-    return { jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete };
+    const cancellingJob = isCancellingJob(state);
+    return { jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete, cancellingJob };
 }
 
-export default connect(mapStateToProps)(JobStatus);
+const mapDispatchToProps = dispatch => {
+    return {
+        onCancel: () => dispatch(cancelValidation()),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(JobStatus);

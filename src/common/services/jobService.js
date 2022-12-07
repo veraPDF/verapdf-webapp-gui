@@ -23,3 +23,7 @@ export const updateJob = job => {
 export const executeJob = id => {
     return post(`${REACT_APP_API_ROOT}/jobs/${id}/execution`);
 };
+
+export const cancelJob = id => {
+    return post(`${REACT_APP_API_ROOT}/jobs/${id}/cancel`);
+};

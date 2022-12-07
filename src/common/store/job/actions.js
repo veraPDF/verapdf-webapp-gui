@@ -7,7 +7,7 @@ import { updatePdfFile } from '../pdfFiles/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
-import { finishStep, startStep } from './progress/actions';
+import { cancelJob, finishStep, startStep } from './progress/actions';
 import { JOB_STATUS, TASK_STATUS } from '../constants';
 
 export const setJob = createAction('JOB_SET');
@@ -47,6 +47,16 @@ export const loadValidationResult = async (dispatch, getState) => {
             validationResult.hasOwnProperty('validationResult') ? validationResult.validationResult : validationResult
         )
     );
+};
+
+export const cancelValidation = () => async (dispatch, getState) => {
+    const jobId = getJobId(getState());
+    dispatch(cancelJob());
+    try {
+        await JobService.cancelJob(jobId);
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 const createStep = (key, percentage = 0, stepFn) => async (dispatch, getState, completedSteps) => {

@@ -1,4 +1,5 @@
 @import "../../../variables";
+@import "../../../mixins";
 
 .job-status {
   min-height: $min-content-height;
@@ -18,5 +19,9 @@
     &__details {
       margin: 5px 0;
     }
+  }
+
+  .processing-controls {
+    @include flex-right-aligned;
   }
 }

@@ -9,6 +9,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { Chart } from 'react-google-charts';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
@@ -17,15 +18,16 @@ import './Summary.scss';
 
 const JOB_END_STATUS = {
     CANCELLED: 'cancelled',
+    TIMEOUT: 'timeout',
 };
 
 function Summary({ fileInfo, resultSummary, jobEndStatus }) {
     return (
         <Paper className="summary">
             <h2>{fileInfo.name}</h2>
-            {jobEndStatus === JOB_END_STATUS.CANCELLED ? (
-                <CanceledSummary />
-            ) : (
+            {jobEndStatus === JOB_END_STATUS.CANCELLED && <CanceledSummary />}
+            {jobEndStatus === JOB_END_STATUS.TIMEOUT && <TimeoutSummary />}
+            {![JOB_END_STATUS.TIMEOUT, JOB_END_STATUS.CANCELLED].includes(jobEndStatus) && (
                 <ProcessedSummary resultSummary={resultSummary} />
             )}
         </Paper>
@@ -64,9 +66,18 @@ function ProcessedSummary({ resultSummary }) {
 
 function CanceledSummary() {
     return (
-        <div className="cancelled-section">
+        <div className="error-section error-section_cancelled">
             <HighlightOffIcon />
             Cancelled
+        </div>
+    );
+}
+
+function TimeoutSummary() {
+    return (
+        <div className="error-section error-section_timeout">
+            <ErrorOutline />
+            Timeout
         </div>
     );
 }

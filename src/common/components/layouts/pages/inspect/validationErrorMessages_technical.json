@@ -248,6 +248,42 @@
 			"45": {
 				"SUMMARY": "Invalid table header",
 				"DESCRIPTION": "This structure element is recognized as <TD> (regular table cell), but is tagged as <TH> (table header)"
+			},
+			"46": {
+				"SUMMARY": "TOC item text is not found in the document",
+				"DESCRIPTION": "Table of Content item text does not match any heading in the document"
+			},
+			"47": {
+				"SUMMARY": "TOC item is not found on the destination page",
+				"DESCRIPTION": "Table of Content item text is not found on the destination page"
+			},
+			"48": {
+				"SUMMARY": "TOC item has no destination link",
+				"DESCRIPTION": "Table of Content item does not have an interactive link to the destination page"
+			},
+			"49": {
+				"SUMMARY": "Incorrect page number in TOC item",
+				"DESCRIPTION": "Table of Content item has invalid page number (label)"
+			},
+			"50": {
+				"SUMMARY": "Inconsistent TOC item numbering",
+				"DESCRIPTION": "Table of Content items numbering is inconsistent / does not follow any pattern"
+			},
+			"51": {
+				"SUMMARY": "Single List inside List",
+				"DESCRIPTION": "<L> (List) element has another <L> element as its only immediate child"
+			},
+			"52": {
+				"SUMMARY": "Several List items tagged as one",
+				"DESCRIPTION": "Several list items are tagged as a single <LI> element"
+			},
+			"53": {
+				"SUMMARY": "Note is tagged as Span",
+				"DESCRIPTION": "A part of the text is recognized as a Note, but tagged as <Span> element"
+			},
+			"54": {
+				"SUMMARY": "Note is tagged as a Paragraph",
+				"DESCRIPTION": "A part of the text is recognized as a Note, but tagged as <P> element"
 			}
 		}
 	},

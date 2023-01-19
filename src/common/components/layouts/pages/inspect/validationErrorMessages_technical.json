@@ -274,11 +274,11 @@
 				"DESCRIPTION": "<L> (List) element has another <L> element as its only immediate child"
 			},
 			"52": {
-				"SUMMARY": "Several List items tagged as one",
+				"SUMMARY": "Several List items are tagged as one",
 				"DESCRIPTION": "Several list items are tagged as a single <LI> element"
 			},
 			"53": {
-				"SUMMARY": "Note is tagged as Span",
+				"SUMMARY": "Note is tagged as a Span",
 				"DESCRIPTION": "A part of the text is recognized as a Note, but tagged as <Span> element"
 			},
 			"54": {

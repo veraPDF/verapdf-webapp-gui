@@ -66,10 +66,6 @@
       "3": {
         "SUMMARY": "This table appears to have merged cells",
         "DESCRIPTION": "Merged cells in the table head make it more difficult for reader software to read a table out coherently. Please keep tables as simple as possible and avoid merging cells where you can."
-      },
-      "4": {
-        "SUMMARY": "Document is not tagged",
-        "DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 19005-1 (PDF/A)'."
       }
     },
     "4.1.2": {
@@ -182,7 +178,7 @@
         "DESCRIPTION": "This text appears to be part of the table of contents but is not tagged as such. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
       },
       "29": {
-        "SUMMARY": "Empty table of contents entry",
+        "SUMMARY": "Emty table of contents entry",
         "DESCRIPTION": "This entry in the table of contents appears to be empty. Always create tables of contents automatically. Don't make them by hand and don't edit them manually."
       },
       "30": {
@@ -215,7 +211,7 @@
       },
       "37": {
         "SUMMARY": "How many columns does this table have?",
-        "DESCRIPTION": "Tagging does not correspond to the actual number of columns this table appears to have. A screenreader will therefore read the table differently from its visual representation. To create tables, always use the table function of your office application. Avoid merging and splitting cells and don't format your table manually."
+        "DESCRIPTION": "Tagging does not correspond to the actual number of columns this table appears to have. A screenreader will therefore read the table differently from its visual representation. To create tables, always use the table function of your office application. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Avoid merging and splitting cells and don't format your table manually."
       },
       "38": {
         "SUMMARY": "Cell's span does not match with its appearance",
@@ -248,6 +244,42 @@
       "45": {
         "SUMMARY": "Should this be a table head?",
         "DESCRIPTION": "This looks like a normal cell but it is tagged as a table head. Always create tables with the table functionality of your office application. Only the first row or column should contain table heads. Avoid merging and splitting cells and don't format tables manually."
+      },
+      "46": {
+	"SUMMARY": "This table of contents element was not found in the document",
+	"DESCRIPTION": "The text of this table of contents element does not correspond to any header in the document."
+      },
+      "47": {
+	"SUMMARY": "This table of contents element does not refer to the correct page",
+	"DESCRIPTION": "The text of this table of contents element is not found on the referenced page."
+      },
+      "48": {
+	"SUMMARY": "This table of contents element does not refer to any page",
+	"DESCRIPTION": "This table of contents element has no reference to any page."
+      },
+      "49": {
+	"SUMMARY": "This table of contents element has an invalid page reference",
+	"DESCRIPTION": "This table of contents element does not have a valid page number as reference."
+      },
+      "50": {
+	"SUMMARY": "Table of contents has inconsistent numbering",
+	"DESCRIPTION": "The numbering of the table of contents does not seem to follow any logical order such as '1, 2, 3,..' or 'i, ii, iii,..'."
+      },
+      "51": {
+	"SUMMARY": "Strange tagging of list",
+	"DESCRIPTION": "This list has one element, which is another list. This has no added value and can confuse screen readers."
+      },
+      "52": {
+	"SUMMARY": "Are these several list items?",
+	"DESCRIPTION": "It looks as though several list items have been tagged as one single list item. This can cause screen readers to read the list incorrectly. Make sure different list items are tagged as such."
+      },
+      "53": {
+	"SUMMARY": "Is this a note?",
+	"DESCRIPTION": "It looks as though this text is a note, but it is not tagged as such. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
+      },
+      "54": {
+	"SUMMARY": "Is this a note?",
+	"DESCRIPTION": "It looks as though this text is a note, but it is tagged as an ordinary paragraph. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
       }
     },
     "4.1.3": {
@@ -309,9 +341,9 @@
         "SUMMARY": "The title bar does not show the title",
         "DESCRIPTION": "The coding of this document does not make the reader show the title in the title bar. To solve this, first check whether the title is set in the document properties and set the title if necessary. You can do this by opening the document properties in your editor (typically via the File tab in upper left corner of the menu) and set the title there. Or, if you have a PDF editor you can also set the title there. Should you still get this error, then it probably originates in the application you used to make the document. Try editing the document in another application (e.g. LibreOffice instead of Word). If you are a PDF expert you can also use a PDF editor to set the DisplayDocTitle key to 'true' in the ViewPreferences dictionary."
       },
-      "13": {
-        "SUMMARY": "The tagging of this document does not match the content ",
-        "DESCRIPTION": "The tag structure does not appropriately reflect the semantics of the content. This can have several causes. Try giving the document a simpler structure. The problem may also come from the application you used to make the document. Try giving the document a simpler structure or editing the document in another application (e.g. LibreOffice instead of Word). "
+      "11": {
+        "SUMMARY": "Document is not tagged",
+        "DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 19005-1 (PDF/A)'."
       }
     },
     "7.2": {
@@ -320,8 +352,8 @@
         "DESCRIPTION": "Reader applications for people with visual impairments need to know in which language to read this document. You must therefore set the language of the document. If you used Word or LibreOffice to create this document, you set the language by opening the settings of the 'Standard' style and setting the desired language."
       },
       "3": {
-        "SUMMARY": "There is something wrong with the table caption",
-        "DESCRIPTION": "The table contains more than one caption, or the caption is not coded correctly. Try deleting all captions and then adding a caption again. Make sure the table has only one caption. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "This table contains elements which are not supposed to be in a table",
+        "DESCRIPTION": "A table may only contain rows, a head, a foot and a caption. This table contains other elements which should not be in a table. This can cause screenreaders to read the table incorrectly. Try simplifying this table and omitting complex elements."
       },
       "4": {
         "SUMMARY": "This text is wrongly coded as table row",
@@ -371,6 +403,10 @@
         "SUMMARY": "The rows in this table don't have the same amount of cells",
         "DESCRIPTION": "Tables must have the same number of cells in each row. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each row. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
       },
+      "16": {
+        "SUMMARY": "There is something wrong with the table caption",
+        "DESCRIPTION": "The caption in this table is not coded correctly. Try deleting it and adding it again. Make sure the table has only one caption. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
       "17": {
         "SUMMARY": "This text is wrongly marked as list element",
         "DESCRIPTION": "This text is marked as list element, but the code does not clearly indicate what list this element belongs to. If this text is part of a list or close to a list, try reformatting the list. Make sure to keep all list elements tightly together. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
@@ -411,9 +447,13 @@
         "SUMMARY": "This text is wrongly marked as part of the table of contents",
         "DESCRIPTION": "If this text is part of the table of contents, or if it's close to the table of contents, try regenerating it. It's best to generate the table of contents automatically. If you choose to edit the table of contents manually, make sure you keep the entries together. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
       },
-      "27": {
+       "27": {
+        "SUMMARY": "Something is wrong with the tagging of the table of contents",
+        "DESCRIPTION": "A table of contents may only contain entries and a caption, which should be tagged as such so a screen reader can interpret them. This table of contents contains other elements that don't belong in a table of contents. A frequently made mistake is to format table of content entries as ordinary headers or paragraphs. Always use the automatically generated table of contents and don't edit it."
+      },
+      "28": {
         "SUMMARY": "Something is wrong with the caption of the table of contents",
-        "DESCRIPTION": "The table of contents has more than one caption, or the caption is not coded correctly. Try deleting all captions and then adding a caption again. Make sure the table of contents has only one caption. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+        "DESCRIPTION": "The caption of this table of contentis is incorrectly tagged. Try removing the caption and adding it again. Always start from the automatically tebla of contents and don't edit it. Should this not work, try another application (for example LibreOffice instead of Word)."
       },
       "29": {
         "SUMMARY": "The language of the document has not been coded correctly",
@@ -450,6 +490,14 @@
       "38": {
         "SUMMARY": "The footer of this table contains elements that are not part of a table footer",
         "DESCRIPTION": "A table footer may only contain table rows. This table footer contains other elements that can confuse reader software for people with visual impairments. Try reformatting the table. Keep the table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
+      "39": {
+        "SUMMARY": "This table has more than one caption",
+        "DESCRIPTION": "According to WCAG a table can have at most one caption. Try deleting all captions and then adding one caption again. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
+      "40": {
+        "SUMMARY": "There is something wrong with the list caption",
+        "DESCRIPTION": "The caption of this list is not coded correctly. This can confuse screenreaders. Try deleting it and adding it again. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.3": {

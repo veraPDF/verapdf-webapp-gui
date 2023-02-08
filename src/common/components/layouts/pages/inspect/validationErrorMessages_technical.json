@@ -351,7 +351,7 @@
 			},
 			"3": {
 				"SUMMARY": "Table contains forbidden elements",
-				"DESCRIPTION": "Table element may contain only TR, THead, TBode, TFoot and Caption elements"
+				"DESCRIPTION": "Table element may contain only TR, THead, TBody, TFoot and Caption elements"
 			},
 			"4": {
 				"SUMMARY": "TR (table row) found outside of the Table context",

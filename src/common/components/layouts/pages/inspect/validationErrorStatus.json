@@ -17,7 +17,7 @@
         "RATIONALE": "Underlined text is easily confused with a hyperlink. WCAG doesn't prohibit underlining but it's bad practice."
       },
       "4": {
-        "STATUS": "warning",
+        "STATUS": "ignore",
         "CATEGORY": "structure",
         "RATIONALE": "Semantics should not just be expressed by formatting text."
       }    
@@ -79,11 +79,6 @@
         "STATUS": "warning",
         "CATEGORY": "structure",
         "RATIONALE": "Merged cells in table heads should be avoided as much as possible as this makes the table more difficult to read out."
-      },
-      "4": {
-        "STATUS": "critical",
-        "CATEGORY": "code",
-        "RATIONALE": "A document must be tagged in order to be accessible."
       }
     },
     "4.1.2": {
@@ -306,6 +301,51 @@
         "STATUS": "warning",
         "CATEGORY": "structure",
         "RATIONALE": "A normal table cell should not be tagged as a table head."
+      },
+      "46": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "The text of a table of contents entry must correspond to the text of the referenced heading."
+      },
+      "47": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "A table of contents entry must refer to the correct page for the referenced heading."
+      },
+      "48": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "A table of contents entry must refer to a page."
+      },
+      "49": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "A table of contents entry must have a valid page reference."
+      },
+      "50": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "A table of contents must be consistently numbered, for example '1, 2, 3, ..' or 'i, ii, iii,..'. The numbering should not skip levels or mix numbering schemes."
+      },
+      "51": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "There is no added value in having a list with one item which is again a list."
+      },
+      "52": {
+        "STATUS": "warning",
+        "CATEGORY": "structure",
+        "RATIONALE": "Different list items must be tagged as such. Otherwise a screenreader will nog recognise the list structure."
+      },
+      "53": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "If a note is tagged as a <SPAN> element, a screenreader will not recognise it as a note and will read it inline with the rest of the text."
+      },
+      "54": {
+        "STATUS": "warning",
+        "CATEGORY": "code",
+        "RATIONALE": "If a note is tagged as a normal paragraph, a screenreader will not recognise it as a note and will read it inline with the rest of the text."
       }
     },
     "4.1.3": {
@@ -380,10 +420,10 @@
         "CATEGORY": "code",
         "RATIONALE": "The document settings must require the title to be shown in the title bar."
       },
-      "13": {
-        "STATUS": "error",
+      "11": {
+        "STATUS": "critical",
         "CATEGORY": "code",
-        "RATIONALE": "If the tag structure does not match the semantics of the content, then applications are likely to have problems reading the document in the intended logical order."
+        "RATIONALE": "A document must be tagged in order to be accessible."
       }
     },
     "7.2": {
@@ -395,7 +435,7 @@
       "3": {
         "STATUS": "error",
         "CATEGORY": "code",
-        "RATIONALE": "If the caption of a table is not tagged correctly or if there is more than one caption, this can confuse reader software."
+        "RATIONALE": "A table can only contain TR, THead, TBody, TFoot and Caption elements. It must not contain any other elements."
       },
       "4": {
         "STATUS": "error",
@@ -457,6 +497,11 @@
         "CATEGORY": "structure",
         "RATIONALE": "If a table contains rows with different numbers of cells, this can confuse reader software."
       },
+      "16": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "A caption must be the first or last child under the table element. It cannot appear anywhere else under the table element."
+      },
       "17": {
         "STATUS": "error",
         "CATEGORY": "code",
@@ -470,7 +515,7 @@
       "19": {
         "STATUS": "error",
         "CATEGORY": "code",
-        "RATIONALE": "If a list has not been tagged correctly, this can confuse reader software."
+        "RATIONALE": "A list can only contain L, LI and Caption elements. It must not contain any other elements."
       },
       "20": {
         "STATUS": "error",
@@ -510,7 +555,12 @@
       "27": {
         "STATUS": "error",
         "CATEGORY": "code",
-        "RATIONALE": "If a table of contents has not been tagged correctly, this can confuse reader software."
+        "RATIONALE": "A table of contents can only contain TOC, TOCI and Caption elements. It must not contain any other elements."
+      },
+      "28": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "A caption must be the first child under the table of contents element. It cannot appear anywhere else under the table of contents element."
       },
       "29": {
         "STATUS": "critical",
@@ -556,6 +606,16 @@
         "STATUS": "error",
         "CATEGORY": "code",
         "RATIONALE": "If the table has been tagged incorrectly, this can confuse reader software."
+      },
+      "39": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "A table can only contain one caption."
+      },
+      "40": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "A caption must be the first child under the list element. It cannot appear anywhere else under the list element."
       }
     },
     "7.3": {

@@ -28,6 +28,7 @@ import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 import './Tree.scss';
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
+import errorMap_de from '../validationErrorMessages_de.json';
 import errorMap_technical from '../validationErrorMessages_technical.json';
 import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 
@@ -38,6 +39,7 @@ const UNSELECTED = -1;
 const languageEnum = {
     English: 'English',
     Dutch: 'Dutch',
+    German: 'German',
     Technical: 'Technical',
 };
 const errorProfiles = {
@@ -49,6 +51,7 @@ const errorMessagesMap = {
     [errorProfiles.OTHER]: {
         [languageEnum.English]: errorMap_en,
         [languageEnum.Dutch]: errorMap_nl,
+        [languageEnum.German]: errorMap_de,
         [languageEnum.Technical]: errorMap_technical,
     },
     [errorProfiles.TAGGED_PDF]: {

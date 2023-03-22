@@ -1,0 +1,690 @@
+{
+  "WCAG2.1": {
+    "1.3.1": {
+      "1": {
+        "SUMMARY": "Soll diese Linie eine Linie oder eine Figur sein?",
+        "DESCRIPTION": "Diese Zeile enthält viele sich wiederholende Zeichen. Bedenken Sie, dass ein Screenreader diese Zeichen einzeln vorliest. Dies kann für Menschen mit Sehbehinderungen sehr verwirrend und lästig sein. Haben Sie versucht, eine Figur, Linie oder Form damit zu erstellen? Fügen Sie dann eine Linie oder ein Bild ein. Verwenden Sie dafür keine wiederholten Unterstriche, Bindestriche oder andere Zeichen."
+      },
+      "2": {
+        "SUMMARY": "Wiederholte Leerzeichen vermeiden",
+        "DESCRIPTION": "Diese Zeile enthält wiederholte Leerzeichen. Haben Sie diese verwendet, um Text auszurichten? Sie können das besser machen, indem Sie Einzüge im Absatz setzen. Oder verwenden Sie Tabulatoren. Wenn sich die Leerzeichen am Ende der Zeile befinden, haben sie wahrscheinlich keine Funktion und können weggelassen werden."
+      },
+      "3": {
+        "SUMMARY": "Unterstreichungen vermeiden.",
+        "DESCRIPTION": "Es ist nicht verboten Texte zu unterstreichen, aber viele Leute verwechseln unterstrichenen Texte mit einem Hyperlink. Es ist daher am besten, Unterstreichungen zu vermeiden. Wenn Sie Text hervorheben möchten, verwenden Sie am besten Fettdruck."
+      },
+      "4": {
+        "SUMMARY": "Hat dieser Text eine besondere Bedeutung?",
+        "DESCRIPTION": "Dieser Text sieht anders aus als der umgebende Text. Wenn Sie den Text anders formatiert haben, weil dieser Text eine besondere Bedeutung hat, müssen Sie sicherstellen, dass diese Bedeutung ebenfalls codiert wird. Das tun Sie zum Beispiel durch Erstellen eines speziellen Stils für diese Formatierung."
+      }
+    },
+    "1.3.4": {
+      "1": {
+        "SUMMARY": "Das Dokument hat Seiten im Hoch- und Querformat",
+        "DESCRIPTION": "Stellen Sie sicher, dass alle Seiten entweder Hoch- oder Querformat haben. Verwenden Sie Seiten mit Hoch- und Querformat nicht abwechselnd, es sei denn, dies ist für die Informationen, die Sie kommunizieren möchten, unerlässlich."
+      }
+    },
+    "1.4.3": {
+      "1": {
+        "SUMMARY": "Unzureichender Kontrast.",
+        "DESCRIPTION": "Text muss einen ausreichenden Kontrast zum Hintergrund haben, sonst könnten Sehbehinderte und Farbenblinde Schwierigkeiten haben, ihn zu lesen. Schwarzer Text auf (fast) weißem Hintergrund ist normalerweise am sichersten. Wenn Sie Farben verwenden, stellen Sie sicher, dass der Text einen Kontrast von mindestens 4,5:1 zum Hintergrund (bei sehr großem Text kann es 3:1 sein) hat."
+      }
+    },
+    "1.4.4": {
+      "1": {
+        "SUMMARY": "Diese Schriftart ist sehr klein",
+        "DESCRIPTION": "Diese Schriftart ist so klein, dass Menschen mit Sehbehinderungen wahrscheinlich Schwierigkeiten haben werden sie zu lesen. Versuchen Sie nach Möglichkeit Schriftarten mit 11 Punkt oder mehr zu verwenden."
+      }
+    },
+    "1.4.8": {
+      "1": {
+        "SUMMARY": "Das Dokument enthält schwer lesbare Schriftarten. Dies betrifft Schriftart(en):",
+        "DESCRIPTION": "In dem Dokument verwenden Sie ausgefallene Schriftarten, die schwer lesbar sind. Screenreader können diesen Text laut vorlesen, aber sehbehinderte Menschen, Menschen mit ADHS oder Menschen im Autismus-Spektrum haben möglicherweise Schwierigkeiten ihn zu lesen. Sofern dieser Text nicht wirklich als Vorschau eines unlesbaren Textes gedacht war, ist es besser, eine Standardschriftart wie Arial, Verdana oder Times Roman zu verwenden."
+      }
+    },
+    "1.4.10": {
+      "1": {
+        "SUMMARY": "Dieses Bild ist nicht vollständig kodiert",
+        "DESCRIPTION": "Der Code dieses Bildes hat kein Attributobjekt ('Bounding Box'). Daher können PDF-Reader die Seite möglicherweise nicht richtig neu anordnen ('reflow')."
+      }
+    },
+    "2.4.9": {
+      "1": {
+        "SUMMARY": "Dieser Link hat keine eindeutige Beschreibung",
+        "DESCRIPTION": "Für diesen Link gibt es keine alternative Beschreibung. Beachten Sie, dass Screenreader diese URL von vorne nach hinten lesen. Dies ist für Benutzer mit einer Erblindung oder einer Sehbehinderung sehr unpraktisch. Vermeiden Sie daher lange URLs in Ihrem Text. Setzen Sie Links unter Beschreibungstext ODER geben Sie den Link mit einer alternativen Beschreibung an (genau wie Bilder)."
+      }
+    },
+    "4.1.1": {
+      "1": {
+        "SUMMARY": "Diese Tabelle enthält verbundene Zellen",
+        "DESCRIPTION": "Verbundene Zellen erschweren es Screenreadern, die Tabelle vorzulesen. Halten Sie die Tabellen so einfach wie möglich und versuchen Sie das Zusammenführen von Zellen so weit wie möglich einzuschränken."
+      },
+      "2": {
+        "SUMMARY": "Dieser Tabellenkopf enthält verbundene Zellen",
+        "DESCRIPTION": "Verbundene Zellen in der Kopfzeile erschweren es Screenreadern, die Tabelle vorzulesen. Halten Sie Tabellen und ihre Überschriften so einfach wie möglich und versuchen Sie das Zusammenführen von Zellen so weit wie möglich einzuschränken."
+      },
+      "3": {
+        "SUMMARY": "Diese Tabelle scheint verbundene Zellen zu haben",
+        "DESCRIPTION": "Verbundene Zellen erschweren es Screenreadern, die Tabelle vorzulesen. Halten Sie die Tabellen so einfach wie möglich und versuchen Sie das Zusammenführen von Zellen so weit wie möglich einzuschränken."
+      },
+      "4": {
+        "SUMMARY": "Das Dokument ist nicht getagged",
+        "DESCRIPTION": "Wenn das Dokument keinen Tags hat, können Screenreader es nicht in der richtigen Reihenfolge lesen. Dies ist ein kritischer Fehler. Sie können dies wahrscheinlich beheben, indem Sie Ihr Dokument erneut aus Ihrer Office-Anwendung (Word oder LibreOffice) als ' tagged' PDF exportieren. In Word tun Sie dies, indem Sie im Menü 'Datei - Speichern unter - (wählen Sie PDF) - Optionen' die Optionen 'Dokumentstruktur für Barrierefreiheit kennzeichnen' und 'Entspricht ISO 19005-1 (PDF/A)' aktivieren. Verwenden Sie NIEMALS 'Drucken - Adobe PDF', um Ihr Dokument als PDF zu exportieren."
+      }
+    },
+    "4.1.2": {
+      "1": {
+        "SUMMARY": "Sollten das nicht unterschiedliche Absätze sein?",
+        "DESCRIPTION": "Dieser Text ist als ein Absatz gekennzeichnet, aber sollten es nicht mehrere Absätze sein? Vermeiden Sie möglichst Zeilenumbrüche. Verwenden Sie besser Absätze. Erstellen Sie Zeilen mit unterschiedlicher Ausrichtung oder formatieren Sie verschiedene Absätze. "
+      },
+      "2": {
+        "SUMMARY": "Gehört dieser Text zusammen?",
+        "DESCRIPTION": "Dieser Text wird so gekennzeichnet, als ob er zusammengehört, aber stimmt das? Stellen Sie sicher, dass Text, der semantisch oder formal unzusammenhängend ist, auch als unterschiedlicher Text gekennzeichnet wird, indem Sie ihn beispielsweise zu unterschiedlichen Absätzen machen."
+      },
+      "3": {
+        "SUMMARY": "Ist das wirklich eine Tabelle?",
+        "DESCRIPTION": "Dieser Text ist als Tabelle gekennzeichnet, scheint aber keine Tabelle zu sein. Verwenden Sie niemals Tabellen, um Text auszurichten oder einzurahmen. Formatieren Sie diesen Text als normalen Absatz und nicht als Tabelle, indem Sie Tabulatoren zum Ausrichten und Rahmen verwenden um Text einzurahmen. Noch besser, verwenden Sie Stile, um Text im gesamten Dokument einheitlich zu linieren und zu formatieren."
+      },
+      "4": {
+        "SUMMARY": "Ist das eine Überschrift?",
+        "DESCRIPTION": "Dieser Text ist als Überschrift gekennzeichnet, scheint aber nur als Überschrift gedacht gewesen zu sein. Wenn es sich nicht um eine Überschrift handelt, stellen Sie sicher, dass er nicht als solche gekennzeichnet ist. Machen Sie ihn zum Beispiel zu einem Absatz in einem Standardtextstil."
+      },
+      "5": {
+        "SUMMARY": "Ist das eine Überschrift?",
+        "DESCRIPTION": "Dieser Text ist als Überschrift gekennzeichnet, scheint aber nur als Überschrift gedacht gewesen zu sein. Wenn es sich nicht um eine Überschrift handelt, stellen Sie sicher, dass er nicht als solche gekennzeichnet ist. Machen Sie ihn zum Beispiel zu einem Absatz in einem Standardtextstil."
+      },
+      "6": {
+        "SUMMARY": "Ist das eine Zeile in einer Tabelle?",
+        "DESCRIPTION": "Dieser Text sieht aus wie eine Zeile in einer Tabelle, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen niemals von Hand, da dies Screenreader verwirren wird. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Da sind Tabellen auch beschriftet und werden als Tabellen erkannt."
+      },
+      "7": {
+        "SUMMARY": "Ist das eine Tabellenüberschrift?",
+        "DESCRIPTION": "Dieser Text sieht aus wie eine Tabellenüberschrift, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen niemals von Hand, da dies Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Da sind Tabellen auch beschriftet und werden als Tabellen erkannt. "
+      },
+      "8": {
+        "SUMMARY": "Ist das eine Zelle einer Tabelle?",
+        "DESCRIPTION": "Dieser Text sieht aus wie eine Tabellenzelle, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen niemals von Hand, da dies Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Da sind Tabellen auch beschriftet und werden als Tabellen erkannt. "
+      },
+      "9": {
+        "SUMMARY": "Ist das eine Tabelle?",
+        "DESCRIPTION": "Dieser Text sieht aus wie eine Tabelle, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen niemals von Hand, da dies Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Da sind Tabellen auch beschriftet und werden als Tabellen erkannt."
+      },
+      "10": {
+        "SUMMARY": "Ist das eine Überschrift?",
+        "DESCRIPTION": "Dieser Text scheint als Überschrift gedacht zu sein, ist aber nicht als solche gekennzeichnet. Formatieren Sie Überschriften immer in einem der Standard-Überschriftenstile (Überschrift 1, Überschrift 2, Überschrift 3 usw.). Dann wissen auch Screenreader Bescheid, dass es sich wirklich um Überschriften handelt. Das hilft dem Benutzer durch das Dokument zu navigieren. Wenn Ihnen die Standard-Kopfzeilenstile nicht gefallen, können Sie ihre Formatierung selbst anpassen."
+      },
+      "11": {
+        "SUMMARY": "Muss das ein separater Absatz sein?",
+        "DESCRIPTION": "Dieser Text scheint nicht als separater Absatz gedacht zu sein. Vermeiden Sie neue Absätze, wenn dies nicht erforderlich ist."
+      },
+      "12": {
+        "SUMMARY": "Sollte das nicht ein Absatz sein?",
+        "DESCRIPTION": "Dieser Text scheint als Absatz gedacht zu sein, ist aber anders beschriftet. Stellen Sie sicher, dass Sie den Text als Absatz formatieren, z. B. mit dem Standardstil oder einem anderen Absatzstil."
+      },
+      "13": {
+        "SUMMARY": "Ist das eine Überschrift?",
+        "DESCRIPTION": "Dieser Text scheint als Überschrift gedacht zu sein, ist aber nicht als solche gekennzeichnet. Formatieren Sie Überschriften immer in einem der Standard-Überschriftenstile (Überschrift 1, Überschrift 2, Überschrift 3 usw.). Dann wissen auch Screenreader Bescheid dass es sich wirklich um Überschriften handelt. Das hilft dem Benutzer durch das Dokument zu navigieren. Wenn Ihnen die Standard-Kopfzeilenstile nicht gefallen, können Sie ihre Formatierung selbst anpassen."
+      },
+      "14": {
+        "SUMMARY": "Ist das überhaupt eine Überschrift?",
+        "DESCRIPTION": "Dieser Text ist als Überschrift gekennzeichnet, scheint aber als normaler Textabsatz gedacht zu sein. Wenn dies keine Überschrift ist, stellen Sie sicher, dass er nicht als Überschrift gekennzeichnet ist. Zum Beispiel, indem Sie ihn zu einem Absatz in a machen Standard-Textstil."
+      },
+      "15": {
+        "SUMMARY": "Ist das überhaupt eine Überschrift?",
+        "DESCRIPTION": "Dieser Text ist als Überschrift gekennzeichnet, scheint aber als normaler Textabsatz gedacht zu sein. Wenn dies keine Überschrift ist, stellen Sie sicher, dass er nicht als Überschrift gekennzeichnet ist. Zum Beispiel, indem Sie ihn zu einem Absatz in a machen Standard-Textstil."
+      },
+      "16": {
+        "SUMMARY": "Leerer Absatz.",
+        "DESCRIPTION": "Es gibt leere Absätze in Ihrem Dokument. Vermeiden Sie Zeilenumbrüche ohne Text; dies verwirrt Screenreader. Verwenden Sie niemals leere Absätze, um Leerzeichen einzufügen. Leerzeilen werden erstellt, indem Sie im Menü 'Absatz' auf die Registerkarte 'Einzug und Abstand' gehen und den Abstand 'vor' oder 'nach' vergrößern."
+      },
+      "17": {
+        "SUMMARY": "Leeres Textelement",
+        "DESCRIPTION": "Es gibt leere Textzeilen in Ihrem Dokument. Vermeiden Sie Zeilen ohne Text; dies verwirrt Screenreader. Verwenden Sie niemals Zeilen ohne Text, um leere Zeilen einzufügen. Leerzeilen werden erstellt, indem Sie im Menü 'Absatz' auf die Registerkarte 'Einzug und Abstand' gehen und den Abstand 'vor' oder 'nach' vergrößern."
+      },
+      "18": {
+        "SUMMARY": "Leere Überschrift",
+        "DESCRIPTION": "Es gibt leere Überschriften in Ihrem Dokument. Vermeiden Sie Überschriften ohne Text; dies verwirrt Screenreader. Leerzeilen werden erstellt, indem Sie im Menü 'Absatz' auf die Registerkarte 'Einzug und Abstand' gehen und den Abstand 'vor' oder 'nach' vergrößern."
+      },
+      "19": {
+        "SUMMARY": "Leere Überschrift",
+        "DESCRIPTION": "Es gibt leere Überschriften in Ihrem Dokument. Vermeiden Sie Überschriften ohne Text; dies verwirrt Screenreader. Leerzeilen werden erstellt, indem Sie im Menü 'Absatz' auf die Registerkarte 'Einzug und Abstand' gehen und den Abstand 'vor' oder 'nach' vergrößern."
+      },
+      "20": {
+        "SUMMARY": "Ist das eine Beschriftung der Abbildung oder Tabelle?",
+        "DESCRIPTION": "Dieser Text scheint als Bild- oder Tabellenunterschrift gedacht zu sein, ist aber als normaler Absatz kodiert. Für die digitale Zugänglichkeit ist es besser, eine Bildunterschrift auch als solche zu kodieren. Leider ist dies nicht möglich mit dem aktuellen PDF-Export von Word."
+      },
+      "21": {
+        "SUMMARY": "Ist das eine Aufzählung oder eine nummerierte Liste?",
+        "DESCRIPTION": "Dieser Text scheint eine Aufzählung oder nummerierte Liste zu sein, ist aber nicht als solche formatiert. Formatieren Sie Aufzählungen und nummerierte Listen nicht manuell, sondern verwenden Sie zu diesem Zweck immer die Funktionalität von Word oder LibreOffice."
+      },
+      "22": {
+        "SUMMARY": "Ist das überhaupt eine Liste?",
+        "DESCRIPTION": "Dieser Text ist im Code als Liste gekennzeichnet, scheint aber keine tatsächliche Liste zu sein. Wenn dieser Text keine Liste sein sollte, sollten Sie ihn als normalen Textabsatz formatieren. Sie können erhalten Sie diese Warnung auch, wenn Sie eine Liste mit Klartext unterbrochen haben. Vermeiden Sie das besser, da Screenreader Probleme haben, dies verständlich vorzulesen."
+      },
+      "23": {
+        "SUMMARY": "Ist das überhaupt Teil einer Liste?",
+        "DESCRIPTION": "Dieser Text sieht nicht wie Teil einer Liste aus, ist aber so kodiert. Das kann Screenreader verwirren. Unterbrechen Sie Listen beim Erstellen nicht durch Zeilenumbrüche oder Absätze."
+      },
+      "25": {
+        "SUMMARY": "Ist das überhaupt eine Liste?",
+        "DESCRIPTION": "Dieser Text sieht nicht wie eine Liste aus, ist aber als Liste kodiert. Dies kann Screenreader verwirren. Wenn Sie Listen erstellen, unterbrechen Sie diese nicht mit Zeilenumbrüchen oder Absätzen."
+      },
+      "26": {
+        "SUMMARY": "Soll das eine Tabelle sein?",
+        "DESCRIPTION": "Dieser Text sieht aus wie eine Tabelle, ist aber im Code als Liste gekennzeichnet. Wenn dies eine Tabelle sein sollte, sollten Sie diese besser auch als Tabelle formatieren."
+      },
+      "27": {
+        "SUMMARY": "Sind das unterschiedliche Absätze?",
+        "DESCRIPTION": "Dieser Text ist als einzelner Absatz kodiert, aber es scheint, als wären es mehrere Absätze. Verwenden Sie immer einen Absatzumbruch (<Eingabe>) für einen neuen Absatz. Verwenden Sie keinen Zeilenumbruch (<Umschalt><Eingabe> ), um einen neuen Absatz zu erstellen. In Word können Sie die Absatzumbrüche sehen, indem Sie das Menü 'Datei - Optionen - Ansicht' öffnen und dann Absatzzeichen aktivieren."
+      },
+      "28": {
+        "SUMMARY": "Ist das Teil des Inhaltsverzeichnisses?",
+        "DESCRIPTION": "Dieser Text scheint Bestandteil des Inhaltsverzeichnisses zu sein, ist aber nicht als solcher kodiert. Inhaltsverzeichnisse immer automatisch erstellen. Nicht von Hand erstellen oder bearbeiten."
+      },
+      "29": {
+        "SUMMARY": "Leerer Titel im Inhaltsverzeichnis",
+        "DESCRIPTION": "Dieser Titel im Inhaltsverzeichnis scheint leer zu sein. Generieren Sie Inhaltsverzeichnistitel immer automatisch. Erstellen Sie sie nicht manuell und bearbeiten Sie sie nicht."
+      },
+      "30": {
+        "SUMMARY": "Dieser Titel im Inhaltsverzeichnis verweist auf nichts",
+        "DESCRIPTION": "Dieser Titel im Inhaltsverzeichnis hat keinen Link zu einer Seite im Dokument. Inhaltsverzeichnisse immer automatisch erstellen. Nicht manuell erstellen oder bearbeiten."
+      },
+      "31": {
+        "SUMMARY": "Dieser Titel verlinkt auf die falsche Seite",
+        "DESCRIPTION": "Die mit diesem Titel verknüpfte Seitenzahl stimmt nicht mit dem Seitenlink überein. Inhaltsverzeichnisse immer automatisch erstellen. Nicht manuell erstellen oder bearbeiten."
+      },
+      "32": {
+        "SUMMARY": "Inhaltsverzeichnis scheint nicht richtig ausgerichtet zu sein",
+        "DESCRIPTION": "Es scheint, dass einige Teile des Inhaltsverzeichnisses nicht richtig ausgerichtet sind. Dadurch wird das Inhaltsverzeichnis schwerer lesbar. Inhaltsverzeichnisse immer automatisch erstellen. Nicht von Hand erstellen oder bearbeiten."
+      },
+      "33": {
+        "SUMMARY": "Titel im Inhaltsverzeichnis stimmt nicht mit Kapitel auf Seite überein",
+        "DESCRIPTION": "Der im Inhaltsverzeichnis aufgeführte Titel stimmt nicht mit dem Kapitel überein, auf das er sich bezieht. Inhaltsverzeichnisse immer automatisch erstellen. Nicht manuell erstellen oder bearbeiten."
+      },
+      "34": {
+        "SUMMARY": "Ist das eine kohärente Liste?",
+        "DESCRIPTION": "Dies scheint eine kohärente Liste zu sein, ist aber als eine Reihe kürzerer Listen oder anderer Strukturen kodiert. Wenn es sich um eine zusammenhängende Liste handelt, stellen Sie sicher, dass sie auch als eine Liste kodiert ist. Erstellen Sie keine Listen von Hand, sondern mit der Listenfunktion in Ihrer Office-Anwendung."
+      },
+      "35": {
+        "SUMMARY": "Das Inhaltsverzeichnis ist umständlich kodiert",
+        "DESCRIPTION": "Das Inhaltsverzeichnis ist als Aneinanderreihung verschiedener Inhaltsverzeichnisse kodiert. Das erschwert das Navigieren im Dokument. Inhaltsverzeichnisse immer automatisch erstellen. Nicht manuell erstellen oder bearbeiten."
+      },
+      "36": {
+        "SUMMARY": "Wie viele Zeilen hat diese Tabelle?",
+        "DESCRIPTION": "Die tatsächliche Anzahl der Zeilen in der Tabelle scheint nicht mit der Codierung übereinzustimmen. Als Ergebnis liest ein Screenreader etwas anderes als das, was angezeigt wird. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Splitting-Elemente und gestalten Sie die Tabelle nicht selbst."
+      },
+      "37": {
+        "SUMMARY": "Wie viele Spalten hat diese Tabelle?",
+        "DESCRIPTION": "Die tatsächliche Anzahl der Spalten in der Tabelle scheint nicht mit der Codierung übereinzustimmen. Als Ergebnis liest ein Screenreader etwas anderes als das, was angezeigt wird. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Splitting-Elemente und gestalten Sie die Tabelle nicht selbst."
+      },
+      "38": {
+        "SUMMARY": "Die Codierung dieser Zelle stimmt nicht mit dem überein, wie sie aussieht",
+        "DESCRIPTION": "Diese Zelle erstreckt sich über mehr oder weniger Zeilen als die Codierungsstatus. Daher liest ein Screenreader die Tabelle anders als Sie sie im Dokument sehen. Vermeiden Sie das Zusammenführen und Teilen von Zellen so weit wie möglich in Tabellen. "
+      },
+      "39": {
+        "SUMMARY": "Die Codierung dieser Zelle stimmt nicht mit dem überein, wie sie aussieht",
+        "DESCRIPTION": "Diese Zelle erstreckt sich über mehr oder weniger Spalten als die Codierungszustände. Daher wird ein Screenreader die Tabelle anders lesen, als Sie sie im Dokument sehen. Vermeiden Sie das Zusammenführen und Teilen von Zellen so weit wie möglich in Tabellen. "
+      },
+      "40": {
+        "SUMMARY": "Ist das Teil einer Liste?",
+        "DESCRIPTION": "Dies sieht aus wie ein Teil einer Liste, ist aber nicht als solches kodiert. Erstellen Sie Listen immer mit der Listenfunktion Ihrer Bürosoftware. Erstellen Sie Listen nicht manuell."
+      },
+      "41": {
+        "SUMMARY": "Diese Zelle scheint zu niedrig zu sein",
+        "DESCRIPTION": "Der Inhalt dieser Zelle ist niedriger als einige Zellen in der nächsten Zeile. Die Zelle ist also nicht dort, wo die Codierung es vorgibt. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Teilen von Elementen und Gestalten Sie die Tabelle nicht selbst."
+      },
+      "42": {
+        "SUMMARY": "Diese Zelle scheint zu hoch",
+        "DESCRIPTION": "Der Inhalt dieser Zelle ist höher als einige Zellen in der nächsten Zeile. Die Zelle ist also nicht dort, wo die Codierung es vorschreibt. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Teilen von Elementen und Gestalten Sie die Tabelle nicht selbst."
+      },
+      "43": {
+        "SUMMARY": "Diese Zelle scheint zu weit rechts zu sein",
+        "DESCRIPTION": "Der Inhalt dieser Zelle befindet sich weiter rechts als einige Zellen in der nächsten Spalte. Die Zelle ist also nicht dort, wo die Codierung es vorgibt. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Teilen von Elemente und Gestalten Sie die Tabele nicht selbst."
+      },
+      "44": {
+        "SUMMARY": "Diese Zelle scheint zu weit links zu sein",
+        "DESCRIPTION": "Der Inhalt dieser Zelle befindet sich weiter links als einige Zellen in der nächsten Spalte. Die Zelle befindet sich also nicht dort, wo die Codierung es vorgibt. Erstellen Sie immer eine Tabelle mit der Tabellenfunktion Ihrer Office-Anwendung. Vermeiden Sie das Zusammenführen und Teilen von Elemente und Gestalten Sie die Tabele nicht selbst."
+      },
+      "45": {
+        "SUMMARY": "Ist das überhaupt eine Tabellenüberschrift?",
+        "DESCRIPTION": "Dies sieht aus wie eine normale Tabellenzelle, ist aber als Tabellenkopf codiert. Erstellen Sie eine Tabelle immer mit der Tabellenfunktion Ihrer Office-Anwendung. Beschränken Sie Überschriften auf die erste Zeile oder erste Spalte. Vermeiden Sie das Zusammenführen und Teilen von Elemente und Gestalten Sie die Tabele nicht selbst."
+      }
+    },
+    "4.1.3": {
+      "1": {
+        "SUMMARY": "Die Codierung stimmt nicht mit dem Inhalt überein",
+        "DESCRIPTION": "Wenn die Kodierung nicht mit dem Inhalt übereinstimmt, lesen Screenreader das Dokument nicht in der richtigen Reihenfolge."
+      }
+    }
+  },
+  "ISO 14289-1:2014": {
+    "5": {
+      "1": {
+        "SUMMARY": "Das Dokument ist nicht vom Typ PDF/UA",
+        "DESCRIPTION": "Die Metadaten im Dokument erwähnen nicht, dass dieses Dokument vom Typ PDF/UA ist. Dies ist kein Problem, solange Ihr Dokument ansonsten die Barrierefreiheitsanforderungen erfüllt."
+      },
+      "2": {
+        "SUMMARY": "Etwas stimmt nicht mit den PDF/UA-Metadaten im Dokument.",
+        "DESCRIPTION": "Die Metadaten im Dokument enthalten falsche Daten zu PDF/UA. Dies ist kein Problem, solange Ihr Dokument ansonsten die Anforderungen an die Barrierefreiheit erfüllt."
+      }
+    },
+    "7.1": {
+      "1": {
+        "SUMMARY": "Codierung unterscheidet nicht richtig zwischen Inhalt und dekorativen Elementen",
+        "DESCRIPTION": "Aufgrund schlechter Codierung können Screenreader Inhalte nicht von dekorativen Elementen unterscheiden. Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, diesen Teil des Dokuments anders zu strukturieren, oder bearbeiten Sie das Dokument mit einer anderen Anwendung (z.B. Beispiel LibreOffice statt Word)."
+      },
+      "2": {
+        "SUMMARY": "Codierung unterscheidet nicht richtig zwischen Inhalt und dekorativen Elementen",
+        "DESCRIPTION": "Aufgrund schlechter Codierung können Screenreader Inhalte nicht von dekorativen Elementen unterscheiden. Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, diesen Teil des Dokuments anders zu strukturieren, oder bearbeiten Sie das Dokument mit einer anderen Anwendung (z.B. Beispiel LibreOffice statt Word)."
+      },
+      "3": {
+        "SUMMARY": "Das Dokument enthält Inhalte, die nicht im Code gekennzeichnet sind",
+        "DESCRIPTION": "Wenn der Inhalt im Code nicht markiert ist, können Screenreader nicht herausfinden, wie dieses Dokument zu lesen ist. Sie können dies möglicherweise lösen, indem Sie Ihr Dokument erneut aus Ihrer Office-Anwendung (Word oder LibreOffice) als 'tagged' (beschriftetes) PDF  exportieren. In Word tun Sie dies, indem Sie 'Datei - Speichern unter - (wählen Sie PDF) - Optionen' im Menü 'Datei - Speichern unter - (wählen Sie PDF) - Optionen' und 'Dokumentstruktur markieren für Barrierefreiheit' und 'Kompatibel mit PDF/A' aktivieren. Verwenden Sie NIEMALS 'Drucken - Adobe PDF', um Ihr Dokument in das PDF-Format zu exportieren. Sie erhalten diese Fehlermeldung möglicherweise auch, wenn Ihre PDF-Datei ein gescanntes Dokument ist. Prüfen Sie in diesem Fall, ob dies der Fall ist möglich, das Dokument erneut mit Zeichenerkennung (OCR) zu scannen und zu überprüfen, ob es richtig codiert ist."
+      },
+      "4": {
+        "SUMMARY": "Die Anwendung, die dieses Dokument erstellt hat, konnte keine korrekte Lesereihenfolge garantieren",
+        "DESCRIPTION": "Sie erhalten diese Warnung, wenn die zum Erstellen des Dokuments verwendete Anwendung nicht garantieren konnte, dass die Lesereihenfolge korrekt ist. Die Lesereihenfolge an sich muss nicht falsch sein. Ob es wirklich ein Problem mit der Lesereihenfolge gibt kann an anderen Codefehlern gesehen werden, die von diesem Prüfer gefunden wurden. Diese Warnung kann jedoch dazu führen, dass Screenreader das Dokument nicht akzeptieren. Um diese Warnung zu beseitigen, versuchen Sie, das Dokument einfacher zu strukturieren oder das Dokument mit einer anderen Anwendung zu bearbeiten (z. B. LibreOffice statt Word)."
+      },
+      "5": {
+        "SUMMARY": "Das Dokument hat keine Standardkodierung",
+        "DESCRIPTION": "Das Dokument verwendet eine proprietäre Kodierung, die nicht auf die Standardkodierung reduziert werden kann. Daher können Screenreader das Dokument möglicherweise nicht richtig lesen. Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, das Dokument einfacher zu strukturieren oder bearbeiten Sie das Dokument mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "6": {
+        "SUMMARY": "Es gibt Zirkelverweise in der Kodierung des Dokuments",
+        "DESCRIPTION": "Die Codierung des Dokuments enthält Zirkelverweise. Daher können Screenreader das Dokument möglicherweise nicht richtig lesen. Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, das Dokument einfacher zu strukturieren oder bearbeiten Sie das Dokument mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "7": {
+        "SUMMARY": "Das Dokument hat die Standardcodierung geändert",
+        "DESCRIPTION": "In diesem Dokument wurde die Standardcodierung geändert. Wenn die Standardcodierung nicht verwendet wird, können Screenreader das Dokument möglicherweise nicht richtig lesen. Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, sie zu strukturieren das Dokument einfacher bearbeiten oder das Dokument mit einer anderen Anwendung bearbeiten (z. B. LibreOffice statt Word)."
+      },
+      "8": {
+        "SUMMARY": "Dem Dokument fehlen wesentliche Metadaten",
+        "DESCRIPTION": "Das Dokument hat keine Metadaten. Infolgedessen verpassen Screenreader wichtige Informationen, um es zu lesen (z. B. die Lesesprache). Dies liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, das Dokument zu bearbeiten einer anderen Anwendung (z. B. LibreOffice statt Word) und als getaggtes PDF speichern, z. B. im PDF/A-1a- oder PDF/UA-Format."
+      },
+      "9": {
+        "SUMMARY": "Der Titel ist nicht in den Dokumenteigenschaften eingetragen",
+        "DESCRIPTION": "In den Metadaten des Dokuments fehlt der Titel. Dies liegt wahrscheinlich daran, dass Sie den Titel in den Dokumenteigenschaften nicht ausgefüllt haben. Hinweis: Es kann vorkommen, dass Ihr Dokument eine Titelseite oder eine Überschrift im Titelstil hat und Sie immer noch diesen Fehler erhalten. Dies liegt daran, dass es sich bei diesem Fehler nicht um den Inhalt, sondern um die Metadaten des Dokuments handelt. Um diesen Fehler zu vermeiden, können Sie die Dokumenteigenschaften Ihrer Office-Anwendung öffnen (normalerweise über die Registerkarte Datei im Menü oben links ) und dort den Titel ein eingeben. Wenn Sie Zugriff auf einen PDF-Editor haben, können Sie den Titel auch damit eingeben."
+      },
+      "10": {
+        "SUMMARY": "Der Titel des Dokuments ist in der Titelleiste nicht sichtbar.",
+        "DESCRIPTION": "Die Codierung des Dokuments führt nicht dazu, dass der Titel in der Titelleiste des Readers oder Browsers sichtbar ist. Überprüfen Sie zunächst, ob der Titel in den Dokumenteigenschaften ausgefüllt ist und füllen Sie ihn gegebenenfalls aus. Dies tun Sie indem Sie die Dokumenteigenschaften Ihrer Office-Anwendung öffnen (normalerweise über die Registerkarte Datei im Menü oben links) und dort den Titel eingeben. Wenn Sie Zugriff auf einen PDF-Editor haben, können Sie den Titel auch damit ausfüllen. Wenn Sie noch danach diesen Fehler erhalten, liegt das Problem wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Wenn ja, versuchen Sie, das Dokument mit einer anderen Anwendung zu bearbeiten (z. B. LibreOffice anstelle von Word). Wenn Sie ein PDF-Experte sind, können Sie das Problem lösen, indem Sie einen PDF-Editor verwenden, um den DisplayDocTitle-Schlüssel im ViewerPreferences-Wörterbuch auf 'true' zu setzen."
+      },
+      "13": {
+        "SUMMARY": "Die Kodierung stimmt nicht mit dem Inhalt überein.",
+        "DESCRIPTION": "Der Inhalt ist nicht so codiert, dass er der Struktur und Inhalt entspricht. Dies kann mehrere Ursachen haben. Versuchen Sie, dem Dokument eine einfachere Struktur zu geben. Das Problem kann auch durch die Anwendung verursacht werden, mit der Sie diese Datei erstellt haben . Versuchen Sie, das Dokument zu bearbeiten und mit einer anderen Anwendung in das PDF-Format zu schreiben (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.2": {
+      "2": {
+        "SUMMARY": "Die Sprache des Dokuments ist nicht eingestellt",
+        "DESCRIPTION": "Screenreader müssen wissen, in welcher Sprache dieses Dokument vorgelesen werden soll. Dazu müssen Sie die Sprache des Dokuments einstellen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, tun Sie dies, indem Sie das ' Default' Stileinstellungen und dort die Sprache einstellen."
+      },
+      "3": {
+        "SUMMARY": "Etwas stimmt nicht mit der Beschriftung der Tabelle",
+        "DESCRIPTION": "Die Tabelle hat mehr als eine Beschriftung, oder die Beschriftung ist falsch codiert. Versuchen Sie, die Beschriftungen zu löschen und dann erneut hinzuzufügen. Stellen Sie sicher, dass Ihre Tabelle nur eine Beschriftung hat. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "4": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenzeile gekennzeichnet.",
+        "DESCRIPTION": "Dieser Text ist als Teil einer Tabelle markiert, aber die Kodierung gibt nicht richtig an, zu welcher Tabelle er gehört. Wenn dieser Text zu einer Tabelle gehört oder sich in der Nähe einer Tabelle befindet, versuchen Sie erneut, diese Tabelle zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word). "
+      },
+      "5": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenheader gekennzeichnet",
+        "DESCRIPTION": "Dieser Text ist als Tabellenheader markiert, aber die Codierung gibt nicht richtig an, zu welcher Tabelle er gehört. Wenn dieser Text zu einer Tabelle gehört, versuchen Sie, diese Tabelle erneut zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word). "
+      },
+      "6": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabelle gekennzeichnet.",
+        "DESCRIPTION": "Dieser Text ist als Tabelle gekennzeichnet, aber die Codierung gibt nicht richtig an, zu welcher Tabelle er gehört. Wenn dieser Text zu einer Tabelle gehört, versuchen Sie, diese Tabelle erneut zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "7": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenfuß gekennzeichnet",
+        "DESCRIPTION": "Dieser Text ist als Tabellenfuß gekennzeichnet, aber die Kodierung zeigt nicht richtig an, zu welcher Tabelle er gehört. Wenn dieser Text zu einer Tabelle gehört, versuchen Sie, diese Tabelle erneut zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "8": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenkopfzelle gekennzeichnet",
+        "DESCRIPTION": "Dieser Text ist als Tabellenkopfzelle markiert, aber es ist nicht klar, zu welcher Zeile in der Tabelle diese Kopfzelle gehört. Versuchen Sie, die Tabelle neu zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "9": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenzelle gekennzeichnet",
+        "DESCRIPTION": "Dieser Text ist als Tabellenzelle markiert, aber es ist nicht klar, zu welcher Zeile in der Tabelle der Text gehört. Versuchen Sie, die Tabelle neu zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "10": {
+        "SUMMARY": "Diese Tabellenzeile enthält Elemente, die zu keiner Tabelle gehören",
+        "DESCRIPTION": "Eine Tabellenzeile darf nur Tabellenkopfzellen oder Tabelleninhaltszellen enthalten. Diese Tabellenzeile enthält andere Arten von Text. Aus diesem Grund wissen Screenreader möglicherweise nicht, wie sie diese Tabellenzeile lesen sollen. Versuchen Sie die Tabelle neu zu formatieren. Halten Sie sie bei die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "11": {
+        "SUMMARY": "Die Tabelle hat mehr als eine Überschrift.",
+        "DESCRIPTION": "Eine Tabelle darf höchstens eine Gruppe von Zeilen haben, die als Überschriften markiert sind. Wenn eine Tabelle mehr als eine Überschrift hat, wissen Screenreader nicht, wie sie diese Tabelle lesen sollen. Versuchen Sie die Tabelle neu zu formatieren und vergewissern Sie sich, dass sie nur eine Kopfzeile hat."
+      },
+      "12": {
+        "SUMMARY": "Die Tabelle hat mehr als eine Fußzeile",
+        "DESCRIPTION": "Eine Tabelle darf höchstens eine Gruppe von Zeilen haben, die als Fußzeile markiert sind. Wenn eine Tabelle mehr als eine Fußzeile hat, wissen Screenreader nicht, wie sie diese Tabelle lesen sollen. Versuchen Sie die Tabelle neu zu formatieren und stellen Sie sicher, dass sie nur eine Fußzeile hat."
+      },
+      "13": {
+        "SUMMARY": "Die Tabelle hat eine Fußzeile, aber keinen Hauptteil",
+        "DESCRIPTION": "Wenn eine Tabelle eine Fußzeile hat, sollte sie zumindest einen Hauptteil haben. Versuchen Sie die Tabelle erneut zu formatieren und stellen Sie sicher, dass die Tabelle neben einer Kopf- und Fußzeile auch Inhalt hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)"
+      },
+      "14": {
+        "SUMMARY": "Die Tabelle hat eine Kopfzeile, aber keinen Hauptteil",
+        "DESCRIPTION": "Wenn eine Tabelle eine Kopfzeile hat, sollte sie zumindest auch einen Hauptteil haben. Versuchen Sie, die Tabelle neu zu formatieren und stellen Sie sicher, dass sie neben einer Kopf- und Fußzeile auch Inhalt hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "15": {
+        "SUMMARY": "Die Zeilen in dieser Tabelle haben nicht die gleiche Anzahl an Zellen",
+        "DESCRIPTION": "In einer Tabelle müssen die Zeilen die gleiche Anzahl von Zellen haben. Versuchen Sie, die Tabelle neu zu formatieren. Das Zusammenführen von Zellen ist erlaubt, aber beginnen Sie immer mit einer einfachen Tabelle, in der jede Zeile die gleiche Anzahl von Zellen hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "17": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Listenelement gekennzeichnet",
+        "BESCHREIBUNG": "Dieser Text ist als Listenelement gekennzeichnet, aber die Kodierung zeigt nicht richtig an, zu welcher Liste dieses Element gehört. Wenn dieser Text zu einer Liste gehört oder nahe an einer Liste ist, versuchen Sie, die Liste erneut zu formatieren. Halten Sie alle Listenelemente richtig zusammen. Wenn dies nicht funktioniert, versuchen Sie es noch einmal mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "18": {
+        "SUMMARY": "Es gibt ein Problem mit der Struktur der Liste",
+        "DESCRIPTION": "Dieser Text ist als Listenelement gekennzeichnet, aber der Code zeigt nicht richtig an, wie er in die Liste passt. Wenn dieser Text zu einer Liste gehört, versuchen Sie diese Liste erneut zu formatieren.Halten Sie alle Listenelemente richtig zusammen. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "19": {
+        "SUMMARY": "Diese Liste enthält Elemente, die zu keiner Liste gehören",
+        "DESCRIPTION": "Eine Liste darf nur eine Überschrift, Listenelemente und Unterlisten enthalten. Diese Liste enthält andere Arten von Text. Aus diesem Grund können Screenreadere diese Liste möglicherweise nicht lesen. Versuchen Sie, die Liste neu zu formatieren. Halten Sie die Liste so einfach wie möglich. Wenn das nicht funktioniert, versuchen Sie es noch einmal mit einer anderen Anwendung (z. B. LibreOffice statt Word)."
+      },
+      "20": {
+        "SUMMARY": "Ein Listeneintrag darf nur aus einem Label und dem Eintragstext bestehen",
+        "DESCRIPTION": "Dieses Listenelement enthält andere Elemente als die Beschriftung (z. B. einen Aufzählungspunkt oder eine Zahl) und den Text des Elements. Aus diesem Grund können Screenreadere diese Liste möglicherweise nicht lesen. Versuchen Sie, die Liste neu zu formatieren. Halten Sie die Liste so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es noch einmal mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "21": {
+        "SUMMARY": "Die Sprache des Ersetzungstextes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader wissen dann nicht, wie sie den Ersetzungstext dieses Textes vorlesen sollen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die 'Default' Stileinstellungen - dort können Sie die Sprache einstellen."
+      },
+      "22": {
+        "SUMMARY": "Die Sprache des alternativen Textes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader können den alternativen Text dieses Elements nicht lesen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "23": {
+        "SUMMARY": "Die Sprache des Abkürzungs-Dropdown-Textes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader wissen dann nicht, wie sie den Dropdown-Text dieser Abkürzung vorlesen sollen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "24": {
+        "SUMMARY": "Die Sprache dieses Kommentarfeldes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader können dieses Kommentarfeld nicht lesen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die „Standard“-Stileinstellungen - dort können Sie die Sprache einstellen."
+      },
+      "25": {
+        "SUMMARY": "Die Sprache dieses Formulars ist nicht festgelegt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader können dieses Formular nicht lesen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "26": {
+        "SUMMARY": "Dieser Text ist fälschlicherweise als Teil des Inhaltsverzeichnisses gekennzeichnet",
+        "DESCRIPTION": "Wenn dieser Text zum Inhaltsverzeichnis gehört oder diesem nahe steht, versuchen Sie, das Inhaltsverzeichnis neu zu erstellen. Lassen Sie das Inhaltsverzeichnis am besten automatisch erstellen. Wenn Sie das Inhaltsverzeichnis manuell bearbeiten, behalten Sie die Elemente bei des Inhaltsverzeichnisses dicht beieinander. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "27": {
+        "SUMMARY": "Etwas stimmt nicht mit der Beschriftung des Inhaltsverzeichnisses",
+        "DESCRIPTION": "Das Inhaltsverzeichnis hat mehr als eine Überschrift oder die Überschrift ist falsch kodiert. Versuchen Sie, die Überschriften zu entfernen und dann eine neue hinzuzufügen. Stellen Sie sicher, dass Ihr Inhaltsverzeichnis nur eine Überschrift hat. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "29": {
+        "SUMMARY": "Dokumentsprache falsch kodiert",
+        "DESCRIPTION": "Dieses Problem liegt wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Versuchen Sie, die Sprache des Dokuments manuell einzustellen. Sie tun dies in Word oder LibreOffice, indem Sie die Stileinstellungen 'Standard' öffnen und dort die Sprache einstellen. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "30": {
+        "SUMMARY": "Die Sprache des Ersetzungstextes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader wissen dann nicht, wie sie den Ersetzungstext dieses Textes vorlesen sollen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "31": {
+        "SUMMARY": "Die Sprache des alternativen Textes ist nicht eingestellt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader können den alternativen Text dieses Elements nicht lesen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Siedie Sprache einstellen."
+      },
+      "32": {
+        "SUMMARY": "Die Sprache des Dropdown-Textes der Abkürzung ist nicht festgelegt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Screenreader wissen dann nicht, wie sie den Dropdown-Text dieser Abkürzung vorlesen sollen. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "33": {
+        "SUMMARY": "Die Metadatensprache des Dokuments ist nicht festgelegt",
+        "DESCRIPTION": "Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt. Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "34": {
+        "SUMMARY": "Die Sprache dieses Textes ist nicht eingestellt",
+        "DESCRIPTION": "Screenreader weiß nicht, in welcher Sprache er diesen Text lesen soll. Wahrscheinlich ist die Sprache des Dokuments nicht eingestellt.  Wenn Sie das Dokument mit Word oder LibreOffice erstellt haben, öffnen Sie dazu die Stileinstellungen 'Standard' - dort können Sie die Sprache einstellen."
+      },
+      "36": {
+        "SUMMARY": "Der Tabellenkopf enthält Elemente, die nicht zu einem Kopf gehören",
+        "DESCRIPTION": "Eine Tabellenüberschrift darf nur aus Zeilen bestehen. Diese Tabellenüberschrift enthält andere Arten von Text. Aus diesem Grund wissen Screenreader möglicherweise nicht, wie sie diese Tabellenüberschrift lesen sollen. Versuchen Sie, die Tabelle neu zu formatieren. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "37": {
+        "SUMMARY": "Der Körper dieser Tabelle enthält Elemente, die nicht zu einem Tabellenkörper gehören",
+        "DESCRIPTION": "Der Hauptteil einer Tabelle darf nur aus Zeilen bestehen. Der Hauptteil dieser Tabelle enthält andere Arten von Text. Aus diesem Grund wissen Screenreader möglicherweise nicht, wie sie diese Tabelle lesen sollen. Versuchen Sie, die Tabelle neu zu formatieren. Behalten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "38": {
+        "SUMMARY": "Die Fußzeile dieser Tabelle enthält Elemente, die nicht zur Fußzeile gehören",
+        "DESCRIPTION": "Die Fußzeile einer Tabelle darf nur aus Zeilen bestehen. Die Fußzeile dieser Tabelle enthält andere Arten von Text. Aus diesem Grund wissen Screenreader möglicherweise nicht, wie sie diese Tabelle lesen sollen. Versuchen Sie, die Tabelle neu zu formatieren. Behalten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.3": {
+      "1": {
+        "SUMMARY": "Diese Abbildung hat keinen Alternativtext",
+        "DESCRIPTION": "Eine Abbildung muss alternativen Text haben, der beschreibt, was die Abbildung darstellt. In MS Word und LibreOffice können Sie alternativen Text hinzufügen, indem Sie mit der rechten Maustaste auf die Abbildung klicken und dann „Abbildung formatieren“ (Word) oder „Eigenschaften“ wählen. (LibreOffice). Nur wenn die Abbildung eine dekorative Funktion hat und für den Inhalt des Dokuments nicht wichtig ist, muss sie keinen Alternativtext haben und Sie können diese Fehlermeldung ignorieren."
+      }
+    },
+    "7.4.2": {
+      "1": {
+        "SUMMARY": "Falsche Verwendung von Überschriften.",
+        "DESCRIPTION": "Die Überschriften werden nicht in logischer Reihenfolge verwendet. Dies kann dazu führen, dass Nutzer von Screenreader Schwierigkeiten haben, im Dokument zu navigieren. Um WCAG 2.1 zu entsprechen, sollte das Dokument immer mit einer Überschrift der Ebene 1 und den Ebenen beginnen der Überschriften sollten logisch von oben nach unten folgen. Beginnen Sie das Dokument daher nicht mit einer Überschrift der Ebene 2 oder 3. Überspringen Sie keine Überschriftenebenen: Lassen Sie beispielsweise keine Überschrift der Ebene 3 auf eine Überschrift der Ebene 1 folgen."
+      }
+    },
+    "7.4.4": {
+      "1": {
+        "SUMMARY": "Die Struktur des Dokuments wurde falsch kodiert.",
+        "DESCRIPTION": "Es handelt sich um ein Problem im Code der PDF-Datei, das dazu führen kann, dass Nutzer von Screenreader Schwierigkeiten bei der Navigation durch das Dokument haben. Das Problem ist wahrscheinlich auf die Anwendung zurückzuführen, die Sie zum Erstellen dieser Datei verwendet haben. Sie können versuchen, das Problem zu lösen, indem Sie das Dokument mit dem Stil Überschrift 1, Überschrift 2 usw. überschreiben. Wenn dies nicht funktioniert, versuchen Sie eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Die Header-Struktur ist nicht korrekt kodiert.",
+        "DESCRIPTION": "Dies ist ein Problem mit der Kodierung von Überschriften, das dazu führen kann, dass Nutzer von Screenreader Schwierigkeiten bei der Navigation im Dokument haben. Versuchen Sie, dieses Problem zu lösen, indem Sie das Dokument mit Überschriften im Stil Überschrift 1, Überschrift 2 usw. kodieren. Wenn dies nicht funktioniert, versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
+      },
+      "3": {
+        "SUMMARY": "Die Header-Struktur ist nicht korrekt kodiert.",
+        "DESCRIPTION": "Dies ist ein Problem mit der Kodierung von Überschriften, das dazu führen kann, dass Nutzer von Screenreader Schwierigkeiten bei der Navigation im Dokument haben. Versuchen Sie, dieses Problem zu lösen, indem Sie das Dokument mit Überschriften im Stil Überschrift 1, Überschrift 2 usw. kodieren. Wenn dies nicht funktioniert, versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.5": {
+      "1": {
+        "SUMMARY": "Der Code beschreibt die Struktur dieser Tabelle nicht angemessen.",
+        "DESCRIPTION": "Dieser Tabelle fehlt ein Code, anhand dessen die Struktur identifiziert werden kann. Infolgedessen haben Screenreadern Probleme, die Tabelle richtig zu lesen. Versuchen Sie, die Tabelle neu zu formatieren, geben Sie der Tabelle eine klare Kopfzeile oder Kopfspalte und halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.7": {
+      "1": {
+        "SUMMARY": "Diese Formel hat keinen alternativen Text",
+        "DESCRIPTION": "Formeln müssen als solche gekennzeichnet sein und einen Alternativtext haben. In Word können Sie eine Formel erstellen, indem Sie im Menü 'Einfügen - Symbol/Vergleich' wählen. In LibreOffice können Sie dies tun, indem Sie 'Einfügen - Objekt - Formel' wählen. Dort können Sie auch den Alternativtext für die Formel eingeben. Wenn das nicht funktioniert, können Sie als letzten Ausweg die Formel als Abbildung einfügen und die Abbildung mit einem Alternativtext versehen."
+      }
+    },
+    "7.9": {
+      "1": {
+        "SUMMARY": "Diese Notiz ist nicht richtig kodiert.",
+        "DESCRIPTION": "Diese Notiz hat keine einheitliche Referenz im Dokumentcode. Daher können Screenreader Schwierigkeiten bei der Navigation durch das Dokument haben. Für die digitale Zugänglichkeit ist es am besten, Notizen ganz zu vermeiden, da sie die Lesereihenfolge unterbrechen. Wenn Sie dennoch Notizen verwenden müssen, nutzen Sie die von Ihrer Office-Anwendung bereitgestellten Funktionen für Fußnoten, Endnoten oder Verweise. Wenn dies das Problem nicht löst, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Es gibt ein Problem mit der Indizierung von Notizen und Referenzen",
+        "DESCRIPTION": "Es wurden widersprüchliche Verweise im Dokument gefunden. Infolgedessen können Screenreader die Notizen und Verweise im Dokument nicht richtig verarbeiten. Für die digitale Zugänglichkeit ist es am besten, Notizen ganz zu vermeiden, da sie die Lesereihenfolge unterbrechen. Wenn Sie Notizen verwenden müssen, nutzen Sie die von Ihrer Office-Anwendung bereitgestellten Funktionen für Fußnoten, Endnoten oder Verweise. Wenn dies das Problem nicht löst, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.10": {
+      "1": {
+        "SUMMARY": "Eine Dokumentebene hat keinen Namen",
+        "DESCRIPTION": "Diese PDF-Datei besteht aus einer oder mehreren Ebenen, die nicht richtig identifiziert sind. Dieser Fehler wird wahrscheinlich durch die Office-Anwendung verursacht, die Sie zum Erstellen des Dokuments verwendet haben. Wenn Sie mit PDF-Tools umgehen können, können Sie das Problem lösen, indem Sie die Ebenen aus dem Dokument entfernen ('merge' oder 'flatten' layers)."
+      },
+      "2": {
+        "SUMMARY": "Eine Dokumentenebene kann die Lesbarkeit beeinträchtigen.",
+        "DESCRIPTION": "Diese PDF-Datei besteht aus einer oder mehreren Ebenen, die die Lesbarkeit beeinträchtigen können. Dieser Fehler kann durch die Office-Anwendung verursacht werden, die Sie zum Erstellen des Dokuments verwendet haben. Sie können versuchen, dieses Problem zu lösen, indem Sie das Dokument vereinfachen. Wenn Sie mit PDF-Tools umgehen können, können Sie das Problem lösen, indem Sie Ebenen aus dem Dokument entfernen (Ebenen reduzieren)."
+      }
+    },
+    "7.11": {
+      "1": {
+        "SUMMARY": "Die angehängte Datei hat keinen gültigen Namen",
+        "DESCRIPTION": "Wenn Sie eine Datei als Anhang in ein PDF-Dokument einfügen, muss sie über den Code zugänglich sein. Die angehängte Datei ist im Code nicht benannt und/oder beschrieben. Um dieses Problem zu lösen, müssen Sie die angehängte Datei mit einem Namen und einer Beschreibung versehen. Wenn dies nicht gelingt, können Sie als letzten Ausweg die Anlage löschen und sie als separate Datei zusammen mit dem Dokument versenden."
+      }
+    },
+    "7.15": {
+      "1": {
+        "SUMMARY": "Das Dokument enthält ein interaktives Formular",
+        "DESCRIPTION": "Um die Anforderungen der Barrierefreiheit zu erfüllen, darf das Dokument keine interaktiven XFA-Formulare (XML Forum Architecture) enthalten. Bearbeiten Sie das Formular und machen Sie daraus ein statisches Formular. Sie können auch versuchen, das Formular in einem anderen Format als XFA einzubinden, wenn Ihre Anwendung dies zulässt."
+      }
+    },
+    "7.16": {
+      "1": {
+        "SUMMARY": "Dieses Dokument ist verschlüsselt und daher nicht mehr digital zugänglich.",
+        "DESCRIPTION": "Wenn Sie ein Dokument verschlüsseln, sollte dies auf eine Weise geschehen, die die digitale Zugänglichkeit unterstützt. Das ist bei diesem Dokument nicht der Fall. Entfernen Sie die Verschlüsselung aus diesem Dokument. Verschlüsseln Sie das Dokument auf eine Art und Weise, die die digitale Zugänglichkeit nicht beeinträchtigt. Einige gängige PDF-Anwendungen unterstützen dies."
+      }
+    },
+    "7.18.1": {
+      "1": {
+        "SUMMARY": "Diese Anmerkung ist falsch markiert",
+        "DESCRIPTION": "Da diese Anmerkung im Code nicht korrekt markiert ist, können Screenreader die Anmerkung möglicherweise nicht richtig finden oder lesen. Dieses Problem ist wahrscheinlich auf die Anwendung zurückzuführen, die Sie zum Erstellen des Dokuments verwendet haben. Versuchen Sie, die Anmerkung zu löschen und dann erneut hinzuzufügen, oder versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice statt Word)."
+      },
+      "2": {
+        "SUMMARY": "Diese Anmerkung hat keinen alternativen Text",
+        "DESCRIPTION": "Eine Anmerkung muss einen Textinhalt oder alternativen Text haben (dies gilt nicht für Links, Widgets, Pop-ups und versteckte Anmerkungen). Fügen Sie Textinhalt oder alternativen Text zu dieser Anmerkung hinzu."
+      },
+      "3": {
+        "SUMMARY": "Alternative Beschreibung fehlt für dieses Formularfeld",
+        "DESCRIPTION": "Ein Formularfeld, das nicht ausgeblendet ist, muss eine alternative Beschreibung haben. Dies kann dazu führen, dass jemand, der einen Screenreader verwendet, Probleme beim Ausfüllen des Formulars hat. Fügen Sie einen alternativen Text hinzu ODER stellen Sie sicher, dass alle Widget-Anmerkungen dieses Feldes einen alternativen Text haben."
+      }
+    },
+    "7.18.2": {
+      "1": {
+        "SUMMARY": "Das Dokument enthält Anmerkungen zur Farbkorrektur beim Drucken.",
+        "DESCRIPTION": "Ein Dokument sollte keine so genannten 'Überfüllungsanmerkungen' enthalten, die dazu dienen, Farben beim Drucken zu korrigieren. Entfernen Sie diese Anmerkungen oder deaktivieren Sie die 'Trapping'-Optionen in der Anwendung, mit der Sie dieses Dokument erstellt haben."
+      }
+    },
+    "7.18.3": {
+      "1": {
+        "ZUSAMMENFASSUNG": "Die Anmerkungen haben keine klare Navigationsreihenfolge",
+        "DESCRIPTION": "Die Navigationsreihenfolge der Anmerkungen sollte im Dokumentcode beschrieben sein. Hier ist dies nicht der Fall. Dies ist wahrscheinlich auf die Anwendung zurückzuführen, die Sie zum Erstellen des Dokuments verwendet haben. Versuchen Sie, die Anmerkungen zu entfernen und sie wieder in der logischen Lesereihenfolge hinzuzufügen. Wenn dies nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice statt Word)."
+      }
+    },
+    "7.18.4": {
+      "1": {
+        "SUMMARY": "Mit dem Code dieses interaktiven Formulars ist ein Fehler aufgetreten",
+        "DESCRIPTION": "Interaktive Formulare verursachen oft Probleme und sollten am besten vermieden werden. Wenn Sie ein interaktives Formular verwenden, muss es von Ihrer Anwendung richtig kodiert werden, damit Screenreader wissen, wie es zu verwenden ist. Löschen Sie das Formular und fügen Sie es erneut hinzu, oder versuchen Sie es mit einer anderen Anwendung."
+      },
+      "2": {
+        "SUMMARY": "Dieser Teil des Formulars ist nicht korrekt kodiert",
+        "DESCRIPTION": "Die Kodierung beschreibt nicht eindeutig, wie dieser Teil des Formulars zu verwenden ist, so dass ein Screenreader möglicherweise nicht in der Lage ist, ihn zu verarbeiten. Versuchen Sie, diesen Teil des Formulars anders zu implementieren, z. B. ein Dropdown-Menü anstelle eines Textfelds."
+      }
+    },
+    "7.18.5": {
+      "1": {
+        "SUMMARY": "Dieser Verweis ist im Code des Dokuments falsch gekennzeichnet",
+        "DESCRIPTION": "Dies ist ein Codefehler, der häufig in Inhaltsverzeichnissen mit Verweisen auf Kapitel auftritt. Wenn das Inhaltsverzeichnis automatisch von Ihrer Office-Anwendung erstellt wurde, können Sie nicht viel dagegen tun, außer das Inhaltsverzeichnis zu entfernen oder zu versuchen, es manuell zu erstellen. Dies ist glücklicherweise kein schwerwiegender Fehler, da viele Screenreader damit umgehen können."
+      },
+      "2": {
+        "SUMMARY": "Dieser Link hat keine alternative Beschreibung",
+        "DESCRIPTION": "Ein Hyperlink muss eine klare Beschreibung des Ziels haben, auf das er zeigt. Wenn der Link unter einem Text steht, der das Ziel eindeutig beschreibt, können Sie diese Warnung ignorieren. Wenn der Link im Text oder unter einem Bild steht, müssen Sie ihn mit einem Alt-Text versehen. Fügen Sie keine langen URLs ohne Alt-Text in Ihr Dokument ein."
+      }
+    },
+    "7.18.6.2": {
+      "1": {
+        "SUMMARY": "Der Typ dieses Medienclips ist im Code des Dokuments nicht korrekt beschrieben",
+        "DESCRIPTION": "Medienclips müssen eine standardisierte Beschreibung des Medientyps im Code des Dokuments haben. Andernfalls wissen Screenreader nicht, was sie mit dem Medienclip tun sollen. Dieser Fehler ist höchstwahrscheinlich auf die Anwendung zurückzuführen, mit der Sie das Dokument erstellt haben Versuchen Sie, den Medienclip zu entfernen und ihn explizit als Audio oder Video hinzuzufügen. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Dieser Medienclip hat keine alternative Beschreibung",
+        "DESCRIPTION": "Medienclips müssen eine alternative Beschreibung haben. Andernfalls können Personen, die den Medienclip nicht sehen oder hören können, nicht wissen, was er enthält. Fügen Sie daher eine alternative Beschreibung zum Medienclip hinzu."
+      }
+    },
+    "7.18.8": {
+      "1": {
+        "SUMMARY": "Druckmarken sind nicht als solche gekennzeichnet",
+        "DESCRIPTION": "Druckmarken sollten als grafische Informationen gekennzeichnet werden, die nicht Teil des Dokumentinhalts sind. In diesem Fall sind die Druckmarken falsch gekennzeichnet, so dass sie als Teil des Inhalts erscheinen. Dies kann Screenreader verwirren. Entfernen Sie die Markierungen und fügen Sie sie erneut hinzu, indem Sie die entsprechende Funktion in Ihrer Anwendung verwenden (in Word über Datei - Optionen - Erweitert - Schnittmarken). Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.20": {
+      "1": {
+        "SUMMARY": "Das Dokument enthält eine externe Datei",
+        "DESCRIPTION": "Ein Dokument sollte nicht auf externe Dateien als Teil des Dokumentinhalts verweisen. Dies macht es für lesende Anwendungen extrem schwierig, die logische Struktur des Dokuments zu verstehen. Entfernen Sie diese Verweise auf externe Dateien aus dem Dokument."
+      },
+      "2": {
+        "SUMMARY": "Wiederverwendbare Dokumentelemente sind nicht korrekt kodiert",
+        "DESCRIPTION": "Dieses Dokument enthält wiederverwendbare Dokumentenelemente (sogenannte XObjects), die nicht korrekt kodiert sind. Daher können Screenreader sie nicht richtig verarbeiten. Dieses Problem ist höchstwahrscheinlich auf die Anwendung zurückzuführen, die Sie zum Erstellen des Dokuments verwendet haben. Prüfen Sie, ob Ihr Dokument sich wiederholende Abbildungen oder Texte enthält. Dies könnte die Ursache für das Problem sein. Versuchen Sie, diese sich wiederholenden Elemente auf eine andere Weise oder mit einer anderen Anwendung einzufügen."
+      }
+    },
+    "7.21.3.1": {
+      "1": {
+        "SUMMARY": "Es gibt ein Problem bei der Kodierung einer Schriftart. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schriftart. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst normale Schriftart, zum Beispiel Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.3.2": {
+      "1": {
+        "SUMMARY": "Es gibt ein Problem beim Codieren einer Schriftart. Dies betrifft Schriftart(en): ",
+        "DESCRIPTION": "Dies ist ein technisches Problem mit der Codierung der im Dokument eingebetteten skalierbaren Schriftart. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst einheitliche Schriftart, z. B. Arial oder Times New Roman Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.3.3": {
+      "1": {
+        "SUMMARY": "Dem Dokument fehlt eine Schriftcodierung. Dazu gehören Schriftart(en): ",
+        "DESCRIPTION": "Die Schriftart hat eine nicht standardmäßige Codierung, die nicht im Dokument enthalten ist. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst standardmäßige Schriftart, z. B. Arial oder Times New Roman. Wenn nicht, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Eine Schriftart hat keine eindeutige Schreibrichtung. Dies betrifft Schriftart(en): ",
+        "DESCRIPTION": "Die Kodierung dieser Schriftart definiert widersprüchliche Schreibrichtungen für verschiedene Buchstaben und Symbole. Dies ist ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schriftart. Versuchen Sie, eine andere Schriftart zu verwenden, um dieses Problem zu beheben. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "3": {
+        "SUMMARY": "Eine Schriftart ist nicht standardmäßig kodiert. Dies betrifft Schriftart(en): ",
+        "DESCRIPTION": "Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schriftart. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst normale Schriftart, zum Beispiel Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.4.1": {
+      "1": {
+        "SUMMARY": "Eine verwendete Schriftart ist nicht in das Dokument eingebettet. Dies sind Schrift(en): ",
+        "DESCRIPTION": "Alle im Dokument verwendeten Schriftarten müssen in das Dokument eingebettet sein. Dadurch wird sichergestellt, dass ein Dokument immer korrekt angezeigt werden kann, ohne dass es von bestimmten Screenreadern abhängig ist. Sie können versuchen, das Dokument als PDF/A-1a-, PDF/A-2a- oder PDF/UA-Datei zu speichern. Wenn das nicht funktioniert, wählen Sie eine andere Schriftart, vorzugsweise eine möglichst standardmäßige, wie Arial oder Times New Roman. Wenn auch das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Eine Schriftart enthält nicht alle Buchstaben oder Symbole, die in dem Dokument verwendet werden. Dies schließt Schriftart(en) ein: ",
+        "DESCRIPTION": "Die eingebettete Schriftart ist unvollständig. Um dieses Problem zu beheben, versuchen Sie, das Dokument als PDF/A-1a-, PDF/A-2a- oder PDF/UA-Datei zu speichern. Wenn das nicht funktioniert, wählen Sie eine andere Schriftart, vorzugsweise eine möglichst standardmäßige, wie Arial oder Times New Roman. Wenn auch das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.4.2": {
+      "1": {
+        "SUMMARY": "Mit der Kodierung einer Schriftart ist ein Fehler aufgetreten. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Der Code beschreibt nicht alle Buchstaben und Symbole, aus denen die Schriftart besteht. Um das Problem zu beheben, versuchen Sie, das Dokument als PDF/A-1a-, PDF/A-2a- oder PDF/UA-Datei zu speichern. Wenn das nicht funktioniert, wählen Sie eine andere Schriftart, vorzugsweise eine möglichst normale, wie Arial oder Times New Roman. Wenn auch das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Mit der Kodierung einer Schriftart ist ein Fehler aufgetreten. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Der Code beschreibt nicht alle Buchstaben und Symbole, aus denen die Schriftart besteht. Um das Problem zu beheben, versuchen Sie, das Dokument als PDF/A-1a-, PDF/A-2a- oder PDF/UA-Datei zu speichern. Wenn das nicht funktioniert, wählen Sie eine andere Schriftart, vorzugsweise eine möglichst normale, wie Arial oder Times New Roman. Wenn auch das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.5": {
+      "1": {
+        "SUMMARY": "Eine Schrift hat keine eindeutige Schriftbreite. Dies betrifft die Schrift(en): ",
+        "DESCRIPTION": "Das Encoding dieser Schriftart definiert widersprüchliche Schriftbreiten, was dazu führen kann, dass ein Screenreader Probleme mit der korrekten Darstellung von Text hat. Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schriftart. Versuchen Sie bitte, dieses Problem zu beheben, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    },
+    "7.21.6": {
+      "1": {
+        "SUMMARY": "Mit der Kodierung einer Schriftart ist ein Fehler aufgetreten. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Die Kodierung dieser Schriftart ermöglicht es nicht, die Anzeige aller Schriftarten nachzuschlagen. Dies ist ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schriftart. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Mit der Kodierung einer Schriftart ist ein Fehler aufgetreten. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Schriftarten müssen standardmäßig kodiert sein, sonst kann ein Screenreader Probleme bei der korrekten Darstellung der Buchstaben haben. In diesem Fall entspricht die Kodierung nicht dem für die digitale Barrierefreiheit erforderlichen Standard. Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Schrift. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart verwenden. Wählen Sie eine möglichst standardisierte Schriftart, z. B. Arial oder Times New Roman. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      },
+      "3": {
+        "SUMMARY": "Es gibt einen Fehler bei der Kodierung von Symbolen. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Die Kodierung dieser Symbole entspricht nicht dem für die digitale Barrierefreiheit erforderlichen Standard. Infolgedessen können Screenreader die Symbole möglicherweise nicht korrekt anzeigen. Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Symbolschrift. Versuchen Sie, dieses Problem zu lösen, indem Sie eine andere Schriftart für die Symbole verwenden. Wählen Sie nach Möglichkeit eine Standard-Symbolschriftart, z. B. Wingdings. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung oder versuchen Sie, die Symbole ganz zu vermeiden."
+      },
+      "4": {
+        "SUMMARY": "Es gibt einen Fehler bei der Kodierung von Symbolen. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Diese Symbole sind nicht eindeutig kodiert. Infolgedessen können die Screenreader nicht feststellen, welches Symbol angezeigt werden soll. Es handelt sich um ein technisches Problem mit der Kodierung der im Dokument eingebetteten Symbolschrift. Probieren Sie dieses Problem aus, indem Sie eine andere Schriftart für die Symbole verwenden. Wählen Sie eine möglichst standardisierte Schriftart für die Symbole, z. B. Wingdings. Wenn das nicht funktioniert, versuchen Sie es mit einer anderen Anwendung oder versuchen Sie, die Symbole ganz zu vermeiden."
+      }
+    },
+    "7.21.7": {
+      "1": {
+        "SUMMARY": "Ein Buchstabe hat keine Standardkodierung. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Um für Screenreader geeignet zu sein, müssen alle Schriftarten im Dokument eine Standard-Unicode-Kodierung haben. Das ist hier nicht der Fall. Stellen Sie zunächst sicher, dass Sie das Dokument als PDF mit Unicode-Kodierung exportieren. exportieren Sie als PDF/UA, PDF/A-1a oder PDF/A-2a. Wenn dies das Problem nicht löst, versuchen Sie, eine andere Schriftart zu verwenden. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn das auch funktioniert Wenn nicht, versuchen Sie es mit einer anderen Anwendung (z.B. LibreOffice statt Word)."
+      },
+      "2": {
+        "SUMMARY": "Ein Buchstabe hat eine ungültige Kodierung. Betroffene Schriftart(en): ",
+        "DESCRIPTION": "Um für Screenreader geeignet zu sein, müssen alle Schriftarten im Dokument ein Standard-Unicode-Encoding aufweisen. Die Unicode-Kodierung dieses Buchstabens ist ungültig. Dieses Problem ist höchstwahrscheinlich auf die von Ihnen verwendete Schriftart zurückzuführen, oder die von Ihnen verwendete Anwendung hat das PDF exportiert. Versuchen Sie, eine andere Schriftart zu verwenden. Wählen Sie eine möglichst standardisierte Schriftart, z. B. Arial oder Times New Roman. Exportieren Sie das Dokument Exportieren Sie als PDF/UA, PDF/A-1a oder PDF/A-2a. Wenn dies das Problem nicht löst, versuchen Sie, eine andere Schriftart zu verwenden. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn das auch nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z.B. LibreOffice statt Word)."
+      }
+    },
+    "7.21.8": {
+      "1": {
+        "SUMMARY": "Das Dokument enthält undefinierte Buchstaben. Dies betrifft die Schriftart(en): ",
+        "DESCRIPTION": "Ein Dokument soll keine undefinierten Buchstaben oder Symbole enthalten. Screenreader wissen nicht, was sie mit ihnen anfangen sollen. Wenn Sie wissen, um welche(n) Buchstaben es sich handelt, entfernen Sie sie aus dem Dokument. Oder versuchen Sie, eine andere Schriftart zu verwenden. Wählen Sie eine möglichst normale Schriftart, z. B. Arial oder Times New Roman. Wenn dies das Problem nicht löst, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+      }
+    }
+  }
+}

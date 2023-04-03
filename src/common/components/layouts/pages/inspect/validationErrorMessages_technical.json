@@ -398,8 +398,8 @@
 				"DESCRIPTION": "If Table element contains THead kid, Table element should contain one or more TBody kids"
 			},
 			"15": {
-				"SUMMARY": "Irregular table found",
-				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
+				"SUMMARY": "Irregular table found. Table cell has intersection with other cells",
+				"DESCRIPTION": "Tables shall be regular. Table cell shall not have intersection with other cells"
 			},
 			"16": {
 				"SUMMARY": "Table contains a Caption not as its first or last kid",
@@ -496,6 +496,18 @@
 			"40": {
 				"SUMMARY": "Caption is not a first kid of the List",
 				"DESCRIPTION": "L element may contain a Caption element as its first kid"
+			},
+			"41": {
+				"SUMMARY": "Irregular table found.",
+				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
+			},
+			"42": {
+				"SUMMARY": "Irregular table found.",
+				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
+			},
+			"43": {
+				"SUMMARY": "Irregular table found.",
+				"DESCRIPTION": "Tables shall be regular, that is have the same number of cells in each row after accounting for rowspan and colspan attributes."
 			}
 		},
 		"7.3": {
@@ -526,7 +538,11 @@
 		},
 		"7.5": {
 			"1": {
-				"SUMMARY": "In a table not organized with Headers attributes and IDs, a TH cell does not contain a Scope attribute",
+				"SUMMARY": "TD does not contain Headers attribute, and Headers for this table cell can not be determined",
+				"DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
+			},
+			"2": {
+				"SUMMARY": "TD references undefined Header(s), and Headers for this table cell can not be determined",
 				"DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
 			}
 		},

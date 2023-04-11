@@ -4,6 +4,7 @@ import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus }
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
 import { updatePdfFile } from '../pdfFiles/actions';
+import { updatePdfLink } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
@@ -17,7 +18,8 @@ export const setJob = createAction('JOB_SET');
 export const validate = (completedSteps = []) => async (dispatch, getState) => {
     try {
         await createJob(dispatch, getState, completedSteps);
-        await uploadPdfFile(dispatch, getState, completedSteps);
+        //await uploadPdfFile(dispatch, getState, completedSteps);
+        await uploadPdfLink(dispatch, getState, completedSteps);
         await addTask(dispatch, getState, completedSteps);
         await startJob(dispatch, getState, completedSteps);
         await waitToStart(dispatch, getState, completedSteps);
@@ -84,8 +86,19 @@ const createJob = createStep('JOB_CREATE', 10, async (dispatch, getState) => {
 
 const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) => {
     const file = getFile(getState());
+    //console.log('from uploadPdfFile: ', getState().pdfFiles[0]);
     const fileDescriptor = await FileService.uploadFile(file);
     dispatch(updatePdfFile(fileDescriptor));
+    console.log('from uploadPdfFile: ', getState());
+    console.log('from uploadPdfFile: ', dispatch(updatePdfFile(fileDescriptor)));
+});
+
+const uploadPdfLink = createStep('LINK_UPLOAD', 30, async (dispatch, getState) => {
+    const link = getState().pdfLink.link;
+    const fileDescriptor = await FileService.uploadLink(link);
+    dispatch(updatePdfLink(fileDescriptor));
+    console.log('from uploadPdfLink: ', getState());
+    console.log('from uploadPdfLink: ', dispatch(updatePdfLink(fileDescriptor)));
 });
 
 const addTask = createStep('JOB_UPDATE', 10, async (dispatch, getState) => {

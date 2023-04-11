@@ -12,6 +12,7 @@ export const addPdfFile = createAction('PDF_FILE_ADD', ({ file, hasBackup = fals
 export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id }) => ({ id }));
 
 export const storeFile = file => async dispatch => {
+    console.log(file);
     const hasBackup = await setFile(file);
     if (hasBackup) {
         sessionStorage.setItem(JOB_FILE, file.name);

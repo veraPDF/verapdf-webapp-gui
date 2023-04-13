@@ -17,7 +17,6 @@ export const uploadFile = async file => {
 
 export const uploadLink = async link => {
     const url = `${REACT_APP_API_ROOT}/files/url?url=${link}`;
-    console.log('from fileservice', await upload(url, {}));
     return upload(url, {});
 };
 
@@ -41,7 +40,6 @@ const calculateContentMD5 = file =>
         reader.onload = () => {
             // TODO: https://github.com/veraPDF/verapdf-webapp-gui/issues/31
             const wordArray = WordArray.create(reader.result);
-            console.log(wordArray);
             const contentMD5 = md5(wordArray).toString();
             resolve(contentMD5);
         };

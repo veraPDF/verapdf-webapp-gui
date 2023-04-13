@@ -1,15 +1,17 @@
 import { createAction } from 'redux-actions';
 import { getFile, getFileId } from '../pdfFiles/selectors';
+import { getFileLink, getFileLinkId } from '../pdfLink/selectors';
 import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
 import { updatePdfFile } from '../pdfFiles/actions';
-import { updatePdfLink } from '../pdfLink/actions';
+import { setName, setId } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
 import { cancelJob, finishStep, startStep } from './progress/actions';
 import { JOB_STATUS, TASK_STATUS } from '../constants';
+import { isTabFile } from '../application/selectors';
 
 export const setJob = createAction('JOB_SET');
 
@@ -18,8 +20,7 @@ export const setJob = createAction('JOB_SET');
 export const validate = (completedSteps = []) => async (dispatch, getState) => {
     try {
         await createJob(dispatch, getState, completedSteps);
-        //await uploadPdfFile(dispatch, getState, completedSteps);
-        await uploadPdfLink(dispatch, getState, completedSteps);
+        await uploadPdfFile(dispatch, getState, completedSteps);
         await addTask(dispatch, getState, completedSteps);
         await startJob(dispatch, getState, completedSteps);
         await waitToStart(dispatch, getState, completedSteps);
@@ -86,28 +87,25 @@ const createJob = createStep('JOB_CREATE', 10, async (dispatch, getState) => {
 
 const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) => {
     const file = getFile(getState());
-    //console.log('from uploadPdfFile: ', getState().pdfFiles[0]);
-    const fileDescriptor = await FileService.uploadFile(file);
-    dispatch(updatePdfFile(fileDescriptor));
-    console.log('from uploadPdfFile: ', getState());
-    console.log('from uploadPdfFile: ', dispatch(updatePdfFile(fileDescriptor)));
-});
-
-const uploadPdfLink = createStep('LINK_UPLOAD', 30, async (dispatch, getState) => {
-    const link = getState().pdfLink.link;
-    const fileDescriptor = await FileService.uploadLink(link);
-    dispatch(updatePdfLink(fileDescriptor));
-    console.log('from uploadPdfLink: ', getState());
-    console.log('from uploadPdfLink: ', dispatch(updatePdfLink(fileDescriptor)));
+    const link = getFileLink(getState());
+    if (isTabFile(getState())) {
+        const fileDescriptor = await FileService.uploadFile(file);
+        dispatch(updatePdfFile(fileDescriptor));
+    } else {
+        const fileDescriptor = await FileService.uploadLink(link);
+        dispatch(setName(fileDescriptor.fileName));
+        dispatch(setId(fileDescriptor.id));
+    }
 });
 
 const addTask = createStep('JOB_UPDATE', 10, async (dispatch, getState) => {
-    const fileId = getFileId(getState());
-    let job = {
+    const getId = state => (isTabFile(getState()) ? getFileId(state) : getFileLinkId(state));
+    const fileId = getId(getState());
+    const jobParams = {
         ...getJob(getState()),
-        tasks: [{ fileId }],
+        tasks: [{ fileId: fileId }],
     };
-    job = await JobService.updateJob(job);
+    const job = await JobService.updateJob(jobParams);
     dispatch(setJob(job));
 });
 

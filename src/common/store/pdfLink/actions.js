@@ -5,17 +5,15 @@ export const setLink = createAction('PDF_LINK_ADD');
 
 export const setError = createAction('PDF_LINK_ERROR');
 
-//export const updatePdfLink = createAction('PDF_LINK_UPDATE', ({ id }) => ({ id }));
+export const setName = createAction('PDF_LINK_NAME');
 
-export const updatePdfLink = createAction('PDF_LINK_UPDATE', ({ id }) => ({ id }));
+export const setId = createAction('PDF_LINK_ID');
 
 export const uploadLinkAction = () => {
-    return async (dispatch, getState) => {
+    return async (_dispatch, getState) => {
         const { link, error } = getState().pdfLink;
         if (!error && link?.length) {
-            const json = await uploadLink(link);
-            dispatch(updatePdfLink(link));
-            console.log('from pdflink', json);
+            await uploadLink(link);
         }
     };
 };

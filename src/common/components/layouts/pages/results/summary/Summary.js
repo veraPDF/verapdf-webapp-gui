@@ -12,7 +12,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
+import { getLinks } from '../../../../../store/pdfLink/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
+import { isTabFile } from '../../../../../store/application/selectors';
 
 import './Summary.scss';
 
@@ -144,7 +146,7 @@ Summary.propTypes = {
 function mapStateToProps(state) {
     return {
         resultSummary: getResultSummary(state),
-        fileInfo: getFileDescriptor(state),
+        fileInfo: isTabFile(state) ? getFileDescriptor(state) : getLinks(state),
         jobEndStatus: getJobEndStatus(state),
     };
 }

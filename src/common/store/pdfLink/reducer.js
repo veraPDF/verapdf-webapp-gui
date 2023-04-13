@@ -2,6 +2,8 @@ import { handleActions } from 'redux-actions';
 const DEFAULT_STATE = {
     link: '',
     error: false,
+    fileId: '',
+    name: '',
 };
 
 export default handleActions(
@@ -12,6 +14,12 @@ export default handleActions(
         },
         PDF_LINK_ERROR: (state, { payload: error }) => {
             return { ...state, error };
+        },
+        PDF_LINK_ID: (state, { payload: fileId }) => {
+            return { ...state, fileId };
+        },
+        PDF_LINK_NAME: (state, { payload: name }) => {
+            return { ...state, name };
         },
     },
     DEFAULT_STATE

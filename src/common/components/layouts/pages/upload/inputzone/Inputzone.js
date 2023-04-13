@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import * as pdfLink from '../../../../../store/pdfLink/actions';
+import { getFileLink, getFileError } from '../../../../../store/pdfLink/selectors';
 import './Inputzone.scss';
+import classNames from 'classnames';
 
 const INPUTZONE_TEXT = 'URL';
 const INVALID_URL = 'Invalid URL';
 
 function Inputzone({ error, link, setLink, setError }) {
+    const [focused, setFocused] = useState(false);
+    const [filled, setFilled] = useState(false);
     useEffect(() => {
         setError(!isValidUrl(link));
     }, [link, setError]);
     const onChange = ({ target }) => {
         setLink(target.value);
+        setFilled(!!target.value.length);
     };
     const isValidUrl = url => {
         let newUrl;
@@ -30,16 +35,19 @@ function Inputzone({ error, link, setLink, setError }) {
     };
     return (
         <section className="inputzone">
-            <div className="inputzone__container">
-                <TextField
-                    label={INPUTZONE_TEXT}
-                    fullWidth
-                    value={link}
-                    onChange={onChange}
-                    error={error}
-                    helperText={link.length && error ? INVALID_URL : null}
-                />
-            </div>
+            <TextField
+                label={INPUTZONE_TEXT}
+                fullWidth
+                className={classNames('inputzone__container', {
+                    _focused: focused,
+                    _filled: filled,
+                })}
+                value={link}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                onChange={onChange}
+                helperText={error && link?.length ? INVALID_URL : null}
+            />
         </section>
     );
 }
@@ -53,8 +61,8 @@ Inputzone.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        link: state.pdfLink.link,
-        error: state.pdfLink.error,
+        link: getFileLink(state),
+        error: getFileError(state),
     };
 };
 const mapDispatchToProps = dispatch => {

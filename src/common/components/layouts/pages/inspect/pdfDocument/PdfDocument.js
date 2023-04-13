@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';
-
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
+import { getFileLink } from '../../../../../store/pdfLink/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
-import { getPage } from '../../../../../store/application/selectors';
+import { getPage, isTabFile } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 
 import Alert from '@material-ui/lab/Alert';
@@ -25,7 +25,8 @@ const SummaryInterface = PropTypes.shape({
 });
 
 PdfDocument.propTypes = {
-    file: PropTypes.object.isRequired,
+    file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
+    //file: PropTypes.object.isRequired,
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
     scale: PropTypes.string.isRequired,
@@ -198,7 +199,7 @@ function PdfDocument(props) {
 
 function mapStateToProps(state) {
     return {
-        file: getPdfFiles(state)[0],
+        file: isTabFile(state) ? getPdfFiles(state)[0] : getFileLink(state),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),
     };

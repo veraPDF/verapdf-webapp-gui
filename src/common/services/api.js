@@ -19,7 +19,6 @@ export const post = (url, data = {}) => {
 };
 
 export const put = (url, data = {}) => {
-    console.log(JSON.stringify(data));
     return fetch(url, {
         method: 'PUT',
         headers: {

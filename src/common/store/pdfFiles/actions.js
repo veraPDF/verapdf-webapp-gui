@@ -9,7 +9,7 @@ export const addPdfFile = createAction('PDF_FILE_ADD', ({ file, hasBackup = fals
     hasBackup,
 }));
 
-export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id }) => ({ id }));
+export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id, fileName }) => ({ id, name: fileName }));
 
 export const storeFile = file => async dispatch => {
     const hasBackup = await setFile(file);

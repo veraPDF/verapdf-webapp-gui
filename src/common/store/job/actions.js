@@ -1,17 +1,17 @@
 import { createAction } from 'redux-actions';
 import { getFile, getFileId } from '../pdfFiles/selectors';
-import { getFileLink, getFileLinkId } from '../pdfLink/selectors';
+import { getFileLink } from '../pdfLink/selectors';
 import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
 import { updatePdfFile } from '../pdfFiles/actions';
-import { setName, setId } from '../pdfLink/actions';
+import { uploadLinkAction } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
 import { cancelJob, finishStep, startStep } from './progress/actions';
 import { JOB_STATUS, TASK_STATUS } from '../constants';
-import { isTabFile } from '../application/selectors';
+import { isFileUploadMode } from '../application/selectors';
 
 export const setJob = createAction('JOB_SET');
 
@@ -86,21 +86,20 @@ const createJob = createStep('JOB_CREATE', 10, async (dispatch, getState) => {
 });
 
 const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) => {
-    const file = getFile(getState());
-    const link = getFileLink(getState());
-    if (isTabFile(getState())) {
+    if (isFileUploadMode(getState())) {
+        const file = getFile(getState());
         const fileDescriptor = await FileService.uploadFile(file);
         dispatch(updatePdfFile(fileDescriptor));
     } else {
+        const link = getFileLink(getState());
+        uploadLinkAction(link);
         const fileDescriptor = await FileService.uploadLink(link);
-        dispatch(setName(fileDescriptor.fileName));
-        dispatch(setId(fileDescriptor.id));
+        dispatch(updatePdfFile(fileDescriptor));
     }
 });
 
 const addTask = createStep('JOB_UPDATE', 10, async (dispatch, getState) => {
-    const getId = state => (isTabFile(getState()) ? getFileId(state) : getFileLinkId(state));
-    const fileId = getId(getState());
+    const fileId = getFileId(getState());
     const jobParams = {
         ...getJob(getState()),
         tasks: [{ fileId: fileId }],

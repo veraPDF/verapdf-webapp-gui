@@ -24,6 +24,20 @@ export const getFileContent = id => {
     return get(`${REACT_APP_API_ROOT}/files/${id}`);
 };
 
+export const isValidUrl = url => {
+    let newUrl;
+    try {
+        newUrl = new URL(url);
+    } catch (e) {
+        return false;
+    }
+    return (
+        (newUrl.protocol === 'http:' || newUrl.protocol === 'https:') &&
+        newUrl.pathname?.length > 5 &&
+        newUrl.pathname.slice(-4) === '.pdf'
+    );
+};
+
 const buildFileData = async file => {
     const fileData = new FormData();
     fileData.append('file', file);

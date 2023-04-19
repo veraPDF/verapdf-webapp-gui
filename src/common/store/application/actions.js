@@ -58,6 +58,6 @@ export const resetOnFileUpload = file => async (dispatch, getState) => {
 
 export const setPage = createAction('APP_PAGE_SET', page => page);
 
-export const setTabFile = createAction('APP_TAB_FILE_SET', isTabFile => isTabFile);
+export const setFileUploadMode = createAction('APP_FILE_UPLOAD_MODE', fileUploadMode => fileUploadMode);
 
 export const setNumPages = createAction('APP_NUM_PAGES_SET', numPages => numPages);

@@ -9,15 +9,17 @@ import Dropzone from './dropzone/Dropzone';
 import Inputzone from './inputzone/Inputzone';
 import WizardStep from '../../wizardStep/WizardStep';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
-import { uploadLinkAction } from '../../../../store/pdfLink/actions';
+import { setLink } from '../../../../store/pdfLink/actions';
 import { getFileLink, getFileError } from '../../../../store/pdfLink/selectors';
-import { isTabFile } from '../../../../store/application/selectors';
-import { setTabFile } from '../../../../store/application/actions';
+import { isFileUploadMode } from '../../../../store/application/selectors';
+import { setFileUploadMode } from '../../../../store/application/actions';
+
+import './Upload.scss';
 
 const ZONES = ['upload from computer', 'upload from web'];
 
-function Upload({ filesAttached, link, error, onLoadLink, isTabFile, setTabFile }) {
-    const selectedZone = ZONES[isTabFile ? 0 : 1];
+function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMode }) {
+    const selectedZone = useMemo(() => ZONES[isFileUploadMode ? 0 : 1], [isFileUploadMode]);
     const forwardButtonDrop = useMemo(
         () => ({
             label: 'Configure job',
@@ -42,14 +44,14 @@ function Upload({ filesAttached, link, error, onLoadLink, isTabFile, setTabFile 
         ));
     }, []);
     useEffect(() => {
-        if (!error) onLoadLink(link);
-    }, [link, error, onLoadLink]);
+        if (!error) setLink(link);
+    }, [link, error]);
     const handleZone = (_event, zone) => {
-        setTabFile(zone === ZONES[0]);
+        zone !== null && setFileUploadMode(zone === ZONES[0]);
     };
     return (
         <WizardStep stepIndex={AppPages.UPLOAD}>
-            <div style={{ width: '100%', padding: '20px 0 40px' }}>
+            <div className="upload">
                 <Box display="flex" justifyContent="center">
                     <ToggleButtonGroup size="small" value={selectedZone} exclusive onChange={handleZone}>
                         {buttons}
@@ -66,9 +68,8 @@ Upload.propTypes = {
     filesAttached: PropTypes.bool.isRequired,
     link: PropTypes.string.isRequired,
     error: PropTypes.bool.isRequired,
-    isTabFile: PropTypes.bool.isRequired,
-    onLoadLink: PropTypes.func.isRequired,
-    setTabFile: PropTypes.func.isRequired,
+    isFileUploadMode: PropTypes.bool.isRequired,
+    setFileUploadMode: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -76,13 +77,12 @@ const mapStateToProps = state => {
         filesAttached: hasFilesAttached(state),
         link: getFileLink(state),
         error: getFileError(state),
-        isTabFile: isTabFile(state),
+        isFileUploadMode: isFileUploadMode(state),
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadLink: link => dispatch(uploadLinkAction(link)),
-        setTabFile: tabFile => dispatch(setTabFile(tabFile)),
+        setFileUploadMode: fileUploadMode => dispatch(setFileUploadMode(fileUploadMode)),
     };
 };
 

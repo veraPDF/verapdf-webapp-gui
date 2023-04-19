@@ -7,7 +7,7 @@ import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getFileLink } from '../../../../../store/pdfLink/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
-import { getPage, isTabFile } from '../../../../../store/application/selectors';
+import { getPage, isFileUploadMode } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 
 import Alert from '@material-ui/lab/Alert';
@@ -26,7 +26,6 @@ const SummaryInterface = PropTypes.shape({
 
 PdfDocument.propTypes = {
     file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
-    //file: PropTypes.object.isRequired,
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     selectedCheck: PropTypes.string,
     scale: PropTypes.string.isRequired,
@@ -199,7 +198,7 @@ function PdfDocument(props) {
 
 function mapStateToProps(state) {
     return {
-        file: isTabFile(state) ? getPdfFiles(state)[0] : getFileLink(state),
+        file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLink(state),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),
     };

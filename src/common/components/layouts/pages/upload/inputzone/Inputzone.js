@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import * as pdfLink from '../../../../../store/pdfLink/actions';
 import { getFileLink, getFileError } from '../../../../../store/pdfLink/selectors';
+import { isValidUrl } from '../../../../../services/fileService';
 import './Inputzone.scss';
 import classNames from 'classnames';
 
@@ -20,19 +21,6 @@ function Inputzone({ error, link, setLink, setError }) {
         setLink(target.value);
         setFilled(!!target.value.length);
     };
-    const isValidUrl = url => {
-        let newUrl;
-        try {
-            newUrl = new URL(url);
-        } catch (e) {
-            return false;
-        }
-        return (
-            (newUrl.protocol === 'http:' || newUrl.protocol === 'https:') &&
-            newUrl.pathname?.length > 5 &&
-            newUrl.pathname.slice(-4) === '.pdf'
-        );
-    };
     return (
         <section className="inputzone">
             <TextField
@@ -46,6 +34,7 @@ function Inputzone({ error, link, setLink, setError }) {
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onChange={onChange}
+                error={error && !!link?.length}
                 helperText={error && link?.length ? INVALID_URL : null}
             />
         </section>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import Box from '@material-ui/core/Box';
@@ -20,21 +20,13 @@ const ZONES = ['upload from computer', 'upload from web'];
 
 function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMode }) {
     const selectedZone = useMemo(() => ZONES[isFileUploadMode ? 0 : 1], [isFileUploadMode]);
-    const forwardButtonDrop = useMemo(
+    const forwardButton = useMemo(
         () => ({
             label: 'Configure job',
             to: AppPages.SETTINGS,
-            disabled: !filesAttached,
+            disabled: isFileUploadMode ? !filesAttached : error,
         }),
-        [filesAttached]
-    );
-    const forwardButtonInput = useMemo(
-        () => ({
-            label: 'Configure job',
-            to: AppPages.SETTINGS,
-            disabled: error,
-        }),
-        [error]
+        [filesAttached, isFileUploadMode, error]
     );
     const buttons = useMemo(() => {
         return ZONES.map(zone => (
@@ -43,9 +35,9 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
             </ToggleButton>
         ));
     }, []);
-    useEffect(() => {
-        if (!error) setLink(link);
-    }, [link, error]);
+    const handleInput = () => {
+        !error && setLink(link);
+    };
     const handleZone = (_event, zone) => {
         zone !== null && setFileUploadMode(zone === ZONES[0]);
     };
@@ -58,8 +50,8 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
                     </ToggleButtonGroup>
                 </Box>
             </div>
-            {selectedZone === ZONES[0] ? <Dropzone /> : <Inputzone />}
-            <PageNavigation forward={selectedZone === ZONES[0] ? forwardButtonDrop : forwardButtonInput} />
+            {isFileUploadMode ? <Dropzone /> : <Inputzone onChange={handleInput} />}
+            <PageNavigation forward={forwardButton} />
         </WizardStep>
     );
 }

@@ -105,11 +105,12 @@ function JobStatus({
                         summary={getProgressSummary(steps, jobQueuePosition, cancellingJob)}
                         progress={!cancellingJob ? jobProgress : null}
                     />
-                    {jobStatus === JOB_STATUS.PROCESSING && !cancellingJob && (
-                        <div className="processing-controls">
+                    <div className="processing-controls">
+                        {(jobStatus === JOB_STATUS.WAITING ||
+                            (jobStatus === JOB_STATUS.PROCESSING && !cancellingJob)) && (
                             <Button onClick={onCancel}>Cancel validation</Button>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </StatusPage>
             );
     }

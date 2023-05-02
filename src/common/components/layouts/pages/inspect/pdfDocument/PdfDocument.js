@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
@@ -15,6 +15,10 @@ import Alert from '@material-ui/lab/Alert';
 import Close from '@material-ui/icons/Close';
 
 import './PdfDocument.scss';
+import { getItem } from '../../../../../services/localStorageService';
+import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
+import { getProfile } from '../../../../../store/job/settings/selectors';
+import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
 
 const { PUBLIC_URL } = process.env;
 
@@ -28,6 +32,7 @@ const SummaryInterface = PropTypes.shape({
 PdfDocument.propTypes = {
     file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    errorMessages: PropTypes.object,
     selectedCheck: PropTypes.string,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
@@ -37,6 +42,7 @@ PdfDocument.propTypes = {
     setNumPages: PropTypes.func.isRequired,
     onWarning: PropTypes.func,
     warningMessage: PropTypes.string,
+    profile: PropTypes.string.isRequired,
 };
 
 function getPageFromErrorPlace(context, structureTree) {
@@ -92,11 +98,13 @@ function PdfDocument(props) {
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [activeBboxIndex, setActiveBboxIndex] = useState(null);
     const bboxes = useMemo(() => {
-        return Object.values(mapOfErrors).map(({ pageIndex, location, groupId }) => ({
+        return Object.values(mapOfErrors).map(({ pageIndex, location, groupId, bboxTitle }) => ({
             location,
             groupId,
+            bboxTitle,
         }));
     }, [mapOfErrors]);
+    const [language] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
 
     useEffect(() => {
         setActiveBboxIndex(Object.keys(mapOfErrors).indexOf(props.selectedCheck));
@@ -116,15 +124,40 @@ function PdfDocument(props) {
         }
     }, [props.file]);
 
+    function getTitleDescription({ specification, clause, testNumber }, errorMessages) {
+        return (
+            errorMessages?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
+            `${specification}, clause ${clause}, test ${testNumber}`
+        );
+    }
+
+    const errorMessages = useMemo(() => {
+        switch (props.profile) {
+            case errorProfiles.TAGGED_PDF:
+                return errorMessagesMap[props.profile][language];
+            default:
+                return errorMessagesMap[errorProfiles.OTHER][language];
+        }
+    }, [language, props.profile]);
+
     const onDocumentReady = useCallback(
         document => {
             props.setPdfName(props.file.name);
             props.setNumPages(document.numPages);
-            const newMapOfErrors = {};
+            let newMapOfErrors = {};
+            let allChecks = [];
             const structureTree = document._pdfInfo.structureTree;
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
                 props.ruleSummaries.forEach((summary, index) => {
+                    allChecks = [...allChecks, ...summary.checks];
+                    let rule = {
+                        specification: summary.specification,
+                        clause: summary.clause,
+                        testNumber: summary.testNumber,
+                    };
+
                     summary.checks.forEach((check, checkIndex) => {
+                        let bboxTitle = '';
                         let pageIndex = -1;
                         if (!check.location) {
                             pageIndex = getPageFromErrorPlace(check.context, structureTree);
@@ -146,15 +179,20 @@ function PdfDocument(props) {
                                 }
                             }
                         }
+                        if (check && check.status === 'failed') {
+                            bboxTitle = getTitleDescription(rule, errorMessages);
+                        }
                         const checkId = getCheckId(check);
-                        newMapOfErrors[`${index}:${checkIndex}:${check.location || check.context}`] = {
+                        newMapOfErrors[`${index}:${checkIndex}:${check.location || check.context}:${bboxTitle}}`] = {
                             pageIndex,
                             location: check.location || check.context,
                             groupId: checkId ? `${summary.clause}-${summary.testNumber}-${checkId}` : null,
+                            bboxTitle: bboxTitle,
                         };
                     });
                 });
             }
+            newMapOfErrors = _.orderBy(newMapOfErrors, ['pageIndex'], ['asc']);
             props.onDocumentReady(newMapOfErrors);
             setMapOfErrors({ ...newMapOfErrors });
         },
@@ -172,8 +210,11 @@ function PdfDocument(props) {
         },
         [props]
     );
+
+    const onSelectBboxByKeyboard = useCallback(data => setActiveBboxIndex(data), []);
+
     return (
-        <div className="pdf-viewer__wrapper">
+        <div className="pdf-viewer__wrapper" role="button" tabIndex={0}>
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}
@@ -188,8 +229,10 @@ function PdfDocument(props) {
                 onLoadSuccess={onDocumentReady}
                 activeBboxIndex={activeBboxIndex}
                 onBboxClick={data => onBboxSelect(data)}
+                onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}
                 page={props.page}
+                ruleSummaries={props.ruleSummaries}
                 onPageChange={props.onPageChange}
                 onWarning={props.onWarning}
             />
@@ -202,6 +245,7 @@ function mapStateToProps(state) {
         file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLinkById(getTaskFileId(state)),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),
+        profile: getProfile(state),
     };
 }
 

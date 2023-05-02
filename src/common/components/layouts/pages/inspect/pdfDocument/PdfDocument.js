@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';
 import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
-import { getFileLink } from '../../../../../store/pdfLink/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
 import { getPage, isFileUploadMode } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
+import { getTaskFileId } from '../../../../../store/job/selectors';
+import { getFileLinkById } from '../../../../../services/fileService';
 
 import Alert from '@material-ui/lab/Alert';
 import Close from '@material-ui/icons/Close';
@@ -198,7 +199,7 @@ function PdfDocument(props) {
 
 function mapStateToProps(state) {
     return {
-        file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLink(state),
+        file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLinkById(getTaskFileId(state)),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),
     };

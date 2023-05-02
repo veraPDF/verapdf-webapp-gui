@@ -59,3 +59,5 @@ const calculateContentMD5 = file =>
         };
         reader.readAsArrayBuffer(file);
     });
+
+export const getFileLinkById = id => `${REACT_APP_API_ROOT}/files/${id}`;

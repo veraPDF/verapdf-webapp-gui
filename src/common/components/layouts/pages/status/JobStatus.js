@@ -29,11 +29,6 @@ export const STEPS = {
         complete: 'PDF uploaded.',
         errorDetails: errorMessage => `Failed to upload PDF file: ${errorMessage}`,
     },
-    LINK_UPLOAD: {
-        active: 'Uploading PDF...',
-        complete: 'PDF uploaded.',
-        errorDetails: errorMessage => `Failed to upload PDF link: ${errorMessage}`,
-    },
     JOB_UPDATE: {
         active: 'Validation job updating...',
         complete: 'Validation job updated.',

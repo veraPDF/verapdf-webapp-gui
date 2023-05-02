@@ -36,18 +36,18 @@ const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
-const languageEnum = {
+export const languageEnum = {
     English: 'English',
     Dutch: 'Dutch',
     German: 'German',
     Technical: 'Technical',
 };
-const errorProfiles = {
+export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
     OTHER: 'Other',
 };
 
-const errorMessagesMap = {
+export const errorMessagesMap = {
     [errorProfiles.OTHER]: {
         [languageEnum.English]: errorMap_en,
         [languageEnum.Dutch]: errorMap_nl,
@@ -87,6 +87,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 return errorMessagesMap[errorProfiles.OTHER][language];
         }
     }, [language, profile]);
+
     const onInfoClick = useCallback(rule => {
         setOpenedRule(rule);
         setInfoDialogOpened(true);
@@ -114,7 +115,6 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
             }
         }
     }, [expandedRule, selectedCheck, prevSelectedCheck]);
-
     return (
         <section className="summary-tree">
             <List
@@ -244,8 +244,8 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
         const isGrouped =
             selectedCheck &&
             errorsMap[selectedCheck] &&
-            errorsMap[selectedCheck].groupId &&
-            errorsMap[checkKey].groupId &&
+            errorsMap[selectedCheck]?.groupId &&
+            errorsMap[checkKey]?.groupId &&
             errorsMap[selectedCheck].groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
             selectedCheck !== checkKey;
         return (
@@ -355,7 +355,7 @@ function getPageNumber(checkKey, errorsMap) {
     return errorsMap[checkKey].pageIndex + 1;
 }
 
-function sortChecksByPage(checks, errorsMap) {
+export function sortChecksByPage(checks, errorsMap) {
     let newChecks = [...checks];
     newChecks.sort(({ id: a }, { id: b }) => {
         const pageA = getPageNumber(a, errorsMap);

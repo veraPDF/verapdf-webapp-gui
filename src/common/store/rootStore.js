@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-import { JOB_FILE, JOB_STATUS } from './constants';
-import { finishAppStartup } from './application/actions';
+import { JOB_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
+import { finishAppStartup, setFileUploadMode } from './application/actions';
 import { updateServerStatus } from './serverInfo/actions';
 import { addPdfFile } from './pdfFiles/actions';
 import { updateProfiles } from './validationProfiles/actions';
@@ -10,16 +10,22 @@ import { getFile } from '../services/pdfStorage';
 import { getJob } from '../services/jobService';
 import { setJob, validate, loadValidationResult } from './job/actions';
 import { getUnsavedFile } from './pdfFiles/selectors';
-import { isLocked } from './application/selectors';
+import { isFileUploadMode, isLocked } from './application/selectors';
+import { setLink } from './pdfLink/actions';
 
 export default function configureStore() {
     const store = createStore(rootReducer, applyMiddleware(thunk));
+
+    const mode = sessionStorage.getItem(JOB_MODE);
+    if (mode !== null) {
+        store.dispatch(setFileUploadMode(mode === 'true'));
+    }
 
     window.onbeforeunload = () => {
         // Show confirmation when we reload page while:
         // - selected PDF file is not saved for some reason (and thus cannot be restored)
         // - application is locked, e.g. when job creation was started but not yet complete (and thus cannot be restored)
-        if (getUnsavedFile(store.getState()) || isLocked(store.getState())) {
+        if ((getUnsavedFile(store.getState()) && isFileUploadMode(store.getState())) || isLocked(store.getState())) {
             return '';
         }
     };
@@ -43,6 +49,11 @@ export default function configureStore() {
 
     // Get validationProfiles list
     store.dispatch(updateProfiles());
+
+    const link = sessionStorage.getItem(JOB_LINK);
+    if (link !== null) {
+        store.dispatch(setLink(link));
+    }
 
     if (startupPromises.length > 0) {
         Promise.all(startupPromises).then(() => {

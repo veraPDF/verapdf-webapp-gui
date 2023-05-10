@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
@@ -144,10 +144,11 @@ function PdfDocument(props) {
             props.setPdfName(props.file.name);
             props.setNumPages(document.numPages);
             let newMapOfErrors = {};
-            let bboxTitle = '';
+            let allChecks = [];
             const structureTree = document._pdfInfo.structureTree;
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
                 props.ruleSummaries.forEach((summary, index) => {
+                    allChecks = [...allChecks, ...summary.checks];
                     let rule = {
                         specification: summary.specification,
                         clause: summary.clause,
@@ -155,6 +156,7 @@ function PdfDocument(props) {
                     };
 
                     summary.checks.forEach((check, checkIndex) => {
+                        let bboxTitle = '';
                         let pageIndex = -1;
                         if (!check.location) {
                             pageIndex = getPageFromErrorPlace(check.context, structureTree);
@@ -189,7 +191,7 @@ function PdfDocument(props) {
                     });
                 });
             }
-
+            newMapOfErrors = _.orderBy(newMapOfErrors, ['pageIndex'], ['asc']);
             props.onDocumentReady(newMapOfErrors);
             setMapOfErrors({ ...newMapOfErrors });
         },
@@ -208,8 +210,16 @@ function PdfDocument(props) {
         [props]
     );
 
+    const handleKeyboardEvent = (e: KeyboardEvent<HTMLDivElement>) => {
+        if ((e.ctrlKey || e.metaKey) && e.which === 38) {
+            _.isUndefined(props.selectedCheck) ? setActiveBboxIndex(1) : setActiveBboxIndex(activeBboxIndex - 1);
+        } else if ((e.ctrlKey || e.metaKey) && e.which === 40) {
+            _.isUndefined(props.selectedCheck) ? setActiveBboxIndex(1) : setActiveBboxIndex(activeBboxIndex + 1);
+        }
+    };
+
     return (
-        <div className="pdf-viewer__wrapper">
+        <div className="pdf-viewer__wrapper" role="button" tabIndex={0} onKeyDown={handleKeyboardEvent}>
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}

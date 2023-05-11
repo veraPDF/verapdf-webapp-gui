@@ -43,8 +43,8 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
     const handleZone = (_event, zone) => {
         zone !== null && setFileUploadMode(zone === ZONES[0]);
     };
-    function storeData(mode, link) {
-        storeMode(mode);
+    function storeData(isUploadMode, link) {
+        storeMode(isUploadMode);
         storeLink(link);
     }
     return (

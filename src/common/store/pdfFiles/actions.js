@@ -16,24 +16,22 @@ export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id, fileName, co
 }));
 
 export const storeFile = file => async dispatch => {
-    const hasBackup = await setFile(file);
-    if (hasBackup) {
-        sessionStorage.setItem(JOB_FILE, file.name);
-    }
+    const hasBackup = await saveFileToStorage(file);
     dispatch(addPdfFile({ file, hasBackup }));
 };
 
-export const storeFileWithLink = file => async dispatch => {
+export const saveFileToStorage = async file => {
     const hasBackup = await setFile(file);
     if (hasBackup) {
         sessionStorage.setItem(JOB_FILE, file.name);
     }
+    return hasBackup;
 };
 
 export const storeLink = link => {
     sessionStorage.setItem(JOB_LINK, link);
 };
 
-export const storeMode = mode => {
-    sessionStorage.setItem(JOB_MODE, mode);
+export const storeMode = isUploadMode => {
+    sessionStorage.setItem(JOB_MODE, isUploadMode);
 };

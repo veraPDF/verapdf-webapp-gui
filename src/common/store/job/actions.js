@@ -4,7 +4,7 @@ import { getFileLink } from '../pdfLink/selectors';
 import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
-import { updatePdfFile, storeFileWithLink } from '../pdfFiles/actions';
+import { updatePdfFile, saveFileToStorage } from '../pdfFiles/actions';
 import { uploadLinkAction } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
@@ -95,7 +95,7 @@ const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) =
         uploadLinkAction(link);
         const fileDescriptor = await FileService.uploadLink(link);
         dispatch(updatePdfFile(fileDescriptor));
-        await dispatch(storeFileWithLink(getFileDescriptor(getState())));
+        await saveFileToStorage(getFileDescriptor(getState()));
     }
 });
 

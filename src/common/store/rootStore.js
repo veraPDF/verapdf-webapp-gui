@@ -16,9 +16,9 @@ import { setLink } from './pdfLink/actions';
 export default function configureStore() {
     const store = createStore(rootReducer, applyMiddleware(thunk));
 
-    const mode = sessionStorage.getItem(JOB_MODE);
-    if (mode !== null) {
-        store.dispatch(setFileUploadMode(mode === 'true'));
+    const isUploadMode = sessionStorage.getItem(JOB_MODE);
+    if (isUploadMode !== null) {
+        store.dispatch(setFileUploadMode(isUploadMode === 'true'));
     }
 
     window.onbeforeunload = () => {

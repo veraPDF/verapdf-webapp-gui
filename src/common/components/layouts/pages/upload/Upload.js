@@ -13,6 +13,7 @@ import { setLink } from '../../../../store/pdfLink/actions';
 import { getFileLink, getFileError } from '../../../../store/pdfLink/selectors';
 import { isFileUploadMode } from '../../../../store/application/selectors';
 import { setFileUploadMode } from '../../../../store/application/actions';
+import { storeLink, storeMode } from '../../../../store/pdfFiles/actions';
 
 import './Upload.scss';
 
@@ -25,8 +26,9 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
             label: 'Configure job',
             to: AppPages.SETTINGS,
             disabled: isFileUploadMode ? !filesAttached : error,
+            onClick: storeData(isFileUploadMode, link),
         }),
-        [filesAttached, isFileUploadMode, error]
+        [filesAttached, isFileUploadMode, link, error]
     );
     const buttons = useMemo(() => {
         return ZONES.map(zone => (
@@ -41,6 +43,10 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
     const handleZone = (_event, zone) => {
         zone !== null && setFileUploadMode(zone === ZONES[0]);
     };
+    function storeData(isUploadMode, link) {
+        storeMode(isUploadMode);
+        storeLink(link);
+    }
     return (
         <WizardStep stepIndex={AppPages.UPLOAD}>
             <div className="upload">

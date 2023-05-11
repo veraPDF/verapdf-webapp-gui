@@ -1,4 +1,6 @@
 export const JOB_FILE = 'JOB_FILE';
+export const JOB_LINK = 'JOB_LINK';
+export const JOB_MODE = 'JOB_MODE';
 export const JOB_SETTINGS = 'JOB_SETTINGS';
 
 export const JOB_STATUS = {

@@ -1,0 +1,30 @@
+@import "../../../../variables";
+
+.inputzone {
+    width: 100%;
+    transition: $linear;
+  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+    &__container {
+      width: 70%;
+      max-width: 700px;
+      height: 50px;
+      outline: none;
+      transition: $linear;
+  
+      color: $color-black--50;
+
+      &:hover,
+      &._focused {
+        border-color: $color-primary;
+      }
+  
+      &._filled {
+        color: $color-black--50;
+        border-color: $color-success;
+      }
+    }
+  }

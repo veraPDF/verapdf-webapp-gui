@@ -47,7 +47,7 @@ yarn-error.log*
 
 ## Directory-based project format:
 .idea/
-
+.vscode/
 # Server environment
 /.bin/set-env.sh
 

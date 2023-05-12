@@ -15,8 +15,27 @@ export const uploadFile = async file => {
     return upload(url, data);
 };
 
+export const uploadLink = async link => {
+    const url = `${REACT_APP_API_ROOT}/files/url?url=${link}`;
+    return upload(url, {});
+};
+
 export const getFileContent = id => {
     return get(`${REACT_APP_API_ROOT}/files/${id}`);
+};
+
+export const isValidUrl = url => {
+    let newUrl;
+    try {
+        newUrl = new URL(url);
+    } catch (e) {
+        return false;
+    }
+    return (
+        (newUrl.protocol === 'http:' || newUrl.protocol === 'https:') &&
+        newUrl.pathname?.length > 5 &&
+        newUrl.pathname.slice(-4) === '.pdf'
+    );
 };
 
 const buildFileData = async file => {
@@ -40,3 +59,5 @@ const calculateContentMD5 = file =>
         };
         reader.readAsArrayBuffer(file);
     });
+
+export const getFileLinkById = id => `${REACT_APP_API_ROOT}/files/${id}`;

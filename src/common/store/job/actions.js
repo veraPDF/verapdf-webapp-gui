@@ -1,14 +1,17 @@
 import { createAction } from 'redux-actions';
-import { getFile, getFileId } from '../pdfFiles/selectors';
+import { getFile, getFileDescriptor, getFileId } from '../pdfFiles/selectors';
+import { getFileLink } from '../pdfLink/selectors';
 import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
-import { updatePdfFile } from '../pdfFiles/actions';
+import { updatePdfFile, saveFileToStorage } from '../pdfFiles/actions';
+import { uploadLinkAction } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
 import { cancelJob, finishStep, startStep } from './progress/actions';
 import { JOB_STATUS, TASK_STATUS } from '../constants';
+import { isFileUploadMode } from '../application/selectors';
 
 export const setJob = createAction('JOB_SET');
 
@@ -83,18 +86,26 @@ const createJob = createStep('JOB_CREATE', 10, async (dispatch, getState) => {
 });
 
 const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) => {
-    const file = getFile(getState());
-    const fileDescriptor = await FileService.uploadFile(file);
-    dispatch(updatePdfFile(fileDescriptor));
+    if (isFileUploadMode(getState())) {
+        const file = getFile(getState());
+        const fileDescriptor = await FileService.uploadFile(file);
+        dispatch(updatePdfFile(fileDescriptor));
+    } else {
+        const link = getFileLink(getState());
+        uploadLinkAction(link);
+        const fileDescriptor = await FileService.uploadLink(link);
+        dispatch(updatePdfFile(fileDescriptor));
+        await saveFileToStorage(getFileDescriptor(getState()));
+    }
 });
 
 const addTask = createStep('JOB_UPDATE', 10, async (dispatch, getState) => {
     const fileId = getFileId(getState());
-    let job = {
+    const jobParams = {
         ...getJob(getState()),
-        tasks: [{ fileId }],
+        tasks: [{ fileId: fileId }],
     };
-    job = await JobService.updateJob(job);
+    const job = await JobService.updateJob(jobParams);
     dispatch(setJob(job));
 });
 

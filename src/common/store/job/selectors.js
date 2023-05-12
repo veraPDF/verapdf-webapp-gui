@@ -20,6 +20,8 @@ export const getTaskStatus = createSelector(getTask, task => task?.status);
 
 export const getTaskResultId = createSelector(getTask, task => task?.validationResultId);
 
+export const getTaskFileId = createSelector(getTask, task => task?.fileId);
+
 export const getTaskErrorMessage = createSelector(
     getTask,
     task => task?.errorMessage || task?.errorType || `Task status: ${task?.status || 'unknown'}`

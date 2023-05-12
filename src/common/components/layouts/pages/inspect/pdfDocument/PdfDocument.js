@@ -210,16 +210,10 @@ function PdfDocument(props) {
         [props]
     );
 
-    const handleKeyboardEvent = (e: KeyboardEvent<HTMLDivElement>) => {
-        if ((e.ctrlKey || e.metaKey) && e.which === 38) {
-            _.isUndefined(props.selectedCheck) ? setActiveBboxIndex(1) : setActiveBboxIndex(activeBboxIndex - 1);
-        } else if ((e.ctrlKey || e.metaKey) && e.which === 40) {
-            _.isUndefined(props.selectedCheck) ? setActiveBboxIndex(1) : setActiveBboxIndex(activeBboxIndex + 1);
-        }
-    };
+    const onSelectBboxByKeyboard = useCallback(data => setActiveBboxIndex(data), []);
 
     return (
-        <div className="pdf-viewer__wrapper" role="button" tabIndex={0} onKeyDown={handleKeyboardEvent}>
+        <div className="pdf-viewer__wrapper" role="button" tabIndex={0}>
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}
@@ -234,6 +228,7 @@ function PdfDocument(props) {
                 onLoadSuccess={onDocumentReady}
                 activeBboxIndex={activeBboxIndex}
                 onBboxClick={data => onBboxSelect(data)}
+                onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}
                 page={props.page}
                 ruleSummaries={props.ruleSummaries}

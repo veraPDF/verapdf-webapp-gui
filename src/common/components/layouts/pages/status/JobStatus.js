@@ -90,6 +90,7 @@ function JobStatus({
                 </StatusPage>
             );
 
+        case JOB_STATUS.CANCELLED:
         case JOB_STATUS.FINISHED:
             if (complete) {
                 return <Redirect to={AppPages.RESULTS.url(jobId)} />;
@@ -191,7 +192,16 @@ function mapStateToProps(state) {
     const errorMessage = getJobError(state);
     const complete = hasResult(state);
     const cancellingJob = isCancellingJob(state);
-    return { jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete, cancellingJob };
+    return {
+        jobStatus,
+        jobProgress,
+        jobQueuePosition,
+        percentage,
+        steps,
+        errorMessage,
+        complete,
+        cancellingJob,
+    };
 }
 
 const mapDispatchToProps = dispatch => {

@@ -85,6 +85,9 @@ const restoreJob = (store, id, fileRestored) =>
     getJob(id)
         .then(async job => {
             store.dispatch(setJob(job));
+            if (job.status === JOB_STATUS.CANCELLED) {
+                return;
+            }
             if (job.status !== JOB_STATUS.FINISHED) {
                 const completedSteps = ['JOB_CREATE'];
                 if (job.tasks && job.tasks.length > 0) {

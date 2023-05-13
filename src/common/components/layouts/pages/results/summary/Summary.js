@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 
 import Paper from '@material-ui/core/Paper';
@@ -11,6 +12,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 
+import AppPages from '../../../../AppPages';
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
 
@@ -22,6 +24,9 @@ const JOB_END_STATUS = {
 };
 
 function Summary({ fileInfo, resultSummary, jobEndStatus }) {
+    if (!resultSummary.passedChecks) {
+        return <Redirect to={AppPages.NOT_FOUND} />;
+    }
     return (
         <Paper className="summary">
             <h2>{fileInfo.name}</h2>

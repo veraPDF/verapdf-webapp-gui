@@ -131,6 +131,7 @@ const waitToStart = createStep(
                     } else {
                         if (
                             job.status === JOB_STATUS.PROCESSING ||
+                            job.status === JOB_STATUS.CANCELLED ||
                             getTaskStatus(getState()) === TASK_STATUS.FINISHED
                         ) {
                             resolve();
@@ -158,7 +159,10 @@ const waitForComplete = createStep(
                     if (job.status === JOB_STATUS.PROCESSING) {
                         checkStatus();
                     } else {
-                        if (getTaskStatus(getState()) === TASK_STATUS.FINISHED) {
+                        if (
+                            getTaskStatus(getState()) === TASK_STATUS.FINISHED ||
+                            getTaskStatus(getState()) === TASK_STATUS.CANCELLED
+                        ) {
                             resolve();
                         } else {
                             reject(new Error(getTaskErrorMessage(getState())));

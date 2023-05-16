@@ -7,7 +7,12 @@ function Progress({ variant, percents, title, summary, progress }) {
     return (
         <section className="progress-section" title={title}>
             <div className="progress">
-                <LinearProgress variant={variant} value={percents} color="secondary" className="progress__bar" />
+                <LinearProgress
+                    variant={variant}
+                    value={Math.min(percents, 100)}
+                    color="secondary"
+                    className="progress__bar"
+                />
                 <span className="progress__percentage">{summary}</span>
             </div>
             <p className="progress__message">{progress}</p>

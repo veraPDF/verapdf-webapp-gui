@@ -7,13 +7,19 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
+import { getJobEndStatus, isCompliant } from '../../../../store/job/result/selectors';
 import { reset } from '../../../../store/application/actions';
 import WizardStep from '../../wizardStep/WizardStep';
 import Summary from './summary/Summary';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
-import { isCompliant } from '../../../../store/job/result/selectors';
 
-function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
+const JOB_END_STATUS = {
+    NORMAL: 'normal',
+    CANCELLED: 'cancelled',
+    TIMEOUT: 'timeout',
+};
+
+function Results({ jobStatus, taskStatus, compliant, jobEndStatus, onBackClick }) {
     const { id: jobId } = useParams();
 
     const backButton = useMemo(
@@ -28,30 +34,41 @@ function Results({ jobStatus, taskStatus, compliant, onBackClick }) {
         () => ({
             label: 'Inspect errors',
             to: AppPages.INSPECT.url(jobId),
-            disabled: compliant,
+            disabled: compliant || jobEndStatus === JOB_END_STATUS.CANCELLED,
         }),
-        [compliant, jobId]
+        [compliant, jobEndStatus, jobId]
+    );
+
+    const wizardStep = useMemo(
+        () => (
+            <WizardStep stepIndex={AppPages.RESULTS.route} className="results">
+                <Summary />
+                <PageNavigation back={backButton} forward={forwardButton} />
+            </WizardStep>
+        ),
+        [backButton, forwardButton]
     );
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;
     }
+
+    if (jobStatus === JOB_STATUS.CANCELLED || taskStatus === TASK_STATUS.CANCELLED) {
+        return wizardStep;
+    }
+
     if (jobStatus !== JOB_STATUS.FINISHED || taskStatus !== TASK_STATUS.FINISHED) {
         return <Redirect to={AppPages.STATUS.url(jobId)} />;
     }
 
-    return (
-        <WizardStep stepIndex={AppPages.RESULTS.route} className="results">
-            <Summary />
-            <PageNavigation back={backButton} forward={forwardButton} />
-        </WizardStep>
-    );
+    return wizardStep;
 }
 
 Results.propTypes = {
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)),
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
     compliant: PropTypes.bool.isRequired,
+    jobEndStatus: PropTypes.oneOf(_.values(JOB_END_STATUS)),
     onBackClick: PropTypes.func.isRequired,
 };
 
@@ -60,6 +77,7 @@ function mapStateToProps(state) {
         jobStatus: getJobStatus(state),
         taskStatus: getTaskStatus(state),
         compliant: isCompliant(state),
+        jobEndStatus: getJobEndStatus(state),
     };
 }
 

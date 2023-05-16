@@ -90,6 +90,7 @@ function JobStatus({
                 </StatusPage>
             );
 
+        case JOB_STATUS.CANCELLED:
         case JOB_STATUS.FINISHED:
             if (complete) {
                 return <Redirect to={AppPages.RESULTS.url(jobId)} />;
@@ -105,11 +106,12 @@ function JobStatus({
                         summary={getProgressSummary(steps, jobQueuePosition, cancellingJob)}
                         progress={!cancellingJob ? jobProgress : null}
                     />
-                    {jobStatus === JOB_STATUS.PROCESSING && !cancellingJob && (
-                        <div className="processing-controls">
+                    <div className="processing-controls">
+                        {(jobStatus === JOB_STATUS.WAITING ||
+                            (jobStatus === JOB_STATUS.PROCESSING && !cancellingJob)) && (
                             <Button onClick={onCancel}>Cancel validation</Button>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </StatusPage>
             );
     }
@@ -190,7 +192,16 @@ function mapStateToProps(state) {
     const errorMessage = getJobError(state);
     const complete = hasResult(state);
     const cancellingJob = isCancellingJob(state);
-    return { jobStatus, jobProgress, jobQueuePosition, percentage, steps, errorMessage, complete, cancellingJob };
+    return {
+        jobStatus,
+        jobProgress,
+        jobQueuePosition,
+        percentage,
+        steps,
+        errorMessage,
+        complete,
+        cancellingJob,
+    };
 }
 
 const mapDispatchToProps = dispatch => {

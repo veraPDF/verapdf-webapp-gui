@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
@@ -33,7 +33,7 @@ PdfDocument.propTypes = {
     file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
-    selectedCheck: PropTypes.string,
+    selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
@@ -107,15 +107,13 @@ function PdfDocument(props) {
     const [language] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
 
     useEffect(() => {
-        setActiveBboxIndex(Object.keys(mapOfErrors).indexOf(props.selectedCheck));
-        if (!props.selectedCheck?.includes('bbox')) {
-            const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
-            pageIndex > -1 && props.onPageChange(pageIndex + 1);
-        }
+        setActiveBboxIndex(props.selectedCheck);
+        const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
+        pageIndex > -1 && props.onPageChange(pageIndex + 1);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
-        props.setSelectedCheck(Object.keys(mapOfErrors)[activeBboxIndex]);
+        props.setSelectedCheck(activeBboxIndex);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
     useEffect(() => {
@@ -188,6 +186,8 @@ function PdfDocument(props) {
                             location: check.location || check.context,
                             groupId: checkId ? `${summary.clause}-${summary.testNumber}-${checkId}` : null,
                             bboxTitle: bboxTitle,
+                            ruleIndex: index,
+                            checkIndex: checkIndex,
                         };
                     });
                 });
@@ -196,7 +196,7 @@ function PdfDocument(props) {
             props.onDocumentReady(newMapOfErrors);
             setMapOfErrors({ ...newMapOfErrors });
         },
-        [props]
+        [props, errorMessages]
     );
 
     const onBboxSelect = useCallback(

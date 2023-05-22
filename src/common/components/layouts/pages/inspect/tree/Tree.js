@@ -31,7 +31,6 @@ import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_de from '../validationErrorMessages_de.json';
 import errorMap_technical from '../validationErrorMessages_technical.json';
 import errorMap_tagged_technical from '../TaggedPDF_technical.json';
-import { setPage } from '../../../../../store/application/actions';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
@@ -75,11 +74,18 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
         },
         [expandedRule]
     );
-    const onCheckClick = useCallback((checkKey) => {
-        let checkIndex = +checkKey.split(':')[1];
-        let ruleIndex = +checkKey.split(':')[0];
-        let sortedCheckIndex = _.findIndex(errorsMap, (error) => (error.checkIndex === checkIndex && error.ruleIndex === ruleIndex))
-        setSelectedCheck(sortedCheckIndex)}, [errorsMap,setSelectedCheck]);
+    const onCheckClick = useCallback(
+        checkKey => {
+            let checkIndex = +checkKey.split(':')[1];
+            let ruleIndex = +checkKey.split(':')[0];
+            let sortedCheckIndex = _.findIndex(
+                errorsMap,
+                error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+            );
+            setSelectedCheck(sortedCheckIndex);
+        },
+        [errorsMap, setSelectedCheck]
+    );
 
     // info dialog props
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
@@ -348,16 +354,21 @@ function getCheckTitle({ checkKey, index, allChecks, errorsMap }) {
 }
 
 function getPageNumber(checkKey, errorsMap) {
+    let checkIndex = +checkKey.split(':')[1];
+    let ruleIndex = +checkKey.split(':')[0];
+    let sortedCheckIndex = _.findIndex(
+        errorsMap,
+        error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+    );
     // Unrecognized context
     if (
-        !errorsMap[checkKey] ||
-        errorsMap[checkKey].pageIndex === UNSELECTED ||
-        (errorsMap[checkKey].pageIndex !== METADATA && !errorsMap[checkKey].location)
+        !errorsMap[sortedCheckIndex] ||
+        errorsMap[sortedCheckIndex].pageIndex === UNSELECTED ||
+        (errorsMap[sortedCheckIndex].pageIndex !== METADATA && !errorsMap[sortedCheckIndex].location)
     ) {
         return UNSELECTED;
     }
-
-    return errorsMap[checkKey].pageIndex + 1;
+    return errorsMap[sortedCheckIndex].pageIndex + 1;
 }
 
 export function sortChecksByPage(checks, errorsMap) {

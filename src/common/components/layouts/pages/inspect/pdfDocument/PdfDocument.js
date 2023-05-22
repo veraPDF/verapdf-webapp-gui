@@ -10,15 +10,15 @@ import { getPage, isFileUploadMode } from '../../../../../store/application/sele
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 import { getTaskFileId } from '../../../../../store/job/selectors';
 import { getFileLinkById } from '../../../../../services/fileService';
+import { getItem } from '../../../../../services/localStorageService';
+import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
+import { getProfile } from '../../../../../store/job/settings/selectors';
+import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
 
 import Alert from '@material-ui/lab/Alert';
 import Close from '@material-ui/icons/Close';
 
 import './PdfDocument.scss';
-import { getItem } from '../../../../../services/localStorageService';
-import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
-import { getProfile } from '../../../../../store/job/settings/selectors';
-import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
 
 const { PUBLIC_URL } = process.env;
 

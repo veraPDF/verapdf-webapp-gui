@@ -43,13 +43,19 @@ export const loadValidationResult = async (dispatch, getState) => {
     if (taskStatus === TASK_STATUS.ERROR) {
         throw new Error(getTaskErrorMessage(getState()));
     }
-    const resultFileId = getTaskResultId(getState());
-    const validationResult = await FileService.getFileContent(resultFileId);
-    dispatch(
-        setResult(
-            validationResult.hasOwnProperty('validationResult') ? validationResult.validationResult : validationResult
-        )
-    );
+    if (taskStatus !== TASK_STATUS.CANCELLED) {
+        const resultFileId = getTaskResultId(getState());
+        const validationResult = await FileService.getFileContent(resultFileId);
+        dispatch(
+            setResult(
+                validationResult.hasOwnProperty('validationResult')
+                    ? validationResult.validationResult
+                    : validationResult
+            )
+        );
+    } else {
+        dispatch(setResult({ jobEndStatus: 'cancelled' }));
+    }
 };
 
 export const cancelValidation = () => async (dispatch, getState) => {

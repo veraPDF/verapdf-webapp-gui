@@ -85,10 +85,7 @@ const restoreJob = (store, id, fileRestored) =>
     getJob(id)
         .then(async job => {
             store.dispatch(setJob(job));
-            if (job.status === JOB_STATUS.CANCELLED) {
-                return;
-            }
-            if (job.status !== JOB_STATUS.FINISHED) {
+            if (job.status !== JOB_STATUS.FINISHED && job.status !== JOB_STATUS.CANCELLED) {
                 const completedSteps = ['JOB_CREATE'];
                 if (job.tasks && job.tasks.length > 0) {
                     // TODO: also restore file id or even the whole file object (in case there is no restored from IndexedDB or the job references different file)

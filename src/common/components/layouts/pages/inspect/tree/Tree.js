@@ -124,7 +124,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 setExpandedRule(ruleIndex);
             }
         }
-    }, [expandedRule, selectedCheck, prevSelectedCheck]);
+    }, [errorsMap, expandedRule, selectedCheck, prevSelectedCheck]);
 
     return (
         <section className="summary-tree">

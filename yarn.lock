@@ -10889,8 +10889,8 @@ vary@~1.1.2:
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
 "verapdf-js-viewer@git+https://github.com/veraPDF/verapdf-js-viewer.git":
-  version "1.6.0"
-  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#fd9791c518d59f1b41f6f7c59380fb5ae5259a2d"
+  version "1.6.1"
+  resolved "git+https://github.com/veraPDF/verapdf-js-viewer.git#8ff90f5b0ef76ddb4f9e57bad1700e986bdaf3ce"
   dependencies:
     pdfjs-dist "github:veraPDF/pdfjs-dist#v2.14.305-taggedPdf-0.1.10"
     react-pdf "6.0.0-beta.3"

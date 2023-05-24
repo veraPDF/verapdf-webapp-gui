@@ -36,18 +36,18 @@ const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
-const languageEnum = {
+export const languageEnum = {
     English: 'English',
     Dutch: 'Dutch',
     German: 'German',
     Technical: 'Technical',
 };
-const errorProfiles = {
+export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
     OTHER: 'Other',
 };
 
-const errorMessagesMap = {
+export const errorMessagesMap = {
     [errorProfiles.OTHER]: {
         [languageEnum.English]: errorMap_en,
         [languageEnum.Dutch]: errorMap_nl,
@@ -74,7 +74,18 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
         },
         [expandedRule]
     );
-    const onCheckClick = useCallback(checkKey => setSelectedCheck(checkKey), [setSelectedCheck]);
+    const onCheckClick = useCallback(
+        checkKey => {
+            let checkIndex = +checkKey.split(':')[1];
+            let ruleIndex = +checkKey.split(':')[0];
+            let sortedCheckIndex = _.findIndex(
+                errorsMap,
+                error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+            );
+            setSelectedCheck(sortedCheckIndex);
+        },
+        [errorsMap, setSelectedCheck]
+    );
 
     // info dialog props
     const [openedRule, setOpenedRule] = useState(UNSELECTED);
@@ -87,6 +98,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 return errorMessagesMap[errorProfiles.OTHER][language];
         }
     }, [language, profile]);
+
     const onInfoClick = useCallback(rule => {
         setOpenedRule(rule);
         setInfoDialogOpened(true);
@@ -107,13 +119,12 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
 
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
-            let [ruleIndex] = selectedCheck.split(':');
-            ruleIndex = parseInt(ruleIndex);
+            let ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
             if (ruleIndex !== expandedRule) {
                 setExpandedRule(ruleIndex);
             }
         }
-    }, [expandedRule, selectedCheck, prevSelectedCheck]);
+    }, [errorsMap, expandedRule, selectedCheck, prevSelectedCheck]);
 
     return (
         <section className="summary-tree">
@@ -244,15 +255,15 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
         const isGrouped =
             selectedCheck &&
             errorsMap[selectedCheck] &&
-            errorsMap[selectedCheck].groupId &&
-            errorsMap[checkKey].groupId &&
+            errorsMap[selectedCheck]?.groupId &&
+            errorsMap[checkKey]?.groupId &&
             errorsMap[selectedCheck].groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
             selectedCheck !== checkKey;
         return (
             <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
-                selected={selectedCheck === checkKey}
+                selected={errorsMap[selectedCheck]?.checkIndex === index}
                 button
                 className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
                 title={errorTitle}
@@ -278,7 +289,7 @@ function LI({ selected, title, checkTitle, onClick, className }) {
         }
         if (selected && !disableAutoScroll) {
             // To be sure that list expanded before auto scroll call it in next tick
-            setTimeout(() => listItem.current.scrollIntoView({ block: 'center' }), 0);
+            setTimeout(() => listItem.current?.scrollIntoView({ block: 'center' }), 0);
         } else {
             setDisableAutoScroll(false);
         }
@@ -343,19 +354,24 @@ function getCheckTitle({ checkKey, index, allChecks, errorsMap }) {
 }
 
 function getPageNumber(checkKey, errorsMap) {
+    let checkIndex = +checkKey.split(':')[1];
+    let ruleIndex = +checkKey.split(':')[0];
+    let sortedCheckIndex = _.findIndex(
+        errorsMap,
+        error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+    );
     // Unrecognized context
     if (
-        !errorsMap[checkKey] ||
-        errorsMap[checkKey].pageIndex === UNSELECTED ||
-        (errorsMap[checkKey].pageIndex !== METADATA && !errorsMap[checkKey].location)
+        !errorsMap[sortedCheckIndex] ||
+        errorsMap[sortedCheckIndex].pageIndex === UNSELECTED ||
+        (errorsMap[sortedCheckIndex].pageIndex !== METADATA && !errorsMap[sortedCheckIndex].location)
     ) {
         return UNSELECTED;
     }
-
-    return errorsMap[checkKey].pageIndex + 1;
+    return errorsMap[sortedCheckIndex].pageIndex + 1;
 }
 
-function sortChecksByPage(checks, errorsMap) {
+export function sortChecksByPage(checks, errorsMap) {
     let newChecks = [...checks];
     newChecks.sort(({ id: a }, { id: b }) => {
         const pageA = getPageNumber(a, errorsMap);
@@ -379,9 +395,9 @@ const SummaryInterface = PropTypes.shape({
 Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
-    selectedCheck: PropTypes.string,
+    selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     setSelectedCheck: PropTypes.func.isRequired,
-    errorsMap: PropTypes.object.isRequired,
+    errorsMap: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {

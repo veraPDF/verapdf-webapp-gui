@@ -84,9 +84,11 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
             );
             setSelectedCheck(sortedCheckIndex);
-            setTimeout(() => scrollToActiveBbox(), 100);
+            if (sortedCheckIndex === selectedCheck) {
+                scrollToActiveBbox();
+            }
         },
-        [errorsMap, setSelectedCheck]
+        [errorsMap, selectedCheck, setSelectedCheck]
     );
 
     // info dialog props

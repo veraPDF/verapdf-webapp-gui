@@ -1,6 +1,7 @@
 import React, { useState, useCallback, Fragment, useEffect, useRef, useMemo } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { scrollToActiveBbox } from 'verapdf-js-viewer';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
@@ -83,8 +84,11 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
             );
             setSelectedCheck(sortedCheckIndex);
+            if (sortedCheckIndex === selectedCheck) {
+                scrollToActiveBbox();
+            }
         },
-        [errorsMap, setSelectedCheck]
+        [errorsMap, selectedCheck, setSelectedCheck]
     );
 
     // info dialog props

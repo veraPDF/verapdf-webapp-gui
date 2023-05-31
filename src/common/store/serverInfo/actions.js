@@ -32,6 +32,7 @@ export const updateServerStatus = () => async dispatch => {
         buildServiceInfo(getJobServiceInfo()),
         buildServiceInfo(getWorkerServiceInfo()),
     ]);
-    await extendWorkerServiceInfo(workerService);
+    //TODO: disabled until the fix for loading the worker service info is implemented
+    //await extendWorkerServiceInfo(workerService);
     dispatch(setServerInfo({ fileService, jobService, workerService }));
 };

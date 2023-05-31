@@ -9,6 +9,7 @@ const buildServiceInfo = promise =>
 const buildAppsInfo = promise =>
     promise.then(info => ({ available: true, ...info })).catch(() => ({ available: false }));
 
+// eslint-disable-next-line no-unused-vars
 const extendWorkerServiceInfo = async workerService => {
     if (!workerService.available) {
         return;

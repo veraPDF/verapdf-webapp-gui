@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -70,6 +70,20 @@ function JobStatus({
     cancellingJob,
 }) {
     const { id: jobId } = useParams();
+    const [isEscapeBeforeCreate, setIsEscapeBeforeCreate] = useState(false);
+
+    useEffect(() => {
+        const cancelBeforeCreate = () => setIsEscapeBeforeCreate(true);
+        const cancelAfterCreate = () => onCancel();
+        if (jobStatus === JOB_STATUS.CREATED) document.addEventListener('visibilitychange', cancelBeforeCreate);
+        else if (jobStatus === JOB_STATUS.WAITING || jobStatus === JOB_STATUS.PROCESSING) {
+            isEscapeBeforeCreate ? onCancel() : document.addEventListener('visibilitychange', cancelAfterCreate);
+        }
+        return () => {
+            document.removeEventListener('visibilitychange', cancelBeforeCreate);
+            document.removeEventListener('visibilitychange', cancelAfterCreate);
+        };
+    }, [isEscapeBeforeCreate, jobStatus, onCancel]);
 
     switch (jobStatus) {
         case undefined:

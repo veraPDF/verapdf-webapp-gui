@@ -254,7 +254,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
     });
     checksSorted = sortChecksByPage(checksSorted, errorsMap, ruleIndex);
     return checksSorted.map(({ context, errorMessage, location, id: checkKey }, index) => {
-        const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap });
+        const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap, location });
         const errorTitle = errorMessage + '\n\nContext: ' + context;
         const isGrouped =
             selectedCheck &&
@@ -338,9 +338,18 @@ function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
     return errorMessages?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
-function getCheckTitle({ checkKey, index, allChecks, errorsMap }) {
+function getCheckTitle({ checkKey, index, allChecks, errorsMap, location }) {
     const page = getPageNumber(checkKey, errorsMap);
-    const pageString = page === UNSELECTED ? '' : `Page ${page}: `;
+    let pageString = page === UNSELECTED ? '' : `Page ${page}: `;
+
+    if (location) {
+        const bbox = JSON.parse(location)?.bbox;
+        const firstPage = bbox[0]?.p + 1;
+        const lastPage = bbox[bbox.length - 1]?.p + 1;
+        if (firstPage !== lastPage) {
+            pageString = page === UNSELECTED ? '' : `Pages ${firstPage}-${lastPage}: `;
+        }
+    }
 
     let length = 0;
     let number = 1;

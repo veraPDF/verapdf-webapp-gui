@@ -8,7 +8,8 @@ import { addPdfFile } from './pdfFiles/actions';
 import { updateProfiles } from './validationProfiles/actions';
 import { getFile } from '../services/pdfStorage';
 import { getJob } from '../services/jobService';
-import { setJob, validate, loadValidationResult } from './job/actions';
+import { setJob, validate, loadValidationResult, cancelValidation } from './job/actions';
+import { getJobStatus } from './job/selectors';
 import { getUnsavedFile } from './pdfFiles/selectors';
 import { isFileUploadMode, isLocked } from './application/selectors';
 import { setLink } from './pdfLink/actions';
@@ -20,6 +21,14 @@ export default function configureStore() {
     if (isUploadMode !== null) {
         store.dispatch(setFileUploadMode(isUploadMode === 'true'));
     }
+
+    window.onunload = () => {
+        // Cancel job on tab close
+        const jobStatus = getJobStatus(store.getState());
+        if (jobStatus === JOB_STATUS.WAITING || jobStatus === JOB_STATUS.PROCESSING) {
+            store.dispatch(cancelValidation());
+        }
+    };
 
     window.onbeforeunload = () => {
         // Show confirmation when we reload page while:

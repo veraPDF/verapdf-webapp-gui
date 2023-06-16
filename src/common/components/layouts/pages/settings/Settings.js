@@ -10,6 +10,7 @@ import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
 import { getJobId } from '../../../../store/job/selectors';
 import { validate } from '../../../../store/job/actions';
+import { JOB_OLD_FILE } from '../../../../store/constants';
 
 import './Settings.scss';
 
@@ -25,7 +26,10 @@ function Settings(props) {
         () => ({
             label: 'Validate',
             disabled: !allServicesAvailable,
-            onClick: () => onValidateClick(),
+            onClick: () => {
+                sessionStorage.removeItem(JOB_OLD_FILE);
+                onValidateClick();
+            },
         }),
         [allServicesAvailable, onValidateClick]
     );

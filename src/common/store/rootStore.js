@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-import { JOB_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
+import { JOB_NEW_FILE, JOB_OLD_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
 import { finishAppStartup, setFileUploadMode } from './application/actions';
 import { updateServerStatus, updateWorkerServiceStatus } from './serverInfo/actions';
 import { addPdfFile } from './pdfFiles/actions';
@@ -38,6 +38,19 @@ export default function configureStore() {
     //Update worker service status
     store.dispatch(updateWorkerServiceStatus());
 
+    // Redirect to start screen if there is old file
+    const { PUBLIC_URL } = process.env;
+    const oldFileName = sessionStorage.getItem(JOB_OLD_FILE);
+    if (
+        oldFileName &&
+        window.location.pathname !== PUBLIC_URL &&
+        window.location.pathname !== `${PUBLIC_URL}/new-job/files`
+    ) {
+        // Redirect to start screen and hide Loading view
+        window.location.replace(PUBLIC_URL);
+        return;
+    }
+
     // Restore PDF file if there is any saved in DB
     const restoreFilesPromise = restoreFiles(store);
     if (restoreFilesPromise) {
@@ -70,7 +83,7 @@ export default function configureStore() {
 }
 
 const restoreFiles = store => {
-    const fileName = sessionStorage.getItem(JOB_FILE);
+    const fileName = sessionStorage.getItem(JOB_NEW_FILE);
     if (!fileName) {
         return null;
     }
@@ -79,7 +92,7 @@ const restoreFiles = store => {
         if (file?.size) {
             store.dispatch(addPdfFile({ file, hasBackup: true }));
         } else {
-            sessionStorage.removeItem(JOB_FILE);
+            sessionStorage.removeItem(JOB_NEW_FILE);
         }
     });
 };

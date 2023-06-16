@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { JOB_FILE, JOB_MODE, JOB_LINK } from '../constants';
+import { JOB_NEW_FILE, JOB_MODE, JOB_LINK } from '../constants';
 import { setFile } from '../../services/pdfStorage';
 
 export const addPdfFile = createAction('PDF_FILE_ADD', ({ file, hasBackup = false }) => ({
@@ -23,7 +23,7 @@ export const storeFile = file => async dispatch => {
 export const saveFileToStorage = async file => {
     const hasBackup = await setFile(file);
     if (hasBackup) {
-        sessionStorage.setItem(JOB_FILE, file.name);
+        sessionStorage.setItem(JOB_NEW_FILE, file.name);
     }
     return hasBackup;
 };

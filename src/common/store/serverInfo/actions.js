@@ -9,7 +9,6 @@ const buildServiceInfo = promise =>
 const buildAppsInfo = promise =>
     promise.then(info => ({ available: true, ...info })).catch(() => ({ available: false }));
 
-// eslint-disable-next-line no-unused-vars
 const extendWorkerServiceInfo = async workerService => {
     if (!workerService.available) {
         return;
@@ -33,7 +32,11 @@ export const updateServerStatus = () => async dispatch => {
         buildServiceInfo(getJobServiceInfo()),
         buildServiceInfo(getWorkerServiceInfo()),
     ]);
-    //TODO: disabled until the fix for loading the worker service info is implemented
-    //await extendWorkerServiceInfo(workerService);
     dispatch(setServerInfo({ fileService, jobService, workerService }));
+};
+
+export const updateWorkerServiceStatus = () => async dispatch => {
+    const workerService = await buildServiceInfo(getWorkerServiceInfo());
+    await extendWorkerServiceInfo(workerService);
+    dispatch(setServerInfo({ workerService }));
 };

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import { JOB_NEW_FILE, JOB_OLD_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
 import { finishAppStartup, setFileUploadMode } from './application/actions';
-import { updateServerStatus } from './serverInfo/actions';
+import { updateServerStatus, updateWorkerServiceStatus } from './serverInfo/actions';
 import { addPdfFile } from './pdfFiles/actions';
 import { updateProfiles } from './validationProfiles/actions';
 import { getFile } from '../services/pdfStorage';
@@ -34,6 +34,9 @@ export default function configureStore() {
 
     // Check server availability
     store.dispatch(updateServerStatus());
+
+    //Update worker service status
+    store.dispatch(updateWorkerServiceStatus());
 
     // Redirect to start screen if there is old file
     const { PUBLIC_URL } = process.env;

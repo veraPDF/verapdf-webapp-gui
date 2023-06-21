@@ -9,6 +9,7 @@ import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
+import { getRuleSummaries } from '../../../../store/job/result/selectors';
 import Toolbar from './toolbar/Toolbar';
 import Tree from './tree/Tree';
 import PdfDocument from './pdfDocument/PdfDocument';
@@ -16,10 +17,12 @@ import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
 import './Inspect.scss';
 
-function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
+function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
+    const [selectedCheckId, setSelectedCheckId] = useState(null);
+    const [expandedRule, setExpandedRule] = useState(new Array(ruleSummaries.length).fill(-1));
     const [warningMessage, setWarningMessage] = useState(null);
     const [errorsMap, setErrorsMap] = useState({});
     const [scale, setScale] = useState('1');
@@ -68,10 +71,22 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
         <DropzoneWrapper onFileDrop={onDrop}>
             <section className="inspect">
                 <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
-                <Tree selectedCheck={selectedCheck} setSelectedCheck={setSelectedCheck} errorsMap={errorsMap} />
+                <Tree
+                    selectedCheck={selectedCheck}
+                    setSelectedCheck={setSelectedCheck}
+                    selectedCheckId={selectedCheckId}
+                    setSelectedCheckId={setSelectedCheckId}
+                    expandedRule={expandedRule}
+                    setExpandedRule={setExpandedRule}
+                    errorsMap={errorsMap}
+                />
                 <PdfDocument
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
+                    selectedCheckId={selectedCheckId}
+                    setSelectedCheckId={setSelectedCheckId}
+                    expandedRule={expandedRule}
+                    setExpandedRule={setExpandedRule}
                     setPdfName={setPdfName}
                     onWarning={onWarning}
                     warningMessage={warningMessage}
@@ -83,9 +98,17 @@ function Inspect({ jobStatus, taskStatus, lockApp, unlockApp, onFileDrop }) {
     );
 }
 
+const SummaryInterface = PropTypes.shape({
+    clause: PropTypes.string.isRequired,
+    testNumber: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    checks: PropTypes.arrayOf(PropTypes.object).isRequired,
+});
+
 Inspect.propTypes = {
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)).isRequired,
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
+    ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     lockApp: PropTypes.func.isRequired,
     unlockApp: PropTypes.func.isRequired,
 };
@@ -94,6 +117,7 @@ const mapStateToProps = state => {
     return {
         jobStatus: getJobStatus(state),
         taskStatus: getTaskStatus(state),
+        ruleSummaries: getRuleSummaries(state),
     };
 };
 

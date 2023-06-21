@@ -60,20 +60,29 @@ export const errorMessagesMap = {
     },
 };
 
-function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profile }) {
+function Tree({
+    ruleSummaries,
+    expandedRule,
+    setExpandedRule,
+    selectedCheck,
+    setSelectedCheck,
+    selectedCheckId,
+    setSelectedCheckId,
+    errorsMap,
+    profile,
+}) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
-    const [expandedRule, setExpandedRule] = useState(UNSELECTED);
     const prevSelectedCheck = usePrevious(selectedCheck);
     const onRuleClick = useCallback(
         index => {
-            if (expandedRule === index) {
-                return setExpandedRule(UNSELECTED);
-            }
-
-            return setExpandedRule(index);
+            const copyExpandedRule = JSON.parse(JSON.stringify(expandedRule));
+            expandedRule.includes(index)
+                ? copyExpandedRule.splice(index, 1, UNSELECTED)
+                : copyExpandedRule.splice(index, 1, index);
+            return setExpandedRule(copyExpandedRule);
         },
-        [expandedRule]
+        [expandedRule, setExpandedRule]
     );
     const onCheckClick = useCallback(
         checkKey => {
@@ -84,11 +93,12 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                 error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
             );
             setSelectedCheck(sortedCheckIndex);
+            setSelectedCheckId(checkKey);
             if (sortedCheckIndex === selectedCheck) {
                 scrollToActiveBbox();
             }
         },
-        [errorsMap, selectedCheck, setSelectedCheck]
+        [errorsMap, selectedCheck, setSelectedCheckId, setSelectedCheck]
     );
 
     // info dialog props
@@ -124,11 +134,13 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
             let ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
-            if (ruleIndex !== expandedRule) {
-                setExpandedRule(ruleIndex);
+            const copyExpandedRule = JSON.parse(JSON.stringify(expandedRule));
+            if (expandedRule.includes(ruleIndex)) {
+                copyExpandedRule.splice(ruleIndex, 1, ruleIndex);
+                setExpandedRule(copyExpandedRule);
             }
         }
-    }, [errorsMap, expandedRule, selectedCheck, prevSelectedCheck]);
+    }, [errorsMap, expandedRule, setExpandedRule, selectedCheck, prevSelectedCheck]);
 
     return (
         <section className="summary-tree">
@@ -163,6 +175,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
                     ruleSummaries={ruleSummaries}
                     expandedRule={expandedRule}
                     selectedCheck={selectedCheck}
+                    selectedCheckId={selectedCheckId}
                     onRuleClick={onRuleClick}
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
@@ -189,6 +202,7 @@ function RuleList({
     ruleSummaries,
     expandedRule,
     selectedCheck,
+    selectedCheckId,
     onRuleClick,
     onCheckClick,
     onInfoClick,
@@ -205,10 +219,10 @@ function RuleList({
                     button
                     onClick={() => onRuleClick(index)}
                     className={classNames('rule-item rule-item_error', {
-                        'rule-item_expanded': expandedRule === index,
+                        'rule-item_expanded': expandedRule.includes(index),
                     })}
                 >
-                    {checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                    {checks.length ? expandedRule.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}
                         className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
@@ -228,12 +242,13 @@ function RuleList({
                     </ListItemSecondaryAction>
                 </ListItem>
                 {checks.length ? (
-                    <Collapse in={expandedRule === index} timeout={0} unmountOnExit>
+                    <Collapse in={expandedRule.includes(index)} timeout={0} unmountOnExit>
                         <List component="div" disablePadding>
                             <CheckList
                                 ruleIndex={index}
                                 checks={checks}
                                 selectedCheck={selectedCheck}
+                                selectedCheckId={selectedCheckId}
                                 onCheckClick={onCheckClick}
                                 errorsMap={errorsMap}
                             />
@@ -245,7 +260,7 @@ function RuleList({
     });
 }
 
-function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
+function CheckList({ checks, selectedCheck, selectedCheckId, onCheckClick, errorsMap, ruleIndex }) {
     let checksSorted = checks.map((check, index) => {
         return {
             ...check,
@@ -267,7 +282,7 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
             <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
-                selected={errorsMap[selectedCheck]?.checkIndex === index}
+                selected={selectedCheckId === checkKey}
                 button
                 className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
                 title={errorTitle}
@@ -409,7 +424,11 @@ Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    selectedCheckId: PropTypes.string,
+    expandedRule: PropTypes.arrayOf(PropTypes.number).isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
+    setSelectedCheckId: PropTypes.func.isRequired,
+    setExpandedRule: PropTypes.func.isRequired,
     errorsMap: PropTypes.array.isRequired,
 };
 

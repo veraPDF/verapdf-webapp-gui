@@ -17,12 +17,13 @@ import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
 import './Inspect.scss';
 
+const UNSELECTED = -1;
+
 function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
-    const [selectedCheckId, setSelectedCheckId] = useState(null);
-    const [expandedRule, setExpandedRule] = useState(new Array(ruleSummaries.length).fill(-1));
+    const [expandedRules, setExpandedRules] = useState(new Array(ruleSummaries.length).fill(UNSELECTED));
     const [warningMessage, setWarningMessage] = useState(null);
     const [errorsMap, setErrorsMap] = useState({});
     const [scale, setScale] = useState('1');
@@ -51,6 +52,16 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const onWarning = useCallback(warningCode => {
         setWarningMessage(WARNING_MESSAGES[warningCode]);
     }, []);
+    const onExpandRule = useCallback(
+        (index, closeIfExists = true) => {
+            const copyExpandedRule = _.clone(expandedRules);
+            expandedRules.includes(index) && closeIfExists
+                ? copyExpandedRule.splice(index, 1, UNSELECTED)
+                : copyExpandedRule.splice(index, 1, index);
+            return setExpandedRules(copyExpandedRule);
+        },
+        [expandedRules, setExpandedRules]
+    );
 
     useEffect(() => {
         warningMessage && setWarningMessage(null);
@@ -74,23 +85,19 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                 <Tree
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
-                    selectedCheckId={selectedCheckId}
-                    setSelectedCheckId={setSelectedCheckId}
-                    expandedRule={expandedRule}
-                    setExpandedRule={setExpandedRule}
+                    expandedRules={expandedRules}
+                    onExpandRule={onExpandRule}
                     errorsMap={errorsMap}
                 />
                 <PdfDocument
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
-                    selectedCheckId={selectedCheckId}
-                    setSelectedCheckId={setSelectedCheckId}
-                    expandedRule={expandedRule}
-                    setExpandedRule={setExpandedRule}
+                    expandedRules={expandedRules}
                     setPdfName={setPdfName}
                     onWarning={onWarning}
                     warningMessage={warningMessage}
                     onDocumentReady={onDocumentReady}
+                    onExpandRule={onExpandRule}
                     scale={scale}
                 />
             </section>

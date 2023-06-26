@@ -34,18 +34,16 @@ PdfDocument.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    selectedCheckId: PropTypes.string,
-    expandedRule: PropTypes.arrayOf(PropTypes.number).isRequired,
+    expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
-    setSelectedCheckId: PropTypes.func.isRequired,
-    setExpandedRule: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
     setNumPages: PropTypes.func.isRequired,
     onWarning: PropTypes.func,
     warningMessage: PropTypes.string,
+    onExpandRule: PropTypes.func.isRequired,
     profile: PropTypes.string.isRequired,
 };
 
@@ -118,17 +116,12 @@ function PdfDocument(props) {
     }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
         props.setSelectedCheck(activeBboxIndex);
-        if (activeBboxIndex && mapOfErrors[activeBboxIndex]) {
-            const { ruleIndex, checkIndex, location, context } = mapOfErrors[activeBboxIndex];
-            props.setSelectedCheckId(`${ruleIndex}:${checkIndex}:${location || context}`);
-            if (!props.expandedRule.includes(ruleIndex)) {
-                const copyExpandedRule = JSON.parse(JSON.stringify(props.expandedRule));
-                copyExpandedRule.splice(ruleIndex, 1, ruleIndex);
-                props.setExpandedRule(copyExpandedRule);
-            }
+        if (activeBboxIndex != null && mapOfErrors[activeBboxIndex]) {
+            const ruleIndex = mapOfErrors[props.selectedCheck]?.ruleIndex;
+            props.onExpandRule(ruleIndex, false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck, props.setSelectedCheckId]);
+    }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
     useEffect(() => {
         if (!props.file) {
             window.location.replace(PUBLIC_URL);

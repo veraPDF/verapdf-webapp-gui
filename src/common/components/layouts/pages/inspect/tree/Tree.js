@@ -60,30 +60,11 @@ export const errorMessagesMap = {
     },
 };
 
-function Tree({
-    ruleSummaries,
-    expandedRule,
-    setExpandedRule,
-    selectedCheck,
-    setSelectedCheck,
-    selectedCheckId,
-    setSelectedCheckId,
-    errorsMap,
-    profile,
-}) {
+function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSelectedCheck, errorsMap, profile }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
     const prevSelectedCheck = usePrevious(selectedCheck);
-    const onRuleClick = useCallback(
-        index => {
-            const copyExpandedRule = JSON.parse(JSON.stringify(expandedRule));
-            expandedRule.includes(index)
-                ? copyExpandedRule.splice(index, 1, UNSELECTED)
-                : copyExpandedRule.splice(index, 1, index);
-            return setExpandedRule(copyExpandedRule);
-        },
-        [expandedRule, setExpandedRule]
-    );
+
     const onCheckClick = useCallback(
         checkKey => {
             let checkIndex = +checkKey.split(':')[1];
@@ -93,12 +74,11 @@ function Tree({
                 error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
             );
             setSelectedCheck(sortedCheckIndex);
-            setSelectedCheckId(checkKey);
             if (sortedCheckIndex === selectedCheck) {
                 scrollToActiveBbox();
             }
         },
-        [errorsMap, selectedCheck, setSelectedCheckId, setSelectedCheck]
+        [errorsMap, selectedCheck, setSelectedCheck]
     );
 
     // info dialog props
@@ -133,14 +113,10 @@ function Tree({
 
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
-            let ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
-            const copyExpandedRule = JSON.parse(JSON.stringify(expandedRule));
-            if (expandedRule.includes(ruleIndex)) {
-                copyExpandedRule.splice(ruleIndex, 1, ruleIndex);
-                setExpandedRule(copyExpandedRule);
-            }
+            const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
+            onExpandRule(ruleIndex, false);
         }
-    }, [errorsMap, expandedRule, setExpandedRule, selectedCheck, prevSelectedCheck]);
+    }, [errorsMap, selectedCheck, prevSelectedCheck, onExpandRule]);
 
     return (
         <section className="summary-tree">
@@ -173,10 +149,9 @@ function Tree({
             >
                 <RuleList
                     ruleSummaries={ruleSummaries}
-                    expandedRule={expandedRule}
+                    expandedRules={expandedRules}
                     selectedCheck={selectedCheck}
-                    selectedCheckId={selectedCheckId}
-                    onRuleClick={onRuleClick}
+                    onRuleClick={onExpandRule}
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
                     errorsMap={errorsMap}
@@ -200,9 +175,8 @@ function Tree({
 // TODO: add Warnings
 function RuleList({
     ruleSummaries,
-    expandedRule,
+    expandedRules,
     selectedCheck,
-    selectedCheckId,
     onRuleClick,
     onCheckClick,
     onInfoClick,
@@ -219,10 +193,10 @@ function RuleList({
                     button
                     onClick={() => onRuleClick(index)}
                     className={classNames('rule-item rule-item_error', {
-                        'rule-item_expanded': expandedRule.includes(index),
+                        'rule-item_expanded': expandedRules.includes(index),
                     })}
                 >
-                    {checks.length ? expandedRule.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                    {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}
                         className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
@@ -242,13 +216,12 @@ function RuleList({
                     </ListItemSecondaryAction>
                 </ListItem>
                 {checks.length ? (
-                    <Collapse in={expandedRule.includes(index)} timeout={0} unmountOnExit>
+                    <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
                         <List component="div" disablePadding>
                             <CheckList
                                 ruleIndex={index}
                                 checks={checks}
                                 selectedCheck={selectedCheck}
-                                selectedCheckId={selectedCheckId}
                                 onCheckClick={onCheckClick}
                                 errorsMap={errorsMap}
                             />
@@ -260,7 +233,7 @@ function RuleList({
     });
 }
 
-function CheckList({ checks, selectedCheck, selectedCheckId, onCheckClick, errorsMap, ruleIndex }) {
+function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
     let checksSorted = checks.map((check, index) => {
         return {
             ...check,
@@ -271,18 +244,19 @@ function CheckList({ checks, selectedCheck, selectedCheckId, onCheckClick, error
     return checksSorted.map(({ context, errorMessage, location, id: checkKey }, index) => {
         const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap, location });
         const errorTitle = errorMessage + '\n\nContext: ' + context;
+        const error = errorsMap[selectedCheck];
         const isGrouped =
             selectedCheck &&
-            errorsMap[selectedCheck] &&
-            errorsMap[selectedCheck]?.groupId &&
+            error &&
+            error?.groupId &&
             errorsMap[checkKey]?.groupId &&
-            errorsMap[selectedCheck].groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
+            error.groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
             selectedCheck !== checkKey;
         return (
             <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
-                selected={selectedCheckId === checkKey}
+                selected={`${error?.ruleIndex}:${error?.checkIndex}:${error?.location || error?.context}` === checkKey}
                 button
                 className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
                 title={errorTitle}
@@ -424,11 +398,9 @@ Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    selectedCheckId: PropTypes.string,
-    expandedRule: PropTypes.arrayOf(PropTypes.number).isRequired,
+    expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
-    setSelectedCheckId: PropTypes.func.isRequired,
-    setExpandedRule: PropTypes.func.isRequired,
+    onExpandRule: PropTypes.func.isRequired,
     errorsMap: PropTypes.array.isRequired,
 };
 

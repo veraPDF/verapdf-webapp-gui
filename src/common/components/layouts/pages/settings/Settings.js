@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -7,9 +7,11 @@ import AppPages from '../../../AppPages';
 import WizardStep from '../../wizardStep/WizardStep';
 import ProfileSelect from './profile/ProfileSelect';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
+import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
 import { getJobId } from '../../../../store/job/selectors';
 import { validate } from '../../../../store/job/actions';
+import { resetOnFileUpload } from '../../../../store/application/actions';
 import { JOB_OLD_FILE } from '../../../../store/constants';
 
 import './Settings.scss';
@@ -20,7 +22,14 @@ const backButton = {
 };
 
 function Settings(props) {
-    const { allServicesAvailable, jobId, onValidateClick } = props;
+    const { allServicesAvailable, jobId, onValidateClick, onFileDrop } = props;
+
+    const onDrop = useCallback(
+        acceptedFiles => {
+            onFileDrop(acceptedFiles[0]);
+        },
+        [onFileDrop]
+    );
 
     const forwardButton = useMemo(
         () => ({
@@ -40,14 +49,16 @@ function Settings(props) {
     }
 
     return (
-        <WizardStep stepIndex={AppPages.SETTINGS}>
-            <section className="job-settings">
-                <form>
-                    <ProfileSelect />
-                </form>
-            </section>
-            <PageNavigation back={backButton} forward={forwardButton} />
-        </WizardStep>
+        <DropzoneWrapper onFileDrop={onDrop}>
+            <WizardStep stepIndex={AppPages.SETTINGS}>
+                <section className="job-settings">
+                    <form>
+                        <ProfileSelect />
+                    </form>
+                </section>
+                <PageNavigation back={backButton} forward={forwardButton} />
+            </WizardStep>
+        </DropzoneWrapper>
     );
 }
 
@@ -55,6 +66,7 @@ Settings.propTypes = {
     allServicesAvailable: PropTypes.bool.isRequired,
     jobId: PropTypes.string,
     onValidateClick: PropTypes.func.isRequired,
+    onFileDrop: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -67,6 +79,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         onValidateClick: () => dispatch(validate()),
+        onFileDrop: file => dispatch(resetOnFileUpload(file)),
     };
 };
 

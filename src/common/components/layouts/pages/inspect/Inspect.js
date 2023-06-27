@@ -88,6 +88,7 @@ Inspect.propTypes = {
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
     lockApp: PropTypes.func.isRequired,
     unlockApp: PropTypes.func.isRequired,
+    onFileDrop: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

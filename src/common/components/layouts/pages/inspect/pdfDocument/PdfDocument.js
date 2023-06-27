@@ -117,7 +117,7 @@ function PdfDocument(props) {
     useEffect(() => {
         props.setSelectedCheck(activeBboxIndex);
         if (activeBboxIndex != null && mapOfErrors[activeBboxIndex]) {
-            const ruleIndex = mapOfErrors[props.selectedCheck]?.ruleIndex;
+            const ruleIndex = mapOfErrors[activeBboxIndex]?.ruleIndex;
             props.onExpandRule(ruleIndex, false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

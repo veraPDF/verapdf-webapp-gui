@@ -34,6 +34,7 @@ PdfDocument.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
@@ -42,6 +43,7 @@ PdfDocument.propTypes = {
     setNumPages: PropTypes.func.isRequired,
     onWarning: PropTypes.func,
     warningMessage: PropTypes.string,
+    onExpandRule: PropTypes.func.isRequired,
     profile: PropTypes.string.isRequired,
 };
 
@@ -114,6 +116,10 @@ function PdfDocument(props) {
     }, [mapOfErrors, props.selectedCheck]);
     useEffect(() => {
         props.setSelectedCheck(activeBboxIndex);
+        if (activeBboxIndex != null && mapOfErrors[activeBboxIndex]) {
+            const ruleIndex = mapOfErrors[activeBboxIndex]?.ruleIndex;
+            props.onExpandRule(ruleIndex, false);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
     useEffect(() => {

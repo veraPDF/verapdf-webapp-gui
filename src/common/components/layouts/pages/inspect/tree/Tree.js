@@ -60,21 +60,11 @@ export const errorMessagesMap = {
     },
 };
 
-function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profile }) {
+function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSelectedCheck, errorsMap, profile }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
-    const [expandedRule, setExpandedRule] = useState(UNSELECTED);
     const prevSelectedCheck = usePrevious(selectedCheck);
-    const onRuleClick = useCallback(
-        index => {
-            if (expandedRule === index) {
-                return setExpandedRule(UNSELECTED);
-            }
 
-            return setExpandedRule(index);
-        },
-        [expandedRule]
-    );
     const onCheckClick = useCallback(
         checkKey => {
             let checkIndex = +checkKey.split(':')[1];
@@ -123,12 +113,10 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
 
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
-            let ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
-            if (ruleIndex !== expandedRule) {
-                setExpandedRule(ruleIndex);
-            }
+            const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
+            onExpandRule(ruleIndex, false);
         }
-    }, [errorsMap, expandedRule, selectedCheck, prevSelectedCheck]);
+    }, [errorsMap, selectedCheck, prevSelectedCheck, onExpandRule]);
 
     return (
         <section className="summary-tree">
@@ -161,9 +149,9 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
             >
                 <RuleList
                     ruleSummaries={ruleSummaries}
-                    expandedRule={expandedRule}
+                    expandedRules={expandedRules}
                     selectedCheck={selectedCheck}
-                    onRuleClick={onRuleClick}
+                    onRuleClick={onExpandRule}
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
                     errorsMap={errorsMap}
@@ -187,7 +175,7 @@ function Tree({ ruleSummaries, selectedCheck, setSelectedCheck, errorsMap, profi
 // TODO: add Warnings
 function RuleList({
     ruleSummaries,
-    expandedRule,
+    expandedRules,
     selectedCheck,
     onRuleClick,
     onCheckClick,
@@ -205,10 +193,10 @@ function RuleList({
                     button
                     onClick={() => onRuleClick(index)}
                     className={classNames('rule-item rule-item_error', {
-                        'rule-item_expanded': expandedRule === index,
+                        'rule-item_expanded': expandedRules.includes(index),
                     })}
                 >
-                    {checks.length ? expandedRule === index ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                    {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
                     <ListItemText
                         title={ruleTitle}
                         className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
@@ -228,7 +216,7 @@ function RuleList({
                     </ListItemSecondaryAction>
                 </ListItem>
                 {checks.length ? (
-                    <Collapse in={expandedRule === index} timeout={0} unmountOnExit>
+                    <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
                         <List component="div" disablePadding>
                             <CheckList
                                 ruleIndex={index}
@@ -256,18 +244,19 @@ function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }
     return checksSorted.map(({ context, errorMessage, location, id: checkKey }, index) => {
         const checkTitle = getCheckTitle({ checkKey, index, allChecks: checksSorted, errorsMap, location });
         const errorTitle = errorMessage + '\n\nContext: ' + context;
+        const error = errorsMap[selectedCheck];
         const isGrouped =
             selectedCheck &&
-            errorsMap[selectedCheck] &&
-            errorsMap[selectedCheck]?.groupId &&
+            error &&
+            error?.groupId &&
             errorsMap[checkKey]?.groupId &&
-            errorsMap[selectedCheck].groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
+            error.groupId.split('-')?.pop() === errorsMap[checkKey].groupId.split('-')?.pop() &&
             selectedCheck !== checkKey;
         return (
             <LI
                 key={index}
                 onClick={() => onCheckClick(checkKey)}
-                selected={errorsMap[selectedCheck]?.checkIndex === index}
+                selected={`${error?.ruleIndex}:${error?.checkIndex}:${error?.location || error?.context}` === checkKey}
                 button
                 className={'check-item' + (isGrouped ? ' check-item_grouped' : '')}
                 title={errorTitle}
@@ -409,7 +398,9 @@ Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
+    onExpandRule: PropTypes.func.isRequired,
     errorsMap: PropTypes.array.isRequired,
 };
 

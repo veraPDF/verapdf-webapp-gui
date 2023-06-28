@@ -22,20 +22,26 @@ export default function configureStore() {
         store.dispatch(setFileUploadMode(isUploadMode === 'true'));
     }
 
+    window.onbeforeunload = () => {
+        const jobStatus = getJobStatus(store.getState());
+        // Show confirmation when we reload page while:
+        // - selected PDF file is not saved for some reason (and thus cannot be restored)
+        // - application is locked, e.g. when job creation was started but not yet complete (and thus cannot be restored)
+        if (
+            (getUnsavedFile(store.getState()) && isFileUploadMode(store.getState())) ||
+            jobStatus === JOB_STATUS.WAITING ||
+            jobStatus === JOB_STATUS.PROCESSING ||
+            isLocked(store.getState())
+        ) {
+            return '';
+        }
+    };
+
     window.onunload = () => {
         // Cancel job on tab close
         const jobStatus = getJobStatus(store.getState());
         if (jobStatus === JOB_STATUS.WAITING || jobStatus === JOB_STATUS.PROCESSING) {
             store.dispatch(cancelValidation());
-        }
-    };
-
-    window.onbeforeunload = () => {
-        // Show confirmation when we reload page while:
-        // - selected PDF file is not saved for some reason (and thus cannot be restored)
-        // - application is locked, e.g. when job creation was started but not yet complete (and thus cannot be restored)
-        if ((getUnsavedFile(store.getState()) && isFileUploadMode(store.getState())) || isLocked(store.getState())) {
-            return '';
         }
     };
 

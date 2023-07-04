@@ -14,6 +14,12 @@ const simulateUnload = () => {
 };
 
 const getDropzoneText = component => component.find('.dropzone-text').text();
+const getDropzoneFileSize = component =>
+    component
+        .find('.dropzone-file-size')
+        .text()
+        .trim()
+        .replace(/- /g, '');
 
 describe('Upload', () => {
     it(
@@ -29,7 +35,8 @@ describe('Upload', () => {
         integrationTest(async (store, component) => {
             await storeFile(component, store);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}`);
+            expect(getDropzoneFileSize(component)).toEqual(`${TEST_FILE.size}`);
             expect(getNextStepButton(component).props().disabled).toBeFalsy();
         })
     );
@@ -62,7 +69,8 @@ describe('Upload', () => {
             moveNext(component);
             moveBack(component);
 
-            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name} - ${TEST_FILE.size}`);
+            expect(getDropzoneText(component)).toEqual(`${TEST_FILE.name}`);
+            expect(getDropzoneFileSize(component)).toEqual(`${TEST_FILE.size}`);
         })
     );
 });

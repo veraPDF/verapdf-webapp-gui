@@ -75,8 +75,8 @@ function JobStatus({
     const { id: jobId } = useParams();
 
     const onDrop = useCallback(
-        acceptedFiles => {
-            onCancel();
+        async acceptedFiles => {
+            await onCancel();
             onFileDrop(acceptedFiles[0]);
         },
         [onCancel, onFileDrop]
@@ -220,7 +220,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCancel: () => dispatch(cancelValidation()),
+        onCancel: async () => await dispatch(cancelValidation()),
         onFileDrop: file => dispatch(resetOnFileUpload(file)),
     };
 };

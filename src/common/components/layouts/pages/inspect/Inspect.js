@@ -118,6 +118,7 @@ Inspect.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     lockApp: PropTypes.func.isRequired,
     unlockApp: PropTypes.func.isRequired,
+    onFileDrop: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -12,7 +12,9 @@ import { hasResult } from '../../../../store/job/result/selectors';
 import Progress from '../../../shared/progress/Progress';
 import WizardStep from '../../wizardStep/WizardStep';
 import Button from '../../../shared/button/Button';
+import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 import { cancelValidation } from '../../../../store/job/actions';
+import { resetOnFileUpload } from '../../../../store/application/actions';
 
 import './JobStatus.scss';
 
@@ -67,9 +69,18 @@ function JobStatus({
     errorMessage,
     complete,
     onCancel,
+    onFileDrop,
     cancellingJob,
 }) {
     const { id: jobId } = useParams();
+
+    const onDrop = useCallback(
+        async acceptedFiles => {
+            await onCancel();
+            onFileDrop(acceptedFiles[0]);
+        },
+        [onCancel, onFileDrop]
+    );
 
     switch (jobStatus) {
         case undefined:
@@ -99,20 +110,22 @@ function JobStatus({
         // eslint-disable-next-line no-fallthrough
         default:
             return (
-                <StatusPage>
-                    <Progress
-                        percents={percentage}
-                        title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}
-                        summary={getProgressSummary(steps, jobQueuePosition, cancellingJob)}
-                        progress={!cancellingJob ? jobProgress : null}
-                    />
-                    <div className="processing-controls">
-                        {(jobStatus === JOB_STATUS.WAITING ||
-                            (jobStatus === JOB_STATUS.PROCESSING && !cancellingJob)) && (
-                            <Button onClick={onCancel}>Cancel validation</Button>
-                        )}
-                    </div>
-                </StatusPage>
+                <DropzoneWrapper onFileDrop={onDrop}>
+                    <StatusPage>
+                        <Progress
+                            percents={percentage}
+                            title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}
+                            summary={getProgressSummary(steps, jobQueuePosition, cancellingJob)}
+                            progress={!cancellingJob ? jobProgress : null}
+                        />
+                        <div className="processing-controls">
+                            {(jobStatus === JOB_STATUS.WAITING ||
+                                (jobStatus === JOB_STATUS.PROCESSING && !cancellingJob)) && (
+                                <Button onClick={onCancel}>Cancel validation</Button>
+                            )}
+                        </div>
+                    </StatusPage>
+                </DropzoneWrapper>
             );
     }
 }
@@ -182,6 +195,7 @@ JobStatus.propTypes = {
     complete: PropTypes.bool,
     isCancellingJob: PropTypes.bool,
     onCancel: PropTypes.func.isRequired,
+    onFileDrop: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -206,7 +220,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCancel: () => dispatch(cancelValidation()),
+        onCancel: async () => await dispatch(cancelValidation()),
+        onFileDrop: file => dispatch(resetOnFileUpload(file)),
     };
 };
 

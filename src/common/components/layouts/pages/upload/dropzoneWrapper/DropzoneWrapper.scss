@@ -2,9 +2,12 @@
 
 .dropzone-wrapper {
   overflow: hidden;
+  height: 100%;
 
   &__fade {
     position: fixed;
+    left: 0;
+    top: 75px;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     width: 100%;

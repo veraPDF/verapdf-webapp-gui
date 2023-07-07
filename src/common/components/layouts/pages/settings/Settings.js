@@ -6,9 +6,11 @@ import { Redirect } from 'react-router-dom';
 import AppPages from '../../../AppPages';
 import WizardStep from '../../wizardStep/WizardStep';
 import ProfileSelect from './profile/ProfileSelect';
+import FileName from '../../../shared/fileName/FileName';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 import { getServerGeneralStatus } from '../../../../store/serverInfo/selectors';
+import { getFileDescriptor } from '../../../../store/pdfFiles/selectors';
 import { getJobId } from '../../../../store/job/selectors';
 import { validate } from '../../../../store/job/actions';
 import { resetOnFileUpload } from '../../../../store/application/actions';
@@ -51,6 +53,7 @@ function Settings(props) {
     return (
         <DropzoneWrapper onFileDrop={onDrop}>
             <WizardStep stepIndex={AppPages.SETTINGS}>
+                <FileName fileInfo={props.fileInfo} size={'min'} />
                 <section className="job-settings">
                     <form>
                         <ProfileSelect />
@@ -62,8 +65,13 @@ function Settings(props) {
     );
 }
 
+const FileInfoInterface = PropTypes.shape({
+    name: PropTypes.string.isRequired,
+});
+
 Settings.propTypes = {
     allServicesAvailable: PropTypes.bool.isRequired,
+    fileInfo: FileInfoInterface.isRequired,
     jobId: PropTypes.string,
     onValidateClick: PropTypes.func.isRequired,
     onFileDrop: PropTypes.func.isRequired,
@@ -72,6 +80,7 @@ Settings.propTypes = {
 function mapStateToProps(state) {
     return {
         allServicesAvailable: getServerGeneralStatus(state),
+        fileInfo: getFileDescriptor(state),
         jobId: getJobId(state),
     };
 }

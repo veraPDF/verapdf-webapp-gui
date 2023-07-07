@@ -10,6 +10,7 @@ import { Chart } from 'react-google-charts';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
+import FileName from '../../../../shared/fileName/FileName';
 
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
@@ -21,10 +22,11 @@ const JOB_END_STATUS = {
     TIMEOUT: 'timeout',
 };
 
-function Summary({ fileInfo, resultSummary, jobEndStatus }) {
+function Summary({ fileInfo, selectedProfile, resultSummary, jobEndStatus }) {
     return (
         <Paper className="summary">
-            <h2>{fileInfo.name}</h2>
+            <FileName fileInfo={fileInfo} component={'h2'} size={'max'} />
+            <p>{selectedProfile}</p>
             {jobEndStatus === JOB_END_STATUS.CANCELLED && <CanceledSummary />}
             {jobEndStatus === JOB_END_STATUS.TIMEOUT && <TimeoutSummary />}
             {![JOB_END_STATUS.TIMEOUT, JOB_END_STATUS.CANCELLED].includes(jobEndStatus) && (
@@ -138,6 +140,7 @@ const FileInfoInterface = PropTypes.shape({
 Summary.propTypes = {
     resultSummary: SummaryInterface.isRequired,
     fileInfo: FileInfoInterface.isRequired,
+    selectedProfile: PropTypes.string,
     jobEndStatus: PropTypes.string,
 };
 
@@ -145,6 +148,7 @@ function mapStateToProps(state) {
     return {
         resultSummary: getResultSummary(state),
         fileInfo: getFileDescriptor(state),
+        selectedProfile: state.jobSettings.profile,
         jobEndStatus: getJobEndStatus(state),
     };
 }

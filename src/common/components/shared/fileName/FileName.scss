@@ -1,0 +1,11 @@
+.job-filename {
+    display: block;
+    font-weight: bold;
+    padding-top: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &__min { max-width: 320px; }
+    &__max { max-width: 80vw; }
+}

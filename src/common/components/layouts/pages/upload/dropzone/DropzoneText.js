@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from '@material-ui/core';
+
 import './DropzoneText.scss';
 
 const DROPZONE_TEXT = 'Drop a PDF file, or click to select a file';
@@ -8,16 +10,20 @@ function DropzoneText(props) {
     const { files } = props;
 
     return (
-        <section className="dropzone-text">
+        <>
             {files.length ? (
                 <>
-                    {files[0].name}
-                    <span className="dropzone-text__file-size"> - {formatFileSize(files[0])}</span>
+                    <Tooltip title={files.length ? `${files[0].name}` : ''}>
+                        <section className="dropzone-text">{files[0].name}</section>
+                    </Tooltip>
+                    <section className="dropzone-file-size">
+                        <span>&nbsp;- {formatFileSize(files[0])}</span>
+                    </section>
                 </>
             ) : (
-                DROPZONE_TEXT
+                <section className="dropzone-text">{DROPZONE_TEXT}</section>
             )}
-        </section>
+        </>
     );
 }
 

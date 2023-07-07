@@ -27,7 +27,7 @@ const JOB_END_STATUS = {
 function Summary({ fileInfo, profiles, selectedProfile, resultSummary, jobEndStatus }) {
     return (
         <Paper className="summary">
-            <FileName fileInfo={fileInfo} component={'h2'} size={'max'} />
+            <FileName fileInfo={fileInfo} component="h2" size="max" />
             <p>{profiles.filter(({ value }) => value === selectedProfile)[0].label}</p>
             {jobEndStatus === JOB_END_STATUS.CANCELLED && <CanceledSummary />}
             {jobEndStatus === JOB_END_STATUS.TIMEOUT && <TimeoutSummary />}

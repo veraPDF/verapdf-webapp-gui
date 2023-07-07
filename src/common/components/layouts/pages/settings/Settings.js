@@ -53,7 +53,7 @@ function Settings(props) {
     return (
         <DropzoneWrapper onFileDrop={onDrop}>
             <WizardStep stepIndex={AppPages.SETTINGS}>
-                <FileName fileInfo={props.fileInfo} size={'max'} />
+                <FileName fileInfo={props.fileInfo} size="mid" />
                 <section className="job-settings">
                     <form>
                         <ProfileSelect />

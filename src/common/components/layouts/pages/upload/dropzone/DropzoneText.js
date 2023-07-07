@@ -10,20 +10,20 @@ function DropzoneText(props) {
     const { files } = props;
 
     return (
-        <>
+        <section className="dropzone-text">
             {files.length ? (
                 <>
                     <Tooltip title={files.length ? `${files[0].name}` : ''}>
-                        <section className="dropzone-text">{files[0].name}</section>
+                        <p className="dropzone-file">{files[0].name}</p>
                     </Tooltip>
-                    <section className="dropzone-file-size">
-                        <span>&nbsp;- {formatFileSize(files[0])}</span>
-                    </section>
+                    <p className="dropzone-file-size">
+                        <span>- {formatFileSize(files[0])}</span>
+                    </p>
                 </>
             ) : (
-                <section className="dropzone-text">{DROPZONE_TEXT}</section>
+                DROPZONE_TEXT
             )}
-        </>
+        </section>
     );
 }
 

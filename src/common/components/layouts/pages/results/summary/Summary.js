@@ -11,9 +11,11 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import FileName from '../../../../shared/fileName/FileName';
+import { OptionShape } from '../../../../shared/select/Select';
 
 import { getFileDescriptor } from '../../../../../store/pdfFiles/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
+import { getProfileOptions } from '../../../../../store/validationProfiles/selectors';
 
 import './Summary.scss';
 
@@ -22,11 +24,11 @@ const JOB_END_STATUS = {
     TIMEOUT: 'timeout',
 };
 
-function Summary({ fileInfo, selectedProfile, resultSummary, jobEndStatus }) {
+function Summary({ fileInfo, profiles, selectedProfile, resultSummary, jobEndStatus }) {
     return (
         <Paper className="summary">
             <FileName fileInfo={fileInfo} component={'h2'} size={'max'} />
-            <p>{selectedProfile}</p>
+            <p>{profiles.filter(({ value }) => value === selectedProfile)[0].label}</p>
             {jobEndStatus === JOB_END_STATUS.CANCELLED && <CanceledSummary />}
             {jobEndStatus === JOB_END_STATUS.TIMEOUT && <TimeoutSummary />}
             {![JOB_END_STATUS.TIMEOUT, JOB_END_STATUS.CANCELLED].includes(jobEndStatus) && (
@@ -140,6 +142,7 @@ const FileInfoInterface = PropTypes.shape({
 Summary.propTypes = {
     resultSummary: SummaryInterface.isRequired,
     fileInfo: FileInfoInterface.isRequired,
+    profiles: PropTypes.arrayOf(OptionShape).isRequired,
     selectedProfile: PropTypes.string,
     jobEndStatus: PropTypes.string,
 };
@@ -148,6 +151,7 @@ function mapStateToProps(state) {
     return {
         resultSummary: getResultSummary(state),
         fileInfo: getFileDescriptor(state),
+        profiles: getProfileOptions(state),
         selectedProfile: state.jobSettings.profile,
         jobEndStatus: getJobEndStatus(state),
     };

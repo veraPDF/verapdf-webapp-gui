@@ -18,7 +18,6 @@ const getDropzoneFileSize = component =>
     component
         .find('.dropzone-file-size')
         .text()
-        .trim()
         .replace(/- /g, '');
 
 describe('Upload', () => {

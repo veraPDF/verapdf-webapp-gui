@@ -115,7 +115,7 @@ function JobStatus({
             return (
                 <DropzoneWrapper onFileDrop={onDrop}>
                     <StatusPage>
-                        <FileName fileInfo={fileInfo} size={'min'} />
+                        <FileName fileInfo={fileInfo} size={'max'} />
                         <Progress
                             percents={percentage}
                             title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}

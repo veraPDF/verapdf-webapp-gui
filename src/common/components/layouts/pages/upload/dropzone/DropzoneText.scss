@@ -1,15 +1,22 @@
 @import "../../../../variables";
 
 .dropzone-text {
-  max-width: calc(100% - 100px);
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  width: 75%;
   color: $color-black--75;
-}
 
-.dropzone-file-size {
-  color: $color-black--50;
-  font-size: $font-size--basic;
+  .dropzone-file {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 100px);
+  }
+
+  .dropzone-file-size {
+    color: $color-black--50;
+    font-size: $font-size--basic;
+    span { margin-left: 0.3em; }
+  }
 }

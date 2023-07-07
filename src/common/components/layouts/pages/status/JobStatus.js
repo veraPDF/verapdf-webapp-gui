@@ -8,8 +8,10 @@ import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
 import { getJobError, getJobProgress, getJobQueuePosition, getJobStatus } from '../../../../store/job/selectors';
 import { getProgress, isCancellingJob } from '../../../../store/job/progress/selectors';
-import { getFileDescriptor } from '../../../../store/pdfFiles/selectors';
+import { getFileName } from '../../../../store/pdfFiles/selectors';
+import { getFileNameLink } from '../../../../store/pdfLink/selectors';
 import { hasResult } from '../../../../store/job/result/selectors';
+import { isFileUploadMode } from '../../../../store/application/selectors';
 import Progress from '../../../shared/progress/Progress';
 import WizardStep from '../../wizardStep/WizardStep';
 import FileName from '../../../shared/fileName/FileName';
@@ -63,7 +65,7 @@ export const STEPS = {
 };
 
 function JobStatus({
-    fileInfo,
+    fileName,
     jobStatus,
     jobProgress,
     jobQueuePosition,
@@ -115,7 +117,7 @@ function JobStatus({
             return (
                 <DropzoneWrapper onFileDrop={onDrop}>
                     <StatusPage>
-                        <FileName fileInfo={fileInfo} size="mid" />
+                        <FileName title={fileName} size="mid" />
                         <Progress
                             percents={percentage}
                             title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}
@@ -189,12 +191,8 @@ const StepShape = PropTypes.shape({
     completed: PropTypes.bool.isRequired,
 });
 
-const FileInfoInterface = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-});
-
 JobStatus.propTypes = {
-    fileInfo: FileInfoInterface.isRequired,
+    fileName: PropTypes.string.isRequired,
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)),
     jobProgress: PropTypes.string,
     jobQueuePosition: PropTypes.number,
@@ -208,7 +206,7 @@ JobStatus.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const fileInfo = getFileDescriptor(state);
+    const fileName = isFileUploadMode(state) ? getFileName(state) : getFileNameLink(state);
     const { percentage, steps } = getProgress(state);
     const jobStatus = getJobStatus(state);
     const jobProgress = getJobProgress(state);
@@ -217,7 +215,7 @@ function mapStateToProps(state) {
     const complete = hasResult(state);
     const cancellingJob = isCancellingJob(state);
     return {
-        fileInfo,
+        fileName,
         jobStatus,
         jobProgress,
         jobQueuePosition,

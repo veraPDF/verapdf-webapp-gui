@@ -4,29 +4,25 @@ import { Box, Tooltip, Typography } from '@material-ui/core';
 
 import './FileName.scss';
 
-function FileName({ fileInfo, component, size }) {
+function FileName({ title, component, size }) {
     return (
         <Box display="flex" justifyContent="center">
-            <Tooltip title={fileInfo.name || ''}>
+            <Tooltip title={title || ''}>
                 <Typography
                     className={`job-filename job-filename__${size}`}
                     variant="inherit"
                     component={component}
                     color="textPrimary"
                 >
-                    {fileInfo.name || ''}
+                    {title || ''}
                 </Typography>
             </Tooltip>
         </Box>
     );
 }
 
-const FileInfoInterface = PropTypes.shape({
-    name: PropTypes.string.isRequired,
-});
-
 FileName.propTypes = {
-    fileInfo: FileInfoInterface.isRequired,
+    title: PropTypes.string.isRequired,
 };
 
 export default FileName;

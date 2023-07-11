@@ -538,11 +538,11 @@
 		},
 		"7.5": {
 			"1": {
-				"SUMMARY": "TD does not contain Headers attribute, and Headers for this table cell can not be determined",
+				"SUMMARY": "TD does not contain Headers attribute, and Headers for this table cell cannot be determined",
 				"DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
 			},
 			"2": {
-				"SUMMARY": "TD references undefined Header(s), and Headers for this table cell can not be determined",
+				"SUMMARY": "TD references undefined Header(s), and Headers for this table cell cannot be determined",
 				"DESCRIPTION": "If the table's structure is not determinable via Headers and IDs, then structure elements of type TH shall have a Scope attribute"
 			}
 		},

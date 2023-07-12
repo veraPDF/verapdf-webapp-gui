@@ -1,5 +1,4 @@
-import WordArray from 'crypto-js/lib-typedarrays';
-import md5 from 'crypto-js/md5';
+import SparkMD5 from 'spark-md5';
 import { get, upload } from './api';
 
 const { REACT_APP_API_ROOT } = process.env;
@@ -50,14 +49,26 @@ const buildFileData = async file => {
 
 const calculateContentMD5 = file =>
     new Promise(resolve => {
+        const CHUNK_SIZE = 2 * 1024 * 1024;
+        const CHUNKS = Math.ceil(file.size / CHUNK_SIZE);
+        const blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+        const spark = new SparkMD5.ArrayBuffer();
         const reader = new FileReader();
-        reader.onload = () => {
-            // TODO: https://github.com/veraPDF/verapdf-webapp-gui/issues/31
-            const wordArray = WordArray.create(reader.result);
-            const contentMD5 = md5(wordArray).toString();
-            resolve(contentMD5);
+        let currentChunk = 0;
+
+        const loadNext = () => {
+            const start = currentChunk * CHUNK_SIZE;
+            const end = start + CHUNK_SIZE >= file.size ? file.size : start + CHUNK_SIZE;
+            reader.readAsArrayBuffer(blobSlice.call(file, start, end));
         };
-        reader.readAsArrayBuffer(file);
+
+        reader.onload = event => {
+            spark.append(event.target.result);
+            currentChunk++;
+            currentChunk < CHUNKS ? loadNext() : resolve(spark.end());
+        };
+
+        loadNext();
     });
 
 export const getFileLinkById = id => `${REACT_APP_API_ROOT}/files/${id}`;

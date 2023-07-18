@@ -8,9 +8,13 @@ import AppPages from '../../../AppPages';
 import { JOB_STATUS } from '../../../../store/constants';
 import { getJobError, getJobProgress, getJobQueuePosition, getJobStatus } from '../../../../store/job/selectors';
 import { getProgress, isCancellingJob } from '../../../../store/job/progress/selectors';
+import { getFileName } from '../../../../store/pdfFiles/selectors';
+import { getFileNameLink } from '../../../../store/pdfLink/selectors';
 import { hasResult } from '../../../../store/job/result/selectors';
+import { isFileUploadMode } from '../../../../store/application/selectors';
 import Progress from '../../../shared/progress/Progress';
 import WizardStep from '../../wizardStep/WizardStep';
+import FileName from '../../../shared/fileName/FileName';
 import Button from '../../../shared/button/Button';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 import { cancelValidation } from '../../../../store/job/actions';
@@ -61,6 +65,7 @@ export const STEPS = {
 };
 
 function JobStatus({
+    fileName,
     jobStatus,
     jobProgress,
     jobQueuePosition,
@@ -112,6 +117,7 @@ function JobStatus({
             return (
                 <DropzoneWrapper onFileDrop={onDrop}>
                     <StatusPage>
+                        <FileName title={fileName} size="mid" />
                         <Progress
                             percents={percentage}
                             title={getProgressTitle(steps, jobQueuePosition, cancellingJob)}
@@ -186,6 +192,7 @@ const StepShape = PropTypes.shape({
 });
 
 JobStatus.propTypes = {
+    fileName: PropTypes.string.isRequired,
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)),
     jobProgress: PropTypes.string,
     jobQueuePosition: PropTypes.number,
@@ -199,6 +206,7 @@ JobStatus.propTypes = {
 };
 
 function mapStateToProps(state) {
+    const fileName = isFileUploadMode(state) ? getFileName(state) : getFileNameLink(state);
     const { percentage, steps } = getProgress(state);
     const jobStatus = getJobStatus(state);
     const jobProgress = getJobProgress(state);
@@ -207,6 +215,7 @@ function mapStateToProps(state) {
     const complete = hasResult(state);
     const cancellingJob = isCancellingJob(state);
     return {
+        fileName,
         jobStatus,
         jobProgress,
         jobQueuePosition,

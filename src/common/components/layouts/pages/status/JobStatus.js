@@ -19,6 +19,7 @@ import Button from '../../../shared/button/Button';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 import { cancelValidation } from '../../../../store/job/actions';
 import { resetOnFileUpload } from '../../../../store/application/actions';
+import { storeMode } from '../../../../store/pdfFiles/actions';
 
 import './JobStatus.scss';
 
@@ -82,6 +83,7 @@ function JobStatus({
     const onDrop = useCallback(
         async acceptedFiles => {
             await onCancel();
+            storeMode(true);
             onFileDrop(acceptedFiles[0]);
         },
         [onCancel, onFileDrop]

@@ -19,6 +19,7 @@ import { resetOnFileUpload } from '../../../../store/application/actions';
 import { JOB_OLD_FILE } from '../../../../store/constants';
 
 import './Settings.scss';
+import { storeMode } from '../../../../store/pdfFiles/actions';
 
 const backButton = {
     label: 'Upload files',
@@ -30,6 +31,7 @@ function Settings(props) {
 
     const onDrop = useCallback(
         acceptedFiles => {
+            storeMode(true);
             onFileDrop(acceptedFiles[0]);
         },
         [onFileDrop]

@@ -13,6 +13,7 @@
 
   &__chart {
     @include centered-column;
+    position: relative;
     height: 300px;
 
     // Remove chart tooltip flickering

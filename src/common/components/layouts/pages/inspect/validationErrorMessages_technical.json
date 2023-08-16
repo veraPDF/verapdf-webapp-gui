@@ -284,6 +284,10 @@
 			"54": {
 				"SUMMARY": "Note is tagged as a Paragraph",
 				"DESCRIPTION": "A part of the text is recognized as a Note, but tagged as <P> element"
+			},
+			"55": {
+				"SUMMARY": "The heading is a single child",
+				"DESCRIPTION": "The heading is a single child of its ancestor structure element and is not grouped with the related content"
 			}
 		}
 	},

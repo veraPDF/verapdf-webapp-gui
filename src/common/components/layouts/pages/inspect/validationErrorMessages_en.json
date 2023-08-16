@@ -246,40 +246,44 @@
         "DESCRIPTION": "This looks like a normal cell but it is tagged as a table head. Always create tables with the table functionality of your office application. Only the first row or column should contain table heads. Avoid merging and splitting cells and don't format tables manually."
       },
       "46": {
-	"SUMMARY": "This table of contents element was not found in the document",
-	"DESCRIPTION": "The text of this table of contents element does not correspond to any header in the document."
+        "SUMMARY": "This table of contents element was not found in the document",
+        "DESCRIPTION": "The text of this table of contents element does not correspond to any header in the document."
       },
       "47": {
-	"SUMMARY": "This table of contents element does not refer to the correct page",
-	"DESCRIPTION": "The text of this table of contents element is not found on the referenced page."
+        "SUMMARY": "This table of contents element does not refer to the correct page",
+        "DESCRIPTION": "The text of this table of contents element is not found on the referenced page."
       },
       "48": {
-	"SUMMARY": "This table of contents element does not refer to any page",
-	"DESCRIPTION": "This table of contents element has no reference to any page."
+        "SUMMARY": "This table of contents element does not refer to any page",
+        "DESCRIPTION": "This table of contents element has no reference to any page."
       },
       "49": {
-	"SUMMARY": "This table of contents element has an invalid page reference",
-	"DESCRIPTION": "This table of contents element does not have a valid page number as reference."
+        "SUMMARY": "This table of contents element has an invalid page reference",
+        "DESCRIPTION": "This table of contents element does not have a valid page number as reference."
       },
       "50": {
-	"SUMMARY": "Table of contents has inconsistent numbering",
-	"DESCRIPTION": "The numbering of the table of contents does not seem to follow any logical order such as '1, 2, 3,..' or 'i, ii, iii,..'."
+        "SUMMARY": "Table of contents has inconsistent numbering",
+        "DESCRIPTION": "The numbering of the table of contents does not seem to follow any logical order such as '1, 2, 3,..' or 'i, ii, iii,..'."
       },
       "51": {
-	"SUMMARY": "Strange tagging of list",
-	"DESCRIPTION": "This list has one element, which is another list. This has no added value and can confuse screen readers."
+        "SUMMARY": "Strange tagging of list",
+        "DESCRIPTION": "This list has one element, which is another list. This has no added value and can confuse screen readers."
       },
       "52": {
-	"SUMMARY": "Are these several list items?",
-	"DESCRIPTION": "It looks as though several list items have been tagged as one single list item. This can cause screen readers to read the list incorrectly. Make sure different list items are tagged as such."
+        "SUMMARY": "Are these several list items?",
+        "DESCRIPTION": "It looks as though several list items have been tagged as one single list item. This can cause screen readers to read the list incorrectly. Make sure different list items are tagged as such."
       },
       "53": {
-	"SUMMARY": "Is this a note?",
-	"DESCRIPTION": "It looks as though this text is a note, but it is not tagged as such. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
+        "SUMMARY": "Is this a note?",
+        "DESCRIPTION": "It looks as though this text is a note, but it is not tagged as such. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
       },
       "54": {
-	"SUMMARY": "Is this a note?",
-	"DESCRIPTION": "It looks as though this text is a note, but it is tagged as an ordinary paragraph. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
+        "SUMMARY": "Is this a note?",
+        "DESCRIPTION": "It looks as though this text is a note, but it is tagged as an ordinary paragraph. Screen readers may therefore not recognise it as a note. Make sure you tag notes as such."
+      },
+      "55": {
+        "SUMMARY": "Heading is not grouped with its related content",
+        "DESCRIPTION": "The heading is a single child of its ancestor structure element. It should rather be grouped with the related content."
       }
     },
     "4.1.3": {

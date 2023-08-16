@@ -16,6 +16,7 @@ import { getJobId } from '../../../../store/job/selectors';
 import { isFileUploadMode } from '../../../../store/application/selectors';
 import { validate } from '../../../../store/job/actions';
 import { resetOnFileUpload } from '../../../../store/application/actions';
+import { storeMode } from '../../../../store/pdfFiles/actions';
 import { JOB_OLD_FILE } from '../../../../store/constants';
 
 import './Settings.scss';
@@ -30,6 +31,7 @@ function Settings(props) {
 
     const onDrop = useCallback(
         acceptedFiles => {
+            storeMode(true);
             onFileDrop(acceptedFiles[0]);
         },
         [onFileDrop]

@@ -9,6 +9,7 @@ import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { getJobEndStatus, isCompliant } from '../../../../store/job/result/selectors';
 import { reset, resetOnFileUpload } from '../../../../store/application/actions';
+import { storeMode } from '../../../../store/pdfFiles/actions';
 import WizardStep from '../../wizardStep/WizardStep';
 import Summary from './summary/Summary';
 import PageNavigation from '../../../shared/pageNavigation/PageNavigation';
@@ -25,6 +26,7 @@ function Results({ jobStatus, taskStatus, compliant, jobEndStatus, onBackClick, 
 
     const onDrop = useCallback(
         acceptedFiles => {
+            storeMode(true);
             onFileDrop(acceptedFiles[0]);
         },
         [onFileDrop]

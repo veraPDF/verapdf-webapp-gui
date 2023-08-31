@@ -19,12 +19,12 @@ function Tree({
     setSelectedCheck,
     expandedNodes,
     setExpandedNodes,
+    roleMap,
     errorsMap,
     ruleSummaries,
 }) {
     const treeRef = useRef();
     const [selectedNodeId, setSelectedNodeId] = useState(null);
-
     useEffect(() => {
         if (_.isNil(selectedCheck)) {
             treeRef?.current.deselectAll();
@@ -35,7 +35,7 @@ function Tree({
                 const newNodeId = ruleSummaries[ruleIndex][checkIndex]?.treeId;
                 setSelectedNodeId(newNodeId);
                 if (newNodeId === selectedNodeId) {
-                    treeRef?.current.get(newNodeId).select();
+                    treeRef?.current.get(newNodeId)?.select();
                     treeRef?.current.scrollTo(newNodeId, 'center');
                 }
             }
@@ -71,6 +71,7 @@ function Tree({
             selection={selectedNodeId}
             expandedNodes={expandedNodes}
             setExpandedNodes={setExpandedNodes}
+            roleMap={roleMap}
             onNodeClick={onNodeClick}
         >
             {Node}
@@ -80,7 +81,7 @@ function Tree({
 
 function Node({ node, style, tree }) {
     const ref = useRef();
-    const { expandedNodes, setExpandedNodes, onNodeClick } = tree.props;
+    const { roleMap, expandedNodes, setExpandedNodes, onNodeClick } = tree.props;
 
     const handleNodeClick = _event => {
         node.select();
@@ -105,7 +106,7 @@ function Node({ node, style, tree }) {
             <button className="tree__item__icon" disabled={node.data?.final} onClick={handleIconClick}>
                 {tree.isOpen(node.id) ? <ExpandMoreIcon /> : <ChevronRightIcon />}
             </button>
-            <label className="tree__item__label">{node.data.name}</label>
+            <label className="tree__item__label">{roleMap ? node.data.roleName : node.data.name}</label>
         </div>
     );
 }
@@ -118,6 +119,7 @@ Tree.propTypes = {
     setSelectedCheck: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
+    roleMap: PropTypes.bool.isRequired,
     errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     ruleSummaries: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
 };

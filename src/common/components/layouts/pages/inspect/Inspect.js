@@ -8,7 +8,14 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
-import { parseTree, cleanTree, setTreeIds, getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
+import {
+    parseTree,
+    cleanTree,
+    setTreeIds,
+    getTreeRoleNames,
+    getTreeIds,
+    setRulesTreeIds,
+} from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { getRuleSummaries } from '../../../../store/job/result/selectors';
@@ -33,6 +40,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const [scale, setScale] = useState('1');
     const [isTreeShow, setIsTreeShow] = useState(false);
     const [treeData, setTreeData] = useState({});
+    const [roleMap, setRoleMap] = useState(false);
     const scaleOptions = [
         { label: '50%', value: '0.5' },
         { label: '75%', value: '0.75' },
@@ -69,12 +77,13 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
         [expandedRules, setExpandedRules]
     );
     const initTree = useCallback(tree => {
+        const ruleSummariesWithTreeIds = setRulesTreeIds(ruleSummaries);
         const parsedTree = parseTree(tree);
         const cleanedTree = cleanTree(parsedTree);
         const treeWithIds = setTreeIds(cleanedTree);
+        const treeWithRoleNames = getTreeRoleNames(treeWithIds, ruleSummariesWithTreeIds);
         const ids = getTreeIds(treeWithIds);
-        const ruleSummariesWithTreeIds = setRulesTreeIds(ruleSummaries);
-        setTreeData({ tree: treeWithIds, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
+        setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -136,6 +145,8 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     setSelectedCheck={setSelectedCheck}
                     expandedNodes={expandedNodes}
                     setExpandedNodes={setExpandedNodes}
+                    roleMap={roleMap}
+                    setRoleMap={setRoleMap}
                     ruleSummaries={treeData.ruleSummaries}
                     errorsMap={errorsMap}
                 />

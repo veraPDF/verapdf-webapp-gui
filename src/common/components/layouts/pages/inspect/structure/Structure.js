@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 import Pane from './../pane/Pane';
+import RoleMap from './roleMap/RoleMap';
 import Tree from './Tree/Tree';
 
 import './Structure.scss';
@@ -20,6 +21,8 @@ function StructureTree({
     setSelectedCheck,
     expandedNodes,
     setExpandedNodes,
+    roleMap,
+    setRoleMap,
     errorsMap,
     ruleSummaries,
 }) {
@@ -39,6 +42,7 @@ function StructureTree({
                         subheader={
                             <ListSubheader component="div" id="summary-structure-subheader" disableSticky>
                                 {LIST_HEADER}
+                                <RoleMap roleMap={roleMap} setRoleMap={setRoleMap} />
                             </ListSubheader>
                         }
                         disablePadding
@@ -52,6 +56,7 @@ function StructureTree({
                                 setSelectedCheck={setSelectedCheck}
                                 expandedNodes={expandedNodes}
                                 setExpandedNodes={setExpandedNodes}
+                                roleMap={roleMap}
                                 ruleSummaries={ruleSummaries}
                                 errorsMap={errorsMap}
                             />
@@ -71,6 +76,8 @@ StructureTree.propTypes = {
     setSelectedCheck: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
+    roleMap: PropTypes.bool.isRequired,
+    setRoleMap: PropTypes.func.isRequired,
     errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     ruleSummaries: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
 };

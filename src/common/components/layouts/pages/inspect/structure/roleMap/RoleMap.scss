@@ -1,0 +1,10 @@
+@import '../../../../../variables';
+
+.roleMap {
+    display: flex;
+    align-items: center;
+
+    &__checkbox {
+        padding: 0 !important;
+    }
+}

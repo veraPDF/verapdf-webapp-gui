@@ -13,9 +13,8 @@ function RoleMap({ roleMap, setRoleMap }) {
         <div className="roleMap">
             {CHECKBOX_HEADER}
             <Checkbox
-                className="roleMap__checkbox"
                 color="primary"
-                size="small"
+                size="medium"
                 checked={roleMap}
                 onChange={handleClick}
                 inputProps={{ 'aria-label': 'primary checkbox' }}

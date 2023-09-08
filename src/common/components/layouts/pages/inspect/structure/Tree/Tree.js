@@ -40,8 +40,7 @@ function Tree({
                 }
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedCheck]);
+    }, [errorsMap, ruleSummaries, selectedCheck, selectedNodeId]);
 
     const onNodeClick = useCallback(
         id => {

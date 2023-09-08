@@ -40,7 +40,7 @@ function StructureTree({
                         className="summary-structure__list"
                         aria-labelledby="summary-structure-subheader"
                         subheader={
-                            <ListSubheader component="div" id="summary-structure-subheader" disableSticky>
+                            <ListSubheader component="div" className="summary-structure-subheader" disableSticky>
                                 {LIST_HEADER}
                                 <RoleMap roleMap={roleMap} setRoleMap={setRoleMap} />
                             </ListSubheader>

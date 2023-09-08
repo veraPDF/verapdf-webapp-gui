@@ -14,8 +14,9 @@
   }
 }
 
-#summary-structure-subheader {
+.summary-structure-subheader {
   display: flex;
   justify-content: space-between;
+  overflow: auto;
 }
   

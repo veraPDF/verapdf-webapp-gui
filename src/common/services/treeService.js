@@ -1,23 +1,27 @@
 import _ from 'lodash';
 
-const getStructureIds = arr => {
+const getContext = arr => {
     let allContext = '';
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr[i].length; j++) {
-            allContext += arr[i][j].context;
-        }
-    }
-    return Array.from(new Set(allContext.match(/\(\d+ \d+ \S+ \S+ \S+\)/g)))
+    _.map(arr, subArr => {
+        _.map(subArr, el => {
+            allContext += el.context;
+        });
+    });
+    return allContext;
+};
+
+const getStructureIds = arr => {
+    return Array.from(new Set(getContext(arr).match(/\(\d+ \d+ \S+ \S+ \S+\)/g)))
         .filter(id => !id.includes('/'))
         .map(id => id.slice(1, -1));
 };
 
 const getRoleMapList = arr => {
-    const roleMapList = getStructureIds(arr).map(id => {
+    const roleMapList = _.map(getStructureIds(arr), id => {
         const [key, value] = [id.split(' ').at(-1), id.split(' ').at(-2)];
         return value.includes('SE') ? ['', ''] : [key, value];
     });
-    return Object.fromEntries(roleMapList);
+    return _.fromPairs(roleMapList);
 };
 
 const parseTree = tree => {
@@ -44,11 +48,7 @@ const cleanTree = node => {
     }
 
     if (!(node.children instanceof Array)) node.children = [cleanTree(node.children)];
-    else {
-        for (let index = 0; index < node.children.length; index++) {
-            node.children[index] = cleanTree(node.children[index]);
-        }
-    }
+    else node.children = _.map(node.children, child => cleanTree(child));
     node.children = cleanArray(node.children);
     return node;
 };
@@ -61,11 +61,7 @@ const setTreeIds = (node, id = '0') => {
         return node;
     }
     if (!(node.children instanceof Array)) node.children = [setTreeIds(node.children, `${id}:${0}`)];
-    else {
-        for (let index = 0; index < node.children.length; index++) {
-            node.children[index] = setTreeIds(node.children[index], `${id}:${index}`);
-        }
-    }
+    else node.children = _.map(node.children, (child, index) => setTreeIds(child, `${id}:${index}`));
     return node;
 };
 
@@ -74,10 +70,7 @@ const getTreeIds = (node, ids = []) => {
     if (!node.hasOwnProperty('final')) ids.push(node.id);
     if (_.isNil(node.children)) return ids;
     if (!(node.children instanceof Array)) ids.push(node.children.id);
-    else
-        for (let index = 0; index < node.children.length; index++) {
-            getTreeIds(node.children[index], ids);
-        }
+    else _.map(node.children, child => getTreeIds(child, ids));
     return ids;
 };
 
@@ -107,27 +100,23 @@ const getTreeRoleNames = (tree, arr) => {
         node.roleName = _.isNil(roleName) ? node.name : roleName;
         if (!node?.children.length) return node;
         if (!(node.children instanceof Array)) setNodeRoleName(node.children);
-        else {
-            for (let index = 0; index < node.children.length; index++) {
-                setNodeRoleName(node.children[index]);
-            }
-        }
+        else _.map(node.children, child => setNodeRoleName(child));
         return node;
     };
     return setNodeRoleName(tree);
 };
 
 const findNode = (arr, id) => {
-    for (let ruleIndex = 0; ruleIndex < arr.length; ruleIndex++) {
-        const ruleArr = arr[ruleIndex];
-        for (let checkIndex = 0; checkIndex < ruleArr.length; checkIndex++) {
-            const checkArr = ruleArr[checkIndex];
-            if (checkArr.treeId === `${id}:0` || checkArr.treeId === id) {
-                return [ruleIndex, checkIndex];
+    let ruleIndex = null;
+    let checkIndex = null;
+    _.map(arr, (rule, i) => {
+        _.map(rule, (check, j) => {
+            if (check.treeId === `${id}:0` || check.treeId === id) {
+                [ruleIndex, checkIndex] = [i, j];
             }
-        }
-    }
-    return [null, null];
+        });
+    });
+    return [ruleIndex, checkIndex];
 };
 
-export { parseTree, cleanTree, getTreeIds, setTreeIds, getTreeRoleNames, setRulesTreeIds, findNode };
+export { parseTree, cleanTree, setTreeIds, getTreeIds, setRulesTreeIds, getTreeRoleNames, findNode };

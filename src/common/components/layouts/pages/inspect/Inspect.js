@@ -76,16 +76,18 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
         },
         [expandedRules, setExpandedRules]
     );
-    const initTree = useCallback(tree => {
-        const ruleSummariesWithTreeIds = setRulesTreeIds(ruleSummaries);
-        const parsedTree = parseTree(tree);
-        const cleanedTree = cleanTree(parsedTree);
-        const treeWithIds = setTreeIds(cleanedTree);
-        const treeWithRoleNames = getTreeRoleNames(treeWithIds, ruleSummariesWithTreeIds);
-        const ids = getTreeIds(treeWithIds);
-        setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const initTree = useCallback(
+        tree => {
+            const ruleSummariesWithTreeIds = setRulesTreeIds(ruleSummaries);
+            const parsedTree = parseTree(tree);
+            const cleanedTree = cleanTree(parsedTree);
+            const treeWithIds = setTreeIds(cleanedTree);
+            const treeWithRoleNames = getTreeRoleNames(treeWithIds, ruleSummariesWithTreeIds);
+            const ids = getTreeIds(treeWithIds);
+            setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
+        },
+        [ruleSummaries]
+    );
 
     useEffect(() => {
         warningMessage && setWarningMessage(null);
@@ -96,9 +98,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     }, [lockApp]);
     useEffect(() => {
         if (!_.isNil(treeData.ids)) {
-            const objExpandedNodes = Object.fromEntries(
-                Object.entries(treeData.ids).map(([_, value]) => [value, true])
-            );
+            const objExpandedNodes = _.fromPairs(_.entries(treeData.ids).map(([_, value]) => [value, true]));
             setExpandedNodes(objExpandedNodes);
         }
     }, [treeData]);

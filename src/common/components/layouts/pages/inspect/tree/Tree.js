@@ -401,7 +401,7 @@ Tree.propTypes = {
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     onExpandRule: PropTypes.func.isRequired,
-    errorsMap: PropTypes.array.isRequired,
+    errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 function mapStateToProps(state) {

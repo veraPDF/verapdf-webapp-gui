@@ -37,6 +37,7 @@ PdfDocument.propTypes = {
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
+    initTree: PropTypes.func.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
@@ -151,6 +152,7 @@ function PdfDocument(props) {
             let newMapOfErrors = {};
             let allChecks = [];
             const structureTree = document._pdfInfo.structureTree;
+            props.initTree(structureTree);
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
                 props.ruleSummaries.forEach((summary, index) => {
                     allChecks = [...allChecks, ...summary.checks];

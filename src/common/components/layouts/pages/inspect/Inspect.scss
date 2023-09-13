@@ -10,9 +10,9 @@
   top: 75px;
 
   display: grid;
-  grid: "toolbar toolbar" 40px
-        "tree document" 1fr;
-  grid-template-columns: 30% 1fr;
+  grid: "toolbar toolbar toolbar toolbar" 40px
+        "tree document pane structure" 1fr;
+  grid-template-columns: 30% 1fr 32px auto;
 
   .toolbar {
     grid-area: toolbar;
@@ -27,6 +27,10 @@
     padding: 20px 0;
     display: grid;
     grid-area: document;
+  }
+
+  &.showStructure {
+    grid-template-columns: 30% 1fr 32px 25%;
   }
 
   .react-pdf__Page__textContent {

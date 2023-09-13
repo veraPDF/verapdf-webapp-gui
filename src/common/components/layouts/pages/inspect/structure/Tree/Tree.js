@@ -11,6 +11,9 @@ import { findNode } from '../../../../../../services/treeService';
 
 import './Tree.scss';
 
+const ROWHEIGHT = 27.5;
+const INDENT = 12;
+
 function Tree({
     tree,
     width,
@@ -56,15 +59,14 @@ function Tree({
         },
         [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck]
     );
-
     return (
         <VirtualTree
             className="tree"
             ref={treeRef}
-            rowHeight={27.5}
+            rowHeight={ROWHEIGHT}
             width={width}
             height={height}
-            indent={12}
+            indent={INDENT}
             initialData={tree}
             initialOpenState={expandedNodes}
             selection={selectedNodeId}

@@ -56,6 +56,7 @@ const cleanTree = node => {
 const setTreeIds = (node, id = '0') => {
     if (_.isNil(node)) return null;
     node.id = id;
+    if (_.isNil(node?.children)) node.children = [];
     if (!node?.children.length) {
         node.final = true;
         return node;

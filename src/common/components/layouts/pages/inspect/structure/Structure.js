@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useResizeObserver from 'use-resize-observer';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -11,6 +12,13 @@ import Tree from './Tree/Tree';
 
 import './Structure.scss';
 
+const useStyles = makeStyles({
+    root: {
+        padding: 0,
+    },
+});
+
+const HEADER_HEIGHT = 48;
 const LIST_HEADER = 'Structure tree';
 
 function StructureTree({
@@ -26,6 +34,7 @@ function StructureTree({
     errorsMap,
     ruleSummaries,
 }) {
+    const classes = useStyles();
     const { ref, width = 300, height = 700 } = useResizeObserver();
     const [disable, setDisable] = useState(false);
     useEffect(() => {
@@ -47,11 +56,16 @@ function StructureTree({
                         }
                         disablePadding
                     >
-                        <ListItem className="summary-structure__list__item">
+                        <ListItem
+                            className="summary-structure__list__item"
+                            classes={{
+                                root: classes.root,
+                            }}
+                        >
                             <Tree
                                 tree={[tree]}
                                 width={width}
-                                height={height}
+                                height={height - HEADER_HEIGHT}
                                 selectedCheck={selectedCheck}
                                 setSelectedCheck={setSelectedCheck}
                                 expandedNodes={expandedNodes}

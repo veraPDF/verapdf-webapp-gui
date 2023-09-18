@@ -6,17 +6,12 @@
   box-shadow: $box-shadow--basic;
   height: 100%;
   overflow: hidden;
-
-  &__list {
-    &__item {
-      padding: 0 !important;
-    }
-  }
 }
 
 .summary-structure-subheader {
   display: flex;
   justify-content: space-between;
   overflow: auto;
+  white-space: nowrap;
 }
   

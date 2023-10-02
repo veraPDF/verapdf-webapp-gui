@@ -34,11 +34,13 @@ PdfDocument.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    selectedNodeId: PropTypes.string,
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     initTree: PropTypes.func.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
+    setSelectedNodeId: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
     setNumPages: PropTypes.func.isRequired,
@@ -152,7 +154,7 @@ function PdfDocument(props) {
             let newMapOfErrors = {};
             let allChecks = [];
             const structureTree = document._pdfInfo.structureTree;
-            props.initTree(structureTree);
+            props.initTree(document.parsedTree);
             if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
                 props.ruleSummaries.forEach((summary, index) => {
                     allChecks = [...allChecks, ...summary.checks];
@@ -211,9 +213,19 @@ function PdfDocument(props) {
         data => {
             if (!data) {
                 setActiveBboxIndex(null);
+                props.setSelectedNodeId(null);
                 props.setSelectedCheck(null);
                 return;
             }
+            if (_.isNil(data.index)) {
+                setActiveBboxIndex(null);
+                props.setSelectedCheck(null);
+                props.setSelectedNodeId(data.id);
+                props.setIsTreeShow(true);
+                return;
+            }
+            props.setIsTreeShow(true);
+            props.setSelectedNodeId(data.id);
             setActiveBboxIndex(data.index);
         },
         [props]
@@ -236,6 +248,7 @@ function PdfDocument(props) {
                 externalLinkTarget="_blank"
                 onLoadSuccess={onDocumentReady}
                 activeBboxIndex={activeBboxIndex}
+                activeBboxId={props.selectedNodeId}
                 onBboxClick={data => onBboxSelect(data)}
                 onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}

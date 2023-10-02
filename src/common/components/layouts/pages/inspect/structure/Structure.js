@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import useResizeObserver from 'use-resize-observer';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -27,6 +29,8 @@ function StructureTree({
     setIsTreeShow,
     selectedCheck,
     setSelectedCheck,
+    selectedNodeId,
+    setSelectedNodeId,
     expandedNodes,
     setExpandedNodes,
     roleMap,
@@ -37,9 +41,8 @@ function StructureTree({
     const classes = useStyles();
     const { ref, width = 300, height = 700 } = useResizeObserver();
     const [disable, setDisable] = useState(false);
-    useEffect(() => {
-        if (tree === null) setDisable(true);
-    }, [tree]);
+    useEffect(() => setDisable(_.isNil(tree) || _.isEmpty(tree)), [tree]);
+
     return (
         <>
             <Pane isShow={isTreeShow} setIsShow={setIsTreeShow} isDisable={disable} />
@@ -49,7 +52,7 @@ function StructureTree({
                         className="summary-structure__list"
                         aria-labelledby="summary-structure-subheader"
                         subheader={
-                            <ListSubheader component="div" className="summary-structure-subheader" disableSticky>
+                            <ListSubheader component="div" id="summary-structure-subheader" disableSticky>
                                 {LIST_HEADER}
                                 <RoleMap roleMap={roleMap} setRoleMap={setRoleMap} />
                             </ListSubheader>
@@ -68,6 +71,8 @@ function StructureTree({
                                 height={height - HEADER_HEIGHT}
                                 selectedCheck={selectedCheck}
                                 setSelectedCheck={setSelectedCheck}
+                                selectedNodeId={selectedNodeId}
+                                setSelectedNodeId={setSelectedNodeId}
                                 expandedNodes={expandedNodes}
                                 setExpandedNodes={setExpandedNodes}
                                 roleMap={roleMap}
@@ -88,6 +93,8 @@ StructureTree.propTypes = {
     setIsTreeShow: PropTypes.func.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     setSelectedCheck: PropTypes.func.isRequired,
+    selectedNodeId: PropTypes.string,
+    setSelectedNodeId: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
     roleMap: PropTypes.bool.isRequired,

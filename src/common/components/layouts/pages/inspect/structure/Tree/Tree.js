@@ -1,9 +1,10 @@
-import { memo, useEffect, useCallback, useRef, useState } from 'react';
+import { memo, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Tree as VirtualTree } from 'react-arborist';
 import { scrollToActiveBbox } from 'verapdf-js-viewer';
 import classNames from 'classnames';
 import _ from 'lodash';
+import { usePrevious } from 'react-use';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -20,6 +21,8 @@ function Tree({
     height,
     selectedCheck,
     setSelectedCheck,
+    selectedNodeId,
+    setSelectedNodeId,
     expandedNodes,
     setExpandedNodes,
     roleMap,
@@ -27,37 +30,42 @@ function Tree({
     ruleSummaries,
 }) {
     const treeRef = useRef();
-    const [selectedNodeId, setSelectedNodeId] = useState(null);
+    const prevSelectedNodeId = usePrevious(selectedNodeId);
+
     useEffect(() => {
-        if (_.isNil(selectedCheck)) {
-            treeRef?.current.deselectAll();
-        } else {
+        if (!_.isNil(selectedCheck)) {
             const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
             const checkIndex = errorsMap[selectedCheck]?.checkIndex;
             if (!_.isNil(ruleIndex) && !_.isNil(checkIndex)) {
                 const newNodeId = ruleSummaries[ruleIndex][checkIndex]?.treeId;
                 setSelectedNodeId(newNodeId);
-                if (newNodeId === selectedNodeId) {
-                    treeRef?.current.get(newNodeId)?.select();
-                    treeRef?.current.scrollTo(newNodeId, 'center');
-                }
             }
         }
-    }, [errorsMap, ruleSummaries, selectedCheck, selectedNodeId]);
+        if (!_.isNil(selectedNodeId)) {
+            treeRef?.current.get(prevSelectedNodeId)?.deselect();
+            treeRef?.current.get(selectedNodeId)?.select();
+            treeRef?.current.scrollTo(selectedNodeId, 'center');
+        }
+    }, [errorsMap, prevSelectedNodeId, ruleSummaries, selectedCheck, selectedNodeId, setSelectedNodeId]);
 
     const onNodeClick = useCallback(
         id => {
+            setSelectedNodeId(id);
             const [ruleIndex, checkIndex] = findNode(ruleSummaries, id);
-            const sortedCheckIndex = _.findIndex(
-                errorsMap,
-                error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
-            );
-            setSelectedCheck(sortedCheckIndex);
-            if (sortedCheckIndex === selectedCheck) {
-                scrollToActiveBbox();
+            if (!_.isNil(ruleIndex) && !_.isNil(checkIndex)) {
+                const sortedCheckIndex = _.findIndex(
+                    errorsMap,
+                    error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+                );
+                setSelectedCheck(sortedCheckIndex);
+                if (sortedCheckIndex === selectedCheck) {
+                    scrollToActiveBbox();
+                }
+            } else {
+                setSelectedCheck(null);
             }
         },
-        [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck]
+        [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck, setSelectedNodeId]
     );
     return (
         <VirtualTree
@@ -118,6 +126,8 @@ Tree.propTypes = {
     height: PropTypes.number.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     setSelectedCheck: PropTypes.func.isRequired,
+    selectedNodeId: PropTypes.string,
+    setSelectedNodeId: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
     roleMap: PropTypes.bool.isRequired,

@@ -8,10 +8,11 @@
   overflow: hidden;
 }
 
-.summary-structure-subheader {
+#summary-structure-subheader {
   display: flex;
   justify-content: space-between;
   overflow: auto;
+  font-weight: $font-weight-bold;
   white-space: nowrap;
 }
   

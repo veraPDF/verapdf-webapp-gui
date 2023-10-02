@@ -8,14 +8,7 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
-import {
-    parseTree,
-    cleanTree,
-    setTreeIds,
-    getTreeRoleNames,
-    getTreeIds,
-    setRulesTreeIds,
-} from '../../../../services/treeService';
+import { getTreeRoleNames, getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { getRuleSummaries } from '../../../../store/job/result/selectors';
@@ -33,6 +26,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
+    const [selectedNodeId, setSelectedNodeId] = useState(null);
     const [expandedRules, setExpandedRules] = useState(new Array(ruleSummaries.length).fill(UNSELECTED));
     const [expandedNodes, setExpandedNodes] = useState([]);
     const [warningMessage, setWarningMessage] = useState(null);
@@ -78,12 +72,9 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     );
     const initTree = useCallback(
         tree => {
-            const ruleSummariesWithTreeIds = setRulesTreeIds(ruleSummaries);
-            const parsedTree = parseTree(tree);
-            const cleanedTree = cleanTree(parsedTree);
-            const treeWithIds = setTreeIds(cleanedTree);
-            const treeWithRoleNames = getTreeRoleNames(treeWithIds, ruleSummariesWithTreeIds);
-            const ids = getTreeIds(treeWithIds);
+            const ruleSummariesWithTreeIds = setRulesTreeIds(tree.name, ruleSummaries);
+            const treeWithRoleNames = getTreeRoleNames(tree, ruleSummariesWithTreeIds);
+            const ids = getTreeIds(tree);
             setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
         },
         [ruleSummaries]
@@ -129,6 +120,9 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
                     expandedRules={expandedRules}
+                    selectedNodeId={selectedNodeId}
+                    setSelectedNodeId={setSelectedNodeId}
+                    setIsTreeShow={setIsTreeShow}
                     setPdfName={setPdfName}
                     onWarning={onWarning}
                     warningMessage={warningMessage}
@@ -143,6 +137,8 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     setIsTreeShow={setIsTreeShow}
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
+                    selectedNodeId={selectedNodeId}
+                    setSelectedNodeId={setSelectedNodeId}
                     expandedNodes={expandedNodes}
                     setExpandedNodes={setExpandedNodes}
                     roleMap={roleMap}

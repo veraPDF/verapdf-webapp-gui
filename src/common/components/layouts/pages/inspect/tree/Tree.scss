@@ -3,8 +3,16 @@
 .summary-tree {
   background: $bg-color--primary;
   box-shadow: $box-shadow--basic;
+  display: grid;
+  grid: "list" 1fr
+        "filter" 40px;
   height: 100%;
   overflow: auto;
+
+  &__wrapper {
+    grid-area: list;
+    overflow: auto;
+  }
 
   &__list {
     .rule-item {
@@ -77,6 +85,10 @@
         background-color: rgba(0, 0, 0, 0.08);
       }
     }
+  }
+
+  &__filter {
+    grid-area: filter;
   }
 
   .MuiTypography-body1 {

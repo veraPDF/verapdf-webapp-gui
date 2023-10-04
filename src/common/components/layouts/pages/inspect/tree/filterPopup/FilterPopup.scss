@@ -1,0 +1,44 @@
+@import './../../../../../_variables.scss';
+
+.popup {
+    &__paper {
+        display: grid;
+        grid-template-rows: 40px 60px 1fr 40px;
+        position: absolute;            
+        top: 50%;                         
+        left: 50%;                         
+        transform: translate(-50%, -50%);
+        min-width: 336px;
+        width: 40%;
+        height: 60%;
+        margin: auto;
+        padding: 30px;
+        border-radius: 1em;
+        background-color: $color-white;
+
+        @media (max-width: 400px) {
+            padding: 30px 15px;
+        }
+    }
+
+    &__toggle {
+        margin: 10px;;
+    }
+
+    &__wrapper {
+        overflow: auto;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 3px;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+        flex-direction: row;
+        grid-gap: 3px;
+    }
+}

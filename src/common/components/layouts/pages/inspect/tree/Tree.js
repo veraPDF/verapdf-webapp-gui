@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import { usePrevious } from 'react-use';
 
-import { getRuleSummaries } from '../../../../../store/job/result/selectors';
+import { getRuleSummaries, getTags } from '../../../../../store/job/result/selectors';
 import { getProfile } from '../../../../../store/job/settings/selectors';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -21,6 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import FilterPopup from './filterPopup/FilterPopup';
 import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
@@ -35,6 +36,7 @@ import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
+const LIST_NO_ERRORS = 'No errors found';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
 export const languageEnum = {
@@ -60,10 +62,42 @@ export const errorMessagesMap = {
     },
 };
 
-function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSelectedCheck, errorsMap, profile }) {
+function Tree({
+    ruleSummaries,
+    tags,
+    expandedRules,
+    onExpandRule,
+    selectedCheck,
+    setSelectedCheck,
+    errorsMap,
+    profile,
+}) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
+    const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
+
+    const isSubarray = useCallback((arr, subArr) => {
+        const hash = arr.reduce((acc, value) => {
+            acc[value] = true;
+            return acc;
+        }, {});
+        return subArr.every(el => el in hash);
+    }, []);
+    const onRuleFilter = useCallback(
+        ({ enabled, filteredTags }) => {
+            if (!filteredTags.length) {
+                setRuleSummariesFiltered(ruleSummaries);
+                return;
+            }
+            const ruleSummariesFiltered = ruleSummaries.filter(({ tags }) => {
+                const arrSum = [...tags, ...filteredTags];
+                return enabled ? isSubarray(tags, filteredTags) : arrSum.length === Array.from(new Set(arrSum)).length;
+            });
+            setRuleSummariesFiltered(ruleSummariesFiltered);
+        },
+        [isSubarray, ruleSummaries, setRuleSummariesFiltered]
+    );
 
     const onCheckClick = useCallback(
         checkKey => {
@@ -120,47 +154,57 @@ function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSe
 
     return (
         <section className="summary-tree">
-            <List
-                className="summary-tree__list"
-                aria-labelledby="summary-tree-subheader"
-                subheader={
-                    <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
-                        {LIST_HEADER}
-                        <Tooltip title={language}>
-                            <IconButton size="small" onClick={handleLanguageClick}>
-                                <LanguageIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            id="language-menu"
-                            anchorEl={anchorMenuEl}
-                            keepMounted
-                            open={Boolean(anchorMenuEl)}
-                            onClose={handleLanguageClose.bind(this, undefined)}
-                        >
-                            {_.keys(languageEnum).map(lKey => (
-                                <MenuItem key={lKey} onClick={handleLanguageClose.bind(this, languageEnum[lKey])}>
-                                    {languageEnum[lKey]}
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </ListSubheader>
-                }
-            >
-                <RuleList
-                    ruleSummaries={ruleSummaries}
-                    expandedRules={expandedRules}
-                    selectedCheck={selectedCheck}
-                    onRuleClick={onExpandRule}
-                    onCheckClick={onCheckClick}
-                    onInfoClick={onInfoClick}
-                    errorsMap={errorsMap}
-                    errorMessages={errorMessages}
-                />
-            </List>
+            <div className="summary-tree__wrapper">
+                <List
+                    className="summary-tree__list"
+                    aria-labelledby="summary-tree-subheader"
+                    subheader={
+                        <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
+                            {LIST_HEADER}
+                            <Tooltip title={language}>
+                                <IconButton size="small" onClick={handleLanguageClick}>
+                                    <LanguageIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                id="language-menu"
+                                anchorEl={anchorMenuEl}
+                                keepMounted
+                                open={Boolean(anchorMenuEl)}
+                                onClose={handleLanguageClose.bind(this, undefined)}
+                            >
+                                {_.keys(languageEnum).map(lKey => (
+                                    <MenuItem key={lKey} onClick={handleLanguageClose.bind(this, languageEnum[lKey])}>
+                                        {languageEnum[lKey]}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </ListSubheader>
+                    }
+                >
+                    {!!ruleSummariesFiltered.length ? (
+                        <RuleList
+                            ruleSummaries={ruleSummariesFiltered}
+                            expandedRules={expandedRules}
+                            selectedCheck={selectedCheck}
+                            onRuleClick={onExpandRule}
+                            onCheckClick={onCheckClick}
+                            onInfoClick={onInfoClick}
+                            errorsMap={errorsMap}
+                            errorMessages={errorMessages}
+                        />
+                    ) : (
+                        <ListItem>
+                            <ListItemText>{LIST_NO_ERRORS}</ListItemText>
+                        </ListItem>
+                    )}
+                </List>
+            </div>
+            <FilterPopup tags={tags} onFilter={onRuleFilter} />
             {openedRule !== UNSELECTED && (
                 <InfoDialog
                     title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
+                    tags={getRuleTags(openedRule)}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
@@ -327,6 +371,10 @@ function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
     return errorMessages?.[specification]?.[clause]?.[testNumber]?.URL;
 }
 
+function getRuleTags({ tags }) {
+    return _.isNil(tags) ? [] : tags;
+}
+
 function getCheckTitle({ checkKey, index, allChecks, errorsMap, location }) {
     const page = getPageNumber(checkKey, errorsMap);
     let pageString = page === UNSELECTED ? '' : `Page ${page}: `;
@@ -407,6 +455,7 @@ Tree.propTypes = {
 function mapStateToProps(state) {
     return {
         ruleSummaries: getRuleSummaries(state),
+        tags: getTags(state),
         profile: getProfile(state),
     };
 }

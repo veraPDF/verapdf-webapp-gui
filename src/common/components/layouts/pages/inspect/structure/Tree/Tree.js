@@ -14,6 +14,7 @@ import './Tree.scss';
 
 const ROWHEIGHT = 27.5;
 const INDENT = 12;
+const SCROLL_MODES = ['center', 'auto'];
 
 function Tree({
     tree,
@@ -30,8 +31,8 @@ function Tree({
     ruleSummaries,
 }) {
     const treeRef = useRef();
+    const prevSelectedCheck = usePrevious(selectedCheck);
     const prevSelectedNodeId = usePrevious(selectedNodeId);
-
     useEffect(() => {
         if (!_.isNil(selectedCheck)) {
             const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
@@ -44,9 +45,17 @@ function Tree({
         if (!_.isNil(selectedNodeId)) {
             treeRef?.current.get(prevSelectedNodeId)?.deselect();
             treeRef?.current.get(selectedNodeId)?.select();
-            treeRef?.current.scrollTo(selectedNodeId, 'center');
+            treeRef?.current.scrollTo(selectedNodeId, SCROLL_MODES[+(prevSelectedCheck === selectedCheck)]);
         }
-    }, [errorsMap, prevSelectedNodeId, ruleSummaries, selectedCheck, selectedNodeId, setSelectedNodeId]);
+    }, [
+        errorsMap,
+        prevSelectedCheck,
+        prevSelectedNodeId,
+        ruleSummaries,
+        selectedCheck,
+        selectedNodeId,
+        setSelectedNodeId,
+    ]);
 
     const onNodeClick = useCallback(
         id => {

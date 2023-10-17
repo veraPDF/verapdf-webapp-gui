@@ -48,7 +48,7 @@ const getTreeIds = (node, ids = []) => {
 };
 
 const setRulesTreeIds = (treeName, rules) => {
-    const TREEPATH = 'root/doc[0]/StructTreeRoot';
+    const TREEPATH = '/StructTreeRoot';
     return rules.map(({ checks }) => {
         return checks.map(check => {
             if (check.context.includes(TREEPATH)) {
@@ -60,7 +60,7 @@ const setRulesTreeIds = (treeName, rules) => {
                         return !idStr.includes('{');
                     });
                 const treeId = idStrings
-                    .map(idStr => idStr.match(/\[\d+\]/))
+                    .map(idStr => idStr.match(/\[\d+]/))
                     .join('')
                     .replaceAll('][', ':')
                     .slice(1, -1);

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
@@ -80,6 +80,10 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
         [ruleSummaries]
     );
 
+    const initialExpandState = useMemo(() => {
+        return _.fromPairs(_.entries(treeData.ids).map(([_, value]) => [value, false]));
+    }, [treeData.ids]);
+
     useEffect(() => {
         warningMessage && setWarningMessage(null);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,10 +93,9 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     }, [lockApp]);
     useEffect(() => {
         if (!_.isNil(treeData.ids)) {
-            const objExpandedNodes = _.fromPairs(_.entries(treeData.ids).map(([_, value]) => [value, true]));
-            setExpandedNodes(objExpandedNodes);
+            setExpandedNodes(initialExpandState);
         }
-    }, [treeData]);
+    }, [treeData, initialExpandState]);
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;
@@ -122,7 +125,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     expandedRules={expandedRules}
                     selectedNodeId={selectedNodeId}
                     setSelectedNodeId={setSelectedNodeId}
-                    setIsTreeShow={setIsTreeShow}
+                    isTreeShow={isTreeShow}
                     setPdfName={setPdfName}
                     onWarning={onWarning}
                     warningMessage={warningMessage}
@@ -141,6 +144,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     setSelectedNodeId={setSelectedNodeId}
                     expandedNodes={expandedNodes}
                     setExpandedNodes={setExpandedNodes}
+                    initialExpandState={initialExpandState}
                     roleMap={roleMap}
                     setRoleMap={setRoleMap}
                     ruleSummaries={treeData.ruleSummaries}

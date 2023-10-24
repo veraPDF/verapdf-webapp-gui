@@ -33,6 +33,7 @@ function StructureTree({
     setSelectedNodeId,
     expandedNodes,
     setExpandedNodes,
+    initialExpandState,
     roleMap,
     setRoleMap,
     errorsMap,
@@ -41,7 +42,7 @@ function StructureTree({
     const classes = useStyles();
     const { ref, width = 300, height = 700 } = useResizeObserver();
     const [disable, setDisable] = useState(false);
-    useEffect(() => setDisable(_.isNil(tree) || _.isEmpty(tree)), [tree]);
+    useEffect(() => setDisable(_.isNil(tree) || _.isEmpty(tree) || tree.hasOwnProperty('final')), [tree]);
 
     return (
         <>
@@ -75,6 +76,7 @@ function StructureTree({
                                 setSelectedNodeId={setSelectedNodeId}
                                 expandedNodes={expandedNodes}
                                 setExpandedNodes={setExpandedNodes}
+                                initialExpandState={initialExpandState}
                                 roleMap={roleMap}
                                 ruleSummaries={ruleSummaries}
                                 errorsMap={errorsMap}
@@ -97,6 +99,7 @@ StructureTree.propTypes = {
     setSelectedNodeId: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
+    initialExpandState: PropTypes.object.isRequired,
     roleMap: PropTypes.bool.isRequired,
     setRoleMap: PropTypes.func.isRequired,
     errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,

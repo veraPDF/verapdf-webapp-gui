@@ -35,6 +35,7 @@ PdfDocument.propTypes = {
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     selectedNodeId: PropTypes.string,
+    isTreeShow: PropTypes.bool.isRequired,
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
@@ -221,10 +222,8 @@ function PdfDocument(props) {
                 setActiveBboxIndex(null);
                 props.setSelectedCheck(null);
                 props.setSelectedNodeId(data.id);
-                props.setIsTreeShow(true);
                 return;
             }
-            props.setIsTreeShow(true);
             props.setSelectedNodeId(data.id);
             setActiveBboxIndex(data.index);
         },
@@ -252,6 +251,7 @@ function PdfDocument(props) {
                 onBboxClick={data => onBboxSelect(data)}
                 onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}
+                isTreeBboxesVisible={props.isTreeShow}
                 page={props.page}
                 ruleSummaries={props.ruleSummaries}
                 onPageChange={props.onPageChange}

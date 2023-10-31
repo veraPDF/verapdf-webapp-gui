@@ -1,4 +1,4 @@
-import { memo, useEffect, useCallback, useRef } from 'react';
+import { memo, useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Tree as VirtualTree } from 'react-arborist';
 import { scrollToActiveBbox } from 'verapdf-js-viewer';
@@ -26,6 +26,7 @@ function Tree({
     setSelectedNodeId,
     expandedNodes,
     setExpandedNodes,
+    initialExpandState,
     roleMap,
     errorsMap,
     ruleSummaries,
@@ -33,6 +34,26 @@ function Tree({
     const treeRef = useRef();
     const prevSelectedCheck = usePrevious(selectedCheck);
     const prevSelectedNodeId = usePrevious(selectedNodeId);
+    const [isNodeClicked, setIsNodeClicked] = useState(false);
+
+    const expandNodeParents = useCallback((initExpandState, treeId) => {
+        if (_.isNil(treeId) || _.isNil(initExpandState)) return {};
+        const listTreeIds = treeId.split(':');
+        const mergeIds = (arr, amount) => arr.slice(0, amount).join(':');
+        const newExpandState = _.fromPairs(_.map(listTreeIds, (_, index) => [mergeIds(listTreeIds, index + 1), true]));
+        return { ...initExpandState, ...newExpandState };
+    }, []);
+
+    useEffect(() => {
+        // Works only when you explicitly click on tree element
+        if (!_.isNil(selectedNodeId) && !isNodeClicked) {
+            treeRef?.current.closeAll();
+            setExpandedNodes(expandNodeParents(initialExpandState, selectedNodeId));
+        }
+        setIsNodeClicked(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedNodeId]);
+
     useEffect(() => {
         if (!_.isNil(selectedCheck)) {
             const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
@@ -73,9 +94,11 @@ function Tree({
             } else {
                 setSelectedCheck(null);
             }
+            setIsNodeClicked(true);
         },
-        [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck, setSelectedNodeId]
+        [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck, setSelectedNodeId, setIsNodeClicked]
     );
+
     return (
         <VirtualTree
             className="tree"
@@ -108,7 +131,10 @@ function Node({ node, style, tree }) {
     const handleIconClick = event => {
         event.stopPropagation();
         node.toggle();
-        setExpandedNodes({ ...expandedNodes, [node.id]: !expandedNodes[node.id] });
+        setExpandedNodes({
+            ...expandedNodes,
+            [node.id]: !expandedNodes[node.id],
+        });
     };
 
     return (
@@ -139,6 +165,7 @@ Tree.propTypes = {
     setSelectedNodeId: PropTypes.func.isRequired,
     expandedNodes: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setExpandedNodes: PropTypes.func.isRequired,
+    initialExpandState: PropTypes.object.isRequired,
     roleMap: PropTypes.bool.isRequired,
     errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     ruleSummaries: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,

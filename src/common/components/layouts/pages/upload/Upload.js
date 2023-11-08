@@ -26,7 +26,7 @@ function Upload({ filesAttached, link, error, isFileUploadMode, setFileUploadMod
             label: 'Configure job',
             to: AppPages.SETTINGS,
             disabled: isFileUploadMode ? !filesAttached : error,
-            onClick: storeData(isFileUploadMode, link),
+            onClick: () => storeData(isFileUploadMode, link),
         }),
         [filesAttached, isFileUploadMode, link, error]
     );

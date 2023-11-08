@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';
-import { getPdfFiles } from '../../../../../store/pdfFiles/selectors';
+import { getFileName, getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
 import { getPage, isFileUploadMode } from '../../../../../store/application/selectors';
@@ -13,6 +13,7 @@ import { getFileLinkById } from '../../../../../services/fileService';
 import { getItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 import { getProfile } from '../../../../../store/job/settings/selectors';
+import { getFileNameLink } from '../../../../../store/pdfLink/selectors';
 import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
 
 import Alert from '@material-ui/lab/Alert';
@@ -104,7 +105,7 @@ function PdfDocument(props) {
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [activeBboxIndex, setActiveBboxIndex] = useState(null);
     const bboxes = useMemo(() => {
-        return Object.values(mapOfErrors).map(({ pageIndex, location, groupId, bboxTitle }) => ({
+        return Object.values(mapOfErrors).map(({ location, groupId, bboxTitle }) => ({
             location,
             groupId,
             bboxTitle,
@@ -150,7 +151,7 @@ function PdfDocument(props) {
 
     const onDocumentReady = useCallback(
         document => {
-            props.setPdfName(props.file.name);
+            props.setPdfName(props.file.name || props.fileName);
             props.setNumPages(document.numPages);
             let newMapOfErrors = {};
             let allChecks = [];
@@ -264,6 +265,7 @@ function PdfDocument(props) {
 function mapStateToProps(state) {
     return {
         file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLinkById(getTaskFileId(state)),
+        fileName: isFileUploadMode(state) ? getFileName(state) : getFileNameLink(state),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),
         profile: getProfile(state),

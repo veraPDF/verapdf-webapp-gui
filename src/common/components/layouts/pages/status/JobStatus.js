@@ -47,7 +47,7 @@ export const STEPS = {
         errorDetails: errorMessage => `Failed to start job execution: ${errorMessage}`,
     },
     JOB_WAITING: {
-        active: position => `Waiting... Position in queue: ${position + 1}`,
+        active: position => 'Waiting...' + (_.isNumber(position) ? `Position in queue: ${position + 1}` : ''),
         complete: 'Job validation started.',
         errorDetails: errorMessage => `Failed to start job validation: ${errorMessage}`,
     },

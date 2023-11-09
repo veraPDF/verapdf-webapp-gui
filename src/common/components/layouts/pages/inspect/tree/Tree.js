@@ -2,6 +2,7 @@ import React, { useState, useCallback, Fragment, useEffect, useRef, useMemo } fr
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { scrollToActiveBbox } from 'verapdf-js-viewer';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
@@ -28,6 +29,7 @@ import { getItem, setItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 
 import './Tree.scss';
+
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_de from '../validationErrorMessages_de.json';
@@ -37,8 +39,10 @@ import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
 const LIST_NO_ERRORS = 'No errors found';
+const FILTER_TOOLTIP = 'Filter';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
+
 export const languageEnum = {
     English: 'English',
     Dutch: 'Dutch',
@@ -49,7 +53,6 @@ export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
     OTHER: 'Other',
 };
-
 export const errorMessagesMap = {
     [errorProfiles.OTHER]: {
         [languageEnum.English]: errorMap_en,
@@ -74,6 +77,7 @@ function Tree({
 }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
 
@@ -90,13 +94,16 @@ function Tree({
                 setRuleSummariesFiltered(ruleSummaries);
                 return;
             }
-            const ruleSummariesFiltered = ruleSummaries.filter(({ tags }) => {
-                const arrSum = [...tags, ...filteredTags];
-                return enabled ? isSubarray(tags, filteredTags) : arrSum.length === Array.from(new Set(arrSum)).length;
+            const ruleSummariesFiltered = ruleSummaries.map(rule => {
+                const arrSum = [...rule.tags, ...filteredTags];
+                const isFiltered = enabled
+                    ? isSubarray(rule.tags, filteredTags)
+                    : arrSum.length === Array.from(new Set(arrSum)).length;
+                return isFiltered ? rule : null;
             });
             setRuleSummariesFiltered(ruleSummariesFiltered);
         },
-        [isSubarray, ruleSummaries, setRuleSummariesFiltered]
+        [isSubarray, ruleSummaries]
     );
 
     const onCheckClick = useCallback(
@@ -144,6 +151,9 @@ function Tree({
         }
         setAnchorMenuEl(null);
     }, []);
+    const handleFilterClick = useCallback(() => {
+        setIsFilterOpen(true);
+    }, []);
 
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
@@ -154,53 +164,65 @@ function Tree({
 
     return (
         <section className="summary-tree">
-            <div className="summary-tree__wrapper">
-                <List
-                    className="summary-tree__list"
-                    aria-labelledby="summary-tree-subheader"
-                    subheader={
-                        <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
-                            {LIST_HEADER}
-                            <Tooltip title={language}>
-                                <IconButton size="small" onClick={handleLanguageClick}>
-                                    <LanguageIcon />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                id="language-menu"
-                                anchorEl={anchorMenuEl}
-                                keepMounted
-                                open={Boolean(anchorMenuEl)}
-                                onClose={handleLanguageClose.bind(this, undefined)}
+            <List
+                className="summary-tree__list"
+                aria-labelledby="summary-tree-subheader"
+                subheader={
+                    <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
+                        {LIST_HEADER}
+                        <Tooltip title={FILTER_TOOLTIP}>
+                            <IconButton
+                                size="small"
+                                onClick={handleFilterClick}
+                                disabled={_.isNil(tags) || tags.length === 0}
                             >
-                                {_.keys(languageEnum).map(lKey => (
-                                    <MenuItem key={lKey} onClick={handleLanguageClose.bind(this, languageEnum[lKey])}>
-                                        {languageEnum[lKey]}
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </ListSubheader>
-                    }
-                >
-                    {!!ruleSummariesFiltered.length ? (
-                        <RuleList
-                            ruleSummaries={ruleSummariesFiltered}
-                            expandedRules={expandedRules}
-                            selectedCheck={selectedCheck}
-                            onRuleClick={onExpandRule}
-                            onCheckClick={onCheckClick}
-                            onInfoClick={onInfoClick}
-                            errorsMap={errorsMap}
-                            errorMessages={errorMessages}
+                                <FilterListIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <FilterPopup
+                            isOpen={isFilterOpen}
+                            setIsOpen={setIsFilterOpen}
+                            tags={tags}
+                            onFilter={onRuleFilter}
                         />
-                    ) : (
-                        <ListItem>
-                            <ListItemText>{LIST_NO_ERRORS}</ListItemText>
-                        </ListItem>
-                    )}
-                </List>
-            </div>
-            <FilterPopup tags={tags} onFilter={onRuleFilter} />
+                        <Tooltip title={language}>
+                            <IconButton size="small" onClick={handleLanguageClick}>
+                                <LanguageIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            id="language-menu"
+                            anchorEl={anchorMenuEl}
+                            keepMounted
+                            open={Boolean(anchorMenuEl)}
+                            onClose={handleLanguageClose.bind(this, undefined)}
+                        >
+                            {_.keys(languageEnum).map(lKey => (
+                                <MenuItem key={lKey} onClick={handleLanguageClose.bind(this, languageEnum[lKey])}>
+                                    {languageEnum[lKey]}
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </ListSubheader>
+                }
+            >
+                {!!ruleSummariesFiltered.filter(rule => rule !== null).length ? (
+                    <RuleList
+                        ruleSummaries={ruleSummariesFiltered}
+                        expandedRules={expandedRules}
+                        selectedCheck={selectedCheck}
+                        onRuleClick={onExpandRule}
+                        onCheckClick={onCheckClick}
+                        onInfoClick={onInfoClick}
+                        errorsMap={errorsMap}
+                        errorMessages={errorMessages}
+                    />
+                ) : (
+                    <ListItem>
+                        <ListItemText>{LIST_NO_ERRORS}</ListItemText>
+                    </ListItem>
+                )}
+            </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog
                     title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
@@ -228,6 +250,7 @@ function RuleList({
     errorMessages,
 }) {
     return ruleSummaries.map((rule, index) => {
+        if (_.isNil(rule)) return null;
         const checks = rule.checks;
         const ruleTitle = getRuleTitle(rule, errorMessages);
         const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;

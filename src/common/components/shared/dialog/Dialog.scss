@@ -6,3 +6,16 @@
     }
   }
 }
+
+.dialog .dialog__tags {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dialog .dialog__tags__tag {
+  margin: 3px;
+}

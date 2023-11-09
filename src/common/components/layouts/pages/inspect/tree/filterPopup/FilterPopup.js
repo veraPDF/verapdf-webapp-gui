@@ -1,12 +1,13 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import SelectAllIcon from '@material-ui/icons/SelectAll';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
-import { makeStyles } from '@material-ui/core/styles';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -15,35 +16,15 @@ import Box from '@material-ui/core/Box';
 
 import './FilterPopup.scss';
 
-const CELL_OUTLINE = 4;
-const PRIMARY = '#cf3f4f';
-const TIMEOUT = 300;
+const TIMEOUT = 200;
 const TEXT = 'Filter errors';
-const APPLY = 'APPLY';
-const CANCEL = 'CANCEL';
+const APPLY = 'Apply';
+const CANCEL = 'Cancel';
+const SELECT = 'Select all';
+const CLEAR = 'Clear all';
 const ZONES = ['Show tags', 'Hide tags'];
 
-const useStyles = makeStyles(() => ({
-    root: {
-        borderRadius: 0,
-        textTransform: 'none',
-    },
-    cell: {
-        textTransform: 'capitalize',
-        border: `1px solid ${PRIMARY}`,
-        '&:hover': {
-            background: 'transparent',
-        },
-    },
-    selectedCell: {
-        outlineOffset: `-${CELL_OUTLINE}px`,
-        outline: `${CELL_OUTLINE}px solid ${PRIMARY}`,
-    },
-}));
-
-const FilterPopup = ({ tags, onFilter }) => {
-    const classes = useStyles();
-    const [open, setOpen] = useState(false);
+const FilterPopup = ({ isOpen, setIsOpen, tags, onFilter }) => {
     const [selectedZone, setSelectedZone] = useState(ZONES[0]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [appliedTags, setAppliedTags] = useState({
@@ -59,29 +40,33 @@ const FilterPopup = ({ tags, onFilter }) => {
         ));
     }, []);
 
-    useEffect(() => {
-        console.log(selectedTags);
-    }, [selectedTags]);
     const handleZone = useCallback(
         (_event, zone) => {
             zone !== null && setSelectedZone(zone);
         },
         [setSelectedZone]
     );
+    const handleClear = useCallback(() => {
+        setSelectedZone(ZONES[0]);
+        setSelectedTags([]);
+    }, [setSelectedZone, setSelectedTags]);
+    const handleSelect = useCallback(() => {
+        setSelectedTags(tags);
+    }, [tags, setSelectedTags]);
     const handleCancel = useCallback(() => {
-        setOpen(false);
+        setIsOpen(false);
         setSelectedZone(ZONES[+!appliedTags.enabled]);
         setSelectedTags(appliedTags.filteredTags);
-    }, [appliedTags, setOpen, setSelectedZone, setSelectedTags]);
+    }, [appliedTags, setIsOpen, setSelectedZone, setSelectedTags]);
     const handleApply = useCallback(() => {
         const newAppliedTags = {
             enabled: selectedZone === ZONES[0],
             filteredTags: selectedTags,
         };
-        setOpen(false);
+        setIsOpen(false);
         setAppliedTags(newAppliedTags);
         onFilter(newAppliedTags);
-    }, [onFilter, selectedTags, selectedZone, setOpen, setAppliedTags]);
+    }, [onFilter, selectedTags, selectedZone, setIsOpen, setAppliedTags]);
     const selectTag = useCallback(
         category => {
             selectedTags.includes(category)
@@ -92,68 +77,66 @@ const FilterPopup = ({ tags, onFilter }) => {
     );
 
     return (
-        <>
-            <Button
-                className="summary-tree__filter"
-                classes={{ root: classes.root }}
-                variant="outlined"
-                color="primary"
-                onClick={() => setOpen(true)}
-            >
-                {TEXT}
-            </Button>
-            <Modal
-                className="popup"
-                open={open}
-                onClose={handleCancel}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{ timeout: TIMEOUT }}
-            >
-                <Fade in={open}>
-                    <div className="popup__paper">
-                        <Typography variant="h4" component="span">
-                            {TEXT}
-                        </Typography>
-                        <Box className="popup__toggle" display="flex" justifyContent="center">
-                            <ToggleButtonGroup size="small" value={selectedZone} exclusive onChange={handleZone}>
-                                {buttons}
-                            </ToggleButtonGroup>
-                        </Box>
-                        <div className="popup__wrapper">
-                            <List className="popup__grid" component="div">
-                                {tags.map(category => (
-                                    <ListItem
-                                        key={category}
-                                        classes={{
-                                            root: `${classes.cell} ${
-                                                selectedTags.includes(category) ? classes.selectedCell : ''
-                                            }`,
-                                        }}
-                                        button
-                                        onClick={() => selectTag(category)}
-                                    >
-                                        <ListItemText secondary={category} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </div>
-                        <div className="popup__buttons">
-                            <Button variant="outlined" color="primary" onClick={handleCancel}>
-                                {CANCEL}
-                            </Button>
-                            <Button variant="contained" color="primary" onClick={handleApply}>
-                                {APPLY}
-                            </Button>
-                        </div>
+        <Modal
+            className="popup"
+            open={isOpen}
+            onClose={handleCancel}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{ timeout: TIMEOUT }}
+        >
+            <Fade in={isOpen}>
+                <div className="popup__paper">
+                    <Typography variant="h4" component="span">
+                        {TEXT}
+                    </Typography>
+                    <Box className="popup__toggle" display="flex" justifyContent="center">
+                        <ToggleButtonGroup size="small" value={selectedZone} exclusive onChange={handleZone}>
+                            {buttons}
+                        </ToggleButtonGroup>
+                    </Box>
+                    <div className="popup__wrapper">
+                        <List className="popup__grid" component="div">
+                            {tags?.map(category => (
+                                <Button
+                                    key={category}
+                                    className="popup__grid__cell"
+                                    variant={selectedTags.includes(category) ? 'contained' : 'outlined'}
+                                    color="primary"
+                                    onClick={() => selectTag(category)}
+                                >
+                                    {category}
+                                </Button>
+                            ))}
+                        </List>
                     </div>
-                </Fade>
-            </Modal>
-        </>
+                    <div className="popup__buttons">
+                        <Tooltip title={SELECT}>
+                            <IconButton size="small" onClick={handleSelect}>
+                                <SelectAllIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title={CLEAR}>
+                            <IconButton size="small" onClick={handleClear}>
+                                <RefreshIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Button variant="outlined" color="primary" onClick={handleCancel}>
+                            {CANCEL}
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={handleApply}>
+                            {APPLY}
+                        </Button>
+                    </div>
+                </div>
+            </Fade>
+        </Modal>
     );
 };
 
 FilterPopup.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    setIsOpen: PropTypes.func.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     onFilter: PropTypes.func.isRequired,
 };

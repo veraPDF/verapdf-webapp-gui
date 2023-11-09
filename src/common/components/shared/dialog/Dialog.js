@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { makeStyles } from '@material-ui/core/styles';
 import MaterialDialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,31 +13,16 @@ import Button from '../button/Button';
 
 import './Dialog.scss';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        boxShadow: 'none',
-        padding: 0,
-        margin: 0,
-    },
-    chip: {
-        margin: theme.spacing(0.5),
-    },
-}));
-
 function Dialog({ title, tags, actions, open, onClose, children }) {
-    const classes = useStyles();
     const tagsArray = useMemo(() => {
         return tags.map((tag, index) => {
             return (
                 <li key={index}>
-                    <Chip label={tag} className={classes.chip} />
+                    <Chip variant="outlined" color="primary" className="dialog__tags__tag" label={tag} />
                 </li>
             );
         });
-    }, [tags, classes.chip]);
+    }, [tags]);
 
     return (
         <MaterialDialog
@@ -54,7 +38,7 @@ function Dialog({ title, tags, actions, open, onClose, children }) {
             </DialogContent>
             {!!tags?.length && (
                 <DialogContent>
-                    <Paper component="ul" className={classes.root}>
+                    <Paper component="ul" className="dialog__tags">
                         {tagsArray}
                     </Paper>
                 </DialogContent>

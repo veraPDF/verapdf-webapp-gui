@@ -8,8 +8,6 @@ import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
 import { getPage, isFileUploadMode } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
-import { getTaskFileId } from '../../../../../store/job/selectors';
-import { getFileLinkById } from '../../../../../services/fileService';
 import { getItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 import { getProfile } from '../../../../../store/job/settings/selectors';
@@ -264,7 +262,7 @@ function PdfDocument(props) {
 
 function mapStateToProps(state) {
     return {
-        file: isFileUploadMode(state) ? getPdfFiles(state)[0] : getFileLinkById(getTaskFileId(state)),
+        file: getPdfFiles(state)[0],
         fileName: isFileUploadMode(state) ? getFileName(state) : getFileNameLink(state),
         ruleSummaries: getRuleSummaries(state),
         page: getPage(state),

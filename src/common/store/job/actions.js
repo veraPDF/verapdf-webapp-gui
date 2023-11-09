@@ -1,10 +1,10 @@
 import { createAction } from 'redux-actions';
-import { getFile, getFileDescriptor, getFileId } from '../pdfFiles/selectors';
+import { getFile, getFileId } from '../pdfFiles/selectors';
 import { getFileLink } from '../pdfLink/selectors';
 import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus } from './selectors';
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
-import { updatePdfFile, saveFileToStorage } from '../pdfFiles/actions';
+import { updatePdfFile, storeFile } from '../pdfFiles/actions';
 import { uploadLinkAction } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
@@ -100,8 +100,10 @@ const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) =
         const link = getFileLink(getState());
         uploadLinkAction(link);
         const fileDescriptor = await FileService.uploadLink(link);
+        const blob = await FileService.getFileContent(fileDescriptor.id);
+        const file = new File([blob], fileDescriptor.fileName);
+        await dispatch(storeFile(file));
         dispatch(updatePdfFile(fileDescriptor));
-        await saveFileToStorage(getFileDescriptor(getState()));
     }
 });
 

@@ -48,6 +48,9 @@ export const handleResponse = async response => {
         case 'text/html':
             body = await response.text();
             break;
+        case 'application/pdf':
+            body = await response.blob();
+            break;
         default:
             body = await response.body;
     }

@@ -29,7 +29,13 @@ function PageNavigation(props) {
 function getButton(buttonObject, type) {
     if (buttonObject?.to) {
         return (
-            <NavButton to={buttonObject.to} type={type} disabled={buttonObject.disabled} variant={VARIANTS[type]}>
+            <NavButton
+                to={buttonObject.to}
+                type={type}
+                disabled={buttonObject.disabled}
+                variant={VARIANTS[type]}
+                onClick={buttonObject.onClick}
+            >
                 {buttonObject.label}
             </NavButton>
         );

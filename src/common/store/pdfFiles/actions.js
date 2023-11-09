@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import _ from 'lodash';
 import { JOB_NEW_FILE, JOB_MODE, JOB_LINK } from '../constants';
 import { setFile } from '../../services/pdfStorage';
 
@@ -9,11 +10,16 @@ export const addPdfFile = createAction('PDF_FILE_ADD', ({ file, hasBackup = fals
     hasBackup,
 }));
 
-export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id, fileName, contentSize }) => ({
-    name: fileName,
-    size: contentSize,
-    id,
-}));
+export const updatePdfFile = createAction('PDF_FILE_UPDATE', ({ id, fileName, contentSize }) =>
+    _.omitBy(
+        {
+            name: fileName,
+            size: contentSize,
+            id,
+        },
+        _.isUndefined
+    )
+);
 
 export const storeFile = file => async dispatch => {
     const hasBackup = await saveFileToStorage(file);

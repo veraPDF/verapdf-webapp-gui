@@ -1,4 +1,4 @@
-import { memo, useEffect, useCallback, useRef, useState } from 'react';
+import React, { memo, useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Tree as VirtualTree } from 'react-arborist';
 import { scrollToActiveBbox } from 'verapdf-js-viewer';

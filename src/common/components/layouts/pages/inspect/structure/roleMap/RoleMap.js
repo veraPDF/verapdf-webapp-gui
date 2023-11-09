@@ -1,3 +1,4 @@
+import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import './RoleMap.scss';

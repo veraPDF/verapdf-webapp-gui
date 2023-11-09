@@ -56,7 +56,10 @@ export default function configureStore() {
     // Redirect to start screen if there is old file
     const { PUBLIC_URL } = process.env;
     const oldFileName = sessionStorage.getItem(JOB_OLD_FILE);
-    const location = window.location.pathname.replace(/\/$/, '');
+    let location = window.location.pathname;
+    if (!PUBLIC_URL.endsWith('/')) {
+        location = location.replace(/\/$/, '');
+    }
     if (oldFileName && location !== PUBLIC_URL && location !== `${PUBLIC_URL}/new-job/files`) {
         // Redirect to start screen and hide Loading view
         window.location.replace(PUBLIC_URL);

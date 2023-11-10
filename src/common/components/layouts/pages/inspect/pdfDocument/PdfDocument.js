@@ -147,16 +147,12 @@ function PdfDocument(props) {
         }
     }, [language, props.profile]);
 
-    const onDocumentReady = useCallback(
-        document => {
-            props.setPdfName(props.file.name || props.fileName);
-            props.setNumPages(document.numPages);
+    const createMapOfErrors = useCallback(
+        (ruleSummaries, structureTree) => {
             let newMapOfErrors = {};
             let allChecks = [];
-            const structureTree = document._pdfInfo.structureTree;
-            props.initTree(document.parsedTree);
-            if (!_.isNil(props.ruleSummaries) && !_.isNil(structureTree)) {
-                props.ruleSummaries.forEach((summary, index) => {
+            if (!_.isNil(ruleSummaries) && !_.isNil(structureTree)) {
+                ruleSummaries.forEach((summary, index) => {
                     allChecks = [...allChecks, ...summary.checks];
                     let rule = {
                         specification: summary.specification,
@@ -202,11 +198,21 @@ function PdfDocument(props) {
                     });
                 });
             }
-            newMapOfErrors = _.orderBy(newMapOfErrors, ['pageIndex'], ['asc']);
+            return _.orderBy(newMapOfErrors, ['pageIndex'], ['asc']);
+        },
+        [errorMessages]
+    );
+
+    const onDocumentReady = useCallback(
+        document => {
+            props.setPdfName(props.file.name || props.fileName);
+            props.setNumPages(document.numPages);
+            props.initTree(document.parsedTree);
+            const newMapOfErrors = createMapOfErrors(props.ruleSummaries, document._pdfInfo.structureTree);
             props.onDocumentReady(newMapOfErrors);
             setMapOfErrors({ ...newMapOfErrors });
         },
-        [props, errorMessages]
+        [createMapOfErrors, props]
     );
 
     const onBboxSelect = useCallback(

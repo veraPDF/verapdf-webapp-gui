@@ -1,0 +1,58 @@
+@import './../../../../../_variables.scss';
+
+.popup {
+    &__paper {
+        display: grid;
+        grid-template-rows: 40px 60px 1fr 40px;
+        position: absolute;            
+        top: 50%;                         
+        left: 50%;                         
+        transform: translate(-50%, -50%);
+        min-width: 336px;
+        width: 40%;
+        height: 60%;
+        margin: auto;
+        padding: 30px;
+        border-radius: 1em;
+        background-color: $color-white;
+
+        @media (max-width: 400px) {
+            padding: 30px 15px;
+        }
+    }
+
+    &__toggle {
+        margin: 10px;
+    }
+
+    &__wrapper {
+        overflow: auto;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+
+        button:nth-child(3) {
+            margin-left: auto;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+        flex-direction: row;
+        column-gap: 5px;
+        row-gap: 7px;
+    }
+}
+
+.popup__grid .popup__grid__cell {
+    text-align: center;
+    text-transform: lowercase;
+    font-weight: 400;
+    border-radius: 2em;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}

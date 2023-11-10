@@ -2,13 +2,14 @@ import React, { useState, useCallback, Fragment, useEffect, useRef, useMemo } fr
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { scrollToActiveBbox } from 'verapdf-js-viewer';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
 import _ from 'lodash';
 import { usePrevious } from 'react-use';
 
-import { getRuleSummaries } from '../../../../../store/job/result/selectors';
+import { getRuleSummaries, getTags } from '../../../../../store/job/result/selectors';
 import { getProfile } from '../../../../../store/job/settings/selectors';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -21,12 +22,14 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import FilterPopup from './filterPopup/FilterPopup';
 import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 
 import './Tree.scss';
+
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_de from '../validationErrorMessages_de.json';
@@ -35,8 +38,11 @@ import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
+const LIST_NO_ERRORS = 'No errors found';
+const FILTER_TOOLTIP = 'Filter';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
+
 export const languageEnum = {
     English: 'English',
     Dutch: 'Dutch',
@@ -47,7 +53,6 @@ export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
     OTHER: 'Other',
 };
-
 export const errorMessagesMap = {
     [errorProfiles.OTHER]: {
         [languageEnum.English]: errorMap_en,
@@ -60,10 +65,39 @@ export const errorMessagesMap = {
     },
 };
 
-function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSelectedCheck, errorsMap, profile }) {
+function Tree({
+    ruleSummaries,
+    tags,
+    expandedRules,
+    onExpandRule,
+    selectedCheck,
+    setSelectedCheck,
+    errorsMap,
+    profile,
+}) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
+
+    const onRuleFilter = useCallback(
+        ({ enabled, filteredTags }) => {
+            if (!filteredTags.length) {
+                setRuleSummariesFiltered(ruleSummaries);
+                return;
+            }
+            const ruleSummariesFiltered = ruleSummaries.map(rule => {
+                const diffTags = _.difference(rule.tags, filteredTags);
+                const showCondition = diffTags.length === rule.tags.length - filteredTags.length;
+                const hideCondition = diffTags.length === rule.tags.length;
+                const isFiltered = enabled ? showCondition : hideCondition;
+                return isFiltered ? rule : null;
+            });
+            setRuleSummariesFiltered(ruleSummariesFiltered);
+        },
+        [ruleSummaries]
+    );
 
     const onCheckClick = useCallback(
         checkKey => {
@@ -110,6 +144,9 @@ function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSe
         }
         setAnchorMenuEl(null);
     }, []);
+    const handleFilterClick = useCallback(() => {
+        setIsFilterOpen(true);
+    }, []);
 
     useEffect(() => {
         if (selectedCheck && selectedCheck !== prevSelectedCheck) {
@@ -126,6 +163,21 @@ function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSe
                 subheader={
                     <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
                         {LIST_HEADER}
+                        <Tooltip title={FILTER_TOOLTIP}>
+                            <IconButton
+                                size="small"
+                                onClick={handleFilterClick}
+                                disabled={_.isNil(tags) || tags.length === 0}
+                            >
+                                <FilterListIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <FilterPopup
+                            isOpen={isFilterOpen}
+                            setIsOpen={setIsFilterOpen}
+                            tags={tags}
+                            onFilter={onRuleFilter}
+                        />
                         <Tooltip title={language}>
                             <IconButton size="small" onClick={handleLanguageClick}>
                                 <LanguageIcon />
@@ -148,7 +200,7 @@ function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSe
                 }
             >
                 <RuleList
-                    ruleSummaries={ruleSummaries}
+                    ruleSummaries={ruleSummariesFiltered}
                     expandedRules={expandedRules}
                     selectedCheck={selectedCheck}
                     onRuleClick={onExpandRule}
@@ -161,6 +213,7 @@ function Tree({ ruleSummaries, expandedRules, onExpandRule, selectedCheck, setSe
             {openedRule !== UNSELECTED && (
                 <InfoDialog
                     title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
+                    tags={openedRule?.tags || []}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
@@ -183,54 +236,61 @@ function RuleList({
     errorsMap,
     errorMessages,
 }) {
-    return ruleSummaries.map((rule, index) => {
-        const checks = rule.checks;
-        const ruleTitle = getRuleTitle(rule, errorMessages);
-        const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
-        return (
-            <Fragment key={index}>
-                <ListItem
-                    button
-                    onClick={() => onRuleClick(index)}
-                    className={classNames('rule-item rule-item_error', {
-                        'rule-item_expanded': expandedRules.includes(index),
-                    })}
-                >
-                    {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
-                    <ListItemText
-                        title={ruleTitle}
-                        className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
-                        primary={
-                            <>
-                                <span className="content-text">{ruleTitle}</span>
-                                {checks.length ? (
-                                    <Chip size="small" className="rule-item__chip" label={checksLabel} />
-                                ) : null}
-                            </>
-                        }
-                    />
-                    <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="info" size="small" onClick={() => onInfoClick(rule)}>
-                            <InfoOutlinedIcon />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-                {checks.length ? (
-                    <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
-                        <List component="div" disablePadding>
-                            <CheckList
-                                ruleIndex={index}
-                                checks={checks}
-                                selectedCheck={selectedCheck}
-                                onCheckClick={onCheckClick}
-                                errorsMap={errorsMap}
-                            />
-                        </List>
-                    </Collapse>
-                ) : null}
-            </Fragment>
-        );
-    });
+    return !!ruleSummaries.filter(rule => rule !== null).length ? (
+        ruleSummaries.map((rule, index) => {
+            if (_.isNil(rule)) return null;
+            const checks = rule.checks;
+            const ruleTitle = getRuleTitle(rule, errorMessages);
+            const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
+            return (
+                <Fragment key={index}>
+                    <ListItem
+                        button
+                        onClick={() => onRuleClick(index)}
+                        className={classNames('rule-item rule-item_error', {
+                            'rule-item_expanded': expandedRules.includes(index),
+                        })}
+                    >
+                        {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                        <ListItemText
+                            title={ruleTitle}
+                            className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
+                            primary={
+                                <>
+                                    <span className="content-text">{ruleTitle}</span>
+                                    {checks.length ? (
+                                        <Chip size="small" className="rule-item__chip" label={checksLabel} />
+                                    ) : null}
+                                </>
+                            }
+                        />
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="info" size="small" onClick={() => onInfoClick(rule)}>
+                                <InfoOutlinedIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                    {checks.length ? (
+                        <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
+                            <List component="div" disablePadding>
+                                <CheckList
+                                    ruleIndex={index}
+                                    checks={checks}
+                                    selectedCheck={selectedCheck}
+                                    onCheckClick={onCheckClick}
+                                    errorsMap={errorsMap}
+                                />
+                            </List>
+                        </Collapse>
+                    ) : null}
+                </Fragment>
+            );
+        })
+    ) : (
+        <ListItem>
+            <ListItemText>{LIST_NO_ERRORS}</ListItemText>
+        </ListItem>
+    );
 }
 
 function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
@@ -407,6 +467,7 @@ Tree.propTypes = {
 function mapStateToProps(state) {
     return {
         ruleSummaries: getRuleSummaries(state),
+        tags: getTags(state),
         profile: getProfile(state),
     };
 }

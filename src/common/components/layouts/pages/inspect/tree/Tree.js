@@ -81,13 +81,6 @@ function Tree({
     const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
 
-    const isSubarray = useCallback((arr, subArr) => {
-        const hash = arr.reduce((acc, value) => {
-            acc[value] = true;
-            return acc;
-        }, {});
-        return subArr.every(el => el in hash);
-    }, []);
     const onRuleFilter = useCallback(
         ({ enabled, filteredTags }) => {
             if (!filteredTags.length) {
@@ -95,15 +88,15 @@ function Tree({
                 return;
             }
             const ruleSummariesFiltered = ruleSummaries.map(rule => {
-                const arrSum = [...rule.tags, ...filteredTags];
-                const isFiltered = enabled
-                    ? isSubarray(rule.tags, filteredTags)
-                    : arrSum.length === Array.from(new Set(arrSum)).length;
+                const diffTags = _.difference(rule.tags, filteredTags);
+                const showCondition = diffTags.length === rule.tags.length - filteredTags.length;
+                const hideCondition = diffTags.length === rule.tags.length;
+                const isFiltered = enabled ? showCondition : hideCondition;
                 return isFiltered ? rule : null;
             });
             setRuleSummariesFiltered(ruleSummariesFiltered);
         },
-        [isSubarray, ruleSummaries]
+        [ruleSummaries]
     );
 
     const onCheckClick = useCallback(
@@ -206,27 +199,21 @@ function Tree({
                     </ListSubheader>
                 }
             >
-                {!!ruleSummariesFiltered.filter(rule => rule !== null).length ? (
-                    <RuleList
-                        ruleSummaries={ruleSummariesFiltered}
-                        expandedRules={expandedRules}
-                        selectedCheck={selectedCheck}
-                        onRuleClick={onExpandRule}
-                        onCheckClick={onCheckClick}
-                        onInfoClick={onInfoClick}
-                        errorsMap={errorsMap}
-                        errorMessages={errorMessages}
-                    />
-                ) : (
-                    <ListItem>
-                        <ListItemText>{LIST_NO_ERRORS}</ListItemText>
-                    </ListItem>
-                )}
+                <RuleList
+                    ruleSummaries={ruleSummariesFiltered}
+                    expandedRules={expandedRules}
+                    selectedCheck={selectedCheck}
+                    onRuleClick={onExpandRule}
+                    onCheckClick={onCheckClick}
+                    onInfoClick={onInfoClick}
+                    errorsMap={errorsMap}
+                    errorMessages={errorMessages}
+                />
             </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog
                     title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
-                    tags={getRuleTags(openedRule)}
+                    tags={openedRule?.tags || []}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
@@ -249,55 +236,61 @@ function RuleList({
     errorsMap,
     errorMessages,
 }) {
-    return ruleSummaries.map((rule, index) => {
-        if (_.isNil(rule)) return null;
-        const checks = rule.checks;
-        const ruleTitle = getRuleTitle(rule, errorMessages);
-        const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
-        return (
-            <Fragment key={index}>
-                <ListItem
-                    button
-                    onClick={() => onRuleClick(index)}
-                    className={classNames('rule-item rule-item_error', {
-                        'rule-item_expanded': expandedRules.includes(index),
-                    })}
-                >
-                    {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
-                    <ListItemText
-                        title={ruleTitle}
-                        className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
-                        primary={
-                            <>
-                                <span className="content-text">{ruleTitle}</span>
-                                {checks.length ? (
-                                    <Chip size="small" className="rule-item__chip" label={checksLabel} />
-                                ) : null}
-                            </>
-                        }
-                    />
-                    <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="info" size="small" onClick={() => onInfoClick(rule)}>
-                            <InfoOutlinedIcon />
-                        </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-                {checks.length ? (
-                    <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
-                        <List component="div" disablePadding>
-                            <CheckList
-                                ruleIndex={index}
-                                checks={checks}
-                                selectedCheck={selectedCheck}
-                                onCheckClick={onCheckClick}
-                                errorsMap={errorsMap}
-                            />
-                        </List>
-                    </Collapse>
-                ) : null}
-            </Fragment>
-        );
-    });
+    return !!ruleSummaries.filter(rule => rule !== null).length ? (
+        ruleSummaries.map((rule, index) => {
+            if (_.isNil(rule)) return null;
+            const checks = rule.checks;
+            const ruleTitle = getRuleTitle(rule, errorMessages);
+            const checksLabel = `${checks.length}${rule.failedChecks > checks.length ? '+' : ''}`;
+            return (
+                <Fragment key={index}>
+                    <ListItem
+                        button
+                        onClick={() => onRuleClick(index)}
+                        className={classNames('rule-item rule-item_error', {
+                            'rule-item_expanded': expandedRules.includes(index),
+                        })}
+                    >
+                        {checks.length ? expandedRules.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon /> : []}
+                        <ListItemText
+                            title={ruleTitle}
+                            className={classNames('rule-item__content', { 'rule-item__content_empty': !checks.length })}
+                            primary={
+                                <>
+                                    <span className="content-text">{ruleTitle}</span>
+                                    {checks.length ? (
+                                        <Chip size="small" className="rule-item__chip" label={checksLabel} />
+                                    ) : null}
+                                </>
+                            }
+                        />
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="info" size="small" onClick={() => onInfoClick(rule)}>
+                                <InfoOutlinedIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                    {checks.length ? (
+                        <Collapse in={expandedRules.includes(index)} timeout={0} unmountOnExit>
+                            <List component="div" disablePadding>
+                                <CheckList
+                                    ruleIndex={index}
+                                    checks={checks}
+                                    selectedCheck={selectedCheck}
+                                    onCheckClick={onCheckClick}
+                                    errorsMap={errorsMap}
+                                />
+                            </List>
+                        </Collapse>
+                    ) : null}
+                </Fragment>
+            );
+        })
+    ) : (
+        <ListItem>
+            <ListItemText>{LIST_NO_ERRORS}</ListItemText>
+        </ListItem>
+    );
 }
 
 function CheckList({ checks, selectedCheck, onCheckClick, errorsMap, ruleIndex }) {
@@ -392,10 +385,6 @@ function getRuleNumber({ specification, clause, testNumber }, errorMessages) {
 
 function getRuleUrl({ specification, clause, testNumber }, errorMessages) {
     return errorMessages?.[specification]?.[clause]?.[testNumber]?.URL;
-}
-
-function getRuleTags({ tags }) {
-    return _.isNil(tags) ? [] : tags;
 }
 
 function getCheckTitle({ checkKey, index, allChecks, errorsMap, location }) {

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -14,7 +14,7 @@ import Button from '../button/Button';
 import './Dialog.scss';
 
 function Dialog({ title, tags, actions, open, onClose, children }) {
-    const tagsArray = useMemo(() => {
+    const tagsArray = React.useMemo(() => {
         return tags.map((tag, index) => {
             return (
                 <li key={index}>

@@ -164,13 +164,15 @@ function Tree({
                     <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
                         {LIST_HEADER}
                         <Tooltip title={FILTER_TOOLTIP}>
-                            <IconButton
-                                size="small"
-                                onClick={handleFilterClick}
-                                disabled={_.isNil(tags) || tags.length === 0}
-                            >
-                                <FilterListIcon />
-                            </IconButton>
+                            <span>
+                                <IconButton
+                                    size="small"
+                                    onClick={handleFilterClick}
+                                    disabled={_.isNil(tags) || tags.length === 0}
+                                >
+                                    <FilterListIcon />
+                                </IconButton>
+                            </span>
                         </Tooltip>
                         <FilterPopup
                             isOpen={isFilterOpen}

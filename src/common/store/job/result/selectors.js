@@ -15,6 +15,6 @@ export const isCompliant = createSelector(getResult, result => result?.compliant
 
 export const getRuleSummaries = createSelector(getResultDetails, ({ ruleSummaries }) => [...ruleSummaries]);
 
-export const getTags = createSelector(getResultDetails, ({ tags }) => [...tags]);
+export const getTags = createSelector(getResultDetails, ({ tags }) => (tags != null ? [...tags] : []));
 
 export const getJobEndStatus = createSelector(getResult, result => result?.jobEndStatus);

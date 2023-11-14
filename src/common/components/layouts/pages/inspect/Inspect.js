@@ -72,7 +72,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     );
     const initTree = useCallback(
         tree => {
-            const ruleSummariesWithTreeIds = setRulesTreeIds(tree.name, ruleSummaries);
+            const ruleSummariesWithTreeIds = setRulesTreeIds(tree, ruleSummaries);
             const treeWithRoleNames = getTreeRoleNames(tree, ruleSummariesWithTreeIds);
             const ids = getTreeIds(tree);
             setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });

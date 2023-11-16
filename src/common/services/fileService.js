@@ -1,7 +1,8 @@
 import SparkMD5 from 'spark-md5';
 import { get, upload } from './api';
+import { JOB_OLD_FILE } from '../store/constants';
 
-const { REACT_APP_API_ROOT } = process.env;
+const { REACT_APP_API_ROOT, PUBLIC_URL } = process.env;
 
 export const getInfo = () => {
     const url = `${REACT_APP_API_ROOT}/status/file-storage/info`;
@@ -71,4 +72,16 @@ const calculateContentMD5 = file =>
         loadNext();
     });
 
-export const getFileLinkById = id => `${REACT_APP_API_ROOT}/files/${id}`;
+export const redirectToStartScreen = () => {
+    const oldFileName = sessionStorage.getItem(JOB_OLD_FILE);
+    let location = window.location.pathname;
+    if (!PUBLIC_URL.endsWith('/')) {
+        location = location.replace(/\/$/, '');
+    }
+    if (oldFileName && location !== PUBLIC_URL && location !== `${PUBLIC_URL}/new-job/files`) {
+        // Redirect to start screen and hide Loading view
+        window.location.replace(PUBLIC_URL);
+        return true;
+    }
+    return false;
+};

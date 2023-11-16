@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-import { JOB_NEW_FILE, JOB_OLD_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
+import { JOB_NEW_FILE, JOB_LINK, JOB_MODE, JOB_STATUS } from './constants';
 import { finishAppStartup, setFileUploadMode } from './application/actions';
 import { updateServerStatus, updateWorkerServiceStatus } from './serverInfo/actions';
 import { addPdfFile } from './pdfFiles/actions';
@@ -13,6 +13,7 @@ import { getJobStatus } from './job/selectors';
 import { getUnsavedFile } from './pdfFiles/selectors';
 import { isFileUploadMode, isLocked } from './application/selectors';
 import { setLink } from './pdfLink/actions';
+import { redirectToStartScreen } from '../services/fileService';
 
 export default function configureStore() {
     const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -54,15 +55,7 @@ export default function configureStore() {
     store.dispatch(updateWorkerServiceStatus());
 
     // Redirect to start screen if there is old file
-    const { PUBLIC_URL } = process.env;
-    const oldFileName = sessionStorage.getItem(JOB_OLD_FILE);
-    let location = window.location.pathname;
-    if (!PUBLIC_URL.endsWith('/')) {
-        location = location.replace(/\/$/, '');
-    }
-    if (oldFileName && location !== PUBLIC_URL && location !== `${PUBLIC_URL}/new-job/files`) {
-        // Redirect to start screen and hide Loading view
-        window.location.replace(PUBLIC_URL);
+    if (redirectToStartScreen()) {
         return;
     }
 

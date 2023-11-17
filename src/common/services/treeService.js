@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const TREEPATH = '/StructTreeRoot';
+
 const getContext = arr => {
     let allContext = '';
     _.map(arr, subArr => {
@@ -8,6 +10,20 @@ const getContext = arr => {
         });
     });
     return allContext;
+};
+
+const getIdStringsFromContext = (treeName, context) => {
+    return context
+        .split(TREEPATH)[1]
+        .match(/\(\d+ \d+ \S+ \S+ \S+\)/g)
+        .filter((idStr, index) => {
+            if (index === 0) return !idStr.includes(treeName);
+            return true;
+        })
+        .map(id => {
+            const parsedId = id.slice(1, -1).split(' ');
+            return `${parsedId[0]}:${parsedId[1]}`;
+        });
 };
 
 const getStructureIds = arr => {
@@ -47,28 +63,26 @@ const getTreeIds = (node, ids = []) => {
     return ids;
 };
 
-const setRulesTreeIds = (treeName, rules) => {
-    const TREEPATH = '/StructTreeRoot';
+const setRulesTreeIds = (tree, rules) => {
     return rules.map(({ checks }) => {
         return checks.map(check => {
             if (check.context.includes(TREEPATH)) {
-                const idStrings = check.context
-                    .split(TREEPATH)[1]
-                    .match(/[^/]+/g)
-                    .filter((idStr, index) => {
-                        if (index === 1) return !idStr.includes(treeName) && !idStr.includes('{');
-                        return !idStr.includes('{');
-                    });
-                const treeId = idStrings
-                    .map(idStr => idStr.match(/\[\d+]/))
-                    .join('')
-                    .replaceAll('][', ':')
-                    .slice(1, -1);
+                const idStrings = getIdStringsFromContext(tree.name, check.context);
+                const treeId = findIdByObjNumbers(tree, idStrings.reverse());
                 return { ...check, treeId: treeId };
             }
             return { ...check, treeId: null };
         });
     });
+};
+
+const findIdByObjNumbers = (node, pathArray) => {
+    if (!pathArray || !pathArray.length) return node.id;
+    const path = pathArray.pop();
+    const [num, gen] = path.split(':');
+    const nextNode = node.children.find(({ ref }) => ref.num === +num && ref.gen === +gen);
+    if (!nextNode) return null;
+    return findIdByObjNumbers(nextNode, pathArray);
 };
 
 const findNode = (arr, id) => {

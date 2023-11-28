@@ -1,58 +1,48 @@
 @import './../../../../../_variables.scss';
 
 .popup {
-    &__paper {
-        display: grid;
-        grid-template-rows: 40px 60px 1fr 40px;
-        position: absolute;            
-        top: 50%;                         
-        left: 50%;                         
-        transform: translate(-50%, -50%);
-        min-width: 336px;
-        width: 40%;
-        height: 60%;
-        margin: auto;
-        padding: 30px;
-        border-radius: 1em;
-        background-color: $color-white;
-
-        @media (max-width: 400px) {
-            padding: 30px 15px;
-        }
-    }
-
-    &__toggle {
-        margin: 10px;
-    }
-
-    &__wrapper {
-        overflow: auto;
-    }
+    padding: 15px;
 
     &__buttons {
         display: flex;
         align-items: center;
-        gap: 3px;
+        padding-top: 10px;
 
-        button:nth-child(3) {
+        button:first-child {
             margin-left: auto;
         }
     }
-
-    &__grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, auto));
-        flex-direction: row;
-        column-gap: 5px;
-        row-gap: 7px;
-    }
 }
 
-.popup__grid .popup__grid__cell {
-    text-align: center;
-    text-transform: lowercase;
-    font-weight: 400;
-    border-radius: 2em;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+.popup .popup__tagsPane {
+    padding-top: 0;
+}
+
+.popup .popup__select {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.popup .popup__tagsTitle {
+    margin-left: 4px;
+    font-size: 11px;
+    line-height: 12.89px;
+    color: $color-black--50;
+}
+
+.popup .popup__tags {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: 330px;
+}
+  
+.popup .popup__tags__tag {
+    &__selected {
+        border: 1px solid $color-primary;
+    }
+    margin: 4px;
 }

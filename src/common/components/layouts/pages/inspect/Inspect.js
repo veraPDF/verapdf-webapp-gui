@@ -18,7 +18,13 @@ import PdfDocument from './pdfDocument/PdfDocument';
 import Structure from './structure/Structure';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
+import errorTags from './validationErrorTags.json';
+
 import './Inspect.scss';
+
+export const GROUPS = _.map(_.entries(errorTags), category => category[0]);
+export const TAGS = _.flatMap(_.entries(errorTags), category => category[1]);
+export const TAGS_NAMES = _.map(TAGS, ({ name }) => name);
 
 const UNSELECTED = -1;
 
@@ -28,6 +34,8 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const [selectedCheck, setSelectedCheck] = useState(null);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const [expandedRules, setExpandedRules] = useState(new Array(ruleSummaries.length).fill(UNSELECTED));
+    const [expandedGroups, setExpandedGroups] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState(GROUPS[0]);
     const [expandedNodes, setExpandedNodes] = useState([]);
     const [warningMessage, setWarningMessage] = useState(null);
     const [errorsMap, setErrorsMap] = useState({});
@@ -60,15 +68,24 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const onWarning = useCallback(warningCode => {
         setWarningMessage(WARNING_MESSAGES[warningCode]);
     }, []);
+    const changeExpanded = useCallback((expanded, index, closeIfExists) => {
+        const copyExpanded = _.clone(expanded);
+        expanded.includes(index) && closeIfExists
+            ? copyExpanded.splice(index, 1, UNSELECTED)
+            : copyExpanded.splice(index, 1, index);
+        return copyExpanded;
+    }, []);
     const onExpandRule = useCallback(
         (index, closeIfExists = true) => {
-            const copyExpandedRule = _.clone(expandedRules);
-            expandedRules.includes(index) && closeIfExists
-                ? copyExpandedRule.splice(index, 1, UNSELECTED)
-                : copyExpandedRule.splice(index, 1, index);
-            return setExpandedRules(copyExpandedRule);
+            return setExpandedRules(changeExpanded(expandedRules, index, closeIfExists));
         },
-        [expandedRules, setExpandedRules]
+        [changeExpanded, expandedRules, setExpandedRules]
+    );
+    const onExpandGroup = useCallback(
+        (index, closeIfExists = true) => {
+            return setExpandedGroups(changeExpanded(expandedGroups, index, closeIfExists));
+        },
+        [changeExpanded, expandedGroups, setExpandedGroups]
     );
     const initTree = useCallback(
         tree => {
@@ -96,6 +113,9 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
             setExpandedNodes(initialExpandState);
         }
     }, [treeData, initialExpandState]);
+    useEffect(() => {
+        setExpandedGroups(new Array(errorTags[selectedGroup].length + 1).fill(UNSELECTED).map((_, index) => index));
+    }, [selectedGroup]);
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;
@@ -116,7 +136,12 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
                     expandedRules={expandedRules}
+                    selectedGroup={selectedGroup}
+                    setSelectedGroup={setSelectedGroup}
+                    expandedGroups={expandedGroups}
+                    setExpandedGroups={setExpandedGroups}
                     onExpandRule={onExpandRule}
+                    onExpandGroup={onExpandGroup}
                     errorsMap={errorsMap}
                 />
                 <PdfDocument

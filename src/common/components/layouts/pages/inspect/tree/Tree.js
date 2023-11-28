@@ -18,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Collapse from '@material-ui/core/Collapse';
 import Chip from '@material-ui/core/Chip';
+import Popover from '@material-ui/core/Popover';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -27,9 +28,11 @@ import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
+import { TAGS_NAMES } from '../Inspect';
 
 import './Tree.scss';
 
+import errorTags from '../validationErrorTags.json';
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_de from '../validationErrorMessages_de.json';
@@ -38,8 +41,9 @@ import errorMap_tagged_technical from '../TaggedPDF_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
+const LIST_OTHERS = 'All others';
 const LIST_NO_ERRORS = 'No errors found';
-const FILTER_TOOLTIP = 'Filter';
+const FILTER_TOOLTIP = 'Grouping and filtering';
 const METADATA = 'metadata';
 const UNSELECTED = -1;
 
@@ -66,33 +70,37 @@ export const errorMessagesMap = {
 };
 
 function Tree({
+    tagsNames,
     ruleSummaries,
-    tags,
     expandedRules,
+    selectedGroup,
+    expandedGroups,
     onExpandRule,
+    onExpandGroup,
     selectedCheck,
     setSelectedCheck,
+    setSelectedGroup,
     errorsMap,
     profile,
 }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
     const [anchorMenuEl, setAnchorMenuEl] = useState(null);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [anchorFilterEl, setAnchorFilterEl] = useState(null);
+    const [selectedTags, setSelectedTags] = useState(TAGS_NAMES);
+    const [expandedCategory, setExpandedCategory] = useState([]);
+    const [dictOfRules, setDictOfRules] = useState({}); // { [tagNames]: factorizedSummaries }
+    const [groupWithRulesMap, setGroupWithRulesMap] = useState({}); // { [indexes]: tagNames }
     const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
 
     const onRuleFilter = useCallback(
-        ({ enabled, filteredTags }) => {
+        filteredTags => {
             if (!filteredTags.length) {
-                setRuleSummariesFiltered(ruleSummaries);
+                setRuleSummariesFiltered([]);
                 return;
             }
-            const ruleSummariesFiltered = ruleSummaries.map(rule => {
-                const diffTags = _.difference(rule.tags, filteredTags);
-                const showCondition = diffTags.length === rule.tags.length - filteredTags.length;
-                const hideCondition = diffTags.length === rule.tags.length;
-                const isFiltered = enabled ? showCondition : hideCondition;
-                return isFiltered ? rule : null;
+            const ruleSummariesFiltered = _.map(ruleSummaries, rule => {
+                return _.intersection(rule.tags, filteredTags).length ? rule : null;
             });
             setRuleSummariesFiltered(ruleSummariesFiltered);
         },
@@ -144,16 +152,32 @@ function Tree({
         }
         setAnchorMenuEl(null);
     }, []);
-    const handleFilterClick = useCallback(() => {
-        setIsFilterOpen(true);
+    const handleFilterClick = useCallback(event => {
+        setAnchorFilterEl(event.currentTarget);
+    }, []);
+    const handleClose = useCallback(() => {
+        setAnchorFilterEl(null);
     }, []);
 
     useEffect(() => {
-        if (selectedCheck && selectedCheck !== prevSelectedCheck) {
+        const newExpandedCategory = [...errorTags[selectedGroup], { name: LIST_OTHERS }];
+        setExpandedCategory(newExpandedCategory);
+        const [newDictOfRules, newGroupWithRulesMap] = getFactorizedRules(
+            ruleSummariesFiltered,
+            errorTags[selectedGroup].map(({ name }) => name)
+        );
+        setDictOfRules(newDictOfRules);
+        setGroupWithRulesMap(newGroupWithRulesMap);
+    }, [ruleSummariesFiltered, selectedGroup]);
+
+    useEffect(() => {
+        if (!_.isNil(selectedCheck) && selectedCheck !== prevSelectedCheck) {
             const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
+            const groupIndex = expandedCategory.findIndex(({ name }) => name === groupWithRulesMap[ruleIndex]);
+            onExpandGroup(groupIndex, false);
             onExpandRule(ruleIndex, false);
         }
-    }, [errorsMap, selectedCheck, prevSelectedCheck, onExpandRule]);
+    }, [errorsMap, selectedCheck, prevSelectedCheck, onExpandGroup, onExpandRule, groupWithRulesMap, expandedCategory]);
 
     return (
         <section className="summary-tree">
@@ -164,22 +188,34 @@ function Tree({
                     <ListSubheader component="div" id="summary-tree-subheader" disableSticky>
                         {LIST_HEADER}
                         <Tooltip title={FILTER_TOOLTIP}>
-                            <span>
-                                <IconButton
-                                    size="small"
-                                    onClick={handleFilterClick}
-                                    disabled={_.isNil(tags) || tags.length === 0}
-                                >
-                                    <FilterListIcon />
-                                </IconButton>
-                            </span>
+                            <IconButton
+                                size="small"
+                                onClick={handleFilterClick}
+                                disabled={_.isNil(tagsNames) || tagsNames.length === 0}
+                            >
+                                <FilterListIcon />
+                            </IconButton>
                         </Tooltip>
-                        <FilterPopup
-                            isOpen={isFilterOpen}
-                            setIsOpen={setIsFilterOpen}
-                            tags={tags}
-                            onFilter={onRuleFilter}
-                        />
+                        <Popover
+                            open={!!anchorFilterEl}
+                            anchorEl={anchorFilterEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                        >
+                            <FilterPopup
+                                tagsNames={tagsNames}
+                                selectedTags={selectedTags}
+                                selectedGroup={selectedGroup}
+                                setSelectedGroup={setSelectedGroup}
+                                setSelectedTags={setSelectedTags}
+                                anchorEl={anchorFilterEl}
+                                setAnchorEl={setAnchorFilterEl}
+                                onFilter={onRuleFilter}
+                            />
+                        </Popover>
                         <Tooltip title={language}>
                             <IconButton size="small" onClick={handleLanguageClick}>
                                 <LanguageIcon />
@@ -189,7 +225,7 @@ function Tree({
                             id="language-menu"
                             anchorEl={anchorMenuEl}
                             keepMounted
-                            open={Boolean(anchorMenuEl)}
+                            open={!!anchorMenuEl}
                             onClose={handleLanguageClose.bind(this, undefined)}
                         >
                             {_.keys(languageEnum).map(lKey => (
@@ -201,21 +237,27 @@ function Tree({
                     </ListSubheader>
                 }
             >
-                <RuleList
+                <GroupList
+                    expandedCategory={expandedCategory}
+                    dictOfRules={dictOfRules}
+                    tagsNames={tagsNames}
                     ruleSummaries={ruleSummariesFiltered}
                     expandedRules={expandedRules}
+                    expandedGroups={expandedGroups}
                     selectedCheck={selectedCheck}
+                    onGroupClick={onExpandGroup}
                     onRuleClick={onExpandRule}
                     onCheckClick={onCheckClick}
                     onInfoClick={onInfoClick}
                     errorsMap={errorsMap}
                     errorMessages={errorMessages}
+                    selectedGroup={selectedGroup}
                 />
             </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog
                     title={`${getRuleNumber(openedRule, errorMessages)}${getRuleTitle(openedRule, errorMessages)}`}
-                    tags={openedRule?.tags || []}
+                    tagsNames={openedRule?.tags || []}
                     open={infoDialogOpened}
                     onClose={onInfoDialogClose}
                 >
@@ -224,6 +266,72 @@ function Tree({
                 </InfoDialog>
             )}
         </section>
+    );
+}
+
+function GroupList({
+    expandedCategory,
+    dictOfRules,
+    tagsNames,
+    ruleSummaries,
+    expandedRules,
+    expandedGroups,
+    selectedCheck,
+    onGroupClick,
+    onRuleClick,
+    onCheckClick,
+    onInfoClick,
+    errorsMap,
+    errorMessages,
+}) {
+    return tagsNames?.length ? (
+        !!ruleSummaries.filter(rule => rule !== null).length ? (
+            expandedCategory?.map(({ name }, index) => {
+                return dictOfRules[name] ? (
+                    <Fragment key={name}>
+                        <ListItem button onClick={() => onGroupClick(index)} className="group-item">
+                            {expandedGroups.includes(index) ? <ExpandMoreIcon /> : <ChevronRightIcon />}
+                            <ListItemText
+                                title={name}
+                                className="rule-item__content"
+                                primary={<span className="content-text">{name}</span>}
+                            />
+                        </ListItem>
+                        {
+                            <Collapse in={expandedGroups.includes(index)} timeout={0} unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <RuleList
+                                        ruleSummaries={dictOfRules[name]}
+                                        expandedRules={expandedRules}
+                                        selectedCheck={selectedCheck}
+                                        onRuleClick={onRuleClick}
+                                        onCheckClick={onCheckClick}
+                                        onInfoClick={onInfoClick}
+                                        errorsMap={errorsMap}
+                                        errorMessages={errorMessages}
+                                    />
+                                </List>
+                            </Collapse>
+                        }
+                    </Fragment>
+                ) : null;
+            })
+        ) : (
+            <ListItem>
+                <ListItemText>{LIST_NO_ERRORS}</ListItemText>
+            </ListItem>
+        )
+    ) : (
+        <RuleList
+            ruleSummaries={ruleSummaries}
+            expandedRules={expandedRules}
+            selectedCheck={selectedCheck}
+            onRuleClick={onRuleClick}
+            onCheckClick={onCheckClick}
+            onInfoClick={onInfoClick}
+            errorsMap={errorsMap}
+            errorMessages={errorMessages}
+        />
     );
 }
 
@@ -238,7 +346,7 @@ function RuleList({
     errorsMap,
     errorMessages,
 }) {
-    return !!ruleSummaries.filter(rule => rule !== null).length ? (
+    return ruleSummaries && !!ruleSummaries.filter(rule => rule !== null).length ? (
         ruleSummaries.map((rule, index) => {
             if (_.isNil(rule)) return null;
             const checks = rule.checks;
@@ -435,6 +543,38 @@ function getPageNumber(checkKey, errorsMap) {
     return errorsMap[sortedCheckIndex].pageIndex + 1;
 }
 
+function getFactorizedRules(ruleSummaries, keys) {
+    const factorizedRules = {};
+    const groupWithRulesMap = {};
+    const otherIndexes = [];
+    keys.forEach(key => {
+        factorizedRules[key] = ruleSummaries.map((rule, index) => {
+            if (_.isNil(rule)) return null;
+            // Avoid duplicated rules in different categories
+            const isRuleShow = rule.tags?.includes(key) && !otherIndexes.includes(index);
+            if (isRuleShow) {
+                groupWithRulesMap[index] = key;
+                otherIndexes.push(index);
+            }
+            return isRuleShow ? rule : null;
+        });
+    });
+    factorizedRules[LIST_OTHERS] = ruleSummaries.map((rule, index) => {
+        const isRuleOther = !otherIndexes.includes(index);
+        if (isRuleOther) {
+            groupWithRulesMap[index] = LIST_OTHERS;
+        }
+        return isRuleOther ? rule : null;
+    });
+    // Mapping {null, ..., null} to null
+    [...keys, LIST_OTHERS].forEach(key => {
+        if (!factorizedRules[key].filter(rule => rule !== null).length) {
+            factorizedRules[key] = null;
+        }
+    });
+    return [factorizedRules, groupWithRulesMap];
+}
+
 export function sortChecksByPage(checks, errorsMap) {
     let newChecks = [...checks];
     newChecks.sort(({ id: a }, { id: b }) => {
@@ -459,17 +599,22 @@ const SummaryInterface = PropTypes.shape({
 Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
+    tagsNames: PropTypes.arrayOf(PropTypes.string),
+    selectedGroup: PropTypes.string.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    expandedGroups: PropTypes.arrayOf(PropTypes.number).isRequired,
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
+    setSelectedGroup: PropTypes.func.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     onExpandRule: PropTypes.func.isRequired,
+    onExpandGroup: PropTypes.func.isRequired,
     errorsMap: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 function mapStateToProps(state) {
     return {
         ruleSummaries: getRuleSummaries(state),
-        tags: getTags(state),
+        tagsNames: getTags(state),
         profile: getProfile(state),
     };
 }

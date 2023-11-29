@@ -8,7 +8,7 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
-import { GROUPS } from './constants';
+import { errorTags, GROUPS } from './constants';
 import { getTreeRoleNames, getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
@@ -18,8 +18,6 @@ import Tree from './tree/Tree';
 import PdfDocument from './pdfDocument/PdfDocument';
 import Structure from './structure/Structure';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
-
-import errorTags from './data/validationErrorTags.json';
 
 import './Inspect.scss';
 

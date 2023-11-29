@@ -15,9 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 
-import { GROUPS, TAGS_NAMES } from '../../constants';
-
-import errorTags from './../../data/validationErrorTags.json';
+import { errorTags, GROUPS, TAGS_NAMES } from '../../constants';
 
 import './FilterPopup.scss';
 

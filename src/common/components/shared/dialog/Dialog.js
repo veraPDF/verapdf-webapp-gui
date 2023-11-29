@@ -12,7 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
 import Button from '../button/Button';
 
-import { TAGS } from '../../layouts/pages/inspect/Inspect';
+import { TAGS } from '../../layouts/pages/inspect/constants';
 
 import './Dialog.scss';
 

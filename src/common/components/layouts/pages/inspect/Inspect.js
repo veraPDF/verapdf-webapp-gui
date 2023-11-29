@@ -8,6 +8,7 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
+import { GROUPS } from './constants';
 import { getTreeRoleNames, getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
@@ -18,13 +19,9 @@ import PdfDocument from './pdfDocument/PdfDocument';
 import Structure from './structure/Structure';
 import DropzoneWrapper from '../upload/dropzoneWrapper/DropzoneWrapper';
 
-import errorTags from './validationErrorTags.json';
+import errorTags from './data/validationErrorTags.json';
 
 import './Inspect.scss';
-
-export const GROUPS = _.map(_.entries(errorTags), category => category[0]);
-export const TAGS = _.flatMap(_.entries(errorTags), category => category[1]);
-export const TAGS_NAMES = _.map(TAGS, ({ name }) => name);
 
 const UNSELECTED = -1;
 
@@ -114,7 +111,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
         }
     }, [treeData, initialExpandState]);
     useEffect(() => {
-        setExpandedGroups(new Array(errorTags[selectedGroup].length + 1).fill(UNSELECTED).map((_, index) => index));
+        setExpandedGroups(Array.from(Array(errorTags[selectedGroup].length + 1).keys()));
     }, [selectedGroup]);
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {

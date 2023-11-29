@@ -28,16 +28,16 @@ import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
-import { TAGS_NAMES } from '../Inspect';
+import { TAGS_NAMES } from '../constants';
 
 import './Tree.scss';
 
-import errorTags from '../validationErrorTags.json';
-import errorMap_en from '../validationErrorMessages_en.json';
-import errorMap_nl from '../validationErrorMessages_nl.json';
-import errorMap_de from '../validationErrorMessages_de.json';
-import errorMap_technical from '../validationErrorMessages_technical.json';
-import errorMap_tagged_technical from '../TaggedPDF_technical.json';
+import errorTags from '../data/validationErrorTags.json';
+import errorMap_en from '../data/validationErrorMessages_en.json';
+import errorMap_nl from '../data/validationErrorMessages_nl.json';
+import errorMap_de from '../data/validationErrorMessages_de.json';
+import errorMap_technical from '../data/validationErrorMessages_technical.json';
+import errorMap_tagged_technical from '../data/TaggedPDF_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';

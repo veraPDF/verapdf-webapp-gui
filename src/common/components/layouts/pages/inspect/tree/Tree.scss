@@ -7,8 +7,12 @@
   overflow: auto;
 
   &__list {
-    .rule-item {
+    .group-item {
       padding: 2px 2px 2px 8px;
+    }
+
+    .rule-item {
+      padding: 2px 2px 2px 16px;
       display: flex;
 
       &__content {
@@ -27,6 +31,10 @@
           white-space: nowrap;
           margin-right: 5px;
           font-size: .9rem;
+
+          &::first-letter {
+            text-transform: capitalize;
+          }
         }
 
         &_empty {
@@ -67,7 +75,7 @@
     }
 
     .check-item {
-      padding: 2px 2px 2px 30px;
+      padding: 2px 2px 2px 40px;
 
       &.Mui-selected {
         background-color: rgba(0, 0, 0, 0.4);
@@ -94,7 +102,7 @@
   align-items: center;
   font-weight: $font-weight-bold;
 
-  span:first-of-type {
+  button:first-of-type {
     margin-left: auto;
   }
 }

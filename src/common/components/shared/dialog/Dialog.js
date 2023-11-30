@@ -8,21 +8,27 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
 import Button from '../button/Button';
 
+import { TAGS } from '../../layouts/pages/inspect/constants';
+
 import './Dialog.scss';
 
-function Dialog({ title, tags, actions, open, onClose, children }) {
+function Dialog({ title, tagsNames, actions, open, onClose, children }) {
     const tagsArray = useMemo(() => {
-        return tags.map((tag, index) => {
+        return tagsNames.map((tagName, index) => {
+            const description = TAGS.find(tag => tag.name === tagName)?.description ?? '';
             return (
                 <li key={index}>
-                    <Chip variant="outlined" color="primary" className="dialog__tags__tag" label={tag} />
+                    <Tooltip title={description}>
+                        <Chip variant="outlined" color="primary" className="dialog__tags__tag" label={tagName} />
+                    </Tooltip>
                 </li>
             );
         });
-    }, [tags]);
+    }, [tagsNames]);
 
     return (
         <MaterialDialog
@@ -36,7 +42,7 @@ function Dialog({ title, tags, actions, open, onClose, children }) {
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">{children}</DialogContentText>
             </DialogContent>
-            {!!tags?.length && (
+            {!!tagsNames?.length && (
                 <DialogContent>
                     <Paper component="ul" className="dialog__tags">
                         {tagsArray}
@@ -72,7 +78,7 @@ export const ActionShape = PropTypes.shape({
 Dialog.propTypes = {
     actions: PropTypes.arrayOf(ActionShape),
     title: PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.string),
+    tagsNames: PropTypes.arrayOf(PropTypes.string),
     open: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
 };

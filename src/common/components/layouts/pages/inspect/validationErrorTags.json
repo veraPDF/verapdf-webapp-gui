@@ -6,7 +6,7 @@
       },
       {
         "name": "major",
-        "description": "Major accessibility issues such as broken document strucure, broken syntax requirements, missing text language and others"
+        "description": "Major accessibility issues such as broken document structure, broken syntax requirements, missing text language and others"
       },
       {
         "name": "minor",
@@ -17,10 +17,10 @@
         "description": "Optional accessibility requirements such as the use of non-recommended fonts, merged cells in tables or others"
       }
     ],
-    "How": [
+    "Type": [
       {
         "name": "machine",
-        "description": "Checks vefiried by direct machine algorithms"
+        "description": "Checks verified by direct machine algorithms"
       },
       {
         "name": "human",
@@ -50,7 +50,7 @@
       },
       {
         "name": "alt-text",
-        "description": "Missing altlernative text for figures, interactive forms and formulas"
+        "description": "Missing alternative text for figures, interactive forms and formulas"
       },
       {
         "name": "annotation",
@@ -58,7 +58,7 @@
       },
       {
         "name": "artifact",
-        "description": "Invalid artifacts, or content outside of structure tree not maked as artifact"
+        "description": "Invalid artifacts, or content outside the structure tree not marked as artifact"
       },
       {
         "name": "font",
@@ -66,7 +66,7 @@
       },
       {
         "name": "lang",
-        "description": "Missing or invalid language identifiaction for some part of the document"
+        "description": "Missing or invalid language identification for some part of the document"
       },
       {
         "name": "page",

@@ -202,7 +202,7 @@ function Tree({
                             onClose={handleClose}
                             anchorOrigin={{
                                 vertical: 'bottom',
-                                horizontal: 'center',
+                                horizontal: 'right',
                             }}
                         >
                             <FilterPopup

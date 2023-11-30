@@ -28,10 +28,11 @@ import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
-import { errorTags, TAGS_NAMES } from '../constants';
+import { TAGS_NAMES } from '../constants';
 
 import './Tree.scss';
 
+import errorTags from '../validationErrorTags.json';
 import errorMap_en from '../validationErrorMessages_en.json';
 import errorMap_nl from '../validationErrorMessages_nl.json';
 import errorMap_de from '../validationErrorMessages_de.json';

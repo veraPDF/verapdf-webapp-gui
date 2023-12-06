@@ -9,7 +9,7 @@ import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
 import { GROUPS } from './constants';
-import { getTreeRoleNames, getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
+import { getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
 import { getRuleSummaries } from '../../../../store/job/result/selectors';
@@ -87,9 +87,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const initTree = useCallback(
         tree => {
             const ruleSummariesWithTreeIds = setRulesTreeIds(tree, ruleSummaries);
-            const treeWithRoleNames = getTreeRoleNames(tree, ruleSummariesWithTreeIds);
-            const ids = getTreeIds(tree);
-            setTreeData({ tree: treeWithRoleNames, ids: ids, ruleSummaries: ruleSummariesWithTreeIds });
+            setTreeData({ tree: tree, ids: getTreeIds(tree), ruleSummaries: ruleSummariesWithTreeIds });
         },
         [ruleSummaries]
     );

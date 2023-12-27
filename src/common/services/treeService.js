@@ -3,9 +3,11 @@ import _ from 'lodash';
 const TREEPATH = '/StructTreeRoot';
 
 const getIdStringsFromContext = (treeName, context) => {
-    return context
-        .split(TREEPATH)[1]
-        .match(/\(\d+ \d+ \S+ \S+ \S+\)/g)
+    const pathItems = context.split('/');
+    if (`/${pathItems[pathItems.length - 1]}`.startsWith(TREEPATH)) {
+        return null;
+    }
+    return (context.split(TREEPATH)[1].match(/\(\d+ \d+ \S+ \S+ \S+\)/g) || [])
         .filter((idStr, index) => {
             if (index === 0) return !idStr.includes(treeName);
             return true;
@@ -30,6 +32,9 @@ const setRulesTreeIds = (tree, rules) => {
         return checks.map(check => {
             if (check.context.includes(TREEPATH)) {
                 const idStrings = getIdStringsFromContext(tree.name, check.context);
+                if (idStrings === null) {
+                    return { ...check, treeId: null };
+                }
                 const treeId = findIdByObjNumbers(tree, idStrings.reverse());
                 return { ...check, treeId: treeId };
             }

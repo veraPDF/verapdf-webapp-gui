@@ -2,7 +2,7 @@
   "ISO 32005:202X":{
     "6.2":{
       "1":{
-        "SUMMARY":"A structure type is not mapped to the standard structure type",
+        "SUMMARY":"A non-standard structure type is not mapped to the standard structure type",
         "DESCRIPTION":"Every structure type should be mapped to a standard structure type"
       },
       "2":{
@@ -6620,6 +6620,22 @@
       "1655":{
         "SUMMARY":"<Artifact> contains more than one <Caption>",
         "DESCRIPTION":"<Artifact> shall contain at most one <Caption>"
+      },
+      "1656":{
+        "SUMMARY":"Found circular mapping between structure types",
+        "DESCRIPTION":"A circular mapping between structure types is not permitted"
+      },
+      "1657":{
+        "SUMMARY":"A standard structure type is remapped to a non-standard type",
+        "DESCRIPTION":"Standard tags shall not be remapped to a non-standard type"
+      },
+      "1658":{
+        "SUMMARY":"StructTreeRoot entry is not present in the document catalog",
+        "DESCRIPTION":"The logical structure of the conforming file shall be described by a structure hierarchy rooted in the StructTreeRoot entry of the document catalog dictionary"
+      },
+      "1659":{
+        "SUMMARY":"A Structure element dictionary does not contain the P (parent) entry",
+        "DESCRIPTION":"Structure element dictionary shall contain the P (parent) entry"
       }
     }
   }

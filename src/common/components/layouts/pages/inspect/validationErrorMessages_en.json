@@ -513,7 +513,7 @@
     "7.4.2": {
       "1": {
         "SUMMARY": "Incorrect use of heading levels",
-        "DESCRIPTION": "Heading levels are not used in the logical order. This makes it difficult for people with visual impairments who use reader software to navigate the document. To comply with WCAG 2.1 the document must begin with a header of level 1 and heading levels must follow the logical order from higher to lower. Avoid starting the document with a heading of level 2 or 3. Do not skip heading levels: for example don't let a heading of level 3 follow a heading of level 1."
+        "DESCRIPTION": "Heading levels are not used in the logical order. This makes it difficult for people with visual impairments who use reader software to navigate the document. To comply with WCAG 2.2 the document must begin with a header of level 1 and heading levels must follow the logical order from higher to lower. Avoid starting the document with a heading of level 2 or 3. Do not skip heading levels: for example don't let a heading of level 3 follow a heading of level 1."
       }
     },
     "7.4.4": {
@@ -571,7 +571,7 @@
     "7.15": {
       "1": {
         "SUMMARY": "The document contains a interactive form",
-        "DESCRIPTION": "To comply with WCAG 2.1 accessibility criteria, a document must not include interactive XFA (XML Forum Architecture) forms. Try reformatting the form make it static. You can also try including the form in another format than XFA if your application gives you that option."
+        "DESCRIPTION": "To comply with WCAG 2.2 accessibility criteria, a document must not include interactive XFA (XML Forum Architecture) forms. Try reformatting the form make it static. You can also try including the form in another format than XFA if your application gives you that option."
       }
     },
     "7.16": {

@@ -361,12 +361,12 @@
       "1": {
         "STATUS": "ignore",
         "CATEGORY": "metadata",
-        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but doesn't declare itself to be. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, the PDF/UA declaration must be present in the metadata."
+        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but doesn't declare itself to be. A document does not have to be PDF/UA to comply with WCAG 2.2. But if this was meant as a PDF/UA document, the PDF/UA declaration must be present in the metadata."
       },
       "2": {
         "STATUS": "ignore",
         "CATEGORY": "metadata",
-        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but the declaration is incorrect. A document does not have to be PDF/UA to comply with WCAG 2.1. But if this was meant as a PDF/UA document, this metadata must be correct."
+        "RATIONALE": "This warning occurs if the document is not a PDF/UA document OR if it is PDF/UA but the declaration is incorrect. A document does not have to be PDF/UA to comply with WCAG 2.2. But if this was meant as a PDF/UA document, this metadata must be correct."
       }
     },
     "7.1": {
@@ -413,7 +413,7 @@
       "9": {
         "STATUS": "error",
         "CATEGORY": "metadata",
-        "RATIONALE": "To comply with WCAG 2.1, a document must have a title set in the metadata."
+        "RATIONALE": "To comply with WCAG 2.2, a document must have a title set in the metadata."
       },
       "10": {
         "STATUS": "ignore",

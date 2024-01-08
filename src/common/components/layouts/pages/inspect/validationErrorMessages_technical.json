@@ -298,8 +298,20 @@
 				"DESCRIPTION": "The PDF/UA version and conformance level of a file shall be specified using the PDF/UA Identification extension schema"
 			},
 			"2": {
-				"SUMMARY": "The \"part\" property of the PDF/UA Identification Schema is %1 instead of 1 for PDF/UA conforming file",
-				"DESCRIPTION": "The value of pdfuaid:part shall be the part number of the International Standard to which the file conforms"
+				"SUMMARY": "The \"part\" property of the PDF/UA Identification Schema is not 1 for PDF/UA-1 conforming file",
+				"DESCRIPTION": "The value of \"pdfuaid:part\" shall be the part number of the International Standard to which the file conforms"
+			},
+			"3": {
+				"SUMMARY": "Property \"part\" of the PDF/UA Identification Schema has an invalid namespace prefix",
+				"DESCRIPTION": "Property \"part\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
+			},
+			"4": {
+				"SUMMARY": "Property \"amd\" of the PDF/UA Identification Schema has an invalid namespace prefix",
+				"DESCRIPTION": "Property \"amd\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
+			},
+			"5": {
+				"SUMMARY": "Property \"corr\" of the PDF/UA Identification Schema has an invalid namespace prefix",
+				"DESCRIPTION": "Property \"corr\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
 			}
 		},
 		"7.1": {
@@ -346,6 +358,10 @@
 			"11": {
 				"SUMMARY": "Document is not tagged",
 				"DESCRIPTION": "Document root contains no structure tree, which makes any real content in the document inaccessible"
+			},
+			"12": {
+				"SUMMARY": "A Structure element dictionary does not contain the P (parent) entry",
+				"DESCRIPTION": "Structure element dictionary shall contain the P (parent) entry"
 			}
 		},
 		"7.2": {

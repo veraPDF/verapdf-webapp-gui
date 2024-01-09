@@ -6,8 +6,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import LanguageIcon from '@material-ui/icons/Language';
 import { Menu, MenuItem, Tooltip } from '@material-ui/core';
 import classNames from 'classnames';
-import _ from 'lodash';
 import { usePrevious } from 'react-use';
+import _ from 'lodash';
 
 import { getRuleSummaries, getTags } from '../../../../../store/job/result/selectors';
 import { getProfile } from '../../../../../store/job/settings/selectors';
@@ -81,6 +81,8 @@ function Tree({
     setSelectedCheck,
     setSelectedGroup,
     errorsMap,
+    ruleSummariesFiltered,
+    setRuleSummariesFiltered,
     profile,
 }) {
     const [language, setLanguage] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
@@ -90,7 +92,6 @@ function Tree({
     const [expandedCategory, setExpandedCategory] = useState([]);
     const [dictOfRules, setDictOfRules] = useState({}); // { [tagNames]: factorizedSummaries }
     const [groupWithRulesMap, setGroupWithRulesMap] = useState({}); // { [indexes]: tagNames }
-    const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const prevSelectedCheck = usePrevious(selectedCheck);
 
     const onRuleFilter = useCallback(
@@ -104,7 +105,7 @@ function Tree({
             });
             setRuleSummariesFiltered(ruleSummariesFiltered);
         },
-        [ruleSummaries]
+        [ruleSummaries, setRuleSummariesFiltered]
     );
 
     const onCheckClick = useCallback(

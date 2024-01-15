@@ -4,9 +4,11 @@
   background: $bg-color--primary;
   box-shadow: $box-shadow--basic;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 
   &__list {
+    height: 100%;
+
     .group-item {
       padding: 2px 2px 2px 8px;
     }
@@ -85,6 +87,11 @@
         background-color: rgba(0, 0, 0, 0.08);
       }
     }
+
+    &__item {
+      height: calc(100% - 48px);
+      overflow: auto;
+    }
   }
 
   .MuiTypography-body1 {
@@ -100,7 +107,9 @@
 #summary-tree-subheader {
   display: flex;
   align-items: center;
+  overflow: auto;
   font-weight: $font-weight-bold;
+  white-space: nowrap;
 
   button:first-of-type {
     margin-left: auto;

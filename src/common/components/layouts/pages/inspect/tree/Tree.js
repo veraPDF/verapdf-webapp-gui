@@ -236,23 +236,26 @@ function Tree({
                         </Menu>
                     </ListSubheader>
                 }
+                disablePadding
             >
-                <GroupList
-                    expandedCategory={expandedCategory}
-                    dictOfRules={dictOfRules}
-                    tagsNames={tagsNames}
-                    ruleSummaries={ruleSummariesFiltered}
-                    expandedRules={expandedRules}
-                    expandedGroups={expandedGroups}
-                    selectedCheck={selectedCheck}
-                    onGroupClick={onExpandGroup}
-                    onRuleClick={onExpandRule}
-                    onCheckClick={onCheckClick}
-                    onInfoClick={onInfoClick}
-                    errorsMap={errorsMap}
-                    errorMessages={errorMessages}
-                    selectedGroup={selectedGroup}
-                />
+                <div className="summary-tree__list__item">
+                    <GroupList
+                        expandedCategory={expandedCategory}
+                        dictOfRules={dictOfRules}
+                        tagsNames={tagsNames}
+                        ruleSummaries={ruleSummariesFiltered}
+                        expandedRules={expandedRules}
+                        expandedGroups={expandedGroups}
+                        selectedCheck={selectedCheck}
+                        onGroupClick={onExpandGroup}
+                        onRuleClick={onExpandRule}
+                        onCheckClick={onCheckClick}
+                        onInfoClick={onInfoClick}
+                        errorsMap={errorsMap}
+                        errorMessages={errorMessages}
+                        selectedGroup={selectedGroup}
+                    />
+                </div>
             </List>
             {openedRule !== UNSELECTED && (
                 <InfoDialog

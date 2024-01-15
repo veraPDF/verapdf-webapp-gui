@@ -1,6 +1,6 @@
 {
     "name": "verapdf-webapp",
-    "homepage": "/demo",
+    "homepage": "/validate",
     "version": "0.10.36",
     "private": true,
     "dependencies": {
@@ -36,7 +36,7 @@
     "scripts": {
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
-        "test": "react-app-rewired test --testURL='http://localhost/demo' --testMatch '**/__tests__/**/*.test.js'",
+        "test": "react-app-rewired test --testURL='http://localhost/validate' --testMatch '**/__tests__/**/*.test.js'",
         "eject": "react-scripts eject",
         "lint": "eslint --ext .jsx,.js ./"
     },

@@ -150,7 +150,9 @@ function Node({ node, style, tree }) {
             <button className="tree__item__icon" disabled={node.data?.final} onClick={handleIconClick}>
                 {tree.isOpen(node.id) ? <ExpandMoreIcon /> : <ChevronRightIcon />}
             </button>
-            <label className="tree__item__label">{roleMap ? node.data.roleName : node.data.name}</label>
+            <label className="tree__item__label">
+                {roleMap && node.data.roleName ? node.data.roleName : node.data.name}
+            </label>
         </div>
     );
 }

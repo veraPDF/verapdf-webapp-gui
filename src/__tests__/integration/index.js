@@ -202,7 +202,7 @@ export const integrationTest = (
 
     const component = mount(
         <Provider store={store} initialEntries={initialEntries}>
-            <Router basename="/demo">
+            <Router basename="/validate">
                 <App />
             </Router>
         </Provider>

@@ -1,7 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import SelectAllIcon from '@material-ui/icons/SelectAll';
-import ClearIcon from '@material-ui/icons/Clear';
 import classNames from 'classnames';
 
 import Tooltip from '@material-ui/core/Tooltip';
@@ -14,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import { ReactComponent as DeSelect } from '../../../../../../../assets/icons/deSelect.svg';
 
 import { GROUPS, TAGS_NAMES } from '../../constants';
 import errorTags from '../../validationErrorTags.json';
@@ -84,7 +85,9 @@ const FilterPopup = ({ onFilter, selectedTags, setSelectedTags, selectedGroup, s
                 </Tooltip>
                 <Tooltip title={CLEAR}>
                     <IconButton size="small" onClick={handleClear}>
-                        <ClearIcon />
+                        <SvgIcon>
+                            <DeSelect />
+                        </SvgIcon>
                     </IconButton>
                 </Tooltip>
             </div>

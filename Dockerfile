@@ -10,4 +10,4 @@ COPY ./.docker/nginx/conf.d/${profile}.conf /etc/nginx/conf.d/default.conf
 
 # Copy project files
 COPY ./landing /usr/share/nginx/html
-COPY ./build /usr/share/nginx/html/demo
+COPY ./build /usr/share/nginx/html/validate

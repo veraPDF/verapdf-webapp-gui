@@ -32,6 +32,7 @@ const SummaryInterface = PropTypes.shape({
 PdfDocument.propTypes = {
     file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    ruleSummariesFiltered: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     selectedNodeId: PropTypes.string,

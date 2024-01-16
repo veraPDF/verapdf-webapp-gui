@@ -602,12 +602,14 @@ const SummaryInterface = PropTypes.shape({
 
 Tree.propTypes = {
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    ruleSummariesFiltered: PropTypes.arrayOf(SummaryInterface).isRequired,
     profile: PropTypes.string.isRequired,
     tagsNames: PropTypes.arrayOf(PropTypes.string),
     selectedGroup: PropTypes.string.isRequired,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     expandedGroups: PropTypes.arrayOf(PropTypes.number).isRequired,
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
+    setRuleSummariesFiltered: PropTypes.func.isRequired,
     setSelectedGroup: PropTypes.func.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     onExpandRule: PropTypes.func.isRequired,

@@ -521,7 +521,7 @@
     "7.4.2": {
       "1": {
         "SUMMARY": "Falsche Reihenfolge der Überschriften.",
-        "DESCRIPTION": "Die Überschriften werden nicht in logischer Reihenfolge verwendet. Dies kann dazu führen, dass Nutzer von Screenreader Schwierigkeiten haben, im Dokument zu navigieren. Um die WCAG 2.1 zu erfüllen, sollte das Dokument immer mit einer Überschrift der Ebene 1 beginnen. Die weiteren Überschriftenebenen sollten in logischer Reihenfolge von der höchsten zur niedrigsten folgen. Beginnen Sie das Dokument daher nicht mit einer Überschrift der Ebene 2 oder 3. Überspringen Sie keine Überschriftenebenen: Lassen Sie beispielsweise keine Überschrift der Ebene 3 auf eine Überschrift der Ebene 1 folgen."
+        "DESCRIPTION": "Die Überschriften werden nicht in logischer Reihenfolge verwendet. Dies kann dazu führen, dass Nutzer von Screenreader Schwierigkeiten haben, im Dokument zu navigieren. Um die WCAG 2.2 zu erfüllen, sollte das Dokument immer mit einer Überschrift der Ebene 1 beginnen. Die weiteren Überschriftenebenen sollten in logischer Reihenfolge von der höchsten zur niedrigsten folgen. Beginnen Sie das Dokument daher nicht mit einer Überschrift der Ebene 2 oder 3. Überspringen Sie keine Überschriftenebenen: Lassen Sie beispielsweise keine Überschrift der Ebene 3 auf eine Überschrift der Ebene 1 folgen."
       }
     },
     "7.4.4": {

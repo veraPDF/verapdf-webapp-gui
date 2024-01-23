@@ -509,7 +509,7 @@
     "7.4.2": {
       "1": {
         "SUMMARY": "Verkeerd gebruik van koppen",
-        "DESCRIPTION": "De koppen worden niet in logische volgorde gebruikt. Dit kan ertoe leiden dat een slechtziende met screenreaders moeite hebben om door het document te navigeren. Om aan WCAG 2.1 te voldoen moet het document altijd beginnen met een kop van niveau 1 en moeten de niveaus van koppen logisch op elkaar volgen van hoog naar laag. Begin het document dus niet met een kop van niveau 2 of 3. Sla geen niveaus van koppen over: laat bijvoorbeeld niet een kop van niveau 3 volgen op een kop van niveau 1."
+        "DESCRIPTION": "De koppen worden niet in logische volgorde gebruikt. Dit kan ertoe leiden dat een slechtziende met screenreaders moeite hebben om door het document te navigeren. Om aan WCAG 2.2 te voldoen moet het document altijd beginnen met een kop van niveau 1 en moeten de niveaus van koppen logisch op elkaar volgen van hoog naar laag. Begin het document dus niet met een kop van niveau 2 of 3. Sla geen niveaus van koppen over: laat bijvoorbeeld niet een kop van niveau 3 volgen op een kop van niveau 1."
       }
     },
     "7.4.4": {

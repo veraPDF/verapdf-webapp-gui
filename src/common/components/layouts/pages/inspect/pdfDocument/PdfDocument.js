@@ -85,7 +85,7 @@ function getPageFromErrorPlace(context, structureTree) {
                     nextStepObject = objectOfErrors;
                 } else {
                     const clearedChildren = objectOfErrors.children.filter(
-                        child => !child || (!child.mcid && child.mcid !== 0)
+                        child => !child?.hasOwnProperty('rect') && (!child || (!child.mcid && child.mcid !== 0))
                     );
                     nextStepObject = {
                         ...(clearedChildren.length ? clearedChildren : objectOfErrors.children)[node[0]],
@@ -116,12 +116,13 @@ function PdfDocument(props) {
     const [language] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
 
     const bboxes = useMemo(() => {
-        return Object.values(mapOfErrors).map(({ location, groupId, bboxTitle }) => ({
+        return Object.values(mapOfErrors).map(({ location, groupId, bboxTitle }, index) => ({
+            isVisible: indicesOfVisibleErrors.includes(index),
             location,
             groupId,
             bboxTitle,
         }));
-    }, [mapOfErrors]);
+    }, [mapOfErrors, indicesOfVisibleErrors]);
 
     const errorMessages = useMemo(() => {
         switch (props.profile) {
@@ -272,7 +273,6 @@ function PdfDocument(props) {
                 onBboxClick={data => onBboxSelect(data)}
                 onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}
-                visibleErrorBboxes={indicesOfVisibleErrors}
                 isTreeBboxesVisible={props.isTreeShow}
                 page={props.page}
                 ruleSummaries={props.ruleSummaries}

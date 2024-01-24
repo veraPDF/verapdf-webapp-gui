@@ -18,7 +18,7 @@ const VARIANTS = {
 
 function PageNavigation(props) {
     const { back, forward, center, text } = props;
-    const root = useMemo(() => `page-nav${!text?.length ? '' : '-text'}`, [text]);
+    const root = useMemo(() => `page-navigation${!text?.length ? '' : '-text'}`, [text]);
     return (
         <nav className={root}>
             <div className={`${root}__start`}>{getButton(back, TYPE.BACK)}</div>

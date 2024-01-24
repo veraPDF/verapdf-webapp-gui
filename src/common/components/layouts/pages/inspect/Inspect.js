@@ -35,6 +35,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
     const [selectedGroup, setSelectedGroup] = useState(GROUPS[0]);
     const [expandedNodes, setExpandedNodes] = useState([]);
     const [warningMessage, setWarningMessage] = useState(null);
+    const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const [errorsMap, setErrorsMap] = useState({});
     const [scale, setScale] = useState('1');
     const [isTreeShow, setIsTreeShow] = useState(false);
@@ -137,6 +138,8 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     setExpandedGroups={setExpandedGroups}
                     onExpandRule={onExpandRule}
                     onExpandGroup={onExpandGroup}
+                    ruleSummariesFiltered={ruleSummariesFiltered}
+                    setRuleSummariesFiltered={setRuleSummariesFiltered}
                     errorsMap={errorsMap}
                 />
                 <PdfDocument
@@ -152,6 +155,7 @@ function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onF
                     onDocumentReady={onDocumentReady}
                     onExpandRule={onExpandRule}
                     initTree={initTree}
+                    ruleSummariesFiltered={ruleSummariesFiltered}
                     scale={scale}
                 />
                 <Structure

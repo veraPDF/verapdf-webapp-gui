@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';
+
 import { getFileName, getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
@@ -31,6 +32,7 @@ const SummaryInterface = PropTypes.shape({
 PdfDocument.propTypes = {
     file: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object.isRequired]),
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
+    ruleSummariesFiltered: PropTypes.arrayOf(SummaryInterface).isRequired,
     errorMessages: PropTypes.object,
     selectedCheck: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     selectedNodeId: PropTypes.string,
@@ -83,7 +85,7 @@ function getPageFromErrorPlace(context, structureTree) {
                     nextStepObject = objectOfErrors;
                 } else {
                     const clearedChildren = objectOfErrors.children.filter(
-                        child => !child || (!child.mcid && child.mcid !== 0)
+                        child => !child?.hasOwnProperty('rect') && (!child || (!child.mcid && child.mcid !== 0))
                     );
                     nextStepObject = {
                         ...(clearedChildren.length ? clearedChildren : objectOfErrors.children)[node[0]],
@@ -99,44 +101,28 @@ function getPageFromErrorPlace(context, structureTree) {
     return defaultValue;
 }
 
+function getTitleDescription({ specification, clause, testNumber }, errorMessages) {
+    return (
+        errorMessages?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
+        `${specification}, clause ${clause}, test ${testNumber}`
+    );
+}
+
 function PdfDocument(props) {
+    const [structureTree, setStructureTree] = useState({});
     const [mapOfErrors, setMapOfErrors] = useState({});
+    const [indicesOfVisibleErrors, setIndicesOfVisibleErrors] = useState(null);
     const [activeBboxIndex, setActiveBboxIndex] = useState(null);
+    const [language] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
+
     const bboxes = useMemo(() => {
-        return Object.values(mapOfErrors).map(({ location, groupId, bboxTitle }) => ({
+        return Object.values(mapOfErrors).map(({ location, groupId, bboxTitle }, index) => ({
+            isVisible: indicesOfVisibleErrors.includes(index),
             location,
             groupId,
             bboxTitle,
         }));
-    }, [mapOfErrors]);
-    const [language] = useState(getItem(LS_ERROR_MESSAGES_LANGUAGE) || languageEnum.English);
-
-    useEffect(() => {
-        setActiveBboxIndex(props.selectedCheck);
-        const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
-        pageIndex > -1 && props.onPageChange(pageIndex + 1);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mapOfErrors, props.selectedCheck]);
-    useEffect(() => {
-        props.setSelectedCheck(activeBboxIndex);
-        if (activeBboxIndex != null && mapOfErrors[activeBboxIndex]) {
-            const ruleIndex = mapOfErrors[activeBboxIndex]?.ruleIndex;
-            props.onExpandRule(ruleIndex, false);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
-    useEffect(() => {
-        if (!props.file) {
-            window.location.replace(PUBLIC_URL);
-        }
-    }, [props.file]);
-
-    function getTitleDescription({ specification, clause, testNumber }, errorMessages) {
-        return (
-            errorMessages?.[specification]?.[clause]?.[testNumber]?.SUMMARY ||
-            `${specification}, clause ${clause}, test ${testNumber}`
-        );
-    }
+    }, [mapOfErrors, indicesOfVisibleErrors]);
 
     const errorMessages = useMemo(() => {
         switch (props.profile) {
@@ -153,6 +139,7 @@ function PdfDocument(props) {
             let allChecks = [];
             if (!_.isNil(ruleSummaries) && !_.isNil(structureTree)) {
                 ruleSummaries.forEach((summary, index) => {
+                    if (_.isNil(summary)) return;
                     allChecks = [...allChecks, ...summary.checks];
                     let rule = {
                         specification: summary.specification,
@@ -208,6 +195,7 @@ function PdfDocument(props) {
             props.setPdfName(props.file.name || props.fileName);
             props.setNumPages(document.numPages);
             props.initTree(document.parsedTree);
+            setStructureTree(document._pdfInfo.structureTree);
             const newMapOfErrors = createMapOfErrors(props.ruleSummaries, document._pdfInfo.structureTree);
             props.onDocumentReady(newMapOfErrors);
             setMapOfErrors({ ...newMapOfErrors });
@@ -236,6 +224,35 @@ function PdfDocument(props) {
     );
 
     const onSelectBboxByKeyboard = useCallback(data => setActiveBboxIndex(data), []);
+
+    useEffect(() => {
+        setActiveBboxIndex(props.selectedCheck);
+        const pageIndex = mapOfErrors[props.selectedCheck]?.pageIndex;
+        pageIndex > -1 && props.onPageChange(pageIndex + 1);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mapOfErrors, props.selectedCheck]);
+    useEffect(() => {
+        props.setSelectedCheck(activeBboxIndex);
+        if (activeBboxIndex != null && mapOfErrors[activeBboxIndex]) {
+            const ruleIndex = mapOfErrors[activeBboxIndex]?.ruleIndex;
+            props.onExpandRule(ruleIndex, false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mapOfErrors, activeBboxIndex, props.setSelectedCheck]);
+    useEffect(() => {
+        if (!props.file) {
+            window.location.replace(PUBLIC_URL);
+        }
+    }, [props.file]);
+    useEffect(() => {
+        const newMapOfVisibleErrors = createMapOfErrors(props.ruleSummariesFiltered, structureTree);
+        const indicesOfVisibleBboxes = newMapOfVisibleErrors.map(({ checkIndex, ruleIndex }) => {
+            return Object.values(mapOfErrors).findIndex(
+                error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
+            );
+        });
+        setIndicesOfVisibleErrors(indicesOfVisibleBboxes);
+    }, [createMapOfErrors, props.ruleSummariesFiltered, structureTree, mapOfErrors]);
 
     return (
         <div className="pdf-viewer__wrapper" role="button" tabIndex={0}>

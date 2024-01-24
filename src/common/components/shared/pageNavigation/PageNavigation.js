@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import NavButton from './NavButton';
 import Button from '../button/Button';
+
 import './PageNavigation.scss';
 
 const TYPE = {
@@ -16,12 +17,13 @@ const VARIANTS = {
 };
 
 function PageNavigation(props) {
-    const { back, forward, center } = props;
+    const { back, forward, center, text } = props;
+    const root = useMemo(() => `page-nav${!text?.length ? '' : '-text'}`, [text]);
     return (
-        <nav className="page-navigation">
-            <section className="page-navigation__start">{getButton(back, TYPE.BACK)}</section>
-            <section className="page-navigation__center">{getButton(center, TYPE.CENTER)}</section>
-            <section className="page-navigation__end">{getButton(forward, TYPE.FORWARD)}</section>
+        <nav className={root}>
+            <div className={`${root}__start`}>{getButton(back, TYPE.BACK)}</div>
+            <div className={`${root}__center`}>{!text?.length ? getButton(center, TYPE.CENTER) : <p>{text}</p>}</div>
+            <div className={`${root}__end`}>{getButton(forward, TYPE.FORWARD)}</div>
         </nav>
     );
 }

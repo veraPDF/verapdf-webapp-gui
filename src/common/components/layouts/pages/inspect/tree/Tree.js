@@ -27,6 +27,7 @@ import FilterPopup from './filterPopup/FilterPopup';
 import InfoDialog from '../../../../shared/dialog/Dialog';
 import Button from '../../../../shared/button/Button';
 import { getItem, setItem } from '../../../../../services/localStorageService';
+import { getAvailableGroups } from '../../../../../services/treeService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
 import { TAGS_NAMES } from '../constants';
 
@@ -135,6 +136,7 @@ function Tree({
                 return errorMessagesMap[errorProfiles.OTHER][language];
         }
     }, [language, profile]);
+    const availableGroups = useMemo(() => getAvailableGroups(tagsNames, errorTags), [tagsNames]);
 
     const onInfoClick = useCallback(rule => {
         setOpenedRule(rule);
@@ -207,6 +209,7 @@ function Tree({
                             }}
                         >
                             <FilterPopup
+                                groups={availableGroups}
                                 tagsNames={tagsNames}
                                 selectedTags={selectedTags}
                                 selectedGroup={selectedGroup}

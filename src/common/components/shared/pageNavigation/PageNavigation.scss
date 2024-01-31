@@ -1,16 +1,66 @@
+@import '../../variables';
+
 .page-navigation {
   display: flex;
   padding: 20px 0 10px 0;
 
-  section {
+  div {
     display: flex;
+    justify-content: center;
     flex-grow: 1;
     flex-basis: 0;
-    justify-content: center;
 
     .app-link {
       color: inherit;
       display: flex;
+    }
+  }
+}
+
+.page-navigation-text {
+  display: flex;
+  padding: 0 0 10px 0;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    flex-basis: 0;
+
+    p {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.75);
+      letter-spacing: 0.00938em;
+    }
+
+    button {
+      margin: 20px 0 0 0;
+    }
+
+    .app-link {
+      color: inherit;
+      display: flex;
+    }
+  }
+
+  @media (max-width: $break-point) {
+    display: grid;
+    grid-template-areas:
+      "center center"
+      "start end";
+
+    &__start { grid-area: start; }
+    &__center {
+      grid-area: center;
+      p { max-width: 75%; }
+    }
+    &__end { grid-area: end; }
+
+    div {
+      button {
+        margin: 40px 0 0 0;
+      }
     }
   }
 }

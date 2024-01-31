@@ -18,6 +18,7 @@ import { validate } from '../../../../store/job/actions';
 import { resetOnFileUpload } from '../../../../store/application/actions';
 import { storeMode } from '../../../../store/pdfFiles/actions';
 import { JOB_OLD_FILE } from '../../../../store/constants';
+import validationList from './validationList.json';
 
 import './Settings.scss';
 
@@ -27,7 +28,7 @@ const backButton = {
 };
 
 function Settings(props) {
-    const { allServicesAvailable, jobId, onValidateClick, onFileDrop } = props;
+    const { selectedProfile, allServicesAvailable, jobId, onValidateClick, onFileDrop } = props;
 
     const onDrop = useCallback(
         acceptedFiles => {
@@ -63,13 +64,14 @@ function Settings(props) {
                         <ProfileSelect />
                     </form>
                 </section>
-                <PageNavigation back={backButton} forward={forwardButton} />
+                <PageNavigation back={backButton} forward={forwardButton} text={validationList[selectedProfile]} />
             </WizardStep>
         </DropzoneWrapper>
     );
 }
 
 Settings.propTypes = {
+    selectedProfile: PropTypes.string,
     allServicesAvailable: PropTypes.bool.isRequired,
     fileName: PropTypes.string.isRequired,
     jobId: PropTypes.string,
@@ -79,6 +81,7 @@ Settings.propTypes = {
 
 function mapStateToProps(state) {
     return {
+        selectedProfile: state.jobSettings.profile,
         allServicesAvailable: getServerGeneralStatus(state),
         fileName: isFileUploadMode(state) ? getFileName(state) : getFileNameLink(state),
         jobId: getJobId(state),

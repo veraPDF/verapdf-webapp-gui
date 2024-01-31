@@ -37,6 +37,11 @@ const setRulesTreeIds = (tree, rules) => {
                 }
                 const treeId = findIdByObjNumbers(tree, idStrings.reverse());
                 return { ...check, treeId: treeId };
+            } else if (check.context.includes('pages') && check.context.includes('annots')) {
+                const [pageIndex, annotIndex] = check.context.split('pages')[1].match(/\[\d+\]/g) || ['', ''];
+                const annotKey = `${pageIndex.slice(1, -1)}:${annotIndex.slice(1, -1)}`;
+                const treeId = tree.annotMap[annotKey] ?? null;
+                return { ...check, treeId: treeId };
             }
             return { ...check, treeId: null };
         });

@@ -112,10 +112,6 @@
   white-space: nowrap;
   scrollbar-width: none;
 
-  &::-webkit-scrollbar { 
-    display: none;
-  }
-
   button:first-of-type {
     margin-left: auto;
   }

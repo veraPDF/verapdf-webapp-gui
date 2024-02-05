@@ -63,8 +63,8 @@ function ProcessedSummary({ resultSummary }) {
                 </div>
             </section>
             <ul className="legend">
-                <LegendItem value={resultSummary.passedChecks} label="checks passed" type="passed" />
-                <LegendItem value={resultSummary.failedChecks} label="errors" type="failed" />
+                <LegendItem value={resultSummary.passedChecks ?? 0} label="checks passed" type="passed" />
+                <LegendItem value={resultSummary.failedChecks ?? 0} label="errors" type="failed" />
             </ul>
         </>
     );
@@ -120,10 +120,6 @@ function calculateCompliance({ passedChecks, failedChecks }) {
 }
 
 function LegendItem({ label, value, type }) {
-    if (value === 0) {
-        return null;
-    }
-
     return (
         <li className={classNames('legend-item', `legend-item_${type}`)}>
             <FiberManualRecordIcon className="legend-item__icon" />

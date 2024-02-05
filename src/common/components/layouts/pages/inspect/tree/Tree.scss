@@ -110,6 +110,7 @@
   overflow: auto;
   font-weight: $font-weight-bold;
   white-space: nowrap;
+  scrollbar-width: none;
 
   button:first-of-type {
     margin-left: auto;

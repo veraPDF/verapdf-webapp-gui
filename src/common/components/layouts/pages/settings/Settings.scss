@@ -8,6 +8,7 @@
     form {
         min-width: 320px;
         margin: auto;
+        margin-left: calc(100% / 3);
 
         display: grid;
         grid-template-columns: auto [label] 1fr [controller] auto [note];
@@ -19,6 +20,10 @@
 
         .fatal-error {
             grid-column-end: span 3;
+        }
+
+        @media (max-width: $break-point) {
+            margin-left: 20%;
         }
     }
 }

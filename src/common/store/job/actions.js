@@ -5,7 +5,6 @@ import { getJob, getJobId, getTaskErrorMessage, getTaskResultId, getTaskStatus }
 import * as JobService from '../../services/jobService';
 import * as FileService from '../../services/fileService';
 import { updatePdfFile, storeFile } from '../pdfFiles/actions';
-import { uploadLinkAction } from '../pdfLink/actions';
 import { setResult } from './result/actions';
 import { lockApp, unlockApp } from '../application/actions';
 import { getProfile } from './settings/selectors';
@@ -98,8 +97,10 @@ const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) =
         dispatch(updatePdfFile(fileDescriptor));
     } else {
         const link = getFileLink(getState());
-        uploadLinkAction(link);
         const fileDescriptor = await FileService.uploadLink(link);
+        if (fileDescriptor.contentType !== 'application/pdf') {
+            throw new Error('Content type is not application/pdf');
+        }
         const blob = await FileService.getFileContent(fileDescriptor.id);
         const file = new File([blob], fileDescriptor.fileName);
         await dispatch(storeFile(file));

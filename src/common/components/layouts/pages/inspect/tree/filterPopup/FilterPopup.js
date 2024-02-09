@@ -16,7 +16,7 @@ import Chip from '@material-ui/core/Chip';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { ReactComponent as DeSelect } from '../../../../../../../assets/icons/deSelect.svg';
 
-import { GROUPS, TAGS_NAMES } from '../../constants';
+import { TAGS_NAMES } from '../../constants';
 import errorTags from '../../validationErrorTags.json';
 
 import './FilterPopup.scss';
@@ -25,14 +25,14 @@ const TEXT = 'Group by';
 const SELECT = 'Show all';
 const CLEAR = 'Hide all';
 
-const FilterPopup = ({ onFilter, selectedTags, setSelectedTags, selectedGroup, setSelectedGroup }) => {
+const FilterPopup = ({ groups, selectedTags, setSelectedTags, selectedGroup, setSelectedGroup, onFilter }) => {
     const groupsItems = useMemo(() => {
-        return GROUPS.map(group => (
+        return groups.map(group => (
             <MenuItem key={group} value={group}>
                 {group}
             </MenuItem>
         ));
-    }, []);
+    }, [groups]);
 
     const handleClear = useCallback(() => {
         setSelectedTags([]);
@@ -92,7 +92,7 @@ const FilterPopup = ({ onFilter, selectedTags, setSelectedTags, selectedGroup, s
                 </Tooltip>
             </div>
             <List className="popup__tagsPane">
-                {GROUPS.map(group => (
+                {groups.map(group => (
                     <div key={group}>
                         <Typography className="popup__tagsTitle" component="span">
                             {group}
@@ -124,11 +124,12 @@ const FilterPopup = ({ onFilter, selectedTags, setSelectedTags, selectedGroup, s
 };
 
 FilterPopup.propTypes = {
-    onFilter: PropTypes.func.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.string),
     selectedGroup: PropTypes.string.isRequired,
     selectedTags: PropTypes.arrayOf(PropTypes.string),
     setSelectedGroup: PropTypes.func.isRequired,
     setSelectedTags: PropTypes.func.isRequired,
+    onFilter: PropTypes.func.isRequired,
 };
 
 export default FilterPopup;

@@ -70,4 +70,27 @@ const findNode = (arr, id) => {
     return [ruleIndex, checkIndex];
 };
 
-export { getTreeIds, setRulesTreeIds, findNode };
+/*
+ *  Returns a list of groups containing tagNames
+ *
+ *  @param tagsNames {string[]} of Tag names
+ *  @param errorTags {{ [group]: [{ name, description }] }} of Tag objects
+ *
+ *  @return availableGroups {string[]} of groups containing tagNames
+ */
+const getAvailableGroups = (tagsNames, errorTags) => {
+    if (!Array.isArray(tagsNames) || !tagsNames.length || _.isEmpty(errorTags)) return [];
+    const allGroups = _.keys(errorTags);
+    const availableGroups = [];
+
+    _.forEach(tagsNames, tagName => {
+        _.forEach(allGroups, group => {
+            if (errorTags[group].map(({ name }) => name).includes(tagName)) {
+                availableGroups.push(group);
+            }
+        });
+    });
+    return _.intersection(allGroups, availableGroups);
+};
+
+export { getTreeIds, setRulesTreeIds, findNode, getAvailableGroups };

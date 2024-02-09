@@ -8,11 +8,10 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
-import { GROUPS } from './constants';
-import { getTreeIds, setRulesTreeIds } from '../../../../services/treeService';
+import { getTreeIds, setRulesTreeIds, getAvailableGroups } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
-import { getRuleSummaries } from '../../../../store/job/result/selectors';
+import { getRuleSummaries, getTags } from '../../../../store/job/result/selectors';
 import Toolbar from './toolbar/Toolbar';
 import Tree from './tree/Tree';
 import PdfDocument from './pdfDocument/PdfDocument';
@@ -25,14 +24,14 @@ import './Inspect.scss';
 
 const UNSELECTED = -1;
 
-function Inspect({ jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onFileDrop }) {
+function Inspect({ tagsNames, jobStatus, taskStatus, ruleSummaries, lockApp, unlockApp, onFileDrop }) {
     const { id: jobId } = useParams();
     const [pdfName, setPdfName] = useState('');
     const [selectedCheck, setSelectedCheck] = useState(null);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const [expandedRules, setExpandedRules] = useState(new Array(ruleSummaries.length).fill(UNSELECTED));
     const [expandedGroups, setExpandedGroups] = useState([]);
-    const [selectedGroup, setSelectedGroup] = useState(GROUPS[0]);
+    const [selectedGroup, setSelectedGroup] = useState(() => getAvailableGroups(tagsNames, errorTags)[0]);
     const [expandedNodes, setExpandedNodes] = useState([]);
     const [warningMessage, setWarningMessage] = useState(null);
     const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
@@ -187,6 +186,7 @@ const SummaryInterface = PropTypes.shape({
 });
 
 Inspect.propTypes = {
+    tagsNames: PropTypes.arrayOf(PropTypes.string),
     jobStatus: PropTypes.oneOf(_.values(JOB_STATUS)).isRequired,
     taskStatus: PropTypes.oneOf(_.values(TASK_STATUS)),
     ruleSummaries: PropTypes.arrayOf(SummaryInterface).isRequired,
@@ -197,6 +197,7 @@ Inspect.propTypes = {
 
 const mapStateToProps = state => {
     return {
+        tagsNames: getTags(state),
         jobStatus: getJobStatus(state),
         taskStatus: getTaskStatus(state),
         ruleSummaries: getRuleSummaries(state),

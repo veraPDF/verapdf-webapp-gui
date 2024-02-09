@@ -99,7 +99,7 @@ const uploadPdfFile = createStep('FILE_UPLOAD', 30, async (dispatch, getState) =
         const link = getFileLink(getState());
         const fileDescriptor = await FileService.uploadLink(link);
         if (fileDescriptor.contentType !== 'application/pdf') {
-            throw new Error(`Unsupported content type: ${fileDescriptor.contentType}`);
+            throw new Error('Content type is not application/pdf');
         }
         const blob = await FileService.getFileContent(fileDescriptor.id);
         const file = new File([blob], fileDescriptor.fileName);

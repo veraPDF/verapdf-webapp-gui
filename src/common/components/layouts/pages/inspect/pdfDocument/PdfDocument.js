@@ -273,6 +273,7 @@ function PdfDocument(props) {
                 onBboxClick={data => onBboxSelect(data)}
                 onSelectBbox={data => onSelectBboxByKeyboard(data)}
                 bboxes={bboxes}
+                treeBboxSelectionMode="SELECTED_WITH_KIDS"
                 isTreeBboxesVisible={props.isTreeShow}
                 page={props.page}
                 ruleSummaries={props.ruleSummaries}

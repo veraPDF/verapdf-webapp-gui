@@ -111,6 +111,13 @@ function Inspect({ tagsNames, jobStatus, taskStatus, ruleSummaries, lockApp, unl
     useEffect(() => {
         setExpandedGroups(Array.from(Array(errorTags[selectedGroup].length + 1).keys()));
     }, [selectedGroup]);
+    useEffect(() => {
+        if (!_.isNil(treeData.tree)) {
+            const ruleSummariesWithTreeIds = setRulesTreeIds(treeData.tree, ruleSummariesFiltered);
+            setTreeData(prev => ({ ...prev, ruleSummaries: ruleSummariesWithTreeIds }));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ruleSummariesFiltered]);
 
     if (jobStatus === JOB_STATUS.NOT_FOUND) {
         return <Redirect to={AppPages.NOT_FOUND} />;

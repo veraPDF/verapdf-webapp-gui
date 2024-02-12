@@ -58,7 +58,7 @@ function Tree({
         if (!_.isNil(selectedCheck)) {
             const ruleIndex = errorsMap[selectedCheck]?.ruleIndex;
             const checkIndex = errorsMap[selectedCheck]?.checkIndex;
-            if (!_.isNil(ruleIndex) && !_.isNil(checkIndex)) {
+            if (!_.isNil(ruleIndex) && !_.isNil(checkIndex) && !_.isEmpty(ruleSummaries)) {
                 const newNodeId = ruleSummaries[ruleIndex][checkIndex]?.treeId;
                 setSelectedNodeId(newNodeId);
             }

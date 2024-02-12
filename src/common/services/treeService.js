@@ -1,13 +1,16 @@
 import _ from 'lodash';
 
 const TREEPATH = '/StructTreeRoot';
+const IdStringRegExp = new RegExp(/\(\d+ \d+ [^()[\]]+\)/g);
 
 const getIdStringsFromContext = (treeName, context) => {
-    const pathItems = context.split('/');
-    if (`/${pathItems[pathItems.length - 1]}`.startsWith(TREEPATH)) {
+    if (`/${context.split('/').at(-1)}`.startsWith(TREEPATH)) {
         return null;
     }
-    return (context.split(TREEPATH)[1].match(/\(\d+ \d+ \S+ \S+ \S+\)/g) || [])
+    const idStrings = (context.split(TREEPATH)[1].match(IdStringRegExp) || []).filter(
+        item => !item.includes(TREEPATH.slice(1))
+    );
+    return idStrings
         .filter((idStr, index) => {
             if (index === 0) return !idStr.includes(treeName);
             return true;

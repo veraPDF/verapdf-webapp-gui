@@ -31,6 +31,7 @@ export default handleActions(
 
             if (!state.profile || _.findIndex(action.payload, { profileName: state.profile }) === -1) {
                 state.profile = action.payload[0].profileName;
+                sessionStorage.setItem(JOB_SETTINGS, JSON.stringify(state));
             }
 
             return state;

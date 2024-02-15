@@ -1,8 +1,8 @@
 const checkIsVisible = (elem, fixedElem) => {
-    const elemCenter = elem.offsetTop + elem.clientHeight / 2;
+    const elemBottom = elem.offsetTop + elem.clientHeight;
     const containerTop = window.scrollY;
 
-    return containerTop < elemCenter - fixedElem.clientHeight;
+    return containerTop < elemBottom - fixedElem.clientHeight;
 };
 
 window.onload = () => {

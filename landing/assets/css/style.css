@@ -5,25 +5,114 @@ html {
 
 body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-family: Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+header, main, footer {
     width: 100%;
-    position: absolute;
+    max-width: 60%;
+    margin: 0 auto;
 }
 
-.btn {
+.logo {
+    height: 35px;
+    width: auto;
+}
+
+.header {
+    width: 60%;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: #ffffff;
+}
+
+.header-content {
+    margin: 130px auto 70px auto;
+    text-align: center;
+}
+
+h2 {
+    color: #D93B50;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.header-content > p {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 31px;
+    margin-top: 0;
+}
+
+main {
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+}
+
+.info {
+    width: 45%;
+}
+
+.info h3 {
+    font-weight: 700;
+    font-size: 17px;
+    margin-top: 0;
+    margin-bottom: 17px;
+    text-align: left;
+}
+
+.info p {
+    font-weight: 400;
+    font-size: 17px;
+    margin-top: 0;
+    line-height: 27px;
+    text-align: justify;
+}
+
+.read-more {
+    display: inline-flex;
+    text-decoration: none;
+    color: #0771F2;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.read-more:hover {
+    color: #054ba1;
+}
+
+.read-more img {
+    padding-left: 5px;
+}
+
+.btn#try-now-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.btn-header {
+    padding: 8px 10px;
+}
+
+.btn, .btn-header {
     border-radius: 4px;
     color: #fff;
     border: 1px solid rgba(212, 83, 96, 0.5);
     background: rgb(212, 83, 96);
-    padding: 10px 15px;
     cursor: pointer;
     font-size: 1em;
     outline: none;
@@ -33,23 +122,57 @@ main {
 .btn:hover {
     background: #fff;
     color: rgb(212, 83, 96);
-    transition: linear .2s;
+    transition: linear .3s;
 }
 
-.logo {
-    width: 200px;
+footer {
+    margin-top: auto;
+    max-width: 100%;
+    border-top: 1px solid #808080;
+    max-height: 100%;
+    padding: 15px 0;
+    background-color: #ffffff;
 }
 
-.app-info {
+.footer-content {
+    width: 60%;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: center; 
 }
-.app-info .btn {
-    margin-top: 16px;
+
+.footer-content > div {
+    width: 33%;
+    text-align: center;
+    font-size: 16px;
+    color: #333333;
 }
-.app-info div {
-    line-height: 2em;
-    color: rgba(0, 0, 0, .6);
+
+footer a {
+    color: #a19a9a;
+    text-decoration: none;
 }
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1050px) {
+    header, main {
+        max-width: 70%;
+    }
+    .header, .footer-content {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    header, main {
+        max-width: 90%;
+    }
+    .header, .footer-content {
+        width: 90%;
+    }
+}
+

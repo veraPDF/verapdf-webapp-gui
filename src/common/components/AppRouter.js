@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Upload from './layouts/pages/upload/Upload';
 import About from './layouts/pages/about/About';
+import PrivacyPolicy from './layouts/pages/privacyPolicy/PrivacyPolicy';
 import Settings from './layouts/pages/settings/Settings';
 import JobStatus from './layouts/pages/status/JobStatus';
 import Results from './layouts/pages/results/Results';
@@ -18,6 +19,7 @@ function AppRouter() {
             <Route path={AppPages.STATUS.route} component={JobStatus} />
             <Route path={AppPages.RESULTS.route} component={Results} />
             <Route exact path={AppPages.ABOUT} component={About} />
+            <Route exact path={AppPages.PRIVACY_POLICY} component={PrivacyPolicy} />
             <Route exact path={AppPages.NOT_FOUND} component={NotFound} />
             <Route exact path={AppPages.INSPECT.route} component={Inspect} />
             <Redirect to={AppPages.UPLOAD} />

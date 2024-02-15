@@ -25,6 +25,10 @@ module.exports = function override(config) {
                     from: 'src/static/ABOUT.md',
                     to: 'ABOUT.md',
                 },
+                {
+                    from: 'src/static/PRIVACY_POLICY.md',
+                    to: 'PRIVACY_POLICY.md',
+                },
             ],
         })
     );

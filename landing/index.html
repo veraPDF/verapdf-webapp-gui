@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport"
-              content="width=device-width, initial-scale=1"
+            content="width=device-width, initial-scale=1"
         />
         <meta name="description"
-              content="Landing for veraPDF viewer"
+            content="Landing for veraPDF viewer"
         />
         <title>veraPDF viewer</title>
         <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico">
@@ -14,13 +14,42 @@
         <script src="index.js"></script>
     </head>
     <body>
-        <main>
-            <img src="assets/img/veraPDF-logo-400.png" class="logo" alt="logo" />
-            <div class="app-info">
-                <h2>veraPDF for WCAG</h2>
-                <div id="app-version-label" hidden>Latest version: <span id="app-version"></span></div>
-				<a class="btn" href="/validate">Start</a>
+        <header>
+            <div class="header" id="header">
+                <a href="./">
+                    <img src="assets/img/logo.svg" class="logo" alt="logo" />
+                </a>
+                <a class="btn btn-header" id="btn-header" href="/validate" hidden>Try now</a>
             </div>
+            <div class="header-content">
+                <h2>PDF Accessibility checker</h2>
+                <p id="powered-by">powered by veraPDF</p>
+                <a class="btn" href="/validate" id="try-now-button">Try now</a>
+            </div>
+        </header>
+        <main>
+            <div class="main-content">
+                <div class="info">
+                    <h3>What does this application do?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt nam inventore reiciendis repellendus corporis iste optio. Ipsum pariatur, minus, earum tempora qui asperiores exercitationem laborum a natus cupiditate iste.</p>
+                </div>
+                <div class="info">
+                    <h3>How to use this application?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates nesciunt nam inventore reiciendis repellendus corporis iste optio. Ipsum pariatur, minus, earum tempora qui asperiores exercitationem laborum a natus cupiditate iste.</p>
+                </div>
+            </div>
+            <a class="read-more" href="/validate/about">
+                Read more
+                <img src="assets/img/arrow.svg" alt="arrow" />
+            </a>
         </main>
+        <footer>
+            <div class="footer-content">
+                <div id="app-version-label" hidden>Latest version<br><span id="app-version"></span></div>
+                <div class="developed-by">Developed by 
+                    <a href="https://duallab.com/" target="_blank">Dual Lab</a>,<br>powered by <a href="https://verapdf.org/" target="_blank">VeraPDF</a></div>
+                <div class="privacy-policy">Privacy Policy</div>
+            </div>
+        </footer>
     </body>
 </html>

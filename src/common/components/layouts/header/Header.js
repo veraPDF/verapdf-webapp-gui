@@ -23,7 +23,8 @@ function Header() {
                     to={AppPages.ABOUT}
                     target="_blank"
                     className={classNames('app-link', 'about-link', {
-                        'app-link_hidden': location.pathname === AppPages.ABOUT,
+                        'app-link_hidden':
+                            location.pathname === AppPages.ABOUT || location.pathname === AppPages.PRIVACY_POLICY,
                     })}
                 >
                     <HelpOutline />

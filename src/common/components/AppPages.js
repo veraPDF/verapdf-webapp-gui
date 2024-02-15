@@ -20,6 +20,7 @@ export default {
         },
     },
     ABOUT: '/about',
+    PRIVACY_POLICY: '/privacy-policy',
     LOADING: '/loading',
     NOT_FOUND: '/404',
 };

@@ -109,7 +109,7 @@ main {
 }
 
 .btn-header {
-    padding: 7px 10px;
+    padding: 8px 10px;
 }
 
 .btn, .btn-header {
@@ -127,22 +127,6 @@ main {
     background: #fff;
     color: rgb(212, 83, 96);
     transition: linear .3s;
-}
-
-.app-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.app-info .btn {
-    margin-top: 16px;
-}
-
-.app-info div {
-    line-height: 2em;
-    color: rgba(0, 0, 0, .6);
 }
 
 footer {

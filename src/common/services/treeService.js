@@ -31,8 +31,11 @@ const getTreeIds = (node, ids = []) => {
 };
 
 const setRulesTreeIds = (tree, rules) => {
-    return rules.map(({ checks }) => {
-        return checks.map(check => {
+    return rules.map(rule => {
+        if (_.isNil(rule) || !rule.hasOwnProperty('checks')) {
+            return null;
+        }
+        return rule.checks.map(check => {
             if (check.context.includes(TREEPATH)) {
                 const idStrings = getIdStringsFromContext(tree.name, check.context);
                 if (idStrings === null) {
@@ -60,19 +63,6 @@ const findIdByObjNumbers = (node, pathArray) => {
     return findIdByObjNumbers(nextNode, pathArray);
 };
 
-const findNode = (arr, id) => {
-    let ruleIndex = null;
-    let checkIndex = null;
-    _.map(arr, (rule, i) => {
-        _.map(rule, (check, j) => {
-            if (check.treeId === id) {
-                [ruleIndex, checkIndex] = [i, j];
-            }
-        });
-    });
-    return [ruleIndex, checkIndex];
-};
-
 /*
  *  Returns a list of groups containing tagNames
  *
@@ -96,4 +86,4 @@ const getAvailableGroups = (tagsNames, errorTags) => {
     return _.intersection(allGroups, availableGroups);
 };
 
-export { getTreeIds, setRulesTreeIds, findNode, getAvailableGroups };
+export { getTreeIds, setRulesTreeIds, getAvailableGroups };

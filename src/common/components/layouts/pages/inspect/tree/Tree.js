@@ -56,6 +56,7 @@ export const languageEnum = {
 };
 export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
+    PDFUA_2_TAGGED_PDF: 'PDFUA_2_TAGGED_PDF',
     OTHER: 'Other',
 };
 export const errorMessagesMap = {
@@ -67,6 +68,24 @@ export const errorMessagesMap = {
     },
     [errorProfiles.TAGGED_PDF]: {
         [languageEnum.Technical]: errorMap_tagged_technical,
+    },
+    [errorProfiles.PDFUA_2_TAGGED_PDF]: {
+        [languageEnum.English]: {
+            ...errorMap_en,
+            ...errorMap_tagged_technical,
+        },
+        [languageEnum.Dutch]: {
+            ...errorMap_nl,
+            ...errorMap_tagged_technical,
+        },
+        [languageEnum.German]: {
+            ...errorMap_de,
+            ...errorMap_tagged_technical,
+        },
+        [languageEnum.Technical]: {
+            ...errorMap_technical,
+            ...errorMap_tagged_technical,
+        },
     },
 };
 
@@ -131,6 +150,7 @@ function Tree({
     const errorMessages = useMemo(() => {
         switch (profile) {
             case errorProfiles.TAGGED_PDF:
+            case errorProfiles.PDFUA_2_TAGGED_PDF:
                 return errorMessagesMap[profile][language];
             default:
                 return errorMessagesMap[errorProfiles.OTHER][language];

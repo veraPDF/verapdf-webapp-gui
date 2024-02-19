@@ -34,11 +34,12 @@ import { TAGS_NAMES } from '../constants';
 import './Tree.scss';
 
 import errorTags from '../validationErrorTags.json';
-import errorMap_en from '../validationErrorMessages_en.json';
-import errorMap_nl from '../validationErrorMessages_nl.json';
-import errorMap_de from '../validationErrorMessages_de.json';
-import errorMap_technical from '../validationErrorMessages_technical.json';
-import errorMap_tagged_technical from '../TaggedPDF_technical.json';
+import errorMap_en from '../errorMessages/english/validationErrorMessages_en.json';
+import errorMap_nl from '../errorMessages/dutch/validationErrorMessages_nl.json';
+import errorMap_de from '../errorMessages/german/validationErrorMessages_de.json';
+import errorMap_technical from '../errorMessages/technical/validationErrorMessages_technical.json';
+import errorMap_tagged_technical from '../errorMessages/technical/TaggedPDF_technical.json';
+import errorMap_pdfua_technical from '../errorMessages/technical/PDFUA2_technical.json';
 
 const MORE_DETAILS = 'More details';
 const LIST_HEADER = 'Errors overview';
@@ -56,6 +57,7 @@ export const languageEnum = {
 };
 export const errorProfiles = {
     TAGGED_PDF: 'TAGGED_PDF',
+    PDFUA_2: 'PDFUA_2',
     PDFUA_2_TAGGED_PDF: 'PDFUA_2_TAGGED_PDF',
     OTHER: 'Other',
 };
@@ -69,21 +71,12 @@ export const errorMessagesMap = {
     [errorProfiles.TAGGED_PDF]: {
         [languageEnum.Technical]: errorMap_tagged_technical,
     },
+    [errorProfiles.PDFUA_2]: {
+        [languageEnum.Technical]: errorMap_pdfua_technical,
+    },
     [errorProfiles.PDFUA_2_TAGGED_PDF]: {
-        [languageEnum.English]: {
-            ...errorMap_en,
-            ...errorMap_tagged_technical,
-        },
-        [languageEnum.Dutch]: {
-            ...errorMap_nl,
-            ...errorMap_tagged_technical,
-        },
-        [languageEnum.German]: {
-            ...errorMap_de,
-            ...errorMap_tagged_technical,
-        },
         [languageEnum.Technical]: {
-            ...errorMap_technical,
+            ...errorMap_pdfua_technical,
             ...errorMap_tagged_technical,
         },
     },
@@ -150,6 +143,7 @@ function Tree({
     const errorMessages = useMemo(() => {
         switch (profile) {
             case errorProfiles.TAGGED_PDF:
+            case errorProfiles.PDFUA_2:
             case errorProfiles.PDFUA_2_TAGGED_PDF:
                 return errorMessagesMap[profile][language];
             default:

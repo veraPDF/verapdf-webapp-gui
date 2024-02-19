@@ -1,0 +1,474 @@
+{
+  "ISO 14289-2:202x":{
+    "5":{
+      "1":{
+        "SUMMARY":"The document metadata stream doesn't contains PDF/UA Identification Schema",
+        "DESCRIPTION":"The PDF/UA version of a file shall be specified in the value of the Metadata entry in the document catalog using the PDF/UA identification schema"
+      },
+      "2":{
+        "SUMMARY":"The \"part\" property of the PDF/UA Identification Schema is not 2 for PDF/UA-2 conforming file",
+        "DESCRIPTION":"The value of \"pdfuaid:part\" shall be the part number of the International Standard to which the file conforms"
+      },
+      "3":{
+        "SUMMARY":"Property \"part\" of the PDF/UA Identification Schema has an invalid namespace prefix",
+        "DESCRIPTION":"Property \"part\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
+      },
+      "4":{
+        "SUMMARY":"Property \"rev\" of the PDF/UA Identification Schema has an invalid namespace prefix",
+        "DESCRIPTION":"Property \"rev\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
+      },
+      "5":{
+        "SUMMARY":"A value of \"pdfuaid:rev\" not the four digit year",
+        "DESCRIPTION":"The value of \"pdfuaid:rev\" shall be the four digit year"
+      }
+    },
+    "8.2.1":{
+      "1":{
+        "SUMMARY":"StructTreeRoot entry is not present in the document catalog",
+        "DESCRIPTION":"The logical structure of the conforming file shall be described by a structure hierarchy rooted in the StructTreeRoot entry of the document catalog dictionary, as described in ISO 32000-2:2020, 14.7"
+      },
+      "2":{
+        "SUMMARY":"A Structure element dictionary does not contain the P (parent) entry",
+        "DESCRIPTION":"Structure element dictionary shall contain the P (parent) entry according to ISO 32000-2:2020, 14.7.2, Table 323"
+      }
+    },
+    "8.2.2":{
+      "1":{
+        "SUMMARY":"Content is neither marked as Artifact nor tagged as real content",
+        "DESCRIPTION":"Content that is not considered real shall be an artifact"
+      }
+    },
+    "8.2.4":{
+      "1":{
+        "SUMMARY":"A non-standard structure type is not mapped to a standard type",
+        "DESCRIPTION":"All structure elements shall belong to, or be role mapped to, at least one of the following namespaces specified in ISO 32000-2:2020, 14.8.6: — the PDF 1.7 namespace; — the PDF 2.0 namespace; — the MathML namespace"
+      },
+      "2":{
+        "SUMMARY":"A circular mapping exists for a structure type",
+        "DESCRIPTION":"A circular role mapping between structure types shall not exist"
+      },
+      "3":{
+        "SUMMARY":"A structure type is role mapped to other structure type in the same namespace",
+        "DESCRIPTION":"Structure types shall not be role mapped to other structure types in the same namespace"
+      },
+      "4":{
+        "SUMMARY":"A standard structure type is remapped to a non-standard type",
+        "DESCRIPTION":"All structure elements shall belong to, or be role mapped to, at least one of the following namespaces specified in ISO 32000-2:2020, 14.8.6: — the PDF 1.7 namespace; — the PDF 2.0 namespace; — the MathML namespace"
+      }
+    },
+    "8.2.5.2":{
+      "1":{
+        "SUMMARY":"The structure tree root contains element(s) other than a single Document structure element",
+        "DESCRIPTION":"The structure tree root shall contain a single Document structure element as its only child, as specified in ISO 32000-2:2020, Annex L and ISO/TS 32005"
+      },
+      "2":{
+        "SUMMARY":"The structure tree root contains a single Document structure element, but this element is not within the PDF 2.0 namespace",
+        "DESCRIPTION":"The structure tree root shall contain a single Document structure element as its only child. The namespace for that element shall be specified as the PDF 2.0 namespace"
+      }
+    },
+    "8.2.5.8":{
+      "1":{
+        "SUMMARY":"TOCI in the TOC does not contain the Ref entry, neither directly on the TOCI structure element itself nor on its descendant structure elements",
+        "DESCRIPTION":"Each TOCI (TOC item) in the TOC (table of contents) shall identify the target of the reference using the Ref entry, either directly on the TOCI structure element itself or on one of its child structure elements"
+      }
+    },
+    "8.2.5.12":{
+      "1":{
+        "SUMMARY":"Document uses H structure type",
+        "DESCRIPTION":"Conforming files shall not use the H structure type"
+      }
+    },
+    "8.2.5.14":{
+      "1":{
+        "SUMMARY":"Document uses Note structure type",
+        "DESCRIPTION":"The Note standard structure type shall not be present in conforming documents unless role mapped to a structure element in the PDF 2.0 namespace"
+      },
+      "2":{
+        "SUMMARY":"Ref entry in the FENote does not reference structure elements, while these structure elements reference this FENote",
+        "DESCRIPTION":"Real content that refers to footnotes or endnotes (real content enclosed in FENote structure elements) shall use the Ref entry on the referring structure element to reference the FENote. The corresponding FENote shall also use the Ref entry to identify all citations that reference it"
+      },
+      "3":{
+        "SUMMARY":"NoteType attribute of the FENote structure element has value other than Footnote, Endnote or None",
+        "DESCRIPTION":"The value of the NoteType attribute of the FENote structure element shall be Footnote, Endnote or None"
+      }
+    },
+    "8.2.5.20":{
+      "1":{
+        "SUMMARY":"A Link annotation is an Artifact or is nested within tag other than Link or Reference",
+        "DESCRIPTION":"A link annotation and its associated content shall be enclosed in either a Link or Reference structure element"
+      },
+      "2":{
+        "SUMMARY":"Struct element contains Link annotations that target different locations",
+        "DESCRIPTION":"Link annotations that target different locations shall be in separate Link or Reference structure elements"
+      },
+      "3":{
+        "SUMMARY":"Annotations target the same location, but are included into different structure elements",
+        "DESCRIPTION":"Multiple link annotations shall be included in a single Link or Reference structure element if they target the same location and are semantically perceived to be a single link"
+      }
+    },
+    "8.2.5.23":{
+      "1":{
+        "SUMMARY":"The Ruby structure element has invalid sequence of children",
+        "DESCRIPTION":"A Ruby structure element shall contain a single RB structure element and a single RT structure element or a Ruby structure element shall consist of a four-element subsequence: RB, RP, RT, RP"
+      }
+    },
+    "8.2.5.24":{
+      "1":{
+        "SUMMARY":"The Warichu structure element has invalid sequence of children",
+        "DESCRIPTION":"Content typeset as warichu shall be tagged in a three-element sequence consisting of the structure elements WP, WT and WP, grouped inside a Warichu structure element"
+      }
+    },
+    "8.2.5.25":{
+      "1":{
+        "SUMMARY":"List items contain Lbl structure elements, but the ListNumbering attribute is not present on the respective L structure element or it has value None",
+        "DESCRIPTION":"If Lbl structure elements are present, the ListNumbering attribute shall be present on the respective L structure element; in such cases the value None shall not be used"
+      },
+      "2":{
+        "SUMMARY":"The LI structure element contains real content as its direct child instead of enclosing it into Lbl or LBody structure elements",
+        "DESCRIPTION":"Any real content within an LI structure element that is not enclosed in an Lbl structure element shall be enclosed in an LBody structure element"
+      }
+    },
+    "8.2.5.26":{
+      "1":{
+        "SUMMARY":"Table cell has intersection with other cells",
+        "DESCRIPTION":"Tables shall be regular. Table cell shall not have intersection with other cells"
+      },
+      "2":{
+        "SUMMARY":"Irregular table, table header, table body or table footer found",
+        "DESCRIPTION":"Tables shall be regular. Row groupings formed by THead, TBody and TFoot structure elements shall be regular. Table columns shall have the same number of rows (taking into account row spans) in table and each row groupings formed by THead, TBody and TFoot structure elements"
+      },
+      "3":{
+        "SUMMARY":"Irregular table found",
+        "DESCRIPTION":"Tables shall be regular. Table rows shall have the same number of columns (taking into account column spans)"
+      },
+      "4":{
+        "SUMMARY":"Irregular table found",
+        "DESCRIPTION":"Tables shall be regular. Table rows shall have the same number of columns (taking into account column spans)"
+      },
+      "5":{
+        "SUMMARY":"TD does not contain Headers attribute, and Headers for this table cell cannot be determined algorithmically",
+        "DESCRIPTION":"When a table contains header cells, that table shall provide sufficient semantic information to allow accurate determination of which of its table header cells (structure element TH) pertain to other cells as specified in ISO 32000-2:2020, 14.8.5.7"
+      },
+      "6":{
+        "SUMMARY":"TD references undefined Header(s), and Headers for this table cell cannot be determined algorithmically",
+        "DESCRIPTION":"When a table contains header cells, that table shall provide sufficient semantic information to allow accurate determination of which of its table header cells (structure element TH) pertain to other cells as specified in ISO 32000-2:2020, 14.8.5.7"
+      }
+    },
+    "8.2.5.27":{
+      "1":{
+        "SUMMARY":"Structure element contains a Caption not as its first or last kid",
+        "DESCRIPTION":"When present, the Caption element shall be the first or the last child of the structure element"
+      }
+    },
+    "8.2.5.28.2":{
+      "1":{
+        "SUMMARY":"Figure structure element neither has an alternate description nor a replacement text",
+        "DESCRIPTION":"A Figure structure element shall have at least one of the following properties: a) an alternate description (Alt property), as specified in ISO 32000-2:2020, 14.9.3; b) a replacement text (ActualText property) that represents the content enclosed by the Figure structure element"
+      }
+    },
+    "8.2.5.29":{
+      "1":{
+        "SUMMARY":"The math structure type is nested within tag other than Formula",
+        "DESCRIPTION":"The math structure type shall occur only as a child of a Formula structure element"
+      }
+    },
+    "8.4.3":{
+      "1":{
+        "SUMMARY":"Real content maps to Unicode PUA values, but ActualText and Alt entry are not present",
+        "DESCRIPTION":"In all cases, where real content maps to Unicode PUA values, an ActualText or Alt entry shall be present"
+      },
+      "2":{
+        "SUMMARY":"The ActualText entry contains Unicode PUA (Private Use Area) code points",
+        "DESCRIPTION":"The ActualText entry shall not contain any PUA values"
+      },
+      "3":{
+        "SUMMARY":"The Alt entry contains Unicode PUA (Private Use Area) code points",
+        "DESCRIPTION":"The Alt entry shall not contain any PUA values"
+      }
+    },
+    "8.4.4":{
+      "1":{
+        "SUMMARY":"Catalog dictionary does not contain Lang entry",
+        "DESCRIPTION":"The default natural language for content and text strings shall be specified using the Lang entry, with a non-empty value, in the catalog dictionary"
+      },
+      "2":{
+        "SUMMARY":"Invalid Language identifier",
+        "DESCRIPTION":"If the Lang entry is present in the document's Catalog dictionary or in a structure element dictionary or property list, its value shall be a language identifier as described in ISO 32000-2:2020, 14.9.2. A language identifier shall be a Language-Tag as defined in RFC 3066, Tags for the Identification of Languages"
+      }
+    },
+    "8.4.5.3.1":{
+      "1":{
+        "SUMMARY":"CIDSystemInfo entries the CIDFont and CMap dictionaries of a Type 0 font are not compatible",
+        "DESCRIPTION":"For any given composite (Type 0) font within a conforming file, the CIDSystemInfo entry in its CIDFont dictionary and its Encoding dictionary shall have the following relationship: - If the Encoding key in the Type 0 font dictionary has a value of Identity-H or Identity-V, then any values for the Registry, Ordering, and Supplement keys may be used in the CIDSystemInfo dictionary of the CIDFont. - Otherwise the corresponding values of the Registry and Ordering keys in both CIDSystemInfo dictionaries shall be identical, and the value of the Supplement key in the CIDSystemInfo dictionary of the CIDFont shall be less than or equal to the value of the Supplement key in the CIDSystemInfo dictionary of the CMap"
+      }
+    },
+    "8.4.5.3.2":{
+      "1":{
+        "SUMMARY":"A Type 2 CIDFont dictionary has missing or invalid CIDToGIDMap entry",
+        "DESCRIPTION":"All embedded Type 2 CIDFonts in the CIDFont dictionary shall contain a CIDToGIDMap entry that shall be a stream mapping from CIDs to glyph indices or the name Identity, as described in ISO 32000-2:2020, Table 115"
+      }
+    },
+    "8.4.5.4":{
+      "1":{
+        "SUMMARY":"A non-standard CMap is not embedded",
+        "DESCRIPTION":"All CMaps used within a file that conforms to PDF/UA-2, except those listed in ISO 32000-2:2020, Table 116, shall be embedded in that file, as described in ISO 32000-2:2020, 9.7.5"
+      },
+      "2":{
+        "SUMMARY":"WMode entry in the embedded CMap and in the CMap dictionary are not identical",
+        "DESCRIPTION":"For those CMaps that are embedded, the integer value of the WMode entry in the CMap dictionary shall be identical to the WMode value in the embedded CMap stream"
+      },
+      "3":{
+        "SUMMARY":"A CMap references another non-standard CMap",
+        "DESCRIPTION":"A CMap shall not reference any other CMap except those listed in ISO 32000-2:2020, 9.7.5.2 Table 116"
+      }
+    },
+    "8.4.5.5.1":{
+      "1":{
+        "SUMMARY":"The font program is not embedded",
+        "DESCRIPTION":"The font programs for all fonts used for rendering within a conforming file shall be embedded within that file, as defined in ISO 32000-2:2020, 9.9"
+      },
+      "2":{
+        "SUMMARY":"Not all glyphs referenced for rendering are present in the embedded font program",
+        "DESCRIPTION":"Embedded fonts shall define all glyphs referenced for rendering within the conforming file. A font referenced solely in text rendering mode 3 is not rendered and is thus exempt from the requirements that impact the visual representation of the glyphs of a font. In all cases for TrueType fonts that are to be rendered, character codes shall be able to be mapped to glyphs in accordance with ISO 32000-2:2020, 9.6.5, without the use of a non-standard mapping chosen by the conforming processor"
+      }
+    },
+    "8.4.5.6":{
+      "1":{
+        "SUMMARY":"Glyph width in the embedded font program is not consistent with the Widths entry of the font dictionary",
+        "DESCRIPTION":"For every font embedded in a conforming file and referenced for rendering, the glyph width information in the font dictionary and in the embedded font program shall be consistent for every glyph"
+      }
+    },
+    "8.4.5.7":{
+      "1":{
+        "SUMMARY":"The embedded font program for a non-symbolic TrueType font does not contain Microsoft Symbol (3,0 – Platform ID=3, Encoding ID=0) or the Mac Roman (1,0 – Platform ID=1, Encoding ID=0) encoding",
+        "DESCRIPTION":"For all non-symbolic TrueType fonts used for rendering, the embedded TrueType font program shall contain at least Microsoft Unicode (3,1 – Platform ID=3, Encoding ID=1), or Macintosh Roman (1,0 – Platform ID=1, Encoding ID=0) 'cmap' subtable"
+      },
+      "2":{
+        "SUMMARY":"A non-symbolic TrueType font encoding does not define a correct mapping to the Adobe Glyph List",
+        "DESCRIPTION":"All non-symbolic TrueType fonts shall have either MacRomanEncoding or WinAnsiEncoding as the value for the Encoding key in the Font dictionary or as the value for the BaseEncoding key in the dictionary which is the value of the Encoding key in the Font dictionary. In addition, no non-symbolic TrueType font shall define a Differences array unless all of the glyph names in the Differences array are listed in the Adobe Glyph List and the embedded font program contains at least the Microsoft Unicode (3,1 – Platform ID=3, Encoding ID=1) encoding in the 'cmap' table"
+      },
+      "3":{
+        "SUMMARY":"A symbolic TrueType font specifies an Encoding entry in its dictionary",
+        "DESCRIPTION":"Symbolic TrueType fonts shall not contain an Encoding entry in the font dictionary"
+      },
+      "4":{
+        "SUMMARY":"The embedded font program for a symbolic TrueType font does not contain Microsoft Symbol (3,1 – Platform ID=3, Encoding ID=1) or the Mac Roman (1,0 – Platform ID=1, Encoding ID=0) encoding",
+        "DESCRIPTION":"The 'cmap' subtable in the embedded font program shall either contain the Microsoft Symbol (3,1 – Platform ID=3, Encoding ID=1) or the Mac Roman (1,0 – Platform ID=1, Encoding ID=1) encoding"
+      }
+    },
+    "8.4.5.8":{
+      "1":{
+        "SUMMARY":"The glyph can not be mapped to Unicode",
+        "DESCRIPTION":"The Font dictionary of all fonts shall define the map of all used character codes to Unicode values, either via a ToUnicode entry, or other mechanisms as defined in ISO 14289-2, 8.4.5.8"
+      },
+      "2":{
+        "SUMMARY":"The glyph has Unicode value 0, U+FEFF or U+FFFE, which is invalid by Unicode standard",
+        "DESCRIPTION":" If a ToUnicode CMap is present, the Unicode values it specifies shall all be greater than zero (0), but not equal to either U+FEFF or U+FFFE"
+      }
+    },
+    "8.4.5.9":{
+      "1":{
+        "SUMMARY":"The document contains a reference to the .notdef glyph",
+        "DESCRIPTION":"A file in conformance with PDF/UA-2 shall not contain a reference to the .notdef glyph from any of the text showing operators, regardless of text rendering mode, in any content stream"
+      }
+    },
+    "8.5.1":{
+      "1":{
+        "SUMMARY":"Real content that does not possess the semantics of text objects and does not have an alternate textual representation is not enclosed within Figure or Formula structure elements",
+        "DESCRIPTION":"Real content that does not possess the semantics of text objects and does not have an alternate textual representation shall be enclosed within Figure or Formula structure elements as appropriate"
+      }
+    },
+    "8.6":{
+      "1":{
+        "SUMMARY":"Text string intended to be human readable uses Unicode PUA",
+        "DESCRIPTION":"Text strings intended to be human readable shall not use the Unicode PUA"
+      }
+    },
+    "8.7":{
+      "1":{
+        "SUMMARY":"Missing or empty Name entry of the optional content configuration dictionary",
+        "DESCRIPTION":"All optional content configuration dictionaries in the document, including the default optional content configuration dictionary, shall contain a Name entry (see ISO 32000-2:2020, Table 96) whose value is a non-empty text string when: a) a document contains a Configs entry in the OCProperties entry of the catalog dictionary (see ISO 32000-2:2020, Table 29), and b) the Configs entry contains at least one optional content configuration dictionary"
+      },
+      "2":{
+        "SUMMARY":"AS key is present in the optional content configuration dictionary",
+        "DESCRIPTION":"The AS key shall not appear in any optional content configuration dictionary"
+      }
+    },
+    "8.8":{
+      "1":{
+        "SUMMARY":"Destination in Outline item or Link annotation is not a structure destination",
+        "DESCRIPTION":"All destinations whose target lies within the current document shall be structure destinations"
+      },
+      "2":{
+        "SUMMARY":"Destination in GoTo action is not a structure destination",
+        "DESCRIPTION":"All destinations whose target lies within the current document shall be structure destinations"
+      }
+    },
+    "8.9.2.1":{
+      "1":{
+        "SUMMARY":"Annotation is not included in the structure tree",
+        "DESCRIPTION":"Annotations shall be included in the structure tree unless explicitly excluded by the following subclauses"
+      }
+    },
+    "8.9.2.2":{
+      "1":{
+        "SUMMARY":"An invisible annotation is included in logical structure",
+        "DESCRIPTION":"Annotations shall be artifacts, if the Invisible flag is set in accordance with ISO 32000-2:2020, Table 167"
+      },
+      "2":{
+        "SUMMARY":"A no-view annotation is included in logical structure",
+        "DESCRIPTION":"Annotations shall be artifacts if the NoView flag is set and the ToggleNoView flag is not set in accordance with ISO 32000-2:2020, Table 167"
+      }
+    },
+    "8.9.2.3":{
+      "1":{
+        "SUMMARY":"A Markup annotation is an Artifact or is nested within tag other than Annot",
+        "DESCRIPTION":"Markup annotations shall be enclosed within Annot structure elements"
+      },
+      "2":{
+        "SUMMARY":"A Markup annotation contains Contents and RC entries with non-equivalent textual values",
+        "DESCRIPTION":"When both RC and Contents entries are present for markup annotation, they shall be textually equivalent"
+      }
+    },
+    "8.9.2.4.7":{
+      "1":{
+        "SUMMARY":"Rubber stamp annotation contains neither Name nor Contents entry",
+        "DESCRIPTION":"If the Name entry is insufficient to describe the intent of the stamp annotation, a Contents entry describing the author’s intent shall be provided"
+      }
+    },
+    "8.9.2.4.8":{
+      "1":{
+        "SUMMARY":"Ink annotation does not contain Contents entry",
+        "DESCRIPTION":"A Contents entry describing the author’s intent shall be provided for Ink annotation"
+      }
+    },
+    "8.9.2.4.9":{
+      "1":{
+        "SUMMARY":"A Popup annotation is included in logical structure",
+        "DESCRIPTION":"Popup annotations shall not be present in the structure tree"
+      }
+    },
+    "8.9.2.4.10":{
+      "1":{
+        "SUMMARY":"The file specification dictionary referenced by a file attachment annotation does not include AFRelationship entry",
+        "DESCRIPTION":"When a file attachment annotation references a file specification dictionary, the file specification dictionary shall include an AFRelationship entry"
+      }
+    },
+    "8.9.2.4.11":{
+      "1":{
+        "SUMMARY":"An annotation of subtype Sound exists",
+        "DESCRIPTION":"Sound annotation cannot be used when conforming to PDF/UA-2"
+      },
+      "2":{
+        "SUMMARY":"An annotation of subtype Movie exists",
+        "DESCRIPTION":"Movie annotation cannot be used when conforming to PDF/UA-2"
+      }
+    },
+    "8.9.2.4.12":{
+      "1":{
+        "SUMMARY":"Screen annotation does not contain Contents entry",
+        "DESCRIPTION":"Screen annotations shall include a Contents entry"
+      }
+    },
+    "8.9.2.4.13":{
+      "1":{
+        "SUMMARY":"A Widget annotation of zero height and width is not marked as an Artifact",
+        "DESCRIPTION":"A widget annotation of zero height and width shall be an artifact"
+      }
+    },
+    "8.9.2.4.14":{
+      "1":{
+        "SUMMARY":"A PrinterMark annotation is included in logical structure",
+        "DESCRIPTION":"A printer's mark annotation shall be an artifact"
+      }
+    },
+    "8.9.2.4.15":{
+      "1":{
+        "SUMMARY":"An annotation of subtype TrapNet exists",
+        "DESCRIPTION":"Trap network annotations shall not be used in files conforming to PDF/UA-2"
+      }
+    },
+    "8.9.2.4.16":{
+      "1":{
+        "SUMMARY":"A Watermark annotation is nested within tag other than Annot",
+        "DESCRIPTION":"When used as real content, Watermark annotations shall be enclosed within Annot structure elements"
+      }
+    },
+    "8.9.2.4.19":{
+      "1":{
+        "SUMMARY":"3D annotation does not contain Contents entry",
+        "DESCRIPTION":"3D annotation shall include alternate description in respective Contents entry"
+      },
+      "2":{
+        "SUMMARY":"RichMedia annotation does not contain Contents entry",
+        "DESCRIPTION":"RichMedia annotation shall include alternate description in respective Contents entry"
+      }
+    },
+    "8.9.3.3":{
+      "1":{
+        "SUMMARY":"A page with annotation(s) contains Tabs key with value other than A, W or S",
+        "DESCRIPTION":"Every page that includes an annotation shall contain a Tabs entry in its page dictionary in accordance with ISO 32000-2:2020, Table 31, and its value shall be A, W or S"
+      }
+    },
+    "8.9.4.2":{
+      "1":{
+        "SUMMARY":"Both Contents and Alt entries are present for the annotation, but they are not identical",
+        "DESCRIPTION":"Where an annotation has a Contents entry and the directly enclosing structure element has an Alt entry, the values of Alt and Contents shall be identical"
+      }
+    },
+    "8.10.1":{
+      "1":{
+        "SUMMARY":"Interactive form is incorrectly included into the semantic tree",
+        "DESCRIPTION":"Each widget annotation shall be enclosed by a Form structure element unless the widget annotation is an artifact"
+      },
+      "2":{
+        "SUMMARY":"A Form structure element contains more than one widget annotation",
+        "DESCRIPTION":"A Form structure element shall contain at most one widget annotation"
+      },
+      "3":{
+        "SUMMARY":"XFA form is present",
+        "DESCRIPTION":"XFA forms shall not be present"
+      }
+    },
+    "8.10.2.3":{
+      "1":{
+        "SUMMARY":"Widget annotation contains neither label nor Contents entry",
+        "DESCRIPTION":"If a label for a widget annotation is not present, a Contents entry shall be provided to supply description and context for the widget"
+      },
+      "2":{
+        "SUMMARY":"Widget annotation dictionary contains an AA entry, but does not contain the Contents entry",
+        "DESCRIPTION":"If an additional action (AA) entry is present in a widget annotation dictionary, the respective widget's Contents entry shall be present"
+      }
+    },
+    "8.10.3.3":{
+      "1":{
+        "SUMMARY":"Text field contains RV entry, but no V entry or they are not textually equivalent",
+        "DESCRIPTION":"For text fields, when an RV entry is present a V entry shall also be present, and they shall be textually equivalent"
+      }
+    },
+    "8.10.3.5":{
+      "1":{
+        "SUMMARY":"A portion of the appearance of a signature is represented by a graphic, but alternative text is not provided for that graphic",
+        "DESCRIPTION":"If a portion of the appearance of a signature is represented by a graphic, alternative text shall be provided for that graphic"
+      }
+    },
+    "8.11.1":{
+      "1":{
+        "SUMMARY":"Metadata stream does not contain dc:title",
+        "DESCRIPTION":"The Metadata stream as specified in ISO 32000-2:2020, 14.3 in the document catalog dictionary shall contain a dc:title entry"
+      }
+    },
+    "8.11.2":{
+      "1":{
+        "SUMMARY":"ViewerPreferences dictionary is not present in the document Catalog, or DisplayDocTitle key is set to false or is not present in the ViewerPreferences dictionary",
+        "DESCRIPTION":"The ViewerPreferences dictionary of the document catalog dictionary shall be present and shall contain at least the DisplayDocTitle key with a value of true, as described in ISO 32000-2:2020, Table 147"
+      }
+    },
+    "8.14.1":{
+      "1":{
+        "SUMMARY":"The file specification dictionary for an embedded file does not contain Desc key",
+        "DESCRIPTION":"The Desc entry shall be present on all file specification dictionaries present in the EmbeddedFiles name tree of a conforming document"
+      }
+    }
+  }
+}

@@ -127,6 +127,8 @@ function PdfDocument(props) {
     const errorMessages = useMemo(() => {
         switch (props.profile) {
             case errorProfiles.TAGGED_PDF:
+            case errorProfiles.PDFUA_2:
+            case errorProfiles.PDFUA_2_TAGGED_PDF:
                 return errorMessagesMap[props.profile][language];
             default:
                 return errorMessagesMap[errorProfiles.OTHER][language];

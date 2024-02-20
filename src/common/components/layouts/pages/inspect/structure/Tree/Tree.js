@@ -1,14 +1,12 @@
 import React, { memo, useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { usePrevious } from 'react-use';
 import { Tree as VirtualTree } from 'react-arborist';
-import { scrollToActiveBbox } from 'verapdf-js-viewer';
 import classNames from 'classnames';
 import _ from 'lodash';
-import { usePrevious } from 'react-use';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { findNode } from '../../../../../../services/treeService';
 
 import './Tree.scss';
 
@@ -81,22 +79,10 @@ function Tree({
     const onNodeClick = useCallback(
         id => {
             setSelectedNodeId(id);
-            const [ruleIndex, checkIndex] = findNode(ruleSummaries, id);
-            if (!_.isNil(ruleIndex) && !_.isNil(checkIndex)) {
-                const sortedCheckIndex = _.findIndex(
-                    errorsMap,
-                    error => error.checkIndex === checkIndex && error.ruleIndex === ruleIndex
-                );
-                setSelectedCheck(sortedCheckIndex);
-                if (sortedCheckIndex === selectedCheck) {
-                    scrollToActiveBbox();
-                }
-            } else {
-                setSelectedCheck(null);
-            }
+            setSelectedCheck(null);
             setIsNodeClicked(true);
         },
-        [errorsMap, ruleSummaries, selectedCheck, setSelectedCheck, setSelectedNodeId, setIsNodeClicked]
+        [setSelectedNodeId, setSelectedCheck, setIsNodeClicked]
     );
 
     return (

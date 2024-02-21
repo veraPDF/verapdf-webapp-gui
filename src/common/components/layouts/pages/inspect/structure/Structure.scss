@@ -11,9 +11,26 @@
 #summary-structure-subheader {
   display: flex;
   justify-content: space-between;
-  overflow: auto;
   font-weight: $font-weight-bold;
-  white-space: nowrap;
-  scrollbar-width: none;
+  line-height: normal;
+  text-align: center;
+
+  .roleMap {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  p {
+    margin: 16px 0;
+    text-align: left;
+  }
+
+  @media (max-width: $break-point) {
+    flex-direction: column;
+
+    .roleMap { padding: 0; }
+    p { margin-bottom: 0; }
+  }
 }
   

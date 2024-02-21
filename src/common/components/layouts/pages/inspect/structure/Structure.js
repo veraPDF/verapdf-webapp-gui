@@ -20,7 +20,6 @@ const useStyles = makeStyles({
     },
 });
 
-const HEADER_HEIGHT = 48;
 const LIST_HEADER = 'Structure tree';
 
 function StructureTree({
@@ -41,6 +40,7 @@ function StructureTree({
 }) {
     const classes = useStyles();
     const { ref, width = 300, height = 700 } = useResizeObserver();
+    const { ref: refHeader, height: heightHeader = 48 } = useResizeObserver();
     const [disable, setDisable] = useState(false);
     useEffect(() => setDisable(_.isNil(tree) || _.isEmpty(tree) || tree.hasOwnProperty('final')), [tree]);
 
@@ -53,8 +53,13 @@ function StructureTree({
                         className="summary-structure__list"
                         aria-labelledby="summary-structure-subheader"
                         subheader={
-                            <ListSubheader component="div" id="summary-structure-subheader" disableSticky>
-                                {LIST_HEADER}
+                            <ListSubheader
+                                ref={refHeader}
+                                component="div"
+                                id="summary-structure-subheader"
+                                disableSticky
+                            >
+                                <p>{LIST_HEADER}</p>
                                 <RoleMap roleMap={roleMap} setRoleMap={setRoleMap} />
                             </ListSubheader>
                         }
@@ -69,7 +74,7 @@ function StructureTree({
                             <Tree
                                 tree={[tree]}
                                 width={width}
-                                height={height - HEADER_HEIGHT}
+                                height={height - heightHeader}
                                 selectedCheck={selectedCheck}
                                 setSelectedCheck={setSelectedCheck}
                                 selectedNodeId={selectedNodeId}

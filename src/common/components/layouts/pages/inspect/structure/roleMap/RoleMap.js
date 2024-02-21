@@ -1,18 +1,16 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import './RoleMap.scss';
-
-const CHECKBOX_HEADER = 'RoleMap';
+const HEADER = 'RoleMap';
 
 function RoleMap({ roleMap, setRoleMap }) {
     const handleClick = () => {
-        setRoleMap(!roleMap);
+        setRoleMap(prev => !prev);
     };
 
     return (
         <div className="roleMap">
-            {CHECKBOX_HEADER}
+            {HEADER}
             <Checkbox
                 color="primary"
                 size="medium"

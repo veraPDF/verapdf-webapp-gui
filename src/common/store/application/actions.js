@@ -34,7 +34,9 @@ export const reset = () => async (dispatch, getState) => {
     sessionStorage.clear();
 
     // Save old file and job settings
-    sessionStorage.setItem(JOB_OLD_FILE, fileName);
+    if (fileName) {
+        sessionStorage.setItem(JOB_OLD_FILE, fileName);
+    }
     if (jobSettings) {
         sessionStorage.setItem(JOB_SETTINGS, jobSettings);
     }

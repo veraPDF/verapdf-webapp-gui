@@ -59,7 +59,7 @@
       }
       &_failed {
         .legend-item__icon {
-          color: $color-primary;
+          color: $color-error;
         }
       }
     }

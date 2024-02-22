@@ -1,8 +1,13 @@
 import SparkMD5 from 'spark-md5';
 import { get, upload } from './api';
 import { JOB_OLD_FILE } from '../store/constants';
+import AppPages from '../components/AppPages';
 
 const { REACT_APP_API_ROOT, PUBLIC_URL } = process.env;
+
+const STATIC_PAGES = ['', AppPages.UPLOAD, AppPages.ABOUT, AppPages.PRIVACY_POLICY, AppPages.NOT_FOUND].map(
+    pageURL => `${PUBLIC_URL}${pageURL}`
+);
 
 export const getInfo = () => {
     const url = `${REACT_APP_API_ROOT}/status/file-storage/info`;
@@ -78,7 +83,7 @@ export const redirectToStartScreen = () => {
     if (!PUBLIC_URL.endsWith('/')) {
         location = location.replace(/\/$/, '');
     }
-    if (oldFileName && location !== PUBLIC_URL && location !== `${PUBLIC_URL}/new-job/files`) {
+    if (oldFileName && !STATIC_PAGES.includes(location)) {
         // Redirect to start screen and hide Loading view
         window.location.replace(PUBLIC_URL);
         return true;

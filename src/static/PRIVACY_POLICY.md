@@ -15,5 +15,5 @@ The personal information we collect is used for feedback and is not available to
 ### OUR COMMITMENT TO DATA SECURITY
 To prevent unauthorized access, maintain the data accuracy, and ensure the correct use of information, we have put in place appropriate physical, electronic, and managerial procedures to safeguard and secure the information we collect online.
 
-### HOW USERS CAN ACCESS OR CORRECT YOUR INFORMATION
+### HOW USERS CAN ACCESS OR CORRECT THEIR INFORMATION
 Any user can access all his/her personally identifiable information that we collect online and maintain by emailing us at <info@duallab.com>. We use this procedure to better safeguard user's information. To protect user privacy and security, we will also take reasonable steps to verify the user identity before granting access or making corrections.

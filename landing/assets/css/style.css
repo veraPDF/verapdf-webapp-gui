@@ -19,15 +19,17 @@ header, main, footer {
 }
 
 .logo {
-    height: 35px;
+    height: 65px;
     width: auto;
 }
 
 .header {
+    height: 65px;
     width: 60%;
     padding: 12px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
     background-color: #ffffff;
 }
@@ -38,7 +40,7 @@ header, main, footer {
 }
 
 h2 {
-    color: #D93B50;
+    color: #643346;
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 0;
@@ -111,8 +113,8 @@ main {
 .btn, .btn-header {
     border-radius: 4px;
     color: #fff;
-    border: 1px solid rgba(212, 83, 96, 0.5);
-    background: rgb(212, 83, 96);
+    border: 1px solid rgba(100, 51, 70, 0.5);
+    background: rgb(100, 51, 70);
     cursor: pointer;
     font-size: 1em;
     outline: none;
@@ -121,7 +123,7 @@ main {
 
 .btn:hover {
     background: #fff;
-    color: rgb(212, 83, 96);
+    color: rgb(100, 51, 70);
     transition: linear .3s;
 }
 
@@ -160,18 +162,26 @@ footer a:hover {
 
 @media screen and (max-width: 1050px) {
     header, main {
-        max-width: 70%;
+        max-width: 100%;
+        width: 70%;
     }
-    .header, .footer-content {
+    .header, .main-content {
+        width: calc(100% - 20px);
+        padding: 10px;
+    }
+    .footer-content {
         width: 70%;
     }
 }
 
 @media screen and (max-width: 900px) {
     header, main {
-        max-width: 90%;
+        width: 90%;
     }
-    .header, .footer-content {
+    header {
+        width: 100%;
+    }
+    .footer-content {
         width: 90%;
     }
 }

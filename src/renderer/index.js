@@ -11,8 +11,8 @@ import './index.scss';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#cf3f4f',
-            dark: '#ca192d', // hover color
+            main: '#643346',
+            dark: '#502837', // hover color
         },
         // For secondary components like Progress
         secondary: {

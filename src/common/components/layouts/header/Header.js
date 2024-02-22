@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import classNames from 'classnames';
 import { Link as MaterialLink } from '@material-ui/core';
 import HelpOutline from '@material-ui/icons/HelpOutline';
 
 import ResetButton from '../../shared/resetButton/ResetButton';
 import AppPages from '../../AppPages';
-import logo from './veraPDF-logo-400.png';
+
+import logo from './pdf4wcag_logo.svg';
+
 import './Header.scss';
-import classNames from 'classnames';
 
 function Header() {
     const location = useLocation();

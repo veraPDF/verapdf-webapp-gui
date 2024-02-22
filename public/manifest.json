@@ -8,9 +8,9 @@
       "type": "image/x-icon"
     },
     {
-      "src": "veraPDF-logo-400.png",
+      "src": "pdf4wcag_logo.png",
       "type": "image/png",
-      "sizes": "200x100"
+      "sizes": "185x100"
     }
   ],
   "start_url": ".",

@@ -1,0 +1,21 @@
+@import "../../../variables";
+
+.feedback {
+  font-size: 24px;
+  padding: 0 20px;
+
+  .form-header {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 19.92px 0px;
+  }
+
+  .form-block {
+    display: grid;
+    margin-bottom: 15px;
+  }
+
+  .MuiOutlinedInput-root {
+    margin-top: 10px;
+  }
+}

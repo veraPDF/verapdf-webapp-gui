@@ -39,15 +39,38 @@
   }
 
   .app-link {
+    display: flex;
+    vertical-align: middle;
+    padding: 5px 10px;
     transition: $linear;
-    color: $text-color--basic;
+    color: $link-color--basic;
+    border-radius: 4px;
+    border: 1px solid rgba(100, 51, 70, 0.5);
+
+    .text-link {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 25px;
+      margin-left: 5px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: $font-family;
+    }
 
     &:hover {
-      color: $link-color--basic;
+      border: 1px solid $color-primary;
+      background-color: rgba(0, 0, 0, 0.04);
     }
 
     &_hidden {
       display: none;
     }
+  }
+
+  .about-link {
+    margin: 0 20px;
   }
 }

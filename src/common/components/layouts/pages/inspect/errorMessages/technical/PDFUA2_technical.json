@@ -2,7 +2,7 @@
   "ISO 14289-2:202x":{
     "5":{
       "1":{
-        "SUMMARY":"The document metadata stream doesn't contains PDF/UA Identification Schema",
+        "SUMMARY":"The document metadata stream doesn't contain PDF/UA Identification Schema",
         "DESCRIPTION":"The PDF/UA version of a file shall be specified in the value of the Metadata entry in the document catalog using the PDF/UA identification schema"
       },
       "2":{
@@ -18,7 +18,7 @@
         "DESCRIPTION":"Property \"rev\" of the PDF/UA Identification Schema shall have namespace prefix \"pdfuaid\""
       },
       "5":{
-        "SUMMARY":"A value of \"pdfuaid:rev\" not the four digit year",
+        "SUMMARY":"A value of \"pdfuaid:rev\" is not the four digit year",
         "DESCRIPTION":"The value of \"pdfuaid:rev\" shall be the four digit year"
       }
     },
@@ -88,6 +88,10 @@
         "DESCRIPTION":"Real content that refers to footnotes or endnotes (real content enclosed in FENote structure elements) shall use the Ref entry on the referring structure element to reference the FENote. The corresponding FENote shall also use the Ref entry to identify all citations that reference it"
       },
       "3":{
+        "SUMMARY":"Ref entry in the FENote reference structure elements, while these structure elements do not reference this FENote",
+        "DESCRIPTION":"Real content that refers to footnotes or endnotes (real content enclosed in FENote structure elements) shall use the Ref entry on the referring structure element to reference the FENote. The corresponding FENote shall also use the Ref entry to identify all citations that reference it"
+      },      
+      "4":{
         "SUMMARY":"NoteType attribute of the FENote structure element has value other than Footnote, Endnote or None",
         "DESCRIPTION":"The value of the NoteType attribute of the FENote structure element shall be Footnote, Endnote or None"
       }
@@ -131,7 +135,7 @@
     "8.2.5.26":{
       "1":{
         "SUMMARY":"Table cell has intersection with other cells",
-        "DESCRIPTION":"Tables shall be regular. Table cell shall not have intersection with other cells"
+        "DESCRIPTION":"Tables shall be regular. A table cell shall not have intersection with other cells"
       },
       "2":{
         "SUMMARY":"Irregular table, table header, table body or table footer found",
@@ -174,8 +178,8 @@
     },
     "8.4.3":{
       "1":{
-        "SUMMARY":"Real content maps to Unicode PUA values, but ActualText and Alt entry are not present",
-        "DESCRIPTION":"In all cases, where real content maps to Unicode PUA values, an ActualText or Alt entry shall be present"
+        "SUMMARY":"Real content maps to Unicode PUA (Private Use Area) values, but ActualText and Alt entry are not present",
+        "DESCRIPTION":"In all cases, where real content maps to Unicode PUA (Private Use Area) values, an ActualText or Alt entry shall be present"
       },
       "2":{
         "SUMMARY":"The ActualText entry contains Unicode PUA (Private Use Area) code points",
@@ -280,8 +284,8 @@
     },
     "8.6":{
       "1":{
-        "SUMMARY":"Text string intended to be human readable uses Unicode PUA",
-        "DESCRIPTION":"Text strings intended to be human readable shall not use the Unicode PUA"
+        "SUMMARY":"Text string intended to be human readable uses Unicode PUA (Private Use Area)",
+        "DESCRIPTION":"Text strings intended to be human readable shall not use the Unicode PUA (Private Use Area)"
       }
     },
     "8.7":{

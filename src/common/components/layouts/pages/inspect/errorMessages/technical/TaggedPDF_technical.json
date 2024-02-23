@@ -6636,6 +6636,10 @@
       "1659":{
         "SUMMARY":"A Structure element dictionary does not contain the P (parent) entry",
         "DESCRIPTION":"Structure element dictionary shall contain the P (parent) entry"
+      },
+      "1660":{
+        "SUMMARY":"The math structure type is nested within tag other than Formula",
+        "DESCRIPTION":"The math structure type shall occur only as a child of a Formula structure element"
       }
     }
   }

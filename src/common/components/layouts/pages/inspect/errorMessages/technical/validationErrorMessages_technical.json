@@ -419,7 +419,7 @@
 			},
 			"15": {
 				"SUMMARY": "Irregular table found. Table cell has intersection with other cells",
-				"DESCRIPTION": "Tables shall be regular. Table cell shall not have intersection with other cells"
+				"DESCRIPTION": "Tables shall be regular. A table cell shall not have intersection with other cells"
 			},
 			"16": {
 				"SUMMARY": "Table contains a Caption not as its first or last kid",

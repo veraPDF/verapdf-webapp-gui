@@ -3,6 +3,23 @@ import _ from 'lodash';
 const TREEPATH = '/StructTreeRoot';
 const IdStringRegExp = new RegExp(/\(\d+ \d+ [^()[\]]+\)/g);
 
+const isProperty = (obj, property) => {
+    return obj?.hasOwnProperty(property) && !_.isNil(obj[property]) && !_.isEmpty(obj[property]);
+};
+
+const getMcidData = (node, amountForTitle = 20) => {
+    let mcidList = [];
+    if (isProperty(node, 'mcidListChildren')) {
+        mcidList = _.map(node.mcidListChildren, ({ mcid }) => mcid);
+
+        if (mcidList.length > amountForTitle) {
+            mcidList = mcidList.slice(0, amountForTitle);
+            mcidList.push('...');
+        }
+    }
+    return `[${mcidList.join(', ')}]`;
+};
+
 const getIdStringsFromContext = (treeName, context) => {
     if (`/${context.split('/').at(-1)}`.startsWith(TREEPATH)) {
         return null;
@@ -21,7 +38,16 @@ const getIdStringsFromContext = (treeName, context) => {
         });
 };
 
-const getTreeIds = (node, ids = []) => {
+const findIdByObjNumbers = (node, pathArray) => {
+    if (!pathArray || !pathArray.length) return node.id;
+    const path = pathArray.pop();
+    const [num, gen] = path.split(':');
+    const nextNode = node.children.find(({ ref }) => ref.num === +num && ref.gen === +gen);
+    if (!nextNode) return null;
+    return findIdByObjNumbers(nextNode, pathArray);
+};
+
+export const getTreeIds = (node, ids = []) => {
     if (_.isNil(node)) return ids;
     if (!node.hasOwnProperty('final')) ids.push(node.id);
     if (_.isNil(node.children)) return ids;
@@ -30,7 +56,7 @@ const getTreeIds = (node, ids = []) => {
     return ids;
 };
 
-const setRulesTreeIds = (tree, rules) => {
+export const setRulesTreeIds = (tree, rules) => {
     return rules.map(rule => {
         if (_.isNil(rule) || !rule.hasOwnProperty('checks')) {
             return null;
@@ -54,13 +80,22 @@ const setRulesTreeIds = (tree, rules) => {
     });
 };
 
-const findIdByObjNumbers = (node, pathArray) => {
-    if (!pathArray || !pathArray.length) return node.id;
-    const path = pathArray.pop();
-    const [num, gen] = path.split(':');
-    const nextNode = node.children.find(({ ref }) => ref.num === +num && ref.gen === +gen);
-    if (!nextNode) return null;
-    return findIdByObjNumbers(nextNode, pathArray);
+export const getNodeTitle = node => {
+    const info = {
+        objectNumber: '',
+        mcidList: '',
+    };
+
+    if (isProperty(node, 'ref')) {
+        const { num, gen } = node.ref;
+        info.objectNumber = `Object number: ${num} ${gen}`;
+    }
+    if (isProperty(node, 'mcidListChildren')) {
+        info.mcidList = `List of MCIDs: ${getMcidData(node)}`;
+    }
+
+    const isLineSingle = info.objectNumber === '' || info.mcidList === '';
+    return `${info.objectNumber}${isLineSingle ? '' : '\n'}${info.mcidList}`;
 };
 
 /*
@@ -71,7 +106,7 @@ const findIdByObjNumbers = (node, pathArray) => {
  *
  *  @return availableGroups {string[]} of groups containing tagNames
  */
-const getAvailableGroups = (tagsNames, errorTags) => {
+export const getAvailableGroups = (tagsNames, errorTags) => {
     if (!Array.isArray(tagsNames) || !tagsNames.length || _.isEmpty(errorTags)) return [];
     const allGroups = _.keys(errorTags);
     const availableGroups = [];
@@ -85,5 +120,3 @@ const getAvailableGroups = (tagsNames, errorTags) => {
     });
     return _.intersection(allGroups, availableGroups);
 };
-
-export { getTreeIds, setRulesTreeIds, getAvailableGroups };

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useCallback, useRef, useState } from 'react';
+import React, { memo, useMemo, useEffect, useCallback, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { usePrevious } from 'react-use';
 import { Tree as VirtualTree } from 'react-arborist';
@@ -7,6 +7,7 @@ import _ from 'lodash';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { getNodeTitle } from '../../../../../../services/treeService';
 
 import './Tree.scss';
 
@@ -96,7 +97,6 @@ function Tree({
             initialData={tree}
             initialOpenState={expandedNodes}
             selection={selectedNodeId}
-            expandedNodes={expandedNodes}
             setExpandedNodes={setExpandedNodes}
             roleMap={roleMap}
             onNodeClick={onNodeClick}
@@ -108,7 +108,9 @@ function Tree({
 
 function Node({ node, style, tree }) {
     const ref = useRef();
-    const { roleMap, expandedNodes, setExpandedNodes, onNodeClick } = tree.props;
+    const { roleMap, setExpandedNodes, onNodeClick } = tree.props;
+
+    const title = useMemo(() => getNodeTitle(node.data), [node.data]);
 
     const handleNodeClick = _event => {
         node.select();
@@ -117,20 +119,21 @@ function Node({ node, style, tree }) {
     const handleIconClick = event => {
         event.stopPropagation();
         node.toggle();
-        setExpandedNodes({
-            ...expandedNodes,
-            [node.id]: !expandedNodes[node.id],
-        });
+        setExpandedNodes(prev => ({
+            ...prev,
+            [node.id]: !prev[node.id],
+        }));
     };
 
     return (
         <div
-            className={classNames('tree__item', {
+            className={classNames('MuiListItem-root tree__item', {
                 tree__item__selected: node.isSelected,
             })}
             style={style}
             onClick={handleNodeClick}
             ref={ref}
+            title={title}
             role="presentation"
         >
             <button className="tree__item__icon" disabled={node.data?.final} onClick={handleIconClick}>

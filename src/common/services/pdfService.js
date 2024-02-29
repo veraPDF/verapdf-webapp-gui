@@ -75,7 +75,9 @@ function convertContextToPath(errorContext = '') {
             contextString.split('/').forEach(nodeString => {
                 if (nodeString.includes('page')) {
                     path.pageIndex = parseInt(nodeString.split(/[[\]]/)[1], 10);
-                } else if (nodeString.includes('contentItem') && nodeString.includes('mcid')) {
+                } else if (nodeString.includes('annots')) {
+                    path.annot = parseInt(nodeString.split(/[[\]]/)[1], 10);
+                } else if (nodeString.includes('mcid')) {
                     path.mcid = parseInt(nodeString.split('mcid:')[1].slice(0, -1), 10);
                 }
             });

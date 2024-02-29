@@ -36,4 +36,8 @@
   .react-pdf__Page__textContent {
     display: none;
   }
+
+  .pdf-bbox_selected {
+    z-index: 1000;
+  }
 }

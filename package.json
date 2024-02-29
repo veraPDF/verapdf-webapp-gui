@@ -1,7 +1,7 @@
 {
     "name": "verapdf-webapp",
     "homepage": "/validate",
-    "version": "0.10.61",
+    "version": "0.10.62",
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.9.5",

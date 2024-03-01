@@ -1,6 +1,7 @@
 @import "../../variables";
 
 .app-header {
+  overflow: auto;
   position: fixed;
   top: 0;
   height: 85px;
@@ -19,9 +20,11 @@
   &__left,
   &__right {
     height: 100%;
+    min-width: 160px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 20px;
   }
 
   &__left {
@@ -36,6 +39,14 @@
 
   &__right {
     justify-content: flex-end;
+  }
+
+  @media (max-width: 620px) {
+    .app-header__right {
+      .text-link {
+        display: none !important;
+      }
+    }
   }
 
   .app-link {

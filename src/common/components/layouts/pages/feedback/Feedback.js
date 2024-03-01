@@ -23,12 +23,12 @@ const FormItemName = {
 
 function Feedback() {
     const [isAnalysisVisible, setIsAnalysisVisible] = useState(false);
-    const [isCommentlVisible, setIsCommentlVisible] = useState(false);
+    const [isCommentVisible, setIsCommentVisible] = useState(false);
     const handleValidationStatusChange = useCallback((e, value) => {
         if (value === 'yes') {
-            setIsCommentlVisible(false);
+            setIsCommentVisible(false);
             setIsAnalysisVisible(false);
-        } else setIsCommentlVisible(true);
+        } else setIsCommentVisible(true);
     }, []);
     const handleRequestAnalysisChange = useCallback((e, value) => {
         if (value === 'no') setIsAnalysisVisible(false);
@@ -60,13 +60,17 @@ function Feedback() {
                     <Box className="form-block">
                         <FormLabel>Have we validated your PDF correctly?</FormLabel>
                         <RadioGroup row name={FormItemName.SERVICE_QUALITY} onChange={handleValidationStatusChange}>
-                            <FormControlLabel value="yes" control={<Radio required />} label="Yes" />
-                            <FormControlLabel value="no" control={<Radio required />} label="No" />
-                            <FormControlLabel value="partially" control={<Radio required />} label="Partially" />
+                            <FormControlLabel value="yes" control={<Radio color="primary" required />} label="Yes" />
+                            <FormControlLabel value="no" control={<Radio color="primary" required />} label="No" />
+                            <FormControlLabel
+                                value="partially"
+                                label="Partially"
+                                control={<Radio color="primary" required />}
+                            />
                         </RadioGroup>
                     </Box>
-                    {isCommentlVisible && (
-                        <Box className="form-block">
+                    {isCommentVisible && (
+                        <Box>
                             <Box className="form-block">
                                 <FormLabel>Please provide any additional information if you like</FormLabel>
                                 <TextField
@@ -85,8 +89,16 @@ function Feedback() {
                                     name={FormItemName.REQUEST_ANALYSIS}
                                     onChange={handleRequestAnalysisChange}
                                 >
-                                    <FormControlLabel value="yes" control={<Radio required />} label="Yes" />
-                                    <FormControlLabel value="no" control={<Radio required />} label="No" />
+                                    <FormControlLabel
+                                        value="yes"
+                                        label="Yes"
+                                        control={<Radio color="primary" required />}
+                                    />
+                                    <FormControlLabel
+                                        value="no"
+                                        label="No"
+                                        control={<Radio color="primary" required />}
+                                    />
                                 </RadioGroup>
                             </Box>
                             {isAnalysisVisible && (

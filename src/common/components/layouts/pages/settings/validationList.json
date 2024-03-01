@@ -1,8 +1,8 @@
 {
-    "WCAG_2_2_COMPLETE": "Checks PDF document against requirements of WCAG 2.2 applicable to PDF documents. This includes both machine (purely algorithmic) and human (require a human or an API) checks. The human checks are based on the experimental heuristics and might result in false negatives.",
-    "WCAG_2_2_MACHINE": "Checks PDF document against machine-verifiable requirements of WCAG 2.2 applicable to PDF documents. Requirements are meant to be machine-verifiable if they can be checked by a deterministic algorithm not involving a human or an AI.",
-    "PDFUA_1": "Validates PDF document against the set of PDF/UA-1 requirements as defined by ISO 14289-1:2014.",
-    "PDFUA_2": "Validates PDF document against the set of PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft). This does not include validation of parent-child relationship requirements in the document structure tree as specified in ISO/TS 32005:2023.",
-    "PDFUA_2_TAGGED_PDF": "Validates PDF document against the set of PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft) including parent-child relationship requirements in the document structure tree as specified in ISO/TS 32005:2023.",
-    "TAGGED_PDF": "Validates the structure tree of the PDF document against parent-child relationship requirements as specified in ISO/TS 32005:2023."
+    "WCAG_2_2_COMPLETE": "Requirements of WCAG 2.2 applicable to PDF documents. Both machine (purely algorithmic) and human (require a human or an AI) checks. Human checks are based on the experimental heuristics and might result in false negatives.",
+    "WCAG_2_2_MACHINE": "WCAG 2.2 requirements applicable to PDF documents. Only machine-verifiable (purely algorithmic) checks that do not require human interaction.",
+    "PDFUA_1": "Machine-verifiable PDF/UA-1 requirements as defined by ISO 14289-1:2014 and Matterhorn protocol 1.10.",
+    "PDFUA_2": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft) not including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
+    "PDFUA_2_TAGGED_PDF": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft) including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
+    "TAGGED_PDF": "Parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023."
 }

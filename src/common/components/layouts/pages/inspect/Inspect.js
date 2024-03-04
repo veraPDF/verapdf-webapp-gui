@@ -8,6 +8,7 @@ import _ from 'lodash';
 import AppPages from '../../../AppPages';
 import { JOB_STATUS, TASK_STATUS } from '../../../../store/constants';
 import { WARNING_MESSAGES } from '../../../../services/constants';
+import { scaleOptions } from './constants';
 import { getTreeIds, setRulesTreeIds, getAvailableGroups } from '../../../../services/treeService';
 import { lockApp, resetOnFileUpload, unlockApp } from '../../../../store/application/actions';
 import { getJobStatus, getTaskStatus } from '../../../../store/job/selectors';
@@ -37,18 +38,11 @@ function Inspect({ tagsNames, jobStatus, taskStatus, ruleSummaries, lockApp, unl
     const [ruleSummariesFiltered, setRuleSummariesFiltered] = useState(ruleSummaries);
     const [errorsMap, setErrorsMap] = useState({});
     const [scale, setScale] = useState('1');
+    const [scaleMode, setScaleMode] = useState('');
     const [isTreeShow, setIsTreeShow] = useState(false);
     const [treeData, setTreeData] = useState({});
     const [roleMap, setRoleMap] = useState(false);
-    const scaleOptions = [
-        { label: '50%', value: '0.5' },
-        { label: '75%', value: '0.75' },
-        { label: '100%', value: '1' },
-        { label: '150%', value: '1.5' },
-        { label: '200%', value: '2' },
-        { label: '250%', value: '2.5' },
-        { label: '300%', value: '3' },
-    ];
+
     const onDocumentReady = useCallback(
         eMap => {
             setErrorsMap(eMap);
@@ -133,7 +127,14 @@ function Inspect({ tagsNames, jobStatus, taskStatus, ruleSummaries, lockApp, unl
                     showStructure: isTreeShow,
                 })}
             >
-                <Toolbar name={pdfName} scale={scale} scaleOptions={scaleOptions} onScaleChanged={setScale} />
+                <Toolbar
+                    name={pdfName}
+                    scale={scale}
+                    mode={scaleMode}
+                    scaleOptions={scaleOptions}
+                    onScaleChanged={setScale}
+                    onModeChanged={setScaleMode}
+                />
                 <Tree
                     selectedCheck={selectedCheck}
                     setSelectedCheck={setSelectedCheck}
@@ -163,6 +164,8 @@ function Inspect({ tagsNames, jobStatus, taskStatus, ruleSummaries, lockApp, unl
                     initTree={initTree}
                     ruleSummariesFiltered={ruleSummariesFiltered}
                     scale={scale}
+                    scaleMode={scaleMode}
+                    setScale={setScale}
                 />
                 <Structure
                     tree={treeData.tree}

@@ -2,12 +2,13 @@ import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import _ from 'lodash';
+
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import _ from 'lodash';
 
 import AppPages from '../../../../AppPages';
 import { getJobId } from '../../../../../store/job/selectors';
@@ -16,23 +17,26 @@ import Select from '../../../../shared/select/Select';
 import Pagination from '../../../../shared/pagination/Pagination';
 import { getNumPages, getPage } from '../../../../../store/application/selectors';
 import { setPage } from '../../../../../store/application/actions';
+import { scaleAdvancedValues } from '../constants';
 
 import './Toolbar.scss';
 
 const BACK = 'Back to summary';
 
-function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChanged, setPage }) {
+function Toolbar({ jobId, name, scale, mode, scaleOptions, page, numPages, onScaleChanged, onModeChanged, setPage }) {
     const history = useHistory();
+    const isAutozoom = useMemo(() => scaleAdvancedValues.includes(mode), [mode]);
     const onBackClick = useMemo(() => () => history.push(AppPages.RESULTS.url(jobId)), [history, jobId]);
-    const currentScaleIndex = useMemo(() => _.findIndex(scaleOptions, { value: scale }), [scaleOptions, scale]);
+    const currentScaleIndex = useMemo(() => _.findIndex(scaleOptions.basic, { value: scale }), [scaleOptions, scale]);
+
     const onZoomIn = useCallback(() => {
-        if (currentScaleIndex < scaleOptions.length - 1) {
-            onScaleChanged(scaleOptions[currentScaleIndex + 1].value);
+        if (currentScaleIndex < scaleOptions.basic.length - 1) {
+            onScaleChanged(scaleOptions.basic[currentScaleIndex + 1].value);
         }
     }, [scaleOptions, currentScaleIndex, onScaleChanged]);
     const onZoomOut = useCallback(() => {
         if (currentScaleIndex > 0) {
-            onScaleChanged(scaleOptions[currentScaleIndex - 1].value);
+            onScaleChanged(scaleOptions.basic[currentScaleIndex - 1].value);
         }
     }, [scaleOptions, currentScaleIndex, onScaleChanged]);
 
@@ -51,19 +55,25 @@ function Toolbar({ jobId, name, scale, scaleOptions, page, numPages, onScaleChan
             </section>
             <section className="toolbar__end">
                 <Pagination page={page} numPages={numPages} setPage={setPage} />
-                <IconButton onClick={onZoomOut} size="small" disabled={!currentScaleIndex}>
+                <IconButton onClick={onZoomOut} size="small" disabled={!currentScaleIndex || isAutozoom}>
                     <RemoveIcon />
                 </IconButton>
-                <IconButton onClick={onZoomIn} size="small" disabled={currentScaleIndex === scaleOptions.length - 1}>
+                <IconButton
+                    onClick={onZoomIn}
+                    size="small"
+                    disabled={currentScaleIndex === scaleOptions.basic.length - 1 || isAutozoom}
+                >
                     <AddIcon />
                 </IconButton>
                 <Select
                     width={30}
                     id="scaleSelect"
                     className="toolbar__select"
-                    options={scaleOptions}
-                    value={scale}
-                    onChange={onScaleChanged}
+                    options={[...scaleOptions.advanced, ...scaleOptions.basic]}
+                    scale={scale}
+                    mode={mode}
+                    onScale={onScaleChanged}
+                    onMode={onModeChanged}
                 />
             </section>
         </section>
@@ -74,10 +84,12 @@ Toolbar.propTypes = {
     name: PropTypes.string,
     jobId: PropTypes.string,
     scale: PropTypes.string.isRequired,
-    scaleOptions: PropTypes.arrayOf(PropTypes.object).isRequired,
+    mode: PropTypes.string.isRequired,
+    scaleOptions: PropTypes.object.isRequired,
     page: PropTypes.number.isRequired,
     numPages: PropTypes.number.isRequired,
     onScaleChanged: PropTypes.func.isRequired,
+    onModeChanged: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

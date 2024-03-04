@@ -8,27 +8,27 @@ import { scaleAdvancedValues } from '../../layouts/pages/inspect/constants';
 
 import './Select.scss';
 
-function Select({ id, options, scale, mode, labelId, disabled, onScale, onMode }) {
-    const [selectValue, setSelectValue] = useState(scale);
+function Select({ id, options, value, mode, labelId, disabled, onChange, onMode }) {
+    const [selectValue, setSelectValue] = useState(value);
 
     const handleChange = useCallback(
-        ({ target: { value } }) => {
-            if (scaleAdvancedValues.includes(value)) {
-                onMode(value);
-                setSelectValue(value);
+        ({ target: { value: newValue } }) => {
+            if (scaleAdvancedValues.includes(newValue)) {
+                onMode?.(newValue);
+                setSelectValue(newValue);
             } else {
-                onMode('');
-                onScale(value);
+                onMode?.('');
+                onChange(newValue);
             }
         },
-        [onMode, onScale]
+        [onMode, onChange]
     );
 
     useEffect(() => {
         if (!scaleAdvancedValues.includes(mode)) {
-            setSelectValue(scale);
+            setSelectValue(value);
         }
-    }, [mode, scale]);
+    }, [mode, value]);
 
     return (
         <FormControl className="select-form-controller" disabled={disabled}>
@@ -61,13 +61,13 @@ export const OptionShape = PropTypes.shape({
 Select.propTypes = {
     id: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(OptionShape).isRequired,
-    scale: PropTypes.string,
+    value: PropTypes.string,
     mode: PropTypes.string,
     labelId: PropTypes.string,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
-    onScale: PropTypes.func.isRequired,
-    onMode: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onMode: PropTypes.func,
 };
 
 Select.defaultProps = {

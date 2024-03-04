@@ -70,9 +70,9 @@ function Toolbar({ jobId, name, scale, mode, scaleOptions, page, numPages, onSca
                     id="scaleSelect"
                     className="toolbar__select"
                     options={[...scaleOptions.advanced, ...scaleOptions.basic]}
-                    scale={scale}
+                    value={scale}
                     mode={mode}
-                    onScale={onScaleChanged}
+                    onChange={onScaleChanged}
                     onMode={onModeChanged}
                 />
             </section>

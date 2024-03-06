@@ -19,3 +19,14 @@
 .dialog .dialog__tags__tag {
   margin: 3px;
 }
+
+.dialog-title {
+  & > .MuiTypography-h6 {
+    padding-left: 5px;
+  }
+}
+
+.dialog .MuiSvgIcon-root.close-icon {
+  width: 20px;
+  height: 20px;
+}

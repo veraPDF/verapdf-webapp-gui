@@ -1,3 +1,13 @@
 .privacy-policy {
   padding: 0 20px;
+
+  a {
+    color: 	#914148;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      color: #673346;
+    }
+  }
 }

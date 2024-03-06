@@ -87,13 +87,13 @@ main {
 .read-more {
     display: inline-flex;
     text-decoration: none;
-    color: #0771F2;
+    color: #ac4a49;
     align-items: center;
     margin-bottom: 100px;
 }
 
 .read-more:hover {
-    color: #054ba1;
+    color: #773332;
 }
 
 .read-more img {
@@ -183,6 +183,17 @@ footer a:hover {
     }
     .footer-content {
         width: 90%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main-content {
+        align-items: center;
+        justify-content: center;
+    }
+    .info {
+        width: 90%;
+        margin-bottom: 30px;
     }
 }
 

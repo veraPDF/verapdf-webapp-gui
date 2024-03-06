@@ -3,12 +3,12 @@
 .app-header {
   position: fixed;
   top: 0;
-  height: 85px;
+  height: 60px;
   z-index: 1;
   width: 100%;
   box-shadow: $box-shadow--basic;
   background: $bg-color--primary;
-  padding: 10px 20px;
+  padding: 0 20px;
   box-sizing: border-box;
 
   display: flex;

@@ -34,10 +34,6 @@
       letter-spacing: 0.00938em;
     }
 
-    button {
-      margin: 20px 0 0 0;
-    }
-
     .app-link {
       color: inherit;
       display: flex;
@@ -61,6 +57,20 @@
       button {
         margin: 40px 0 0 0;
       }
+    }
+  }
+}
+
+.page-navigation, .page-navigation-text {
+  button {
+    min-height: 40px;
+    padding: 7px 21px;
+
+    @media (max-width: $break-point) {
+      max-width: min-content;
+      min-height: 70px;
+      padding: 8px 24px;
+      line-height: 1.25;
     }
   }
 }

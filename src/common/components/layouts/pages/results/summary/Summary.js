@@ -1,12 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { useTheme } from '@material-ui/core/styles';
-import { Chart } from 'react-google-charts';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
@@ -18,13 +16,17 @@ import { getFileNameLink } from '../../../../../store/pdfLink/selectors';
 import { getResultSummary, getJobEndStatus } from '../../../../../store/job/result/selectors';
 import { getProfileOptions } from '../../../../../store/validationProfiles/selectors';
 import { isFileUploadMode } from '../../../../../store/application/selectors';
+import { SummaryInterface as RuleSummariesInterface } from '../../inspect/tree/Tree';
 
 import './Summary.scss';
+
+import errorTags from '../../inspect/validationErrorTags.json';
 
 const JOB_END_STATUS = {
     CANCELLED: 'cancelled',
     TIMEOUT: 'timeout',
 };
+const CATEGORY = 'Category';
 
 function Summary({ fileName, profiles, selectedProfile, resultSummary, jobEndStatus }) {
     return (
@@ -41,26 +43,16 @@ function Summary({ fileName, profiles, selectedProfile, resultSummary, jobEndSta
 }
 
 function ProcessedSummary({ resultSummary }) {
-    const theme = useTheme();
-    const [chartReady, setChartReady] = useState(false);
-    const chartData = useMemo(() => buildChartData(resultSummary), [resultSummary]);
-    const chartOptions = useMemo(() => getChartOptions(theme), [theme]);
-    const chartEvents = useMemo(() => [{ eventName: 'ready', callback: () => setChartReady(true) }], [setChartReady]);
-    const compliancePercent = useMemo(() => calculateCompliance(resultSummary), [resultSummary]);
+    const listOfErrors = useMemo(() => getListOfErrors(resultSummary.ruleSummaries), [resultSummary]);
+
     return (
         <>
-            <section className="summary__chart">
-                <Chart
-                    chartType="PieChart"
-                    loader={<CircularProgress />}
-                    data={chartData}
-                    options={chartOptions}
-                    chartEvents={chartEvents}
-                />
-                <div className={classNames('summary__compliance', { summary__compliance_hidden: !chartReady })}>
-                    <span>{compliancePercent}%</span>
-                    compliant
-                </div>
+            <section className="summary__list">
+                <ul className="list">
+                    {Object.keys(listOfErrors)?.map(key => (
+                        <ListItem key={key} label={key} value={listOfErrors[key]} hasError={listOfErrors[key] > 0} />
+                    ))}
+                </ul>
             </section>
             <ul className="legend">
                 <LegendItem value={resultSummary.passedChecks ?? 0} label="checks passed" type="passed" />
@@ -88,35 +80,25 @@ function TimeoutSummary() {
     );
 }
 
-function buildChartData({ passedChecks, failedChecks }) {
-    return [
-        ['Check', 'Number'],
-        ['Passed', passedChecks],
-        ['Error', failedChecks],
-    ];
-}
-
-function getChartOptions(theme) {
-    return {
-        pieHole: 0.7,
-        title: '',
-        slices: [{ color: theme.palette.success.main }, { color: theme.palette.error.main }],
-        legend: 'none',
-        pieSliceText: 'none',
-        height: '300px',
-        width: '300px',
-        chartArea: {
-            height: '80%',
-        },
-    };
-}
-
-function calculateCompliance({ passedChecks, failedChecks }) {
-    const total = passedChecks + failedChecks;
-    if (total === 0) {
-        return 100;
-    }
-    return Math.floor((passedChecks * 100) / total);
+function getListOfErrors(ruleSummaries) {
+    const listOfErrors = {};
+    const otherIndexes = [];
+    const categoryTags = errorTags[CATEGORY].map(({ name }) => name);
+    categoryTags.forEach(key => {
+        listOfErrors[key] = ruleSummaries
+            ?.filter((rule, index) => {
+                if (_.isNil(rule)) return false;
+                // Avoid duplicated rules in different categories
+                const isRuleShow = rule.tags?.includes(key) && !otherIndexes.includes(index);
+                if (isRuleShow) {
+                    otherIndexes.push(index);
+                }
+                return isRuleShow;
+            })
+            .reduce((num, item) => num + item.failedChecks, 0);
+    });
+    const sortedList = _.fromPairs(_.sortBy(_.toPairs(listOfErrors), 1).reverse());
+    return sortedList;
 }
 
 function LegendItem({ label, value, type }) {
@@ -128,9 +110,22 @@ function LegendItem({ label, value, type }) {
     );
 }
 
+function ListItem({ label, value, hasError }) {
+    return (
+        <li className={classNames('list-item', `list-item_${hasError ? 'failed' : 'passed'}`)}>
+            <FiberManualRecordIcon className="list-item__icon" />
+            {_.startCase(label)}:
+            <span>
+                {value} {value === 1 ? 'error' : 'errors'}
+            </span>
+        </li>
+    );
+}
+
 const SummaryInterface = PropTypes.shape({
     passedChecks: PropTypes.number,
     failedChecks: PropTypes.number,
+    ruleSummaries: PropTypes.arrayOf(RuleSummariesInterface).isRequired,
 });
 
 Summary.propTypes = {

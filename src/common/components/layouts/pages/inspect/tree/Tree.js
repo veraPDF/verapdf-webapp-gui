@@ -610,11 +610,13 @@ export function sortChecksByPage(checks, errorsMap) {
     return newChecks;
 }
 
-const SummaryInterface = PropTypes.shape({
+export const SummaryInterface = PropTypes.shape({
     clause: PropTypes.string.isRequired,
     testNumber: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     checks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    failedChecks: PropTypes.number.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
 });
 
 Tree.propTypes = {

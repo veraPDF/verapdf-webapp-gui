@@ -48,8 +48,8 @@ function Dialog({ title, tagsNames, actions, open, onClose, children }) {
                 <Box
                     sx={{
                         position: 'absolute',
-                        right: 8,
-                        top: 8,
+                        right: 12,
+                        top: 12,
                         cursor: 'pointer',
                         width: 20,
                         height: 20,
@@ -58,11 +58,11 @@ function Dialog({ title, tagsNames, actions, open, onClose, children }) {
                     <CloseIcon className="close-icon" aria-label="close" onClick={onClose} />
                 </Box>
             </Tooltip>
-            <DialogContent>
+            <DialogContent className="dialog-content-main">
                 <DialogContentText id="alert-dialog-description">{children}</DialogContentText>
             </DialogContent>
             {!!tagsNames?.length && (
-                <DialogContent>
+                <DialogContent className="dialog-content-footer">
                     <Paper component="ul" className="dialog__tags">
                         {tagsArray}
                     </Paper>

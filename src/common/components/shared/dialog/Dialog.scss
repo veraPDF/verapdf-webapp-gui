@@ -19,3 +19,22 @@
 .dialog .dialog__tags__tag {
   margin: 3px;
 }
+
+.dialog-title {
+  & > .MuiTypography-h6 {
+    padding-right: 20px;
+  }
+}
+
+.dialog .MuiSvgIcon-root.close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dialog-content-main.MuiDialogContent-root  {
+  padding-bottom: 0;
+}
+
+.dialog-content-footer.MuiDialogContent-root  {
+  padding: 0 24px 16px 24px;
+}

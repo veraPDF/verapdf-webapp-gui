@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import { Tooltip } from '@material-ui/core';
 
 import './Pane.scss';
 
@@ -17,18 +18,20 @@ const paneClasses = makeStyles({
 function Pane({ isShow, setIsShow, isDisable }) {
     const classes = paneClasses();
     return (
-        <Button
-            className="pane"
-            classes={{
-                root: classes.root,
-            }}
-            variant="outlined"
-            color="primary"
-            onClick={() => setIsShow(!isShow)}
-            disabled={isDisable || false}
-        >
-            {isShow ? <ArrowRightIcon /> : <ArrowLeftIcon />}
-        </Button>
+        <Tooltip title="Structure tree" placement="left">
+            <Button
+                className="pane"
+                classes={{
+                    root: classes.root,
+                }}
+                variant="outlined"
+                color="primary"
+                onClick={() => setIsShow(!isShow)}
+                disabled={isDisable || false}
+            >
+                {isShow ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+            </Button>
+        </Tooltip>
     );
 }
 

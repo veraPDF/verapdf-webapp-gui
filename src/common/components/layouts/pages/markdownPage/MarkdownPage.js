@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { marked } from 'marked';
 
-import './PrivacyPolicy.scss';
+import './MarkdownPage.scss';
 
-function PrivacyPolicy() {
+function MarkdownPage({ fileName }) {
     const [content, setContent] = useState('');
     useEffect(() => {
         const fetchFile = async () => {
-            const file = await fetch(process.env.PUBLIC_URL + '/PRIVACY_POLICY.md');
+            const file = await fetch(process.env.PUBLIC_URL + `/${fileName}.md`);
             const content = await file.text();
             setContent(marked(content));
         };
         fetchFile().catch(console.error);
-    }, []);
+    }, [fileName]);
     return (
-        <section className="privacy-policy">
+        <section className="markdown">
             <div dangerouslySetInnerHTML={{ __html: content }} />
         </section>
     );
 }
 
-export default PrivacyPolicy;
+export default MarkdownPage;

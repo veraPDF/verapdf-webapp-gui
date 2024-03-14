@@ -5,7 +5,8 @@ import AppPages from '../components/AppPages';
 
 const { REACT_APP_API_ROOT, PUBLIC_URL } = process.env;
 
-const STATIC_PAGES = ['', AppPages.UPLOAD, AppPages.ABOUT, AppPages.PRIVACY_POLICY, AppPages.NOT_FOUND].map(
+const STATIC_MARKED_PAGES = Object.values(AppPages.MARKED);
+const STATIC_PAGES = ['', AppPages.UPLOAD, AppPages.NOT_FOUND, ...STATIC_MARKED_PAGES].map(
     pageURL => `${PUBLIC_URL}${pageURL}`
 );
 

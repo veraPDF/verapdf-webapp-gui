@@ -1,19 +1,41 @@
-import React, { useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+
 import MaterialSelect from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
+import { scaleAdvancedValues } from '../../layouts/pages/inspect/constants';
+
 import './Select.scss';
 
-function Select({ id, options, value, labelId, disabled, onChange }) {
-    const handleChange = useCallback(e => onChange(e.target.value), [onChange]);
+function Select({ id, options, value, mode, labelId, disabled, onChange, onMode }) {
+    const [selectValue, setSelectValue] = useState(value);
+
+    const handleChange = useCallback(
+        ({ target: { value: newValue } }) => {
+            if (scaleAdvancedValues.includes(newValue)) {
+                onMode?.(newValue);
+                setSelectValue(newValue);
+            } else {
+                onMode?.('');
+                onChange(newValue);
+            }
+        },
+        [onMode, onChange]
+    );
+
+    useEffect(() => {
+        if (!scaleAdvancedValues.includes(mode)) {
+            setSelectValue(value);
+        }
+    }, [mode, value]);
 
     return (
         <FormControl className="select-form-controller" disabled={disabled}>
             <MaterialSelect
                 className="select-form-controller__select"
                 id={id}
-                value={value}
+                value={selectValue}
                 labelId={labelId}
                 onChange={handleChange}
                 MenuProps={{
@@ -40,10 +62,12 @@ Select.propTypes = {
     id: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(OptionShape).isRequired,
     value: PropTypes.string,
+    mode: PropTypes.string,
     labelId: PropTypes.string,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onMode: PropTypes.func,
 };
 
 Select.defaultProps = {

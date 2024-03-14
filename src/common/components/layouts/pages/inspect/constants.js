@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { getRange } from '../../../../services/treeService';
 import errorTags from './validationErrorTags.json';
 
 export const GROUPS = _.keys(errorTags);
@@ -9,7 +10,10 @@ export const TAGS = _.chain(errorTags)
 export const TAGS_NAMES = _.map(TAGS, ({ name }) => name);
 
 export const scaleOptions = {
-    advanced: [{ label: 'auto-fit', value: 'auto' }],
+    advanced: [
+        { label: 'Page fit', value: 'page-fit' },
+        { label: 'Page width', value: 'page-width' },
+    ],
     basic: [
         { label: '50%', value: '0.5' },
         { label: '75%', value: '0.75' },
@@ -22,3 +26,4 @@ export const scaleOptions = {
 };
 export const scaleBasicValues = scaleOptions.basic.map(({ value }) => value);
 export const scaleAdvancedValues = scaleOptions.advanced.map(({ value }) => value);
+export const scaleAutoValues = getRange(+scaleBasicValues[0], +scaleBasicValues.at(-1), 0.025, 3);

@@ -47,6 +47,9 @@ const findIdByObjNumbers = (node, pathArray) => {
     return findIdByObjNumbers(nextNode, pathArray);
 };
 
+export const getRange = (start, stop, step, digits = 1) =>
+    Array.from({ length: (stop - start) / step + 1 }, (_, i) => (start + i * step).toFixed(digits));
+
 export const findNearToOneIndexInSortArray = arr => {
     if (!Array.isArray(arr)) return null;
     for (let i = 0; i < arr.length; i++) {

@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
-import useResizeObserver from 'use-resize-observer';
 import _ from 'lodash';
 
+import { useDebouncedResizeObserver } from '../../../../../hooks/useDebouncedResizeObserver';
 import { getFileName, getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
@@ -13,7 +13,7 @@ import { getPage, isFileUploadMode } from '../../../../../store/application/sele
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 import { getItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
-import { scaleBasicValues, scaleAdvancedValues } from '../constants';
+import { scaleAdvancedValues, scaleAutoValues } from '../constants';
 import { getProfile } from '../../../../../store/job/settings/selectors';
 import { getFileNameLink } from '../../../../../store/pdfLink/selectors';
 import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
@@ -114,7 +114,7 @@ function getTitleDescription({ specification, clause, testNumber }, errorMessage
 }
 
 function PdfDocument(props) {
-    const { ref: wrapperRef, width: wrapperWidth } = useResizeObserver();
+    const { ref, width: wrapperWidth, height: wrapperHeight } = useDebouncedResizeObserver(500);
     const [structureTree, setStructureTree] = useState({});
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [indicesOfVisibleErrors, setIndicesOfVisibleErrors] = useState(null);
@@ -262,22 +262,41 @@ function PdfDocument(props) {
         setIndicesOfVisibleErrors(indicesOfVisibleBboxes);
     }, [createMapOfErrors, props.ruleSummariesFiltered, structureTree, mapOfErrors]);
     useEffect(() => {
-        const pdfPage = document.querySelector('.pdf-page');
-        const isMode = scaleAdvancedValues.includes(props.scaleMode);
+        if (!scaleAdvancedValues.includes(props.scaleMode)) {
+            return;
+        }
 
-        if (isMode && !_.isNil(wrapperWidth) && !_.isNil(pdfPage)) {
-            const { width: pageWidth } = pdfPage.getBoundingClientRect();
-            const ratio = pageWidth / wrapperWidth;
+        const pdfPage = document.querySelector('.pdf-page');
+
+        if (!_.isNil(wrapperWidth) && !_.isNil(wrapperHeight) && !_.isNil(pdfPage)) {
+            const { width: pageWidth, height: pageHeight } = pdfPage.getBoundingClientRect();
+            let ratio;
+
+            switch (props.scaleMode) {
+                case scaleAdvancedValues[0]: {
+                    ratio = Math.max(pageWidth / wrapperWidth, pageHeight / wrapperHeight);
+                    break;
+                }
+                case scaleAdvancedValues[1]: {
+                    ratio = pageWidth / wrapperWidth;
+                    break;
+                }
+                default: {
+                    ratio = 1;
+                    break;
+                }
+            }
+
             props.setScale(prev => {
-                const index = findNearToOneIndexInSortArray(scaleBasicValues.map(value => (ratio * value) / prev));
-                return scaleBasicValues[index] ?? prev;
+                const index = findNearToOneIndexInSortArray(scaleAutoValues.map(value => (ratio * value) / prev));
+                return scaleAutoValues[index] ?? prev;
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.scaleMode, wrapperWidth]);
+    }, [props.scaleMode, wrapperWidth, wrapperHeight]);
 
     return (
-        <div ref={wrapperRef} className="pdf-viewer__wrapper" role="button" tabIndex={0}>
+        <div ref={ref} className="pdf-viewer__wrapper" role="button" tabIndex={0}>
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}

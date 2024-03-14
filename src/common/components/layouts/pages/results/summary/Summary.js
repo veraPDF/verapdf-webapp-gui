@@ -49,8 +49,8 @@ function ProcessedSummary({ resultSummary }) {
         <>
             <section className="summary__list">
                 <ul className="list">
-                    {Object.keys(listOfErrors)?.map(key => (
-                        <ListItem key={key} label={key} value={listOfErrors[key]} hasError={listOfErrors[key] > 0} />
+                    {listOfErrors?.map(([key, value]) => (
+                        <ListItem key={key} label={key} value={value} hasError={value > 0} />
                     ))}
                 </ul>
             </section>
@@ -97,7 +97,7 @@ function getListOfErrors(ruleSummaries) {
             })
             .reduce((num, item) => num + item.failedChecks, 0);
     });
-    const sortedList = _.fromPairs(_.sortBy(_.toPairs(listOfErrors), 1).reverse());
+    const sortedList = _.sortBy(_.toPairs(listOfErrors), 1).reverse();
     return sortedList;
 }
 

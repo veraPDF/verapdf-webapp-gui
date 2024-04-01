@@ -1,5 +1,5 @@
 {
-  "ISO 14289-2:202x":{
+  "ISO 14289-2:2024":{
     "5":{
       "1":{
         "SUMMARY":"The document metadata stream doesn't contain PDF/UA Identification Schema",
@@ -276,12 +276,6 @@
         "DESCRIPTION":"A file in conformance with PDF/UA-2 shall not contain a reference to the .notdef glyph from any of the text showing operators, regardless of text rendering mode, in any content stream"
       }
     },
-    "8.5.1":{
-      "1":{
-        "SUMMARY":"Real content that does not possess the semantics of text objects and does not have an alternate textual representation is not enclosed within Figure or Formula structure elements",
-        "DESCRIPTION":"Real content that does not possess the semantics of text objects and does not have an alternate textual representation shall be enclosed within Figure or Formula structure elements as appropriate"
-      }
-    },
     "8.6":{
       "1":{
         "SUMMARY":"Text string intended to be human readable uses Unicode PUA (Private Use Area)",
@@ -300,18 +294,12 @@
     },
     "8.8":{
       "1":{
-        "SUMMARY":"Destination in Outline item or Link annotation is not a structure destination",
+        "SUMMARY":"Destination in Outline item, OpenAction or Link annotation is not a structure destination",
         "DESCRIPTION":"All destinations whose target lies within the current document shall be structure destinations"
       },
       "2":{
         "SUMMARY":"Destination in GoTo action is not a structure destination",
         "DESCRIPTION":"All destinations whose target lies within the current document shall be structure destinations"
-      }
-    },
-    "8.9.2.1":{
-      "1":{
-        "SUMMARY":"Annotation is not included in the structure tree",
-        "DESCRIPTION":"Annotations shall be included in the structure tree unless explicitly excluded by the following subclauses"
       }
     },
     "8.9.2.2":{

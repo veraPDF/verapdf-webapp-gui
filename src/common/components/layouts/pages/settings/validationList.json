@@ -2,7 +2,7 @@
     "WCAG_2_2_COMPLETE": "Requirements of WCAG 2.2 applicable to PDF documents. Both machine (purely algorithmic) and human (require a human or an AI) checks. Human checks are based on the experimental heuristics and might result in false negatives.",
     "WCAG_2_2_MACHINE": "WCAG 2.2 requirements applicable to PDF documents. Only machine-verifiable (purely algorithmic) checks that do not require human interaction.",
     "PDFUA_1": "Machine-verifiable PDF/UA-1 requirements as defined by ISO 14289-1:2014 and Matterhorn protocol 1.10.",
-    "PDFUA_2": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft) not including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
-    "PDFUA_2_TAGGED_PDF": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 (draft) including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
+    "PDFUA_2": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 not including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
+    "PDFUA_2_TAGGED_PDF": "Machine-verifiable PDF/UA-2 requirements as defined by ISO 14289-2:2024 including parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023.",
     "TAGGED_PDF": "Parent-child relationship requirements in the structure tree as defined by ISO/TS 32005:2023."
 }

@@ -607,7 +607,7 @@
       },
       "2": {
         "SUMMARY": "This annotation has no alternative description",
-        "DESCRIPTION": "Annotations (except links, widgets, pop-ups and hidden annotations) must have textual contents or alternative text. Please add textual content or alternative text for this annotation."
+        "DESCRIPTION": "Annotations (except widgets and hidden annotations) must have textual contents or alternative text. Please add textual content or alternative text for this annotation."
       },
       "3": {
         "SUMMARY": "This form field lacks an alternative description",

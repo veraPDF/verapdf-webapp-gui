@@ -346,13 +346,11 @@
         "STATUS": "warning",
         "CATEGORY": "code",
         "RATIONALE": "If a note is tagged as a normal paragraph, a screenreader will not recognise it as a note and will read it inline with the rest of the text."
-      }
-    },
-    "4.1.3": {
-      "1": {
-        "STATUS": "error",
+      },
+      "55": {
+        "STATUS": "warning",
         "CATEGORY": "code",
-        "RATIONALE": "If content has been tagged inappropriately, reader software for people with visual impairments will not read the document out in the correct way or order."
+        "RATIONALE": "Section heading must be grouped with the content of the corresponding content"
       }
     }
   },

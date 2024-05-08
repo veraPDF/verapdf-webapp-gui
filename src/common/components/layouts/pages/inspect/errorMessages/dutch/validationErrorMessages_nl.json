@@ -245,48 +245,46 @@
         "SUMMARY": "Is dit wel een tabelkop?",
         "DESCRIPTION": "Dit ziet eruit als een gewone tabelcel, maar is gecodeerd als een tabelkop. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Beperk koppen tot de eerste rij of eerste kolom. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
       },
-      "46": {
-	"SUMMARY": "Dit element van de inhoudsopgave komt niet in het document voor",
-	"DESCRIPTION": "De tekst van dit element van de inhoudsopgave komt niet overeen met een kop in het document."
-      },
-      "47": {
-	"SUMMARY": "Dit element van de inhoudsopgave verwijst niet naar de juiste pagina",
-	"DESCRIPTION": "De tekst van dit element van de inhoudsopgave staat niet op de pagina waarnaar verwezen wordt."
-      },
-      "48": {
-	"SUMMARY": "Dit element van de inhoudsopgave verwijst nergens naar",
-	"DESCRIPTION": "Dit element van de inhoudsopgave heeft geen verwijzing naar een pagina."
-      },
-      "49": {
-	"SUMMARY": "Dit element van de inhoudsopgave verwijst naar een een ongeldig paginanummer",
-	"DESCRIPTION": "Dit element van de inhoudsopgave heeft geen geldig paginanummer als verwijzing."
-      },
-      "50": {
-	"SUMMARY": "Inhoudsopgave heeft een onlogische nummering",
-	"DESCRIPTION": "De nummering van de inhoudsopgave volgt geen logisch patroon, bijvoorbeeld '1, 2, 3,.. of i, ii, iii,..'"
-      },
-      "51": {
-	"SUMMARY": "Deze lijst heeft een vreemde codering",
-	"DESCRIPTION": "De codering zegt dat deze lijst uit één punt bestaat, dat zelf weer een lijst is. Dit kan schermlezers in de war brengen en heeft geen toegevoegde waarde."
-      },
-      "52": {
-	"SUMMARY": "Zijn dit verschillende punten in de lijst?",
-	"DESCRIPTION": "Het lijkt erop alsof dit verschillende punten zijn die als één punt gecodeerd zijn. Dit kan ervoor zorgen dat schermlezers de lijst niet voorlezen zoals bedoeld was. Zorg dat verschillende punten in de lijst ook als verschillende punten gecodeerd worden. Gebruik alinea-einde (return) voor elk nieuw punt in de lijst. Gebruik geen regeleinden (shift-return) voor een nieuw punt in de lijst."
-      },
-      "53": {
-	"SUMMARY": "Is dit een opmerking?",
-	"DESCRIPTION": "Deze tekst ziet eruit als een opmerking, maar is niet als zodanig gecodeerd. Daardoor zal een schermlezer dit niet als opmerking herkennen en als gewone alinea voorlezen. Zorg dat je opmerkingen ook altijd als zodanig opmaakt, zodat ze als opmerking gecodeerd worden."
-      },
-      "54": {
-	"SUMMARY": "Is dit een opmerking?",
-	"DESCRIPTION": "Deze tekst ziet eruit als een opmerking, maar is gecodeerd als gewone alinea. Daardoor zal een schermlezer dit niet als opmerking herkennen en als gewone alinea voorlezen. Zorg dat je opmerkingen ook altijd als zodanig opmaakt, zodat ze als opmerking gecodeerd worden."
-      }
-    },
-    "4.1.3": {
-      "1": {
-        "SUMMARY": "De codering komt niet overeen met de inhoud",
-        "DESCRIPTION": "Als de codering niet overeenkomt met de inhoud, zullen screenreaders het document niet in de juiste volgorde of op de juiste manier voorlezen."
-      }
+			"46": {
+				"SUMMARY": "Dit element in de inhoudsopgave komt niet terug in de tekst",
+				"DESCRIPTION": "Elk element in de inhoudsopgave moet woordelijk overeenkomen met een kop in de tekst. Als je de inhoudsopgave automatisch genereert, dan komt dit vanzelf goed en worden de paginanummers ook automatisch bijgewerkt. Vermijd het handmatig opmaken van inhoudsopgaven."
+			},
+			"47": {
+				"SUMMARY": "Dit element van de inhoudsopgave is niet te vinden op de pagina waarnaar verwezen wordt",
+				"DESCRIPTION": "Dit element van de inhoudsopgave verwijst waarschijnlijk naar de verkeerde pagina. Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
+			},
+			"48": {
+				"SUMMARY": "Dit element van de inhoudsopgave heeft geen link naar de overeenkomstige pagina",
+				"DESCRIPTION": "Door te klikken op een element van de inhoudsopgave wordt je idealiter vanzelf doorverwezen naar de betreffende pagina in het document. Als je de inhoudsopgave automatisch genereert, dan komt dit vanzelf goed. Vermijd het handmatig opmaken van inhoudsopgaven."
+			},
+			"49": {
+				"SUMMARY": "Dit element van de inhoudsopgave heeft een ongeldig paginanummer",
+				"DESCRIPTION": "Dit element van de inhoudsopgave verwijst naar een paginanummer dat niet bestaat. Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
+			},
+			"50": {
+				"SUMMARY": "De inhoudsopgave heeft een onlogische nummering",
+				"DESCRIPTION": "De nummering van de inhoudsopgave is inconsistent of heeft geen logische volgorde. Als je kopstijlen gebruikt en de inhoudsopgave automatisch genereert, volgt de inhoudsopgave automatisch de nummering van de koppen en voorkom je dit probleem. Vermijd het handmatig opmaken van koppen en inhoudsopgaven."
+			},
+			"51": {
+				"SUMMARY": "Lijst heeft maar één element, dat weer een lijst is",
+				"DESCRIPTION": "Het heeft geen zin om een lijst te maken met één element dat zelf weer een lijst is. Dit bemoeilijkt ook het voorlezen van het document door voorleessoftware. Het is mogelijk dat dit een coderingsfout is van de PDF exportfunctie van je kantoorapplicatie. Maak de lijst in je kantoorapplicatie op met één lijst stijl."
+			},
+			"52": {
+				"SUMMARY": "Meerdere lijst elementen zijn als één element gecodeerd",
+				"DESCRIPTION": "Ieder element van een lijst moet als en apart lijstelement gecodeerd zijn. Het is mogelijk dat dit een coderingsfout is van de PDF export functie van je applicatie. Maak de lijst in je kantoorapplicatie op met een lijst stijl en scheid elementen met paragraph breaks (return). Voorkom voor zover mogelijk het gebruik van regeleinden (shift-return) in de lijst."
+			},
+			"53": {
+				"SUMMARY": "Is dit (voet- of eind-)noot?",
+				"DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
+			},
+			"54": {
+				"SUMMARY": "Is dit (voet- of eind-)noot?",
+				"DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
+			},
+			"55": {
+				"SUMMARY": "Er is iets mis met de codering van deze kop",
+				"DESCRIPTION": "Deze kop zit in de codering niet op een logische plaats in de structuur van het document. Dit kan een coderingsfout zijn in de PDF exportfunctie van je kantoorapplicatie. In dat geval kun je hier niet veel aan doen in het brondocument, en moet de PDF nabewerkt worden."
+			}
     }
   },
   "ISO 14289-1:2014": {

@@ -98,8 +98,8 @@
         "DESCRIPTION": "This text appears to be a table head but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
       },
       "8": {
-        "SUMMARY": "Is this a table cell?",
-        "DESCRIPTION": "This text appears to be a table cell but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
+        "SUMMARY": "Is this a part of the table?",
+        "DESCRIPTION": "This text appears to be a part of the table but is not tagged as such. Never format tables manually as this confuses reader applications for people with visual impairments. Always use the insert -> table menu in your office application. This ensures that tables are recognised as such."
       },
       "9": {
         "SUMMARY": "Is this a table?",
@@ -348,6 +348,10 @@
       "11": {
         "SUMMARY": "Document is not tagged",
         "DESCRIPTION": "This is a critical accessibility error. If the document has content that is not tagged, reader software for people with visual impairments may have difficulty reading the document out in the right order. You can probably solve this problem by re-exporting your document from your office application (Word or LibreOffice) as tagged PDF. You do this by following the menu 'File -> Save as -> (select PDF) -> Options' and ticking the options 'Tagged PDF' and 'Save as ISO 19005-1 (PDF/A)'."
+      },
+      "12": {
+        "SUMMARY": "The document structure tree is broken: some structure elements do not have parents",
+        "DESCRIPTION": "Structure element is missing the reference to the parent, so it can not be reached from the structure root"
       }
     },
     "7.2": {
@@ -404,8 +408,8 @@
         "DESCRIPTION": "If a table contains a header it must also have a body. Try reformatting the table and make sure that it has content apart from the header and footer. Keep the table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)"
       },
       "15": {
-        "SUMMARY": "The rows in this table don't have the same amount of cells",
-        "DESCRIPTION": "Tables must have the same number of cells in each row. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each row. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+        "SUMMARY": "Irregular table found. Table cell has intersection with other cells",
+        "DESCRIPTION": "Tables shall be regular. A table cell shall not have intersection with other cells. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each row. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
       },
       "16": {
         "SUMMARY": "There is something wrong with the table caption",
@@ -502,6 +506,18 @@
       "40": {
         "SUMMARY": "There is something wrong with the list caption",
         "DESCRIPTION": "The caption of this list is not coded correctly. This can confuse screenreaders. Try deleting it and adding it again. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
+      "41": {
+        "SUMMARY": "The columns in this table don't have the same amount of cells",
+        "DESCRIPTION": "Tables must have the same number of cells in each column. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each column. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
+      "42": {
+        "SUMMARY": "The rows in this table don't have the same amount of cells",
+        "DESCRIPTION": "Tables must have the same number of cells in each row. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each row. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
+      },
+      "43": {
+        "SUMMARY": "The rows in this table don't have the same amount of cells",
+        "DESCRIPTION": "Tables must have the same number of cells in each row. Try reformatting the table. You may join cells together, but always begin with a basic table that has the same number of cells in each row. Keep your table as simple as possible. Should this not solve the problem, try the same with another application (for example LibreOffice instead of Word)."
       }
     },
     "7.3": {
@@ -532,6 +548,10 @@
     },
     "7.5": {
       "1": {
+        "SUMMARY": "The tags do not sufficiently describe the structure of this table",
+        "DESCRIPTION": "This table lacks the correct tags to reflect its structure. This makes it difficult for reader software to read the table out correctly. Try reformatting the table and give the table a well defined header row or header column. Keep the table as simple as possible. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
+      },
+      "2": {
         "SUMMARY": "The tags do not sufficiently describe the structure of this table",
         "DESCRIPTION": "This table lacks the correct tags to reflect its structure. This makes it difficult for reader software to read the table out correctly. Try reformatting the table and give the table a well defined header row or header column. Keep the table as simple as possible. Should this not solve the problem, try using another application (for example LibreOffice instead of Word)."
       }

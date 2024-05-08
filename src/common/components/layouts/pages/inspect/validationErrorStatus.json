@@ -120,7 +120,7 @@
       "8": {
         "STATUS": "warning",
         "CATEGORY": "structure",
-        "RATIONALE": "Text that is intended as a table cell must be tagged as a table element. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
+        "RATIONALE": "Text that is intended as a part of the table must be tagged as a table element. Otherwise reader software for people with visual impairments will nog recognise it as a table and will fail to read it out correctly."
       },
       "9": {
         "STATUS": "warning",
@@ -422,6 +422,11 @@
         "STATUS": "critical",
         "CATEGORY": "code",
         "RATIONALE": "A document must be tagged in order to be accessible."
+      },
+      "12": {
+        "STATUS": "critical",
+        "CATEGORY": "code",
+        "RATIONALE": "Structure element dictionary shall contain the P (parent) entry"
       }
     },
     "7.2": {
@@ -614,6 +619,21 @@
         "STATUS": "error",
         "CATEGORY": "code",
         "RATIONALE": "A caption must be the first child under the list element. It cannot appear anywhere else under the list element."
+      },
+      "41": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains columns with different numbers of cells, this can confuse reader software."
+      },
+      "42": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains rows with different numbers of cells, this can confuse reader software."
+      },
+      "43": {
+        "STATUS": "error",
+        "CATEGORY": "structure",
+        "RATIONALE": "If a table contains rows with different numbers of cells, this can confuse reader software."
       }
     },
     "7.3": {
@@ -649,6 +669,11 @@
     },
     "7.5": {
       "1": {
+        "STATUS": "error",
+        "CATEGORY": "code",
+        "RATIONALE": "If a table is not coded correctly, reader software will have problems reading it out correctly."
+      },
+      "2": {
         "STATUS": "error",
         "CATEGORY": "code",
         "RATIONALE": "If a table is not coded correctly, reader software will have problems reading it out correctly."

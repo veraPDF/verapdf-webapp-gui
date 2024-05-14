@@ -280,12 +280,10 @@
       "54": {
         "SUMMARY": "Ist dies eine Notiz? Es ist als ein Paragraph <P> Element markiert",
         "DESCRIPTION": "Dieser Text könnte eine Notiz sein, aber er ist als normaler Absatz gekennzeichnet. Bildschirmleser erkennen ihn daher möglicherweise nicht als Notiz. Stellen Sie sicher, dass Sie Notizen als solche kennzeichnen."
-      }
-    },
-    "4.1.3": {
-      "1": {
-        "SUMMARY": "Die Kennzeichnung (Tag) stimmt nicht mit dem Inhalt überein",
-        "DESCRIPTION": "Wenn die Tags nicht mit dem Inhalt übereinstimmen, lesen Screenreader das Dokument nicht korrekt vor bzw. nicht in der richtigen Reihenfolge."
+      },
+      "55": {
+        "SUMMARY": "Irgendetwas stimmt nicht mit der Codierung dieses Headers",
+        "DESCRIPTION": "Diese Überschrift befindet sich nicht an einer logischen Stelle in der Struktur des Dokuments. Dies könnte ein Codierungsfehler in der PDF-Exportfunktion Ihrer Office-Anwendung sein. In diesem Fall können Sie im Quelldokument nicht viel dagegen tun, und die PDF-Datei muss nachbearbeitet werden."
       }
     }
   },

@@ -12,10 +12,6 @@
       "3": {
         "SUMMARY": "Nicht verlinkte Unterstreichungen vermeiden",
         "DESCRIPTION": "Es ist nicht verboten Texte zu unterstreichen, aber viele Menschen verwechseln unterstrichenen Text mit einem Hyperlink. Es ist daher am besten, Unterstreichungen zu vermeiden. Wenn Sie Text hervorheben möchten, verwenden Sie am besten Fettdruck."
-      },
-      "4": {
-        "SUMMARY": "Hat dieser Text eine besondere Bedeutung?",
-        "DESCRIPTION": "Dieser Text sieht anders aus als der umgebende Text. Wenn Sie den Text anders formatiert haben, weil dieser Text eine besondere Bedeutung hat, müssen Sie sicherstellen, dass diese Bedeutung ebenfalls kodiert wird. Das tun Sie zum Beispiel durch Erstellen eines speziellen Stils für diese Formatierung."
       }
     },
     "1.3.4": {
@@ -98,8 +94,8 @@
         "DESCRIPTION": "Dieser Text sieht aus wie eine Tabellenüberschrift, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen nicht von Hand, da dies Nutzer von Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Die Tabelle ist dann beschriftet und wird als Tabelle von Screenreadern erkannt."
       },
       "8": {
-        "SUMMARY": "Ist das eine Zelle einer Tabelle?",
-        "DESCRIPTION": "Dieser Text sieht aus wie eine Tabellenzelle, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen nicht von Hand, da dies Nutzer von Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Die Tabelle ist dann beschriftet und wird als Tabelle von Screenreadern erkannt."
+        "SUMMARY": "Ist das Teil einer Tabelle?",
+        "DESCRIPTION": "Dieser Text sieht aus wie ein Teil einer Tabelle, ist aber nicht als solche gekennzeichnet. Formatieren Sie Tabellen nicht von Hand, da dies Nutzer von Screenreader verwirren würde. Verwenden Sie immer das Menü 'Einfügen - Tabelle' in Ihrer Office-Anwendung. Die Tabelle ist dann beschriftet und wird als Tabelle von Screenreadern erkannt."
       },
       "9": {
         "SUMMARY": "Ist das eine Tabelle?",
@@ -251,7 +247,7 @@
       },
       "47": {
         "SUMMARY": "Ein Element des Inhaltsverzeichnisses referenziert nicht auf die korrekte Seite",
-        "DESCRIPTION": "Der Text des Inhaltsverzeichniselements wurde nicht auf der referenzierten Seite gefunden. Der Text kann sich auf einer anderen Seite befinden als der Verweis im Inhaltsverzeichnis. Lassen Sie Inhaltsverzeichnisse immer automatisch erstellen und erstellen oder bearbeiten Sie diese nicht von Hand."
+        "DESCRIPTION": "Wenn Sie das Inhaltsverzeichnis automatisch generieren, werden Verweise auf Seiten automatisch generiert und aktualisiert. Vermeiden Sie die manuelle Formatierung von Inhaltsverzeichnissen."
       },
       "48": {
         "SUMMARY": "Ein Element des Inhaltsverzeichnisses verweist auf keine Seite des Dokuments oder hat keinen Verweis hinterlegt.",
@@ -266,7 +262,7 @@
         "DESCRIPTION": "Das Inhaltsverzeichnis folgt keiner logischen Nummerierung wie '1,2,3' oder 'i,ii,iii'. Dies kann passieren, wenn Inhaltsverzeichnisse manuell angepasst werden. Lassen Sie Inhaltsverzeichnisse immer automatisch erstellen und erstellen oder bearbeiten Sie diese nicht von Hand."
       },
       "51": {
-        "SUMMARY": "Eine Liste enthält Elemente, die auch als Liste gekennzeichnet sind.",
+        "SUMMARY": "Diese Liste ist seltsam codiert",
         "DESCRIPTION": "Diese Liste hat ein Element, das als eine andere Liste gekennzeichnet ist. Dies kann Bildschirmleser verwirren. Versuchen Sie nicht Listen miteinander zu kombinieren bzw. Listenelemente in einer anderen Liste zu verschachteln."
       },
       "52": {
@@ -274,7 +270,7 @@
         "DESCRIPTION": "Es sieht so aus, als ob mehrere Listenelemente als ein einziges Listenelement gekennzeichnet worden sind. Dies kann dazu führen, dass Screenreader die Liste falsch lesen. Stellen Sie sicher, dass verschiedene Listenelemente als solche gekennzeichnet sind."
       },
       "53": {
-        "SUMMARY": "Ist das eine Notiz? Sie ist als Span <Span>-Element markiert",
+        "SUMMARY": "Ist das eine Notiz?",
         "DESCRIPTION": "Dieser Text könnte eine Notiz sein, aber er ist als normaler Span <Span> markiert. Screenreader erkennen ihn daher möglicherweise nicht als Notiz. Stellen Sie sicher, dass Sie Notizen als solche markieren."
       },
       "54": {
@@ -340,8 +336,13 @@
         "DESCRIPTION": "Die Kodierung des Dokuments führt nicht dazu, dass der Titel in der Titelleiste des Readers oder Browsers sichtbar ist. Überprüfen Sie zunächst, ob der Titel in den Dokumenteigenschaften ausgefüllt ist und füllen Sie ihn gegebenenfalls aus. Dies tun Sie indem Sie die Dokumenteigenschaften Ihrer Office-Anwendung öffnen (normalerweise über die Registerkarte Datei im Menü oben links) und dort den Titel eingeben. Wenn Sie Zugriff auf einen PDF-Editor haben, können Sie den Titel auch damit ausfüllen. Wenn Sie noch danach diesen Fehler erhalten, liegt das Problem wahrscheinlich an der Anwendung, mit der Sie diese Datei erstellt haben. Wenn ja, versuchen Sie, das Dokument mit einer anderen Anwendung zu bearbeiten (z. B. LibreOffice anstelle von Word). Wenn Sie ein PDF-Experte sind, können Sie das Problem lösen, indem Sie einen PDF-Editor verwenden, um den DisplayDocTitle-Schlüssel im ViewerPreferences-Wörterbuch auf 'true' zu setzen."
       },
       "11": {
-        "SUMMARY": "Im Dokumentenkatalog ist kein StructTreeRoot-Eintrag vorhanden.",
+        "SUMMARY": "Das Dokument ist nicht beschriftet",
         "DESCRIPTION": "Die logische Struktur des Dokuments sollte als Strukturhierarchie beschrieben werden, die im StructTreeRoot-Eintrag des Dokumentenkatalogs verankert ist. Dies ist ein kritischer Zugänglichkeitsfehler. Wenn das Dokument Inhalte enthält, die keiner logischen Struktur folgen, kann es für Screenreader schwierig sein, das Dokument in der richtigen Reihenfolge vorzulesen. Sie können dieses Problem wahrscheinlich lösen, indem Sie Ihr Dokument aus Ihrer Office-Anwendung (Word oder LibreOffice) als getaggte PDF-Datei erneut exportieren. Gehen Sie dazu in das Menü 'Datei -> Speichern unter -> (PDF auswählen) -> Optionen' und aktivieren Sie die Optionen 'Tagged PDF' und 'Speichern als ISO 19005-1 (PDF/A)'."
+        "DESCRIPTION": "Wenn das Dokument keine Codierung ('Tags') aufweist, kann es von der Lesesoftware nicht korrekt vorgelesen werden. Sie können dieses Problem wahrscheinlich lösen, indem Sie das Dokument aus Ihrer Bürosoftware (Word oder LibreOffice) als 'mit Tags versehenes' (verschlüsseltes) PDF erneut exportieren."
+      },
+      "12": {
+        "SUMMARY": "Mit der Art und Weise, wie dieses Dokument kodiert ist, stimmt etwas nicht",
+        "DESCRIPTION": "Dieser Teil des Dokuments ist vom Startpunkt der Codieringssschicht aus nicht erreichbar. Daher ist die Lesesoftware möglicherweise nicht in der Lage, diesen Inhalt zu finden und zu lesen. Dieser Fehler ist wahrscheinlich auf die PDF-Exportfunktion Ihrer Office-Anwendung zurückzuführen."
       }
     },
     "7.2": {
@@ -350,8 +351,8 @@
         "DESCRIPTION": "Screenreader müssen wissen, in welcher Sprache dieses Dokument vorgelesen werden soll. Dazu müssen Sie die Sprache des Dokuments einstellen. Wenn Sie das Dokument mit Word erstellt haben, tun Sie dies, indem Sie den Reiter 'Überprüfen' öffnen und dort unter 'Sprache' die Sprache festlegen."
       },
       "3": {
-        "SUMMARY": "Etwas stimmt nicht mit der Beschriftung der Tabelle",
-        "DESCRIPTION": "Die Tabelle hat mehr als eine Beschriftung, oder die Beschriftung ist falsch kodiert. Versuchen Sie, die Beschriftungen zu löschen und dann erneut hinzuzufügen. Stellen Sie sicher, dass Ihre Tabelle nur eine Beschriftung hat. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+        "SUMMARY": "Diese Tabelle enthält Elemente, die nicht in eine Tabelle gehören",
+        "DESCRIPTION": "Eine Tabelle kann 1 Untertitel, 1 Fuß, 1 Kopf und mehrere Datenzeilen haben. Diese Tabelle enthält weitere Elemente, die nicht in eine Tabelle gehören. Versuchen Sie, die Tabelle zu vereinfachen. Wenn dies nicht funktioniert, versuchen Sie, das Dokument mit einer anderen Anwendung zu bearbeiten und zu exportieren (zum Beispiel LibreOffice statt Word oder umgekehrt)."
       },
       "4": {
         "SUMMARY": "Dieser Text ist fälschlicherweise als Tabellenzeile gekennzeichnet.",
@@ -398,8 +399,8 @@
         "DESCRIPTION": "Wenn eine Tabelle eine Kopfzeile hat, sollte sie zumindest auch einen Hauptteil haben. Versuchen Sie, die Tabelle neu zu formatieren und stellen Sie sicher, dass sie neben einer Kopf- und Fußzeile auch Inhalt hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
       },
       "15": {
-        "SUMMARY": "Die Zeilen in dieser Tabelle haben nicht die gleiche Anzahl an Zellen",
-        "DESCRIPTION": "In einer Tabelle müssen die Zeilen die gleiche Anzahl von Zellen haben. Versuchen Sie, die Tabelle neu zu formatieren. Das Zusammenführen von Zellen ist erlaubt, aber beginnen Sie immer mit einer einfachen Tabelle, in der jede Zeile die gleiche Anzahl von Zellen hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
+        "SUMMARY": "Mit der Formatierung dieser Tabelle stimmt etwas nicht. Eine Zelle überlappt mit anderen Zellen.",
+        "DESCRIPTION": "Zellen einer Tabelle dürfen sich nicht überlappen. Versuchen Sie, die Tabelle neu zu formatieren. Das Zusammenführen von Zellen ist erlaubt, aber beginnen Sie immer mit einer einfachen Tabelle, in der jede Zeile die gleiche Anzahl von Zellen hat. Halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie es erneut mit einer anderen Anwendung (z. B. LibreOffice anstelle von Word)."
       },
       "16": {
         "SUMMARY": "Mit der Tabellenbeschriftung ist etwas nicht in Ordnung",
@@ -446,8 +447,8 @@
         "DESCRIPTION": "Wenn dieser Text zum Inhaltsverzeichnis gehört oder in der Nähe des Inhaltsverzeichnisses liegt, versuchen Sie, das Inhaltsverzeichnis neu zu erstellen. Am besten ist es, das Inhaltsverzeichnis automatisch erstellen zu lassen. Wenn Sie das Inhaltsverzeichnis manuell bearbeiten, halten Sie die Elemente des Inhaltsverzeichnisses dicht beieinander. Wenn dies nicht funktioniert, versuchen Sie es mit einer anderen Anwendung (z. B. LibreOffice statt Word)."
       },
       "27": {
-        "SUMMARY": "Das Inhaltsverzeichnis enthält Elemente, die dort nicht hingehören",
-        "DESCRIPTION": "Ein Inhaltsverzeichnis darf nur Einträge und eine Überschrift enthalten, die als solche gekennzeichnet sein sollten, damit ein Screenreader sie interpretieren kann. Dieses Inhaltsverzeichnis enthält andere Elemente, die nicht in ein Inhaltsverzeichnis gehören. Ein häufig gemachter Fehler ist es, die Einträge im Inhaltsverzeichnis als normale Überschriften oder Absätze zu formatieren. Verwenden Sie immer das automatisch erstellte Inhaltsverzeichnis und bearbeiten Sie es nicht."
+        "SUMMARY": "Mit der Kodierung des Inhaltsverzeichnisses stimmt etwas nicht",
+        "DESCRIPTION": "Das Inhaltsverzeichnis besteht aus Items und höchstens einer Überschrift. Dieses Inhaltsverzeichnis enthält Elemente, die nicht in ein Inhaltsverzeichnis gehören. Dies geschieht häufig, wenn ein Inhaltsverzeichnis manuell formatiert oder anschließend manuell bearbeitet wird Generieren Sie das Inhaltsverzeichnis nicht immer automatisch und bearbeiten Sie es nicht manuell."
       },
       "28": {
         "SUMMARY": "Etwas stimmt nicht mit der Beschriftung des Inhaltsverzeichnisses",
@@ -540,6 +541,10 @@
       "1": {
         "SUMMARY": "Der Code beschreibt die Struktur dieser Tabelle nicht angemessen",
         "DESCRIPTION": "Dieser Tabelle fehlt ein Code, anhand dessen die Struktur identifiziert werden kann. Infolgedessen haben Screenreadern Probleme, die Tabelle richtig zu lesen. Versuchen Sie, die Tabelle neu zu formatieren, geben Sie der Tabelle eine klare Kopfzeile oder Kopfspalte und halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
+      },
+      "2": {
+        "SUMMARY": "Der Code beschreibt die Struktur dieser Tabelle nicht angemessen",
+        "DESCRIPTION": "Dieser Tabelle fehlt ein Code, anhand dessen die Struktur identifiziert werden kann. Infolgedessen haben Screenreadern Probleme, die Tabelle richtig zu lesen. Versuchen Sie, die Tabelle neu zu formatieren, geben Sie der Tabelle eine klare Kopfzeile oder Kopfspalte und halten Sie die Tabelle so einfach wie möglich. Wenn dies nicht funktioniert, versuchen Sie, eine andere Anwendung zu verwenden (z. B. LibreOffice anstelle von Word)."
       }
     },
     "7.7": {
@@ -577,7 +582,7 @@
     "7.15": {
       "1": {
         "SUMMARY": "Das Dokument enthält ein interaktives Formular",
-        "DESCRIPTION": "Um die Anforderungen der Barrierefreiheit zu erfüllen, darf das Dokument keine interaktiven XFA-Formulare (XML Forum Architecture) enthalten. Bearbeiten Sie das Formular und machen Sie daraus ein statisches Formular. Sie können auch versuchen, das Formular in einem anderen Format als XFA einzubinden, wenn Ihre Anwendung dies zulässt."
+        "DESCRIPTION": "Um die WCAG 2.2 Anforderungen der Barrierefreiheit zu erfüllen, darf das Dokument keine interaktiven XFA-Formulare (XML Forum Architecture) enthalten. Bearbeiten Sie das Formular und machen Sie daraus ein statisches Formular. Sie können auch versuchen, das Formular in einem anderen Format als XFA einzubinden, wenn Ihre Anwendung dies zulässt."
       }
     },
     "7.16": {

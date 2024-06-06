@@ -39,7 +39,7 @@
     "1.4.8": {
       "1": {
         "SUMMARY": "Het document bevat lettertypen die moeilijk leesbaar zijn. Dit betreft lettertype(n): ",
-        "DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Screenreaders kunnen deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorveeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
+        "DESCRIPTION": "In het document gebruik je fancy lettertypen die moeilijk te lezen zijn. Screenreaders kunnen deze tekst voorlezen, maar slechtzienden, mensen met ADHD of mensen in het autismespectrum kunnen moeite hebben om dit te lezen. Tenzij deze tekst echt als voorbeeld van onleesbare tekst bedoeld was, kan je beter een standaard lettertype gebruiken zoals Arial, Verdana of Times Roman."
       }
     },
     "1.4.10": {
@@ -98,8 +98,8 @@
         "DESCRIPTION": "Deze tekst ziet eruit als een tabelkop maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen - tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "8": {
-        "SUMMARY": "Is dit een cel van een tabel?",
-        "DESCRIPTION": "Deze tekst ziet eruit als een tabelcel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen - tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
+        "SUMMARY": "Is dit een onderdeel van een tabel?",
+        "DESCRIPTION": "Deze tekst ziet eruit als een onderdeel van een tabel maar is niet als zodanig gelabeld. Maak nooit tabellen met de hand op, want dat brengt screenreaders in de war. Maak altijd gebruik van het menu invoegen - tabel in je kantoorapplicatie. Zo zorg je dat tabellen ook als tabellen worden gelabeld en herkend."
       },
       "9": {
         "SUMMARY": "Is dit een tabel?",
@@ -245,46 +245,46 @@
         "SUMMARY": "Is dit wel een tabelkop?",
         "DESCRIPTION": "Dit ziet eruit als een gewone tabelcel, maar is gecodeerd als een tabelkop. Maak een tabel altijd aan met de tabelfunctie van je kantoorapplicatie. Beperk koppen tot de eerste rij of eerste kolom. Vermijd het samenvoegen en splitsen van elementen en ga de tabel niet zelf stylen."
       },
-			"46": {
-				"SUMMARY": "Dit element in de inhoudsopgave komt niet terug in de tekst",
-				"DESCRIPTION": "Elk element in de inhoudsopgave moet woordelijk overeenkomen met een kop in de tekst. Als je de inhoudsopgave automatisch genereert, dan komt dit vanzelf goed en worden de paginanummers ook automatisch bijgewerkt. Vermijd het handmatig opmaken van inhoudsopgaven."
-			},
-			"47": {
-				"SUMMARY": "Dit element van de inhoudsopgave is niet te vinden op de pagina waarnaar verwezen wordt",
-				"DESCRIPTION": "Dit element van de inhoudsopgave verwijst waarschijnlijk naar de verkeerde pagina. Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
-			},
-			"48": {
-				"SUMMARY": "Dit element van de inhoudsopgave heeft geen link naar de overeenkomstige pagina",
-				"DESCRIPTION": "Door te klikken op een element van de inhoudsopgave wordt je idealiter vanzelf doorverwezen naar de betreffende pagina in het document. Als je de inhoudsopgave automatisch genereert, dan komt dit vanzelf goed. Vermijd het handmatig opmaken van inhoudsopgaven."
-			},
-			"49": {
-				"SUMMARY": "Dit element van de inhoudsopgave heeft een ongeldig paginanummer",
-				"DESCRIPTION": "Dit element van de inhoudsopgave verwijst naar een paginanummer dat niet bestaat. Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
-			},
-			"50": {
-				"SUMMARY": "De inhoudsopgave heeft een onlogische nummering",
-				"DESCRIPTION": "De nummering van de inhoudsopgave is inconsistent of heeft geen logische volgorde. Als je kopstijlen gebruikt en de inhoudsopgave automatisch genereert, volgt de inhoudsopgave automatisch de nummering van de koppen en voorkom je dit probleem. Vermijd het handmatig opmaken van koppen en inhoudsopgaven."
-			},
-			"51": {
-				"SUMMARY": "Lijst heeft maar één element, dat weer een lijst is",
-				"DESCRIPTION": "Het heeft geen zin om een lijst te maken met één element dat zelf weer een lijst is. Dit bemoeilijkt ook het voorlezen van het document door voorleessoftware. Het is mogelijk dat dit een coderingsfout is van de PDF exportfunctie van je kantoorapplicatie. Maak de lijst in je kantoorapplicatie op met één lijst stijl."
-			},
-			"52": {
-				"SUMMARY": "Meerdere lijst elementen zijn als één element gecodeerd",
-				"DESCRIPTION": "Ieder element van een lijst moet als en apart lijstelement gecodeerd zijn. Het is mogelijk dat dit een coderingsfout is van de PDF export functie van je applicatie. Maak de lijst in je kantoorapplicatie op met een lijst stijl en scheid elementen met paragraph breaks (return). Voorkom voor zover mogelijk het gebruik van regeleinden (shift-return) in de lijst."
-			},
-			"53": {
-				"SUMMARY": "Is dit (voet- of eind-)noot?",
-				"DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
-			},
-			"54": {
-				"SUMMARY": "Is dit (voet- of eind-)noot?",
-				"DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
-			},
-			"55": {
-				"SUMMARY": "Er is iets mis met de codering van deze kop",
-				"DESCRIPTION": "Deze kop zit in de codering niet op een logische plaats in de structuur van het document. Dit kan een coderingsfout zijn in de PDF exportfunctie van je kantoorapplicatie. In dat geval kun je hier niet veel aan doen in het brondocument, en moet de PDF nabewerkt worden."
-			}
+      "46": {
+        "SUMMARY": "Dit element in de inhoudsopgave komt niet terug in de tekst",
+        "DESCRIPTION": "Elk element in de inhoudsopgave moet overeenkomen met een kop in de tekst. Als je de inhoudsopgave automatisch genereert, dan komt dit vanzelf goed en worden de paginanummers ook automatisch bijgewerkt. Vermijd het handmatig opmaken van inhoudsopgaven."
+      },
+      "47": {
+        "SUMMARY": "Dit element van de inhoudsopgave verwijst niet naar de juiste pagina",
+        "DESCRIPTION": "Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
+      },
+      "48": {
+        "SUMMARY": "Dit element van de inhoudsopgave verwijst naar geen enkele pagina",
+        "DESCRIPTION": "Als je de inhoudsopgave automatisch genereert, worden verwijzingen naar pagina's vanzelf gegenereerd en geactualiseerd. Vermijd het handmatig opmaken van inhoudsopgaven."
+      },
+      "49": {
+        "SUMMARY": "Dit element van de inhoudsopgave heeft een ongeldig paginanummer",
+        "DESCRIPTION": "Dit element van de inhoudsopgave verwijst naar een paginanummer dat niet bestaat. Als je de inhoudsopgave automatisch genereert, worden de paginanummers ook automatisch bijgewerkt en voorkom je dit probleem. Vermijd het handmatig opmaken van inhoudsopgaven."
+      },
+      "50": {
+        "SUMMARY": "De inhoudsopgave heeft een onlogische nummering",
+        "DESCRIPTION": "De nummering van de inhoudsopgave is inconsistent of heeft geen logische volgorde. Als je kopstijlen gebruikt en de inhoudsopgave automatisch genereert, volgt de inhoudsopgave automatisch de nummering van de koppen en voorkom je dit probleem. Vermijd het handmatig opmaken van koppen en inhoudsopgaven."
+      },
+      "51": {
+        "SUMMARY": "Deze lijst is vreemd gecodeerd",
+        "DESCRIPTION": "Deze lijst bevat één element dat zelf weer een lijst is. Dit is een vreemde en onlogische manier om de lijst te coderen en bemoeilijkt ook het voorlezen van het document door voorleessoftware. Het is mogelijk dat dit een coderingsfout is van de PDF exportfunctie van je kantoorapplicatie. Maak de lijst in je kantoorapplicatie op met een lijst stijl."
+      },
+      "52": {
+        "SUMMARY": "Zijn dit verschillende items in de lijst?",
+        "DESCRIPTION": "Dit lijken verschillende lijst items te zijn, maar ze zijn als één item gecodeerd. Het is mogelijk dat dit een coderingsfout is van de PDF export functie van je applicatie. Maak de lijst in je kantoorapplicatie op met een lijst stijl en scheid elementen met paragraph breaks (return). Voorkom voor zover mogelijk het gebruik van regeleinden (shift-return) in de lijst."
+      },
+      "53": {
+        "SUMMARY": "Is dit (voet- of eind-)noot?",
+        "DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
+      },
+      "54": {
+        "SUMMARY": "Is dit (voet- of eind-)noot?",
+        "DESCRIPTION": "Dit lijkt een noot, maar is niet als zodanig gecodeerd. Maak voetnoten en eindnoten altijd op met de daarvoor bestemde functie en stijl in je kantoorsoftware."
+      },
+      "55": {
+        "SUMMARY": "Er is iets mis met de codering van deze kop",
+        "DESCRIPTION": "Deze kop zit in de codering niet op een logische plaats in de structuur van het document. Dit kan een coderingsfout zijn in de PDF exportfunctie van je kantoorapplicatie. In dat geval kun je hier niet veel aan doen in het brondocument, en moet de PDF nabewerkt worden."
+      }
     }
   },
   "ISO 14289-1:2014": {
@@ -341,7 +341,11 @@
       },
       "11": {
         "SUMMARY": "Het document is niet gecodeerd",
-        "DESCRIPTION": "Als het document geen code heeft, kunnen screenreaders het niet in de juiste volgorde voorlezen. Dit is een kritieke fout. Je kan dit waarschijnlijk oplossen door je document nogmaals uit je kantoorapplicatie (Word of LibreOffice) te exporteren als 'tagged' (gelabelde) PDF. In Word doe je dit door in het menu 'Bestand - Opslaan als - (kies PDF) - Opties' de opties 'Labels voor documentstructuur voor toegankelijkheid' en 'Voldoet aan ISO 19005-1 (PDF/A)' aan te vinken. Gebruik nooit 'afdrukken - Adobe PDF' om je document naar PDF te exporteren."
+        "DESCRIPTION": "Als het document geen codering ('tags') heeft, kan voorleessoftware het niet correct voorlezen. Je kan dit probleem waarschijnlijk oplossen door het document opnieuw te exporteren vanuit je kantoorsoftware (Word or LibreOffice) als 'tagged' (gecodeerde) PDF. Je kan dit doen via het menu Bestand -> Opslaan als -> (kies opslaglocatie) -> Meer opties -> (kies PDF) -> Opties, waar je dan de opties 'Documenteigenschappen', 'Labels voor documentstructuur voor toegankelijkheid' en 'voldoet aan PDF/A' aanvinkt."
+      },
+      "12": {
+        "SUMMARY": "Er is iets mis met de manier waarop dit document gecodeerd is",
+        "DESCRIPTION": "Dit deel van het document is niet bereikbaar vanaf het startpunt van de coderingslaag. Daarom kan voorleessoftware deze inhoud mogelijk niet vinden en voorlezen. Deze fout komt waarschijnlijk voort uit de PDF exportfunctie van je kantoorapplicatie."
       }
     },
     "7.2": {
@@ -350,8 +354,8 @@
         "DESCRIPTION": "Voorleesapplicaties moeten weten in welke taal ze dit document moeten voorlezen. Daarvoor moet je de taal van het document instellen. Als je het document hebt aangemaakt met Word of LibreOffice doe je dit door de instellingen van de stijl 'Standaard' te openen en de taal daar in te stellen."
       },
       "3": {
-        "SUMMARY": "De tabel bevat zaken die niet in een tabel mogen voorkomen",
-        "DESCRIPTION": "Een tabel mag alleen uit rijen, koprijen, voetrijen en een bijschrift bestaan. Uit de codering blijkt dat deze tabel andere elementen heeft die geen deel van een tabel mogen uitmaken. Daardoor kan een schermlezer problemen hebben om de tabel voor te lezen. Probeer de tabel eenvoudiger op te maken zonder complexe onderdelen."
+        "SUMMARY": "Deze tabel bevat elementen die niet in een tabel thuishoren",
+        "DESCRIPTION": "Een tabel mag 1 bijschrijft, 1 kop-rij, 1 bodem-rij en meerdere rijen met gegevens hebben. Deze tabel heeft andere elementen die niet in een tabel horen. Probeer de tabel te vereenvoudigen. Werkt dit niet, probeer het document dan eens te bewerken en exporteren met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
       },
       "4": {
         "SUMMARY": "Deze tekst is verkeerd gemarkeerd als tabelrij",
@@ -398,12 +402,8 @@
         "DESCRIPTION": "Als een tabel een kop heeft, moet deze tenminste ook een body hebben. Probeer de tabel opnieuw op te maken en zorg ervoor dat de tabel behalve een kop en voet ook inhoud heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       },
       "15": {
-        "SUMMARY": "De rijen in deze tabel hebben niet hetzelfde aantal cellen",
-        "DESCRIPTION": "In een tabel moeten de rijen hetzelfde aantal cellen hebben. Probeer de tabel opnieuw op te maken. Cellen samenvoegen mag, maar begin altijd met een basistabel waarin elke rij hetzelfde aantal cellen heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
-      },
-      "16": {
-        "SUMMARY": "Er is iets mis met het bijschrift van de tabel",
-        "DESCRIPTION": "Het bijschrift van de tabel is verkeerd gecodeerd. Probeer het bijschrift te verwijderen en voeg het opnieuw in. Een tabel mag maar één bijschrift hebben. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Er is iets mis met de opmaak van deze tabel. Een cel overlapt met andere cellen.",
+        "DESCRIPTION": "Cellen van een tabel mogen niet overlappen. Probeer de tabel opnieuw op te maken. Cellen samenvoegen mag, maar begin altijd met een basistabel waarin elke rij hetzelfde aantal cellen heeft. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       },
       "17": {
         "SUMMARY": "Deze tekst is verkeerd gemarkeerd als lijstelement",
@@ -447,11 +447,7 @@
       },
       "27": {
         "SUMMARY": "Er is iets mis met de codering van de inhoudsopgave",
-        "DESCRIPTION": "Een inhoudsopgave mag alleen verwijzingen en een bijschrift bevatten, die zo gecodeerd moeten zijn zodat een schermlezer ze kan herkennen. Deze inhoudsopgave bevat andere onderdelen die niet in een inhoudsopgave thuishoren. Een veelgemaakte fout is om verwijzingen in de inhoudsopgave als gewone koppen of alinea's op te maken. Gebruik voor zover mogelijk een automatisch gegenereerde inhoudsopgave en ga deze niet zelf bewerken."
-      },
-      "28": {
-        "SUMMARY": "Er is iets mis met het bijschrift van de inhoudsopgave",
-        "DESCRIPTION": "Het bijschrift van de inhoudsopgave is verkeerd gecodeerd. Probeer het bijschrift te verwijderen en weer toe te voegen. Ga altijd uit van de automatisch gegenereerde inhoudsopgave, ga deze niet zelf bewerken. Lukt het niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "De inhoudsopgave bestaat uit items en hoogstens 1 bijschrift. Deze inhoudsopgave bevat elementen die niet in een inhoudsopgave thuishoren. Dit gebeurt vaak als een inhoudsopgave handmatig opgemaakt wordt, of na generatie handmatig bewerkt wordt. Doe dit niet. Genereer de inhoudsopgave altijd automatisch en bewerk deze niet handmatig na."
       },
       "29": {
         "SUMMARY": "Taal van het document verkeerd gecodeerd",
@@ -490,12 +486,24 @@
         "DESCRIPTION": "De voettekst van een tabel mag alleen uit rijen bestaan. De voettekst van deze tabel bevat andere soorten tekst. Hierdoor kan het zijn dat screenreaders niet weten hoe het deze tabel moet voorlezen. Probeer de tabel opnieuw op te maken. Houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)"
       },
       "39": {
-        "SUMMARY": "Deze tabel heeft meer dan één bijschrift",
-        "DESCRIPTION": "Een tabel mag volgens WCAG maar één bijschrift hebben. Probeer de bijschriften te verwijderen en voeg er dan weer één toe. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "SUMMARY": "Deze tabel heeft meer dan 1 bijschrift",
+        "DESCRIPTION": "Een tabel mag hoogstens 1 bijschrift hebben. Haal alle bijschriften weg, en voeg er dan precies 1 weer toe. Lost dit het probleem niet op, probeer dit dan nog eens met een andere kantoorapplicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
       },
       "40": {
         "SUMMARY": "Er is iets mis met het bijschrift van deze lijst",
-        "DESCRIPTION": "Het bijschrift van de lijst is verkeerd gecodeerd. Dit kan schermlezers in de war brengen. Probeer het bijschrift te verwijderen en weer in te voegen. Werkt dit niet, probeer het dan nog eens met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+        "DESCRIPTION": "Het bijschrift van deze lijst is niet correct gecodeerd. Probeer het bijschrift weg te halen en weer toe te voegen. Lukt dit niet, probeer dan de hele lijst opnieuw in te voegen en op te maken. Lost dit het probleem nog niet op, probeer dit dan nog eens met een andere kantoorapplicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
+      },
+      "41": {
+        "SUMMARY": "De kolommen van deze tabel hebben niet hetzelfde aantal cellen",
+        "DESCRIPTION": "De kolommen van een tabel moeten altijd hetzelfde aantal cellen hebben, anders is de tabel moeilijk voor te lezen. Probeer de tabel opnieuw op te maken. Samenvoegen van cellen mag, maar begin altijd met een tabel waarin alle kolommen hetzelfde aantal cellen hebben. Houd je tabel zo eenvoudig mogelijk. Lost dit het probleem niet op, probeer dit dan nog eens met een andere kantoorapplicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
+      },
+      "42": {
+        "SUMMARY": "De rijen van deze tabel hebben niet hetzelfde aantal cellen",
+        "DESCRIPTION": "De rijen van een tabel moeten altijd hetzelfde aantal cellen hebben, anders is de tabel moeilijk voor te lezen. Probeer de tabel opnieuw op te maken. Samenvoegen van cellen mag, maar begin altijd met een tabel waarin alle rijen hetzelfde aantal cellen hebben. Houd je tabel zo eenvoudig mogelijk. Lost dit het probleem niet op, probeer dit dan nog eens met een andere kantoorapplicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
+      },
+      "43": {
+        "SUMMARY": "De rijen van deze tabel hebben niet hetzelfde aantal cellen",
+        "DESCRIPTION": "De rijen van een tabel moeten altijd hetzelfde aantal cellen hebben, anders is de tabel moeilijk voor te lezen. Probeer de tabel opnieuw op te maken. Samenvoegen van cellen mag, maar begin altijd met een tabel waarin alle rijen hetzelfde aantal cellen hebben. Houd je tabel zo eenvoudig mogelijk. Lost dit het probleem niet op, probeer dit dan nog eens met een andere kantoorapplicatie (bijvoorbeeld LibreOffice in plaats van Word of vice versa)."
       }
     },
     "7.3": {
@@ -526,6 +534,10 @@
     },
     "7.5": {
       "1": {
+        "SUMMARY": "De code beschrijft de structuur van deze tabel onvoldoende",
+        "DESCRIPTION": "Deze tabel mist code waaruit de structuur kan worden opgemaakt. Daardoor hebben screenreaders moeite om de tabel correct voor te lezen. Probeer de tabel opnieuw op te maken, geef de tabel duidelijke kop-rij of kop-kolom en houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
+      },
+      "2": {
         "SUMMARY": "De code beschrijft de structuur van deze tabel onvoldoende",
         "DESCRIPTION": "Deze tabel mist code waaruit de structuur kan worden opgemaakt. Daardoor hebben screenreaders moeite om de tabel correct voor te lezen. Probeer de tabel opnieuw op te maken, geef de tabel duidelijke kop-rij of kop-kolom en houd de tabel zo eenvoudig mogelijk. Werkt dit niet, probeer het dan met een andere applicatie (bijvoorbeeld LibreOffice in plaats van Word)."
       }
@@ -565,7 +577,7 @@
     "7.15": {
       "1": {
         "SUMMARY": "Het document bevat een interactief formulier",
-        "DESCRIPTION": "Om te voldoen aan toegankelijkheidseisen mag het document geen interactieve XFA (XML Forum Architecture) formulieren bevatten. Bewerk het formulier en maak er een statisch formulier van. Je kan ook proberen het formulier in een ander format dan XFA op te nemen, als je applicatie dat toelaat."
+        "DESCRIPTION": "Om te voldoen aan WCAG 2.2 toegankelijkheidseisen mag het document geen interactieve XFA (XML Forum Architecture) formulieren bevatten. Bewerk het formulier en maak er een statisch formulier van. Je kan ook proberen het formulier in een ander format dan XFA op te nemen, als je applicatie dat toelaat."
       }
     },
     "7.16": {

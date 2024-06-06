@@ -337,7 +337,6 @@
       },
       "11": {
         "SUMMARY": "Das Dokument ist nicht beschriftet",
-        "DESCRIPTION": "Die logische Struktur des Dokuments sollte als Strukturhierarchie beschrieben werden, die im StructTreeRoot-Eintrag des Dokumentenkatalogs verankert ist. Dies ist ein kritischer Zugänglichkeitsfehler. Wenn das Dokument Inhalte enthält, die keiner logischen Struktur folgen, kann es für Screenreader schwierig sein, das Dokument in der richtigen Reihenfolge vorzulesen. Sie können dieses Problem wahrscheinlich lösen, indem Sie Ihr Dokument aus Ihrer Office-Anwendung (Word oder LibreOffice) als getaggte PDF-Datei erneut exportieren. Gehen Sie dazu in das Menü 'Datei -> Speichern unter -> (PDF auswählen) -> Optionen' und aktivieren Sie die Optionen 'Tagged PDF' und 'Speichern als ISO 19005-1 (PDF/A)'."
         "DESCRIPTION": "Wenn das Dokument keine Codierung ('Tags') aufweist, kann es von der Lesesoftware nicht korrekt vorgelesen werden. Sie können dieses Problem wahrscheinlich lösen, indem Sie das Dokument aus Ihrer Bürosoftware (Word oder LibreOffice) als 'mit Tags versehenes' (verschlüsseltes) PDF erneut exportieren."
       },
       "12": {

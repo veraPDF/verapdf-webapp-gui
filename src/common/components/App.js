@@ -23,7 +23,7 @@ function App({ initialized }) {
                 <AppRouter />
             </main>
             <LockOverlay />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

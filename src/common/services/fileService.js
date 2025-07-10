@@ -3,11 +3,13 @@ import { get, upload } from './api';
 import { JOB_OLD_FILE } from '../store/constants';
 import AppPages from '../components/AppPages';
 
-const { REACT_APP_API_ROOT, PUBLIC_URL } = process.env;
+const { PUBLIC_URL } = process.env;
 
 const STATIC_PAGES = ['', AppPages.UPLOAD, AppPages.ABOUT, AppPages.PRIVACY_POLICY, AppPages.NOT_FOUND].map(
     pageURL => `${PUBLIC_URL}${pageURL}`
 );
+
+const REACT_APP_API_ROOT = '/api';
 
 export const getInfo = () => {
     const url = `${REACT_APP_API_ROOT}/status/file-storage/info`;

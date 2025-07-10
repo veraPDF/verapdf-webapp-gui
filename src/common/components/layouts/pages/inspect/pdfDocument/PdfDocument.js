@@ -197,6 +197,8 @@ function PdfDocument(props) {
             props.setPdfName(props.file.name || props.fileName);
             props.setNumPages(document.numPages);
             props.initTree(document.parsedTree);
+            console.log('parsed', document.parsedTree);
+            console.log('structure', document._pdfInfo.structureTree);
             setStructureTree(document._pdfInfo.structureTree);
             const newMapOfErrors = createMapOfErrors(props.ruleSummaries, document._pdfInfo.structureTree);
             props.onDocumentReady(newMapOfErrors);

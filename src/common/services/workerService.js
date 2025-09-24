@@ -1,6 +1,6 @@
 import { get } from './api';
 
-const { REACT_APP_API_ROOT } = process.env;
+const REACT_APP_API_ROOT = '/api';
 
 export const getInfo = () => {
     const url = `${REACT_APP_API_ROOT}/status/worker/info`;

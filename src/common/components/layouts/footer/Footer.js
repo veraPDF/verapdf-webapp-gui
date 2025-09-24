@@ -52,8 +52,8 @@ function buildServiceInfo(service) {
 function buildAppsInfo(service) {
     switch (service.available) {
         case true:
-            let info = service.build.apps.version;
-            if (service.build.apps.lastUpdated) {
+            let info = service?.build?.apps?.version;
+            if (service?.build?.apps?.lastUpdated) {
                 let buildTime = new Date(service.build.apps.lastUpdated);
                 info += `, built on ${buildTime.toLocaleString(BUILD_TIME_FORMAT.locale, BUILD_TIME_FORMAT.options)}`;
             }

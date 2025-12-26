@@ -22,11 +22,10 @@ function Header() {
             </section>
             <section className="app-header__right">
                 <Link
-                    to={AppPages.ABOUT}
+                    to={AppPages.MARKED.ABOUT}
                     target="_blank"
                     className={classNames('app-link', 'about-link', {
-                        'app-link_hidden':
-                            location.pathname === AppPages.ABOUT || location.pathname === AppPages.PRIVACY_POLICY,
+                        'app-link_hidden': Object.values(AppPages.MARKED).includes(location.pathname),
                     })}
                 >
                     <HelpOutline />

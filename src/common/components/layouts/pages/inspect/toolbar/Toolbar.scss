@@ -67,12 +67,28 @@
 
 @media (max-width: 560px) {
   .toolbar {
-     .pagination {
-       display: none;
+    .pagination {
+      padding: 0;
+    }
+
+    .pagination__input, .pagination__max {
+      display: none;
     }
 
     section.toolbar__end {
       flex-grow: 1;
+    }
+
+    section.toolbar__start {
+      flex-grow: 0;
+    }
+  }
+}
+
+@media (max-width: 363px) {
+  .toolbar {
+    section.toolbar__end > button {
+      display: none;
     }
   }
 }

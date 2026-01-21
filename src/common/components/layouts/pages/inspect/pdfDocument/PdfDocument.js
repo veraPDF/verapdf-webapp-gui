@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import PdfViewer from 'verapdf-js-viewer';
 import _ from 'lodash';
 
+import { useDebouncedResizeObserver } from '../../../../../hooks/useDebouncedResizeObserver';
 import { getFileName, getPdfFiles } from '../../../../../store/pdfFiles/selectors';
 import { getRuleSummaries } from '../../../../../store/job/result/selectors';
 import { convertContextToPath, findAllMcid, getCheckId } from '../../../../../services/pdfService';
+import { findNearToOneIndexInSortArray } from '../../../../../services/treeService';
 import { getPage, isFileUploadMode } from '../../../../../store/application/selectors';
 import { setNumPages, setPage } from '../../../../../store/application/actions';
 import { getItem } from '../../../../../services/localStorageService';
 import { LS_ERROR_MESSAGES_LANGUAGE } from '../../../../../store/constants';
+import { scaleAdvancedValues, scaleAutoValues } from '../constants';
 import { getProfile } from '../../../../../store/job/settings/selectors';
 import { getFileNameLink } from '../../../../../store/pdfLink/selectors';
 import { errorMessagesMap, errorProfiles, languageEnum } from '../tree/Tree';
@@ -39,10 +42,12 @@ PdfDocument.propTypes = {
     isTreeShow: PropTypes.bool.isRequired,
     expandedRules: PropTypes.arrayOf(PropTypes.number).isRequired,
     scale: PropTypes.string.isRequired,
+    scaleMode: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
     initTree: PropTypes.func.isRequired,
     setSelectedCheck: PropTypes.func.isRequired,
     setSelectedNodeId: PropTypes.func.isRequired,
+    setScale: PropTypes.func.isRequired,
     setPdfName: PropTypes.func.isRequired,
     onPageChange: PropTypes.func.isRequired,
     setNumPages: PropTypes.func.isRequired,
@@ -109,6 +114,7 @@ function getTitleDescription({ specification, clause, testNumber }, errorMessage
 }
 
 function PdfDocument(props) {
+    const { ref, width: wrapperWidth, height: wrapperHeight } = useDebouncedResizeObserver(500);
     const [structureTree, setStructureTree] = useState({});
     const [mapOfErrors, setMapOfErrors] = useState({});
     const [indicesOfVisibleErrors, setIndicesOfVisibleErrors] = useState(null);
@@ -255,9 +261,42 @@ function PdfDocument(props) {
         });
         setIndicesOfVisibleErrors(indicesOfVisibleBboxes);
     }, [createMapOfErrors, props.ruleSummariesFiltered, structureTree, mapOfErrors]);
+    useEffect(() => {
+        if (!scaleAdvancedValues.includes(props.scaleMode)) {
+            return;
+        }
+
+        const pdfPage = document.querySelector('.pdf-page');
+
+        if (!_.isNil(wrapperWidth) && !_.isNil(wrapperHeight) && !_.isNil(pdfPage)) {
+            const { width: pageWidth, height: pageHeight } = pdfPage.getBoundingClientRect();
+            let ratio;
+
+            switch (props.scaleMode) {
+                case scaleAdvancedValues[0]: {
+                    ratio = Math.max(pageWidth / wrapperWidth, pageHeight / wrapperHeight);
+                    break;
+                }
+                case scaleAdvancedValues[1]: {
+                    ratio = pageWidth / wrapperWidth;
+                    break;
+                }
+                default: {
+                    ratio = 1;
+                    break;
+                }
+            }
+
+            props.setScale(prev => {
+                const index = findNearToOneIndexInSortArray(scaleAutoValues.map(value => (ratio * value) / prev));
+                return scaleAutoValues[index] ?? prev;
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.scaleMode, wrapperWidth, wrapperHeight]);
 
     return (
-        <div className="pdf-viewer__wrapper" role="button" tabIndex={0}>
+        <div ref={ref} className="pdf-viewer__wrapper" role="button" tabIndex={0}>
             {props.warningMessage && (
                 <Alert severity="warning">
                     {props.warningMessage}

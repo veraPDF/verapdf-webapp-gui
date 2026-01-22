@@ -9,6 +9,7 @@ export const getResultDetails = createSelector(getResult, result => result?.deta
 export const getResultSummary = createSelector(getResultDetails, checks => ({
     passedChecks: checks?.passedChecks || null,
     failedChecks: checks?.failedChecks || null,
+    ruleSummaries: checks?.ruleSummaries || null,
 }));
 
 export const isCompliant = createSelector(getResult, result => result?.compliant || false);
